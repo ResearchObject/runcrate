@@ -5,16 +5,8 @@ from __future__ import unicode_literals
 import os
 import sys
 
-import mock
 import sphinx_py3doc_enhanced_theme
 
-
-mock_modules = [
-    'matplotlib',
-    ]
-
-for modulename in mock_modules:
-    sys.modules[modulename] = mock.Mock()
 
 extensions = [
     'sphinx.ext.autodoc',
