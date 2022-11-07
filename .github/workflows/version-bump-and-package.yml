@@ -5,7 +5,7 @@ name: version bump and deploy
 on:
   push:
     branches:
-      - main
+      - NOT-main
 
 jobs:
   bump-version:
