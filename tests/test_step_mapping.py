@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from cwlprov_to_crate import get_workflow, ProvCrateBuilder
+from runcrate import get_workflow, ProvCrateBuilder
 
 
 def test_step_maps(data_dir):

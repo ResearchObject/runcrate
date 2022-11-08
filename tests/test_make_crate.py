@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from cwlprov_to_crate import main
+from runcrate import main
 from rocrate.rocrate import ROCrate
 
 
