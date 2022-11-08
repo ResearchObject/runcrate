@@ -3,7 +3,6 @@
 from __future__ import unicode_literals
 
 import os
-import sys
 
 import sphinx_py3doc_enhanced_theme
 
@@ -19,13 +18,13 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.viewcode',
     'sphinx.ext.autosectionlabel',
-    ]
+]
 
 todo_include_todos = True
 
 exclude_patterns = [
     'nonlisted/*.rst',
-    ]
+]
 
 if os.getenv('SPELLCHECK'):
     extensions += 'sphinxcontrib.spelling',
@@ -47,7 +46,7 @@ templates_path = ['.']
 extlinks = {
     'issue': ('https://github.com/ResearchObject/runcrate/issues/%s', '#'),  # noqa: E501
     'pr': ('https://github.com/ResearchObject/runcrate/pull/%s', 'PR #'),  # noqa: E501
-    }
+}
 
 # codecov io closes connection if host is accessed too repetitively.
 # codecov links are ignored here for the same reason there's a sleep
@@ -55,20 +54,20 @@ extlinks = {
 # see https://github.com/codecov/codecov-python/issues/158
 linkcheck_ignore = [
     r'https://codecov.io/gh/ResearchObject/runcrate/*',
-    ]
+]
 
 html_theme = "sphinx_py3doc_enhanced_theme"
 html_theme_path = [sphinx_py3doc_enhanced_theme.get_html_theme_path()]
 html_theme_options = {
     'githuburl': 'https://github.com/ResearchObject/runcrate',
-    }
+}
 
 html_use_smartypants = True
 html_last_updated_fmt = '%b %d, %Y'
 html_split_index = False
 html_sidebars = {
     '**': ['searchbox.html', 'globaltoc.html', 'sourcelink.html'],
-    }
+}
 html_short_title = '%s-%s' % (project, version)
 
 napoleon_use_ivar = True

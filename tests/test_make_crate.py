@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from runcrate import main
 from rocrate.rocrate import ROCrate
+
+from runcrate import main
 
 
 CWL_ID = "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
@@ -124,7 +125,7 @@ def test_revsort(data_dir, tmpdir):
                 ("packed.cwl#main/reverse_sort", "packed.cwl#sorttool.cwl/reverse"),
             ])
         else:
-            assert False, f"unexpected step id: {step.id}"
+            raise AssertionError(f"unexpected step id: {step.id}")
     assert set(_connected(workflow)) == set([
         ("packed.cwl#sorttool.cwl/output", "packed.cwl#main/output"),
     ])
