@@ -6,19 +6,12 @@ include LICENSE
 include requirements.txt
 include CODE_OF_CONDUCT.md
 
-exclude .appveyor.yml
-exclude .bumpversion.cfg
-exclude .codacy.yaml
-exclude .coveragerc
-exclude .cookiecutterrc
-exclude .editorconfig
-exclude .readthedocs.yml
-exclude .codeclimate.yml
 exclude tox.ini
-exclude .travis.yml
 
+prune cwl
 prune devtools
 prune tests
+prune tools
 
 global-exclude *.py[cod] __pycache__/* *.so *.dylib 
 global-exclude tags

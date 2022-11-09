@@ -7,14 +7,11 @@ Contents
 
    readme
    the_rationale_behind
-   how_to_use_the_template
    configuration
    installation
    usage
    contributing
    reference/index
-   changelog
-   AUTHORS
 
 Indices and tables
 ==================
@@ -22,4 +19,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

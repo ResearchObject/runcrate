@@ -121,25 +121,6 @@ You can push to your fork now if you wish:
 
 And, continue doing your developments are previously discussed.
 
-Update CHANGELOG
-~~~~~~~~~~~~~~~~
-
-Update the changelog file under :code:`CHANGELOG.rst` with an explanatory bullet
-list of your contribution. Add that list right after the main title and before
-the last version subtitle:
-
-::
-
-    Changelog
-    =========
-
-    * here goes my new additions
-    * explain them shortly and well
-
-    vX.X.X (1900-01-01)
-    -------------------
-
-Also add your name to the authors list at :code:`docs/AUTHORS.rst`.
 
 Pull Request
 ~~~~~~~~~~~~
