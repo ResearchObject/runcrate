@@ -1,4 +1,3 @@
-# tox enviroments that run on both pull requests and merge to main
 name: ci
 
 on:
