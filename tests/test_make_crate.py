@@ -637,3 +637,57 @@ def test_passthrough(data_dir, tmpdir):
         ("packed.cwl#sorttool.cwl/sort_out", "packed.cwl#main/revsort_out"),
         ("packed.cwl#main/dummy_in", "packed.cwl#main/dummy_out"),
     ])
+
+
+def test_unset_param(data_dir, tmpdir):
+    # the reverse_sort param is optional with no default and is not set
+    # CWLProv records a "None" entity for this, we don't record anything
+    args = Args()
+    args.root = data_dir / "revsort-optional-run-1"
+    args.output = tmpdir / "revsort-optional-run-1-crate"
+    args.license = "Apache-2.0"
+    args.workflow_name = None
+    main(args)
+    crate = ROCrate(args.output)
+    workflow = crate.mainEntity
+    wf_inputs = {_.id: _ for _ in workflow["input"]}
+    assert set(wf_inputs) == {
+        "packed.cwl#main/reverse_sort",
+        "packed.cwl#main/revsort_in"
+    }
+    reverse_sort = wf_inputs["packed.cwl#main/reverse_sort"]
+    assert "defaultValue" not in reverse_sort
+    assert reverse_sort["valueRequired"] == "False"
+    wf_tools = {_.id: _ for _ in workflow["hasPart"]}
+    assert set(wf_tools) == {
+        "packed.cwl#revtool.cwl",
+        "packed.cwl#sorttool.cwl"
+    }
+    sorttool = wf_tools["packed.cwl#sorttool.cwl"]
+    sorttool_inputs = {_.id: _ for _ in sorttool["input"]}
+    assert set(sorttool_inputs) == {
+        "packed.cwl#sorttool.cwl/reverse",
+        "packed.cwl#sorttool.cwl/sort_in"
+    }
+    reverse = sorttool_inputs["packed.cwl#sorttool.cwl/reverse"]
+    assert "defaultValue" not in reverse
+    assert reverse["valueRequired"] == "False"
+    actions = {_["instrument"].id: _ for _ in crate.contextual_entities
+               if "CreateAction" in _.type}
+    assert set(actions) == {
+        "packed.cwl",
+        "packed.cwl#revtool.cwl",
+        "packed.cwl#sorttool.cwl",
+    }
+    wf_action = actions["packed.cwl"]
+    wf_objects = {_.type: _ for _ in wf_action["object"]}
+    assert set(wf_objects) == {"File"}  # no PropertyValue for "reverse_sort"
+    assert "packed.cwl#main/revsort_in" in set(
+        _.id for _ in wf_objects["File"]["exampleOfWork"]
+    )
+    sort_action = actions["packed.cwl#sorttool.cwl"]
+    sort_objects = {_.type: _ for _ in sort_action["object"]}
+    assert set(sort_objects) == {"File"}  # no PropertyValue for "reverse"
+    assert "packed.cwl#sorttool.cwl/sort_in" in set(
+        _.id for _ in sort_objects["File"]["exampleOfWork"]
+    )

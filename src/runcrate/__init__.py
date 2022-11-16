@@ -58,6 +58,9 @@ EXTRA_TERMS = {
 }
 
 
+CWLPROV_NONE = "https://w3id.org/cwl/prov#None"
+
+
 def convert_cwl_type(cwl_type):
     if isinstance(cwl_type, list):
         s = set(convert_cwl_type(_) for _ in cwl_type)
@@ -406,6 +409,8 @@ class ProvCrateBuilder:
             k = get_fragment(k)
             v = rel.entity()
             value = self.convert_param(v, crate)
+            if value is None:
+                continue  # param is optional with no default and was not set
             if {"ro:Folder", "wf4ever:File"} & set(str(_) for _ in v.types()):
                 action_p = value
             else:
@@ -463,6 +468,8 @@ class ProvCrateBuilder:
             )
         if "prov:Collection" in type_names:
             return [self.convert_param(_, crate) for _ in self.get_members(prov_param)]
+        if prov_param.id.uri == CWLPROV_NONE:
+            return None
         raise RuntimeError(f"No value to convert for {prov_param}")
 
     def add_param_connections(self, crate, workflow):
