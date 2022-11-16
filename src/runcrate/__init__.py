@@ -65,7 +65,7 @@ def convert_cwl_type(cwl_type):
     if isinstance(cwl_type, list):
         s = set(convert_cwl_type(_) for _ in cwl_type)
         s.discard(None)
-        return sorted(s)
+        return s.pop() if len(s) == 1 else sorted(s)
     if isinstance(cwl_type, str):
         return CWL_TYPE_MAP[cwl_type]
     if cwl_type.type == "enum":

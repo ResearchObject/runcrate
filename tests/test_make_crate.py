@@ -656,6 +656,7 @@ def test_unset_param(data_dir, tmpdir):
         "packed.cwl#main/revsort_in"
     }
     reverse_sort = wf_inputs["packed.cwl#main/reverse_sort"]
+    assert reverse_sort["additionalType"] == "Boolean"
     assert "defaultValue" not in reverse_sort
     assert reverse_sort["valueRequired"] == "False"
     wf_tools = {_.id: _ for _ in workflow["hasPart"]}
@@ -670,6 +671,7 @@ def test_unset_param(data_dir, tmpdir):
         "packed.cwl#sorttool.cwl/sort_in"
     }
     reverse = sorttool_inputs["packed.cwl#sorttool.cwl/reverse"]
+    assert reverse["additionalType"] == "Boolean"
     assert "defaultValue" not in reverse
     assert reverse["valueRequired"] == "False"
     actions = {_["instrument"].id: _ for _ in crate.contextual_entities
