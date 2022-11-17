@@ -58,11 +58,14 @@ EXTRA_TERMS = {
 }
 
 
+CWLPROV_NONE = "https://w3id.org/cwl/prov#None"
+
+
 def convert_cwl_type(cwl_type):
     if isinstance(cwl_type, list):
         s = set(convert_cwl_type(_) for _ in cwl_type)
         s.discard(None)
-        return sorted(s)
+        return s.pop() if len(s) == 1 else sorted(s)
     if isinstance(cwl_type, str):
         return CWL_TYPE_MAP[cwl_type]
     if cwl_type.type == "enum":
@@ -110,10 +113,11 @@ def get_relative_uri(uri):
     return f"{doc.rsplit('/', 1)[-1]}#{fragment}"
 
 
-def get_step_part(relative_uri):
+def cut_step_part(relative_uri):
     parts = relative_uri.split("/", 2)
     if len(parts) > 2:
-        return parts[1]
+        relative_uri = parts[0] + "/" + parts[2]
+    return relative_uri
 
 
 def build_step_graph(cwl_wf):
@@ -386,22 +390,27 @@ class ProvCrateBuilder:
 
     def add_action_params(self, crate, activity, to_wf_p, ptype="usage"):
         action_params = []
+        all_roles = set()
         for rel in getattr(activity, ptype)():
             k = get_relative_uri(rel.role.uri)
             if str(activity.type) == "wfprov:WorkflowRun":
                 # workflow output roles have a phantom step part
                 if ptype == "generation":
-                    parts = k.split("/", 2)
-                    k = parts[0] + "/" + parts[2]
+                    k = cut_step_part(k)
                 # In the case of a single tool run, cwltool reports one WorkflowRun
-                # and no ProcessRun. In this case, some parameters are duplicated and
-                # the duplicate's role has the original workflow name as the step part
-                if not list(activity.steps()) and get_step_part(k):
-                    continue
+                # and no ProcessRun; some parameters are duplicated, appearing both
+                # with role main/PARAM_NAME and main/ORIGINAL_WF_NAME/PARAM_NAME
+                if not list(activity.steps()):
+                    k = cut_step_part(k)
+                    if k in all_roles:
+                        continue
+                    all_roles.add(k)
             wf_p = crate.dereference(to_wf_p(k))
             k = get_fragment(k)
             v = rel.entity()
             value = self.convert_param(v, crate)
+            if value is None:
+                continue  # param is optional with no default and was not set
             if {"ro:Folder", "wf4ever:File"} & set(str(_) for _ in v.types()):
                 action_p = value
             else:
@@ -459,6 +468,8 @@ class ProvCrateBuilder:
             )
         if "prov:Collection" in type_names:
             return [self.convert_param(_, crate) for _ in self.get_members(prov_param)]
+        if prov_param.id.uri == CWLPROV_NONE:
+            return None
         raise RuntimeError(f"No value to convert for {prov_param}")
 
     def add_param_connections(self, crate, workflow):

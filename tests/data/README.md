@@ -55,3 +55,8 @@ Build a fake command line and write it to the output file (all parameter setting
 ## passthrough-run-1
 
 Similar to [revsort](#revsort-run-1), but adds an input file that's linked directly to an output file, to test that this is supported.
+
+
+## revsort-optional-run-1
+
+Similar to [revsort](#revsort-run-1), but the parameter to reverse the order is optional with no default and is not set in the parameters file. Used to test the handling of `cwlprov:None` entries.

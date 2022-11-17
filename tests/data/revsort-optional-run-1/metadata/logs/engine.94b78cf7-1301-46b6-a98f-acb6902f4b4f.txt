@@ -1,0 +1,18 @@
+[2022-11-15T13:35:28,596.775770Z] [cwltool] /home/simleo/git/cwltool/venv/bin/cwltool --provenance ro revsort.cwl params.yml
+[2022-11-15T13:35:28,598.336458Z] Resolved 'revsort.cwl' to 'file:///home/simleo/sandbox/try_cwl/revsort_optional_nodefault/revsort.cwl'
+[2022-11-15T13:35:29,257.648468Z] [provenance] Adding to RO file:///home/simleo/sandbox/try_cwl/revsort_optional_nodefault/in.txt
+[2022-11-15T13:35:29,259.367943Z] [workflow ] start
+[2022-11-15T13:35:29,259.676456Z] [workflow ] starting step rev
+[2022-11-15T13:35:29,259.840488Z] [step rev] start
+[2022-11-15T13:35:29,261.598110Z] [job rev] /tmp/93exqw49$ rev \
+    /tmp/5q9afgrs/stg1403520c-e72a-45ac-898a-62363c097be7/in.txt > /tmp/93exqw49/rev_out.txt
+[2022-11-15T13:35:29,274.299145Z] [job rev] completed success
+[2022-11-15T13:35:29,274.543285Z] [step rev] completed success
+[2022-11-15T13:35:29,274.977207Z] [workflow ] starting step sorted
+[2022-11-15T13:35:29,275.210142Z] [step sorted] start
+[2022-11-15T13:35:29,277.446985Z] [job sorted] /tmp/7ke1545r$ sort \
+    /tmp/twm53orz/stge9ddf968-ad3f-4ef9-baa7-2d76b2563ec5/rev_out.txt > /tmp/7ke1545r/sort_out.txt
+[2022-11-15T13:35:29,282.905579Z] [job sorted] completed success
+[2022-11-15T13:35:29,283.110857Z] [step sorted] completed success
+[2022-11-15T13:35:29,283.256531Z] [workflow ] completed success
+[2022-11-15T13:35:29,331.455708Z] Final process status is success
