@@ -6,8 +6,6 @@ Contents
    :maxdepth: 2
 
    readme
-   the_rationale_behind
-   configuration
    installation
    usage
    contributing

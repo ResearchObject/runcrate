@@ -2,11 +2,8 @@
 Installation
 ============
 
-**This is an example page for a real project.** In this page you can describe the installation steps required for end-users, use the :ref:`Contribution page<Contributing>` to provide the guidelines for developers.
+Runcrate has not been released yet. To install, you have to clone the GitHub repository::
 
-Installation Example
---------------------
-
-At the command line::
-
-    pip install runcrate
+  git clone https://github.com/ResearchObject/runcrate
+  cd runcrate
+  pip install .

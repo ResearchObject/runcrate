@@ -1,197 +1,97 @@
 Contributing
 ============
 
-.. start-here
-
-There are several strategies on how to contribute to a project on github. Here,
-I explain the one I use for all the project I am participating. You can use this
-same strategy to contribute to this template or to suggest contributions to your
-project.
-
-Fork this repository
---------------------
-
-`Fork this repository before contributing`_. It is a better practice, possibly
-even enforced, that only pull request from forks are accepted. In my opinion
-enforcing forks creates a cleaner representation of the `contributions to the
-project`_.
-
-Clone the main repository
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Next, clone the main repository to your local machine:
-
-::
-
-    git clone https://github.com/ResearchObject/runcrate.git
-    cd runcrate
-
-Add your fork as an upstream repository:
-
-::
-
-    git remote add myfork git://github.com/YOUR-USERNAME/runcrate.git
-    git fetch myfork
-
-Install for developers
-----------------------
-
-Create a dedicated Python environment where to develop the project.
-
-If you are using :code:`pip` follow the official instructions on `Installing
-packages using pip and virtual environments`_, most likely what you want is:
-
-::
-
-    python3 -m venv newenv
-    source newenv/bin/activate
-
-If you are using `Anaconda`_ go for:
-
-::
-
-    conda create --name newenv python=3.7
-    conda activate newenv
-
-Where :code:`newenv` is the name you wish to give to the environment
-dedicated to this project.
-
-Either under *pip* or *conda*, install the package in :code:`develop` mode.
-Install also :ref:`tox<Uniformed Tests with tox>`.
-
-::
-
-    python setup.py develop
-    pip install tox
-
-This configuration, together with the use of the ``src`` folder layer,
-guarantees that you will always run the code after installation. Also, thanks to
-the ``develop`` flag, any changes in the code will be automatically reflected in
-the installed version.
-
-Make a new branch
------------------
-
-From the ``main`` branch create a new branch where to develop the new code.
-
-::
-
-    git checkout main
-    git checkout -b new_branch
+Runcrate is open source software distributed under the `Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>`_. Contributions are welcome, but please read this guide first. Submitted contributions are assumed to be covered by section 5 of the license.
 
 
-**Note** the ``main`` branch is from the main repository.
+Initial setup
+-------------
 
-Develop the feature and keep regular pushes to your fork with comprehensible
-commit messages.
+`Set up Git <https://docs.github.com/en/github/getting-started-with-github/set-up-git>`_ on your local machine, then `fork <https://docs.github.com/en/github/getting-started-with-github/fork-a-repo>`_ this repository on GitHub and `create a local clone of your fork <https://docs.github.com/en/github/getting-started-with-github/fork-a-repo#step-2-create-a-local-clone-of-your-fork>`_.
 
-::
+For instance, if your GitHub user name is ``simleo``, you can get a local clone as follows::
 
-    git status
-    git add (the files you want)
-    git commit (add a nice commit message)
-    git push myfork new_branch
+   $ git clone https://github.com/simleo/runcrate
 
-While you are developing, you can execute ``tox`` as needed to run your unit
-tests or inspect lint, or other integration tests. See the last section of this
-page.
+You can see that the local clone is pointing to your remote fork::
 
-Update your branch
-~~~~~~~~~~~~~~~~~~
+   $ cd runcrate
+   $ git remote -v
+   origin  https://github.com/simleo/runcrate (fetch)
+   origin  https://github.com/simleo/runcrate (push)
 
-It is common that you need to keep your branch update to the latest version in
-the ``main`` branch. For that:
+To keep a reference to the original (upstream) ro-crate repository, you can add a remote for it::
 
-::
+   $ git remote add upstream https://github.com/ResearchObject/runcrate
+   $ git fetch upstream
 
-    git checkout main  # return to the main branch
-    git pull  # retrieve the latest source from the main repository
-    git checkout new_branch  # return to your devel branch
-    git merge --no-ff main  # merge the new code to your branch
+This allows, among other things, to easily keep your fork synced to the upstream repository through time. For instance, to sync your ``main`` branch::
 
-At this point you may need to solve merge conflicts if they exist. If you don't
-know how to do this, I suggest you start by reading the `official docs
-<https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github>`_
+   $ git checkout master
+   $ git fetch -p upstream
+   $ git merge --ff-only upstream/master
+   $ git push origin master
 
-You can push to your fork now if you wish:
-
-::
-
-    git push myfork new_branch
-
-And, continue doing your developments are previously discussed.
+If you need help with Git and GitHub, head over to the `GitHub docs <https://docs.github.com/en/github>`_. In particular, you should be familiar with `issues and pull requests <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests>`_.
 
 
-Pull Request
-~~~~~~~~~~~~
+Making a contribution
+---------------------
 
-Once you finished, you can create a pull request to the main
-repository, and engage with the community.
+Contributions can range from fixing a broken link or a typo in the documentation to fixing a bug or adding a new feature to the software. Ideally, contributions (unless trivial) should be related to an `open issue <https://github.com/ResearchObject/runcrate/issues>`_. If there is no existing issue or `pull request <https://github.com/ResearchObject/runcrate/pulls>`_ related to the changes you wish to make, you can open a new one.
 
-**Before submitting a Pull Request, verify your development branch passes all
-tests as** :ref:`described below <Uniformed Tests with tox>` **. If you are
-developing new code you should also implement new test cases.**
+Make your changes on a branch in your fork, then open a pull request (PR). Please take some time to summarize the proposed changes in the PR's description, especially if they're not obvious. If the PR addresses an open issue, you should `link it to the issue <https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue>`_.
 
+An important part of the contribution process is checking that your changes didn't break anything. We use `Tox <https://tox.readthedocs.io/en/latest/>`_ to run unit tests and other checks. You can install Tox by running::
 
-Uniformed Tests with tox
-------------------------
+  pip install tox
 
-Thanks to `Tox`_ we can have a unified testing platform that runs all tests in
-controlled environments and that is reproducible for all developers. In other
-words, it is a way to welcome (*force*) all developers to follow the same rules.
+If you made changes to the code, you should run::
 
-The ``tox`` testing setup is defined in a configuration file, the
-`tox.ini`_, which contains all the operations that are performed during the test
-phase. Therefore, to run the unified test suite, developers just need to execute
-``tox``, provided `tox is installed`_ in the Python environment in use.
+  tox -e lint
+  tox -e test
+  tox -e build
 
-::
+If you changed the documentation, run::
 
-    pip install tox
-    # or
-    conda install tox -c conda-forge
+  tox -e docs
 
 
-One of the greatest advantages of using ``tox`` together with the :ref:`src
-layout <The src layout>` is that unit test actually perform on the installed
-source (our package) inside an isolated deployment environment. In order words,
-tests are performed in an environment simulating a post-installation state
-instead of a pre-deploy/development environment. Under this setup, there is no
-need, in general cases, to distribute unit test scripts along with the actual source,
-in my honest opinion - see `MANIFEST.in`_.
+Contributing software
+^^^^^^^^^^^^^^^^^^^^^
 
-Before creating a Pull Request from your branch, certify that all the tests pass
-correctly by running:
+runcrate is written in `Python <https://www.python.org>`_. To isolate your development environment from the underlying system, set up a virtual environment::
 
-::
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install --upgrade pip
+  pip install wheel
 
-    tox
+Then install runcrate in development mode::
 
-These are exactly the same tests that will be performed online in the Github
-Actions.
+  pip install -e .
 
-Also, you can run individual testing environments if you wish to test only specific
-functionalities, for example:
+This allows to test any changes to the code without having to run the installation again. To quickly run tests while developing, install pytest::
 
-::
+  pip install pytest
 
-    tox -e lint  # code style
-    tox -e build  # packaging
-    tox -e docs  # only builds the documentation
-    tox -e test  # runs unit tests
+Than you can run all tests with::
+
+  pytest tests
+
+Or just run individual tests that are relevant to your changes, e.g.::
+
+  pytest tests/test_step_mapping.py::test_step_maps
+
+When you're done with your work, you can deactivate the virtual
+environment by typing ``deactivate`` on your shell.
+
+For more information, see the `PyPA guide on virtual environments <https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/>`_.
 
 
-.. _tox.ini: https://github.com/ResearchObject/runcrate/blob/latest/tox.ini
-.. _Tox: https://tox.readthedocs.io/en/latest/
-.. _tox is installed: https://tox.readthedocs.io/en/latest/install.html
-.. _MANIFEST.in: https://github.com/ResearchObject/runcrate/blob/master/MANIFEST.in
-.. _Fork this repository before contributing: https://github.com/ResearchObject/runcrate/network/members
-.. _up to date with the upstream: https://gist.github.com/CristinaSolana/1885435
-.. _contributions to the project: https://github.com/ResearchObject/runcrate/network
-.. _Gitflow Workflow: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
-.. _Pull Request: https://github.com/ResearchObject/runcrate/pulls
-.. _PULLREQUEST.rst: https://github.com/ResearchObject/runcrate/blob/master/docs/PULLREQUEST.rst
-.. _1: https://git-scm.com/docs/git-merge#Documentation/git-merge.txt---no-ff
-.. _2: https://stackoverflow.com/questions/9069061/what-is-the-difference-between-git-merge-and-git-merge-no-ff
-.. _Installing packages using pip and virtual environments: https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment
-.. _Anaconda: https://www.anaconda.com/
+Contributing documentation
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Documentation is written in `reStructuredText <https://docutils.sourceforge.io/rst.html>`_ and rendered with `Sphinx <https://www.sphinx-doc.org/>`_. If you make changes to it, run ``tox -e docs`` to check that the build works. Note that this will run ``sphinx-build`` with the ``-W`` flag, which turns all warnings into errors. While making changes to the documentation, it might be more useful to get a list of all issues at once::
+
+  tox -e docs -- -E
