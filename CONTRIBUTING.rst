@@ -1,7 +1,7 @@
 Contributing
 ============
 
-runcrate is open source software distributed under the `Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>`_. Contributions are welcome, but please read this guide first. Submitted contributions are assumed to be covered by section 5 of the license.
+Runcrate is open source software distributed under the `Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>`_. Contributions are welcome, but please read this guide first. Submitted contributions are assumed to be covered by section 5 of the license.
 
 
 Initial setup
@@ -92,4 +92,6 @@ For more information, see the `PyPA guide on virtual environments <https://packa
 Contributing documentation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Documentation is written in `reStructuredText <https://docutils.sourceforge.io/rst.html>`_ and rendered with `Sphinx <https://www.sphinx-doc.org/>`_. If you make changes to it, run ``tox -e docs`` to check that the build works.
+Documentation is written in `reStructuredText <https://docutils.sourceforge.io/rst.html>`_ and rendered with `Sphinx <https://www.sphinx-doc.org/>`_. If you make changes to it, run ``tox -e docs`` to check that the build works. Note that this will run ``sphinx-build`` with the ``-W`` flag, which turns all warnings into errors. While making changes to the documentation, it might be more useful to get a list of all issues at once::
+
+  tox -e docs -- -E
