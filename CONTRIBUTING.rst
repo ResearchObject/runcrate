@@ -56,6 +56,8 @@ If you changed the documentation, run::
 
   tox -e docs
 
+You can also perform all of the above checks at once by simply running ``tox``.
+
 
 Contributing software
 ^^^^^^^^^^^^^^^^^^^^^
