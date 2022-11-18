@@ -26,12 +26,13 @@ import networkx as nx
 import prov.model
 from bdbag.bdbagit import BDBag
 from cwl_utils.parser import load_document_by_yaml
-from cwlprov.ro import ResearchObject
 from cwlprov.prov import Provenance
+from cwlprov.ro import ResearchObject
 from cwlprov.utils import first
-from rocrate.rocrate import ROCrate
 from rocrate.model.contextentity import ContextEntity
 from rocrate.model.softwareapplication import SoftwareApplication
+from rocrate.rocrate import ROCrate
+
 
 WORKFLOW_BASENAME = "packed.cwl"
 
