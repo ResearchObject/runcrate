@@ -1,4 +1,6 @@
 Usage
 =====
 
-TBD
+.. click:: runcrate.cli:cli
+  :prog: runcrate
+  :nested: full
