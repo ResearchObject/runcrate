@@ -16,7 +16,6 @@
 Generate a Workflow Run RO-Crate from a CWLProv RO.
 """
 
-import argparse
 import hashlib
 import json
 import re
@@ -512,31 +511,3 @@ class ProvCrateBuilder:
                 pass
             to_param = get_fragment(out.id)
             connect(from_param, to_param, workflow)
-
-
-def main(args):
-    args.root = Path(args.root)
-    if not args.output:
-        args.output = f"{args.root.name}.crate.zip"
-    args.output = Path(args.output)
-    builder = ProvCrateBuilder(args.root, args.workflow_name, args.license)
-    crate = builder.build()
-    if args.output.suffix == ".zip":
-        crate.write_zip(args.output)
-    else:
-        crate.write(args.output)
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description=__doc__, formatter_class=argparse.RawTextHelpFormatter
-    )
-    parser.add_argument("root", metavar="ROOT_DIR",
-                        help="top-level directory of the CWLProv RO")
-    parser.add_argument("-o", "--output", metavar="DIR OR ZIP",
-                        help="output RO-Crate directory or zip file")
-    parser.add_argument("-l", "--license", metavar="STRING",
-                        help="license URL (or WorkflowHub-accepted id)")
-    parser.add_argument("-w", "--workflow-name", metavar="STRING",
-                        help="original workflow name")
-    main(parser.parse_args())

@@ -14,14 +14,10 @@
 
 from rocrate.rocrate import ROCrate
 
-from runcrate import main
+from runcrate import ProvCrateBuilder
 
 
 CWL_ID = "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
-
-
-class Args:
-    pass
 
 
 def _connected(entity):
@@ -30,13 +26,13 @@ def _connected(entity):
 
 
 def test_revsort(data_dir, tmpdir):
-    args = Args()
-    args.root = data_dir / "revsort-run-1"
-    args.output = tmpdir / "revsort-run-1-crate"
-    args.license = "Apache-2.0"
-    args.workflow_name = "RevSort"
-    main(args)
-    crate = ROCrate(args.output)
+    root = data_dir / "revsort-run-1"
+    output = tmpdir / "revsort-run-1-crate"
+    license = "Apache-2.0"
+    workflow_name = "RevSort"
+    builder = ProvCrateBuilder(root, workflow_name=workflow_name, license=license)
+    crate = builder.build()
+    crate.write(output)
     assert crate.root_dataset["license"] == "Apache-2.0"
     workflow = crate.mainEntity
     assert workflow.id == "packed.cwl"
@@ -130,22 +126,21 @@ def test_revsort(data_dir, tmpdir):
         ("packed.cwl#sorttool.cwl/output", "packed.cwl#main/output"),
     ])
     # file contents
-    in_text = (args.root / "data/32/327fc7aedf4f6b69a42a7c8b808dc5a7aff61376").read_text()
-    assert (args.output / wf_input_file.id).read_text() == in_text
-    rev_out_text = (args.root / "data/97/97fe1b50b4582cebc7d853796ebd62e3e163aa3f").read_text()
-    assert (args.output / rev_output_file.id).read_text() == rev_out_text
-    out_text = (args.root / "data/b9/b9214658cc453331b62c2282b772a5c063dbd284").read_text()
-    assert (args.output / wf_output_file.id).read_text() == out_text
+    in_text = (root / "data/32/327fc7aedf4f6b69a42a7c8b808dc5a7aff61376").read_text()
+    assert (output / wf_input_file.id).read_text() == in_text
+    rev_out_text = (root / "data/97/97fe1b50b4582cebc7d853796ebd62e3e163aa3f").read_text()
+    assert (output / rev_output_file.id).read_text() == rev_out_text
+    out_text = (root / "data/b9/b9214658cc453331b62c2282b772a5c063dbd284").read_text()
+    assert (output / wf_output_file.id).read_text() == out_text
 
 
 def test_no_input(data_dir, tmpdir):
-    args = Args()
-    args.root = data_dir / "no-input-run-1"
-    args.output = tmpdir / "no-input-run-1-crate"
-    args.license = "Apache-2.0"
-    args.workflow_name = None
-    main(args)
-    crate = ROCrate(args.output)
+    root = data_dir / "no-input-run-1"
+    output = tmpdir / "no-input-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
     # The "workflow" is actually a single tool; should we generate a Process
     # Run Crate instead in this case?
     workflow = crate.mainEntity
@@ -173,13 +168,13 @@ def test_no_input(data_dir, tmpdir):
 
 
 def test_param_types(data_dir, tmpdir):
-    args = Args()
-    args.root = data_dir / "type-zoo-run-1"
-    args.output = tmpdir / "type-zoo-run-1-crate"
-    args.license = "Apache-2.0"
-    args.workflow_name = None
-    main(args)
-    crate = ROCrate(args.output)
+    root = data_dir / "type-zoo-run-1"
+    output = tmpdir / "type-zoo-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
     workflow = crate.mainEntity
     inputs = workflow["input"]
     outputs = workflow["output"]
@@ -237,13 +232,13 @@ def test_param_types(data_dir, tmpdir):
 
 
 def test_dir_io(data_dir, tmpdir):
-    args = Args()
-    args.root = data_dir / "grepucase-run-1"
-    args.output = tmpdir / "grepucase-run-1-crate"
-    args.license = "Apache-2.0"
-    args.workflow_name = None
-    main(args)
-    crate = ROCrate(args.output)
+    root = data_dir / "grepucase-run-1"
+    output = tmpdir / "grepucase-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
     workflow = crate.mainEntity
     assert workflow.id == "packed.cwl"
     tools = workflow["hasPart"]
@@ -300,32 +295,32 @@ def test_dir_io(data_dir, tmpdir):
     assert "Dataset" in ucasetool_output_dir.type
     # file contents
     in_text = {
-        (args.root / "data/8d/8d84ef91f0aba379f5edc3836b4b5f6727920f22").read_text(),
-        (args.root / "data/d6/d60dd58346cf7e533252f35399cd510b1b1467f7").read_text(),
+        (root / "data/8d/8d84ef91f0aba379f5edc3836b4b5f6727920f22").read_text(),
+        (root / "data/d6/d60dd58346cf7e533252f35399cd510b1b1467f7").read_text(),
     }
-    assert set((args.output / _.id).read_text() for _ in wf_input_dir["hasPart"]) == in_text
+    assert set((output / _.id).read_text() for _ in wf_input_dir["hasPart"]) == in_text
     grep_out_text = {
-        (args.root / "data/85/8545949f96b96cb721485066bafad9b768bc4e52").read_text(),
-        (args.root / "data/5a/5aa9aa3b336778cf2a7db648fc530892c3b3dabb").read_text(),
+        (root / "data/85/8545949f96b96cb721485066bafad9b768bc4e52").read_text(),
+        (root / "data/5a/5aa9aa3b336778cf2a7db648fc530892c3b3dabb").read_text(),
     }
     assert set(
-        (args.output / _.id).read_text() for _ in greptool_output_dir["hasPart"]
+        (output / _.id).read_text() for _ in greptool_output_dir["hasPart"]
     ) == grep_out_text
     out_text = {
-        (args.root / "data/3c/3ccdc7533084b641e6c941cc6dbb091d2e5f8a41").read_text(),
-        (args.root / "data/ec/ec0270052a78321508502ed915815c4daf75fe46").read_text(),
+        (root / "data/3c/3ccdc7533084b641e6c941cc6dbb091d2e5f8a41").read_text(),
+        (root / "data/ec/ec0270052a78321508502ed915815c4daf75fe46").read_text(),
     }
-    assert set((args.output / _.id).read_text() for _ in wf_output_dir["hasPart"]) == out_text
+    assert set((output / _.id).read_text() for _ in wf_output_dir["hasPart"]) == out_text
 
 
 def test_no_output(data_dir, tmpdir):
-    args = Args()
-    args.root = data_dir / "no-output-run-1"
-    args.output = tmpdir / "no-output-run-1-crate"
-    args.license = "Apache-2.0"
-    args.workflow_name = None
-    main(args)
-    crate = ROCrate(args.output)
+    root = data_dir / "no-output-run-1"
+    output = tmpdir / "no-output-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
     assert crate.root_dataset["license"] == "Apache-2.0"
     workflow = crate.mainEntity
     tools = workflow["hasPart"]
@@ -421,24 +416,24 @@ def test_no_output(data_dir, tmpdir):
                 ])
     assert not set(_connected(workflow))
     # file contents
-    text_7mb7 = (args.root / "data/4b/4b22356928446475c8ae5869968c9777374a76e8").read_text()
-    text_7zxf = (args.root / "data/4e/4ebd7d222d9b6095fa96ee395905ce7f6d415381").read_text()
-    assert set((args.output / _.id).read_text() for _ in array_files) == {text_7mb7, text_7zxf}
-    text_sabdab = (args.root / "data/5e/5e026d2a039e60827d3834596a8c30256aa85e57").read_text()
-    assert (args.output / in_file.id).read_text() == text_sabdab
-    text_1ahw = (args.root / "data/bc/bc2f32ad8584e85e6e3b184a6dc565bdd6571821").read_text()
-    text_1kip = (args.root / "data/da/da261f1082f318fbda173dc3228d7475433fd886").read_text()
-    assert set((args.output / _.id).read_text() for _ in dir_files) == {text_1ahw, text_1kip}
+    text_7mb7 = (root / "data/4b/4b22356928446475c8ae5869968c9777374a76e8").read_text()
+    text_7zxf = (root / "data/4e/4ebd7d222d9b6095fa96ee395905ce7f6d415381").read_text()
+    assert set((output / _.id).read_text() for _ in array_files) == {text_7mb7, text_7zxf}
+    text_sabdab = (root / "data/5e/5e026d2a039e60827d3834596a8c30256aa85e57").read_text()
+    assert (output / in_file.id).read_text() == text_sabdab
+    text_1ahw = (root / "data/bc/bc2f32ad8584e85e6e3b184a6dc565bdd6571821").read_text()
+    text_1kip = (root / "data/da/da261f1082f318fbda173dc3228d7475433fd886").read_text()
+    assert set((output / _.id).read_text() for _ in dir_files) == {text_1ahw, text_1kip}
 
 
 def test_scatter_pvs(data_dir, tmpdir):
-    args = Args()
-    args.root = data_dir / "echo-scatter-run-1"
-    args.output = tmpdir / "echo-scatter-run-1-crate"
-    args.license = "Apache-2.0"
-    args.workflow_name = None
-    main(args)
-    crate = ROCrate(args.output)
+    root = data_dir / "echo-scatter-run-1"
+    output = tmpdir / "echo-scatter-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
     workflow = crate.mainEntity
     tools = workflow["hasPart"]
     assert len(tools) == 1
@@ -468,13 +463,13 @@ def test_scatter_pvs(data_dir, tmpdir):
 
 
 def test_subworkflows(data_dir, tmpdir):
-    args = Args()
-    args.root = data_dir / "revsortlcase-run-1"
-    args.output = tmpdir / "revsortlcase-run-1-crate"
-    args.license = "Apache-2.0"
-    args.workflow_name = None
-    main(args)
-    crate = ROCrate(args.output)
+    root = data_dir / "revsortlcase-run-1"
+    output = tmpdir / "revsortlcase-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
     workflow = crate.mainEntity
     wf_inputs = {_.id: _ for _ in workflow["input"]}
     assert set(wf_inputs) == {
@@ -606,24 +601,24 @@ def test_subworkflows(data_dir, tmpdir):
         ("packed.cwl#sorttool.cwl/sort_out", "packed.cwl#revsort.cwl/revsort_out"),
     ])
     # file contents
-    in_text = (args.root / "data/7c/7cb1a4da14ba3e91b983b30e7689e3902bcd2034").read_text()
-    assert (args.output / wf_objects["File"].id).read_text() == in_text
-    rev_out_text = (args.root / "data/54/542758e6e55bb880c05e2de68a3897bfab37c990").read_text()
-    assert (args.output / rev_results["File"].id).read_text() == rev_out_text
-    sorted_text = (args.root / "data/13/134bede4fd3827851f861713ed34168b6efb2806").read_text()
-    assert (args.output / sort_results["File"].id).read_text() == sorted_text
-    out_text = (args.root / "data/aa/aaf167286572f8b5d5c592b94aff678d0997947f").read_text()
-    assert (args.output / wf_results["File"].id).read_text() == out_text
+    in_text = (root / "data/7c/7cb1a4da14ba3e91b983b30e7689e3902bcd2034").read_text()
+    assert (output / wf_objects["File"].id).read_text() == in_text
+    rev_out_text = (root / "data/54/542758e6e55bb880c05e2de68a3897bfab37c990").read_text()
+    assert (output / rev_results["File"].id).read_text() == rev_out_text
+    sorted_text = (root / "data/13/134bede4fd3827851f861713ed34168b6efb2806").read_text()
+    assert (output / sort_results["File"].id).read_text() == sorted_text
+    out_text = (root / "data/aa/aaf167286572f8b5d5c592b94aff678d0997947f").read_text()
+    assert (output / wf_results["File"].id).read_text() == out_text
 
 
 def test_passthrough(data_dir, tmpdir):
-    args = Args()
-    args.root = data_dir / "passthrough-run-1"
-    args.output = tmpdir / "passthrough-run-1-crate"
-    args.license = "Apache-2.0"
-    args.workflow_name = None
-    main(args)
-    crate = ROCrate(args.output)
+    root = data_dir / "passthrough-run-1"
+    output = tmpdir / "passthrough-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
     workflow = crate.mainEntity
     steps = {_.id: _ for _ in workflow["step"]}
     assert set(_connected(steps["packed.cwl#main/rev"])) == set([
@@ -642,13 +637,13 @@ def test_passthrough(data_dir, tmpdir):
 def test_unset_param(data_dir, tmpdir):
     # the reverse_sort param is optional with no default and is not set
     # CWLProv records a "None" entity for this, we don't record anything
-    args = Args()
-    args.root = data_dir / "revsort-optional-run-1"
-    args.output = tmpdir / "revsort-optional-run-1-crate"
-    args.license = "Apache-2.0"
-    args.workflow_name = None
-    main(args)
-    crate = ROCrate(args.output)
+    root = data_dir / "revsort-optional-run-1"
+    output = tmpdir / "revsort-optional-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
     workflow = crate.mainEntity
     wf_inputs = {_.id: _ for _ in workflow["input"]}
     assert set(wf_inputs) == {
