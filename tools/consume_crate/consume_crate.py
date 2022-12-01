@@ -32,16 +32,17 @@ def as_list(value):
 
 
 def dump_run_results(tool, action):
-    print("  started:", action["startTime"])
-    print("  ended:", action["endTime"])
-    print("  inputs:")
+    print("  started:", action.get("startTime", "???"))
+    print("  ended:", action.get("endTime", "???"))
     objects = {p.id: obj for obj in action["object"]
                for p in as_list(obj["exampleOfWork"])}
     results = {p.id: res for res in action["result"]
                for p in as_list(res["exampleOfWork"])}
+    print("  inputs:")
     for in_ in tool["input"]:
         obj = objects[in_.id]
         print(f"    {in_.id}: {obj.get('value', obj.id)}")
+    print("  outputs:")
     for out in tool["output"]:
         res = results[out.id]
         print(f"    {out.id}: {res.get('value', res.id)}")
