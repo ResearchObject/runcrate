@@ -79,9 +79,10 @@ def convert_cwl_type(cwl_type):
 def properties_from_cwl_param(cwl_p):
     def is_structured(cwl_type):
         return getattr(cwl_type, "type", None) in ("array", "record")
+    additional_type = "Collection" if cwl_p.secondaryFiles else convert_cwl_type(cwl_p.type)
     properties = {
         "@type": "FormalParameter",
-        "additionalType": convert_cwl_type(cwl_p.type)
+        "additionalType": additional_type
     }
     if cwl_p.format:
         properties["encodingFormat"] = cwl_p.format
@@ -430,8 +431,24 @@ class ProvCrateBuilder:
             action_params.append(action_p)
         return action_params
 
-    def convert_param(self, prov_param, crate):
+    def convert_param(self, prov_param, crate, convert_secondary=True):
         type_names = frozenset(str(_) for _ in prov_param.types())
+        secondary_files = [_.generated_entity() for _ in prov_param.derivations()
+                           if str(_.type) == "cwlprov:SecondaryFile"]
+        if convert_secondary and secondary_files:
+            main_entity = self.convert_param(prov_param, crate, convert_secondary=False)
+            action_p_id = f"#collection-{main_entity.id}"
+            action_p = crate.dereference(action_p_id)
+            if not action_p:
+                action_p = crate.add(ContextEntity(crate, action_p_id, properties={
+                    "@type": "Collection"
+                }))
+                action_p["mainEntity"] = main_entity
+                action_p["hasPart"] = [main_entity] + [
+                    self.convert_param(_, crate) for _ in secondary_files
+                ]
+                crate.root_dataset.append_to("mentions", action_p)
+            return action_p
         if "wf4ever:File" in type_names:
             hash_ = next(prov_param.specializationOf()).id.localpart
             path = self.root / Path("data") / hash_[:2] / hash_

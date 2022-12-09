@@ -1,0 +1,13 @@
+{
+    "grepsort_out": {
+        "location": "../data/82/8292d6f0985a62d4abd624fc72aecb8132193d6e",
+        "basename": "sort_out.txt",
+        "nameroot": "sort_out",
+        "nameext": ".txt",
+        "class": "File",
+        "checksum": "sha1$8292d6f0985a62d4abd624fc72aecb8132193d6e",
+        "size": 58,
+        "http://commonwl.org/cwltool#generation": 0,
+        "@id": "urn:uuid:a41171df-a9d0-4f5f-8179-be34451bda0e"
+    }
+}

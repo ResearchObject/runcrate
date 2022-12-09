@@ -688,3 +688,60 @@ def test_unset_param(data_dir, tmpdir):
     assert "packed.cwl#sorttool.cwl/sort_in" in set(
         _.id for _ in sort_objects["File"]["exampleOfWork"]
     )
+
+
+def test_secondary_files(data_dir, tmpdir):
+    root = data_dir / "grepsort-run-1"
+    output = tmpdir / "grepsort-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
+    workflow = crate.mainEntity
+    wf_inputs = {_.id: _ for _ in workflow["input"]}
+    assert set(wf_inputs) == {
+        "packed.cwl#main/grepsort_in",
+        "packed.cwl#main/reverse_sort",
+    }
+    grepsort_in = wf_inputs["packed.cwl#main/grepsort_in"]
+    assert grepsort_in["additionalType"] == "Collection"
+    wf_tools = {_.id: _ for _ in workflow["hasPart"]}
+    assert set(wf_tools) == {
+        "packed.cwl#greptool.cwl",
+        "packed.cwl#sorttool.cwl",
+    }
+    greptool = wf_tools["packed.cwl#greptool.cwl"]
+    assert len(greptool["input"]) == 1
+    grep_in = greptool["input"][0]
+    assert grep_in["additionalType"] == "Collection"
+    actions = {_["instrument"].id: _ for _ in crate.contextual_entities
+               if "CreateAction" in _.type}
+    assert set(actions) == {
+        "packed.cwl",
+        "packed.cwl#greptool.cwl",
+        "packed.cwl#sorttool.cwl",
+    }
+    wf_action = actions["packed.cwl"]
+    wf_objects = {_.type: _ for _ in wf_action["object"]}
+    # The following should be {"Collection", "PropertyValue"}. CWLProv does
+    # not record secondaryFiles for the workflow run (only for step runs)
+    assert set(wf_objects) == {"File", "PropertyValue"}
+    grep_action = actions["packed.cwl#greptool.cwl"]
+    assert len(grep_action["object"]) == 1
+    grep_collection = grep_action["object"][0]
+    assert grep_collection.type == "Collection"
+    main_file = grep_collection.get("mainEntity")
+    assert main_file.type == "File"
+    collection_parts = {_.id: _ for _ in grep_collection.get("hasPart")}
+    assert len(collection_parts) == 2
+    assert main_file.id in collection_parts
+    aux_file = [v for k, v in collection_parts.items() if k != main_file.id][0]
+    # grepsort_in should also be in the exampleOfWork, see above mention of
+    # CWLProv issue
+    assert grep_collection["exampleOfWork"] == grep_in
+    # file contents
+    text_main = (root / "data/b6/b64565ee76fcd5296c48314f858f8e4672c71439").read_text()
+    text_aux = (root / "data/c7/c708d7ef841f7e1748436b8ef5670d0b2de1a227").read_text()
+    assert (output / main_file.id).read_text() == text_main
+    assert (output / aux_file.id).read_text() == text_aux
