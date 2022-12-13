@@ -60,3 +60,8 @@ Similar to [revsort](#revsort-run-1), but adds an input file that's linked direc
 ## revsort-optional-run-1
 
 Similar to [revsort](#revsort-run-1), but the parameter to reverse the order is optional with no default and is not set in the parameters file. Used to test the handling of `cwlprov:None` entries.
+
+
+## grepsort-run-1
+
+Runs a grep on the input file, taking the patterns to search for from another file. Used to test support for `wasDerivedFrom => cwlprov:SecondaryFile`.
