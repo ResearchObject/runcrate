@@ -40,8 +40,8 @@ def dump_run_results(tool, action):
                for p in as_list(res["exampleOfWork"])}
     print("  inputs:")
     for in_ in tool["input"]:
-        obj = objects[in_.id]
-        print(f"    {in_.id}: {obj.get('value', obj.id)}")
+        obj = objects.get(in_.id)
+        print(f"    {in_.id}: {obj.get('value', obj.id) if obj else ''}")
     print("  outputs:")
     for out in tool["output"]:
         res = results[out.id]
