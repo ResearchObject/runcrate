@@ -183,6 +183,8 @@ class ProvCrateBuilder:
         # avoid duplicates - not handled by ro-crate-py, see
         # https://github.com/ResearchObject/ro-crate-py/issues/132
         self.control_actions = {}
+        # index collections by their main entity's id
+        self.collections = {}
 
     @staticmethod
     def _get_step_maps(cwl_defs):
@@ -437,10 +439,9 @@ class ProvCrateBuilder:
                            if str(_.type) == "cwlprov:SecondaryFile"]
         if convert_secondary and secondary_files:
             main_entity = self.convert_param(prov_param, crate, convert_secondary=False)
-            action_p_id = f"#collection-{main_entity.id}"
-            action_p = crate.dereference(action_p_id)
+            action_p = self.collections.get(main_entity.id)
             if not action_p:
-                action_p = crate.add(ContextEntity(crate, action_p_id, properties={
+                action_p = crate.add(ContextEntity(crate, properties={
                     "@type": "Collection"
                 }))
                 action_p["mainEntity"] = main_entity
@@ -448,6 +449,7 @@ class ProvCrateBuilder:
                     self.convert_param(_, crate) for _ in secondary_files
                 ]
                 crate.root_dataset.append_to("mentions", action_p)
+                self.collections[main_entity.id] = action_p
             return action_p
         if "wf4ever:File" in type_names:
             hash_ = next(prov_param.specializationOf()).id.localpart
