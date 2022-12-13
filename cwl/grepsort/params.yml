@@ -1,0 +1,4 @@
+grepsort_in:
+  class: File
+  location: lines.txt
+reverse_sort: False
