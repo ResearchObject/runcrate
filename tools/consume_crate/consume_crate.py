@@ -14,10 +14,6 @@
 
 """\
 Example of consuming a Workflow Run RO-Crate.
-
-NOTE: for now this is just a quick check that a "minimal" provenance crate
-(i.e., without entities for engine, engine run, step and step run) stands on
-its own.
 """
 
 import argparse
@@ -31,7 +27,12 @@ def as_list(value):
     return [value]
 
 
-def dump_run_results(tool, action):
+def dump_run_results(tool, action, control_action=None):
+    instrument = action["instrument"]
+    print(f"action {action.id}")
+    if control_action:
+        print("  step:", control_action["instrument"].id)
+    print("  instrument:", instrument.id, f"({instrument.type})")
     print("  started:", action.get("startTime", "???"))
     print("  ended:", action.get("endTime", "???"))
     objects = {p.id: obj for obj in action.get("object", [])
@@ -42,10 +43,16 @@ def dump_run_results(tool, action):
     for in_ in tool["input"]:
         obj = objects.get(in_.id)
         print(f"    {in_.id}: {obj.get('value', obj.id) if obj else ''}")
+    for obj in action.get("object", []):
+        if "exampleOfWork" not in obj:
+            print(f"    ???: {obj.get('value', obj.id)}")
     print("  outputs:")
     for out in tool["output"]:
         res = results.get(out.id)
         print(f"    {out.id}: {res.get('value', res.id) if res else ''}")
+    for res in action.get("result", []):
+        if "exampleOfWork" not in res:
+            print(f"    ???: {res.get('value', res.id)}")
 
 
 def main(args):
@@ -57,12 +64,14 @@ def main(args):
             actions.setdefault(a["instrument"].id, []).append(a)
     assert len(actions[wf.id]) == 1
     wf_action = actions[wf.id][0]
-    print(f"\naction {wf_action.id} ({wf.id}, {wf.type}):")
+    control_actions = {a: ca for ca in crate.contextual_entities
+                       for a in as_list(ca.get("object", []))
+                       if ca.type == "ControlAction"}
     dump_run_results(wf, wf_action)
     for tool in wf["hasPart"]:
         for a in actions.get(tool.id, []):
-            print(f"\naction {a.id} ({tool.id}, {tool.type}):")
-            dump_run_results(tool, a)
+            print()
+            dump_run_results(tool, a, control_actions.get(a))
 
 
 if __name__ == "__main__":
