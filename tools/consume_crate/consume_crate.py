@@ -34,35 +34,35 @@ def as_list(value):
 def dump_run_results(tool, action):
     print("  started:", action.get("startTime", "???"))
     print("  ended:", action.get("endTime", "???"))
-    objects = {p.id: obj for obj in action["object"]
-               for p in as_list(obj["exampleOfWork"])}
-    results = {p.id: res for res in action["result"]
-               for p in as_list(res["exampleOfWork"])}
+    objects = {p.id: obj for obj in action.get("object", [])
+               for p in as_list(obj.get("exampleOfWork", []))}
+    results = {p.id: res for res in action.get("result", [])
+               for p in as_list(res.get("exampleOfWork", []))}
     print("  inputs:")
     for in_ in tool["input"]:
         obj = objects.get(in_.id)
         print(f"    {in_.id}: {obj.get('value', obj.id) if obj else ''}")
     print("  outputs:")
     for out in tool["output"]:
-        res = results[out.id]
-        print(f"    {out.id}: {res.get('value', res.id)}")
+        res = results.get(out.id)
+        print(f"    {out.id}: {res.get('value', res.id) if res else ''}")
 
 
 def main(args):
     crate = ROCrate(args.crate)
     wf = crate.mainEntity
-    actions = {_["instrument"].id: _ for _ in crate.contextual_entities
-               if _.type == "CreateAction"}
-    print("workflow")
-    print("--------")
-    print(wf.id)
-    dump_run_results(wf, actions[wf.id])
-    print()
-    print("tools")
-    print("-----")
+    actions = {}
+    for a in crate.contextual_entities:
+        if a.type == "CreateAction":
+            actions.setdefault(a["instrument"].id, []).append(a)
+    assert len(actions[wf.id]) == 1
+    wf_action = actions[wf.id][0]
+    print(f"\naction {wf_action.id} ({wf.id}, {wf.type}):")
+    dump_run_results(wf, wf_action)
     for tool in wf["hasPart"]:
-        print(tool.id)
-        dump_run_results(tool, actions[tool.id])
+        for a in actions.get(tool.id, []):
+            print(f"\naction {a.id} ({tool.id}, {tool.type}):")
+            dump_run_results(tool, a)
 
 
 if __name__ == "__main__":
