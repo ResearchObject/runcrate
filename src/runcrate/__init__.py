@@ -25,7 +25,7 @@ import networkx as nx
 import prov.model
 from bdbag.bdbagit import BDBag
 from cwl_utils.parser import load_document_by_yaml
-from cwlprov.prov import Provenance, Entity
+from cwlprov.prov import Entity, Provenance
 from cwlprov.ro import ResearchObject
 from cwlprov.utils import first
 from rocrate.model.contextentity import ContextEntity
