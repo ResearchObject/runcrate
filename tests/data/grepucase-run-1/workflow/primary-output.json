@@ -4,21 +4,35 @@
         "nameroot": "ucase_out",
         "nameext": "",
         "class": "Directory",
-        "@id": "urn:uuid:fc0b51cf-27e9-431f-9a82-e8be421e62c1",
+        "@id": "urn:uuid:c3ab4de7-e45b-469e-a6e2-940f9721cc9b",
         "listing": [
             {
-                "class": "File",
-                "location": "../data/3c/3ccdc7533084b641e6c941cc6dbb091d2e5f8a41",
-                "basename": "bar.out.out",
-                "checksum": "sha1$3ccdc7533084b641e6c941cc6dbb091d2e5f8a41",
-                "@id": "urn:uuid:11a41e58-7617-4e70-b5ea-f2f9296b5048"
+                "class": "Directory",
+                "basename": "bar.out",
+                "listing": [
+                    {
+                        "class": "File",
+                        "location": "../data/3c/3ccdc7533084b641e6c941cc6dbb091d2e5f8a41",
+                        "basename": "bar.out.out",
+                        "checksum": "sha1$3ccdc7533084b641e6c941cc6dbb091d2e5f8a41",
+                        "@id": "urn:uuid:54ed715b-cb81-46d5-bbd0-41c8c4131a56"
+                    }
+                ],
+                "@id": "urn:uuid:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98"
             },
             {
-                "class": "File",
-                "location": "../data/ec/ec0270052a78321508502ed915815c4daf75fe46",
-                "basename": "foo.out.out",
-                "checksum": "sha1$ec0270052a78321508502ed915815c4daf75fe46",
-                "@id": "urn:uuid:52b1379b-b37d-47bc-be1d-dda8e61e0940"
+                "class": "Directory",
+                "basename": "foo.out",
+                "listing": [
+                    {
+                        "class": "File",
+                        "location": "../data/ec/ec0270052a78321508502ed915815c4daf75fe46",
+                        "basename": "foo.out.out",
+                        "checksum": "sha1$ec0270052a78321508502ed915815c4daf75fe46",
+                        "@id": "urn:uuid:0867ef40-bf1d-4b05-87ab-03a90f476d5e"
+                    }
+                ],
+                "@id": "urn:uuid:378648cc-14bb-42ba-90e5-fbf9e4099a1c"
             }
         ]
     }
