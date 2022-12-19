@@ -68,7 +68,7 @@ def main(args):
                        for a in as_list(ca.get("object", []))
                        if ca.type == "ControlAction"}
     dump_run_results(wf, wf_action)
-    for tool in wf["hasPart"]:
+    for tool in wf.get("hasPart", []):
         for a in actions.get(tool.id, []):
             print()
             dump_run_results(tool, a, control_actions.get(a))
