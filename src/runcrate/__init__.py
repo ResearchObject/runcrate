@@ -25,7 +25,7 @@ import networkx as nx
 import prov.model
 from bdbag.bdbagit import BDBag
 from cwl_utils.parser import load_document_by_yaml
-from cwlprov.prov import Provenance
+from cwlprov.prov import Entity, Provenance
 from cwlprov.ro import ResearchObject
 from cwlprov.utils import first
 from rocrate.model.contextentity import ContextEntity
@@ -185,6 +185,7 @@ class ProvCrateBuilder:
         self.control_actions = {}
         # index collections by their main entity's id
         self.collections = {}
+        self.hashes = {}
 
     @staticmethod
     def _get_step_maps(cwl_defs):
@@ -207,6 +208,28 @@ class ProvCrateBuilder:
             if m:
                 plan = activity.provenance.entity(m.groups()[0])
         return plan
+
+    def _get_hash(self, prov_param):
+        k = prov_param.id.localpart
+        try:
+            return self.hashes[k]
+        except KeyError:
+            type_names = frozenset(str(_) for _ in prov_param.types())
+            if "wf4ever:File" in type_names:
+                hash_ = next(prov_param.specializationOf()).id.localpart
+                self.hashes[k] = hash_
+                return hash_
+            elif "ro:Folder" in type_names:
+                m = hashlib.sha1()
+                m.update("".join(sorted(
+                    self._get_hash(_) for _ in self.get_dict(prov_param).values()
+                )).encode())
+                self.hashes[k] = hash_ = m.hexdigest()
+                return hash_
+
+    def _get_hashes(self, provenance):
+        for r in provenance.prov_doc.get_records(prov.model.ProvEntity):
+            self._get_hash(Entity(provenance, r))
 
     def get_members(self, entity):
         membership = entity.provenance.record_with_attr(
@@ -383,6 +406,7 @@ class ProvCrateBuilder:
 
             def to_wf_p(k):
                 return k.replace(activity.plan().localpart, tool_name)
+        self._get_hashes(activity.provenance)
         action["instrument"] = instrument
         action["startTime"] = activity.start().time.isoformat()
         action["endTime"] = activity.end().time.isoformat()
@@ -433,7 +457,7 @@ class ProvCrateBuilder:
             action_params.append(action_p)
         return action_params
 
-    def convert_param(self, prov_param, crate, convert_secondary=True):
+    def convert_param(self, prov_param, crate, convert_secondary=True, parent=""):
         type_names = frozenset(str(_) for _ in prov_param.types())
         secondary_files = [_.generated_entity() for _ in prov_param.derivations()
                            if str(_.type) == "cwlprov:SecondaryFile"]
@@ -452,29 +476,21 @@ class ProvCrateBuilder:
                 self.collections[main_entity.id] = action_p
             return action_p
         if "wf4ever:File" in type_names:
-            hash_ = next(prov_param.specializationOf()).id.localpart
-            path = self.root / Path("data") / hash_[:2] / hash_
-            action_p = crate.dereference(path.name)
+            hash_ = self.hashes[prov_param.id.localpart]
+            dest = Path(parent) / hash_
+            action_p = crate.dereference(dest.as_posix())
             if not action_p:
-                action_p = crate.add_file(path, path.name)
+                source = self.root / Path("data") / hash_[:2] / hash_
+                action_p = crate.add_file(source, dest)
             return action_p
         if "ro:Folder" in type_names:
-            hashes = []
-            for prov_file in self.get_dict(prov_param).values():
-                hash_ = next(prov_file.specializationOf()).id.localpart
-                hashes.append(hash_)
-            m = hashlib.sha1()
-            m.update("".join(sorted(hashes)).encode())
-            basename = m.hexdigest()
-            action_p = crate.dereference(basename)
+            hash_ = self.hashes[prov_param.id.localpart]
+            dest = Path(parent) / hash_
+            action_p = crate.dereference(dest.as_posix())
             if not action_p:
-                action_p = crate.add_directory(basename)
-                for hash_ in hashes:
-                    path = self.root / Path("data") / hash_[:2] / hash_
-                    dest = Path(basename) / path.name
-                    part = crate.dereference(dest.as_posix())
-                    if not part:
-                        part = crate.add_file(self.root / path, dest)
+                action_p = crate.add_directory(dest_path=dest)
+                for child in self.get_dict(prov_param).values():
+                    part = self.convert_param(child, crate, parent=dest)
                     action_p.append_to("hasPart", part)
             return action_p
         if prov_param.value is not None:

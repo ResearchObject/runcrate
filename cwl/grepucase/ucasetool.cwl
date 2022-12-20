@@ -17,5 +17,6 @@ arguments:
     valueFrom: |
       mkdir -p ucase_out
       find $(inputs.u_in_dir.path)/ -type f | while read f; do
-        awk '{print toupper(\$0)}' < \${f} > ucase_out/`basename \${f}`.out
+        mkdir ucase_out/`basename \${f}`
+        awk '{print toupper(\$0)}' < \${f} > ucase_out/`basename \${f}`/`basename \${f}`.out
       done

@@ -268,7 +268,16 @@ def test_dir_io(data_dir, tmpdir):
             assert "Dataset" in entity.type
             wf_input_dir = entity
     wf_output_dir = wf_results[0]
-    assert "Dataset" in wf_output_dir.type
+    assert wf_input_dir.type == wf_output_dir.type == "Dataset"
+    assert len(wf_input_dir["hasPart"]) == 2
+    for f in wf_input_dir["hasPart"]:
+        assert f.type == "File"
+    assert len(wf_output_dir["hasPart"]) == 2
+    for d in wf_output_dir["hasPart"]:
+        assert d.type == "Dataset"
+        assert len(d["hasPart"]) == 1
+        for f in d["hasPart"]:
+            assert f.type == "File"
     greptool_action = action_map["packed.cwl#greptool.cwl"]
     greptool_objects = greptool_action["object"]
     greptool_results = greptool_action["result"]
@@ -292,7 +301,7 @@ def test_dir_io(data_dir, tmpdir):
     ucasetool_input_dir = ucasetool_objects[0]
     assert ucasetool_input_dir is greptool_output_dir
     ucasetool_output_dir = ucasetool_results[0]
-    assert "Dataset" in ucasetool_output_dir.type
+    assert ucasetool_output_dir is wf_output_dir
     # file contents
     in_text = {
         (root / "data/8d/8d84ef91f0aba379f5edc3836b4b5f6727920f22").read_text(),
@@ -310,7 +319,9 @@ def test_dir_io(data_dir, tmpdir):
         (root / "data/3c/3ccdc7533084b641e6c941cc6dbb091d2e5f8a41").read_text(),
         (root / "data/ec/ec0270052a78321508502ed915815c4daf75fe46").read_text(),
     }
-    assert set((output / _.id).read_text() for _ in wf_output_dir["hasPart"]) == out_text
+    assert set(
+        (output / f.id).read_text() for d in wf_output_dir["hasPart"] for f in d["hasPart"]
+    ) == out_text
 
 
 def test_no_output(data_dir, tmpdir):

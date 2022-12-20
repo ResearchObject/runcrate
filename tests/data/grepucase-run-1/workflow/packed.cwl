@@ -110,7 +110,7 @@
             "arguments": [
                 {
                     "position": 0,
-                    "valueFrom": "mkdir -p ucase_out\nfind $(inputs.u_in_dir.path)/ -type f | while read f; do\n  awk '{print toupper(\\$0)}' < \\${f} > ucase_out/`basename \\${f}`.out\ndone\n"
+                    "valueFrom": "mkdir -p ucase_out\nfind $(inputs.u_in_dir.path)/ -type f | while read f; do\n  mkdir ucase_out/`basename \\${f}`\n  awk '{print toupper(\\$0)}' < \\${f} > ucase_out/`basename \\${f}`/`basename \\${f}`.out\ndone\n"
                 }
             ],
             "id": "#ucasetool.cwl"
