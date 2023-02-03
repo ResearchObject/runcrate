@@ -40,14 +40,14 @@ def dump_run_results(tool, action, control_action=None):
     results = {p.id: res for res in action.get("result", [])
                for p in as_list(res.get("exampleOfWork", []))}
     print("  inputs:")
-    for in_ in tool["input"]:
+    for in_ in tool.get("input", []):
         obj = objects.get(in_.id)
         print(f"    {in_.id}: {obj.get('value', obj.id) if obj else ''}")
     for obj in action.get("object", []):
         if "exampleOfWork" not in obj:
             print(f"    ???: {obj.get('value', obj.id)}")
     print("  outputs:")
-    for out in tool["output"]:
+    for out in tool.get("output", []):
         res = results.get(out.id)
         print(f"    {out.id}: {res.get('value', res.id) if res else ''}")
     for res in action.get("result", []):
