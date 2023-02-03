@@ -54,7 +54,8 @@ EXTRA_TERMS = {
     "ParameterConnection": "https://w3id.org/ro/terms/workflow-run#ParameterConnection",
     "connection": "https://w3id.org/ro/terms/workflow-run#connection",
     "sourceParameter": "https://w3id.org/ro/terms/workflow-run#sourceParameter",
-    "targetParameter": "https://w3id.org/ro/terms/workflow-run#targetParameter"
+    "targetParameter": "https://w3id.org/ro/terms/workflow-run#targetParameter",
+    "sha1": "https://w3id.org/ro/terms/workflow-run#sha1"
 }
 
 
@@ -459,7 +460,18 @@ class ProvCrateBuilder:
             action_params.append(action_p)
         return action_params
 
-    def convert_param(self, prov_param, crate, convert_secondary=True, parent=""):
+    @staticmethod
+    def _set_alternate_name(prov_param, action_p, parent=None):
+        basename = getattr(prov_param, "basename", None)
+        if not basename:
+            return
+        if not parent:
+            action_p["alternateName"] = basename
+            return
+        if "alternateName" in parent:
+            action_p["alternateName"] = (Path(parent["alternateName"]) / basename).as_posix()
+
+    def convert_param(self, prov_param, crate, convert_secondary=True, parent=None):
         type_names = frozenset(str(_) for _ in prov_param.types())
         secondary_files = [_.generated_entity() for _ in prov_param.derivations()
                            if str(_.type) == "cwlprov:SecondaryFile"]
@@ -479,20 +491,24 @@ class ProvCrateBuilder:
             return action_p
         if "wf4ever:File" in type_names:
             hash_ = self.hashes[prov_param.id.localpart]
-            dest = Path(parent) / hash_
+            dest = Path(parent.id if parent else "") / hash_
             action_p = crate.dereference(dest.as_posix())
             if not action_p:
                 source = self.root / Path("data") / hash_[:2] / hash_
-                action_p = crate.add_file(source, dest)
+                action_p = crate.add_file(source, dest, properties={
+                    "sha1": hash_,
+                })
+                self._set_alternate_name(prov_param, action_p, parent=parent)
             return action_p
         if "ro:Folder" in type_names:
             hash_ = self.hashes[prov_param.id.localpart]
-            dest = Path(parent) / hash_
+            dest = Path(parent.id if parent else "") / hash_
             action_p = crate.dereference(dest.as_posix())
             if not action_p:
                 action_p = crate.add_directory(dest_path=dest)
+                self._set_alternate_name(prov_param, action_p, parent=parent)
                 for child in self.get_dict(prov_param).values():
-                    part = self.convert_param(child, crate, parent=dest)
+                    part = self.convert_param(child, crate, parent=action_p)
                     action_p.append_to("hasPart", part)
             return action_p
         if prov_param.value is not None:

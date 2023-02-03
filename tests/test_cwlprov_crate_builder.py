@@ -79,8 +79,12 @@ def test_revsort(data_dir, tmpdir):
             assert entity["value"] == "True"
         else:
             assert "File" in entity.type
+            assert "alternateName" in entity
+            assert "sha1" in entity
             wf_input_file = entity
     wf_output_file = wf_results[0]
+    assert "alternateName" in wf_output_file
+    assert "sha1" in wf_output_file
     assert "File" in wf_output_file.type
     steps = workflow["step"]
     assert len(steps) == 2
