@@ -1,41 +1,34 @@
 <?xml version='1.0' encoding='ASCII'?>
-<prov:document xmlns:wfprov="http://purl.org/wf4ever/wfprov#" xmlns:wfdesc="http://purl.org/wf4ever/wfdesc#" xmlns:cwlprov="https://w3id.org/cwl/prov#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:schema="http://schema.org/" xmlns:orcid="https://orcid.org/" xmlns:id="urn:uuid:" xmlns:data="urn:hash::sha1:" xmlns:sha256="nih:sha-256;" xmlns:researchobject="arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/" xmlns:metadata="arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/" xmlns:provenance="arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/provenance/" xmlns:wf="arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#" xmlns:input="arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/primary-job.json#" xmlns:ro="http://purl.org/wf4ever/ro#" xmlns:wf4ever="http://purl.org/wf4ever/wf4ever#" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <prov:agent prov:id="id:61b1ade5-aba5-4177-870a-68aca11d7eaa"/>
-  <prov:softwareAgent prov:id="id:d5698c0a-ec2b-4775-a77d-0ffc182ab4f0">
-    <prov:label>cwltool 3.1.20221201130942</prov:label>
+<prov:document xmlns:wfprov="http://purl.org/wf4ever/wfprov#" xmlns:wfdesc="http://purl.org/wf4ever/wfdesc#" xmlns:cwlprov="https://w3id.org/cwl/prov#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:schema="http://schema.org/" xmlns:orcid="https://orcid.org/" xmlns:id="urn:uuid:" xmlns:data="urn:hash::sha1:" xmlns:sha256="nih:sha-256;" xmlns:researchobject="arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/" xmlns:metadata="arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/" xmlns:provenance="arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/provenance/" xmlns:wf="arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#" xmlns:input="arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/primary-job.json#" xmlns:ro="http://purl.org/wf4ever/ro#" xmlns:wf4ever="http://purl.org/wf4ever/wf4ever#" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <prov:agent prov:id="id:4746e065-2941-4133-a52b-c36d6c54dde1"/>
+  <prov:softwareAgent prov:id="id:e355dead-5bb7-4566-a6bb-eacd7cbdcea4">
+    <prov:label>cwltool 3.1.20230213100550</prov:label>
     <prov:type xsi:type="xsd:QName">wfprov:WorkflowEngine</prov:type>
   </prov:softwareAgent>
   <prov:wasStartedBy>
-    <prov:activity prov:ref="id:d5698c0a-ec2b-4775-a77d-0ffc182ab4f0"/>
-    <prov:starter prov:ref="id:61b1ade5-aba5-4177-870a-68aca11d7eaa"/>
-    <prov:time>2022-12-16T12:36:06.421206</prov:time>
+    <prov:activity prov:ref="id:e355dead-5bb7-4566-a6bb-eacd7cbdcea4"/>
+    <prov:starter prov:ref="id:4746e065-2941-4133-a52b-c36d6c54dde1"/>
+    <prov:time>2023-02-17T16:20:30.199275</prov:time>
   </prov:wasStartedBy>
-  <prov:activity prov:id="id:86e05e63-d4dd-4a06-8235-9d26df405724">
-    <prov:startTime>2022-12-16T12:36:06.421234</prov:startTime>
+  <prov:activity prov:id="id:422fecc5-1e57-45bc-a653-1513a7a6fe70">
+    <prov:startTime>2023-02-17T16:20:30.199310</prov:startTime>
     <prov:label>Run of workflow/packed.cwl#main</prov:label>
     <prov:type xsi:type="xsd:QName">wfprov:WorkflowRun</prov:type>
   </prov:activity>
   <prov:wasAssociatedWith>
-    <prov:activity prov:ref="id:86e05e63-d4dd-4a06-8235-9d26df405724"/>
-    <prov:agent prov:ref="id:d5698c0a-ec2b-4775-a77d-0ffc182ab4f0"/>
+    <prov:activity prov:ref="id:422fecc5-1e57-45bc-a653-1513a7a6fe70"/>
+    <prov:agent prov:ref="id:e355dead-5bb7-4566-a6bb-eacd7cbdcea4"/>
     <prov:plan prov:ref="wf:main"/>
   </prov:wasAssociatedWith>
   <prov:wasStartedBy>
-    <prov:activity prov:ref="id:86e05e63-d4dd-4a06-8235-9d26df405724"/>
-    <prov:starter prov:ref="id:d5698c0a-ec2b-4775-a77d-0ffc182ab4f0"/>
-    <prov:time>2022-12-16T12:36:06.421298</prov:time>
+    <prov:activity prov:ref="id:422fecc5-1e57-45bc-a653-1513a7a6fe70"/>
+    <prov:starter prov:ref="id:e355dead-5bb7-4566-a6bb-eacd7cbdcea4"/>
+    <prov:time>2023-02-17T16:20:30.199371</prov:time>
   </prov:wasStartedBy>
   <prov:plan prov:id="wf:main">
     <prov:label>Prospective provenance</prov:label>
     <prov:type xsi:type="xsd:QName">wfdesc:Workflow</prov:type>
   </prov:plan>
-  <prov:plan prov:id="wf:main/ucase">
-    <prov:type xsi:type="xsd:QName">wfdesc:Process</prov:type>
-  </prov:plan>
-  <prov:entity prov:id="wf:main">
-    <prov:label>Prospective provenance</prov:label>
-    <wfdesc:hasSubProcess xsi:type="xsd:QName">wf:main/ucase</wfdesc:hasSubProcess>
-  </prov:entity>
   <prov:plan prov:id="wf:main/grep">
     <prov:type xsi:type="xsd:QName">wfdesc:Process</prov:type>
   </prov:plan>
@@ -43,65 +36,73 @@
     <prov:label>Prospective provenance</prov:label>
     <wfdesc:hasSubProcess xsi:type="xsd:QName">wf:main/grep</wfdesc:hasSubProcess>
   </prov:entity>
-  <prov:collection prov:id="id:0f2f543c-695b-45c6-b31d-5c8740425f3c">
+  <prov:plan prov:id="wf:main/ucase">
+    <prov:type xsi:type="xsd:QName">wfdesc:Process</prov:type>
+  </prov:plan>
+  <prov:entity prov:id="wf:main">
+    <prov:label>Prospective provenance</prov:label>
+    <wfdesc:hasSubProcess xsi:type="xsd:QName">wf:main/ucase</wfdesc:hasSubProcess>
+  </prov:entity>
+  <prov:collection prov:id="id:ddfddee2-1c54-48a2-a45f-8edf28af1d65">
     <prov:type xsi:type="xsd:QName">prov:Dictionary</prov:type>
     <prov:type xsi:type="xsd:QName">ro:Folder</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
-    <ore:isDescribedBy xsi:type="xsd:QName">metadata:directory-0f2f543c-695b-45c6-b31d-5c8740425f3c.ttl</ore:isDescribedBy>
-    <prov:hadDictionaryMember xsi:type="xsd:QName">id:36d252c7-be92-4775-9e88-bb46d36fa958</prov:hadDictionaryMember>
-    <prov:hadDictionaryMember xsi:type="xsd:QName">id:79be28a7-70ef-4241-91e3-d5e8349cfd64</prov:hadDictionaryMember>
+    <cwlprov:basename>grepucase_in</cwlprov:basename>
+    <ore:isDescribedBy xsi:type="xsd:QName">metadata:directory-ddfddee2-1c54-48a2-a45f-8edf28af1d65.ttl</ore:isDescribedBy>
+    <prov:hadDictionaryMember xsi:type="xsd:QName">id:4f43d441-3e01-473d-adbb-50810da33c6c</prov:hadDictionaryMember>
+    <prov:hadDictionaryMember xsi:type="xsd:QName">id:b9a13f00-59e0-4bb4-ab99-4ad4c84c2dae</prov:hadDictionaryMember>
   </prov:collection>
   <prov:mentionOf>
-    <prov:specificEntity prov:ref="id:0f2f543c-695b-45c6-b31d-5c8740425f3c#ore"/>
-    <prov:generalEntity prov:ref="id:0f2f543c-695b-45c6-b31d-5c8740425f3c"/>
-    <prov:bundle prov:ref="metadata:directory-0f2f543c-695b-45c6-b31d-5c8740425f3c.ttl"/>
+    <prov:specificEntity prov:ref="id:ddfddee2-1c54-48a2-a45f-8edf28af1d65#ore"/>
+    <prov:generalEntity prov:ref="id:ddfddee2-1c54-48a2-a45f-8edf28af1d65"/>
+    <prov:bundle prov:ref="metadata:directory-ddfddee2-1c54-48a2-a45f-8edf28af1d65.ttl"/>
   </prov:mentionOf>
   <prov:entity prov:id="data:8d84ef91f0aba379f5edc3836b4b5f6727920f22">
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
   </prov:entity>
-  <prov:entity prov:id="id:daf9ca4c-2d3f-4485-a07f-43ef8273020a">
+  <prov:entity prov:id="id:c33fb8ba-d775-47e6-a356-7a31541c3a54">
     <prov:type xsi:type="xsd:QName">wf4ever:File</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
     <cwlprov:basename>bar</cwlprov:basename>
   </prov:entity>
   <prov:specializationOf>
-    <prov:specificEntity prov:ref="id:daf9ca4c-2d3f-4485-a07f-43ef8273020a"/>
+    <prov:specificEntity prov:ref="id:c33fb8ba-d775-47e6-a356-7a31541c3a54"/>
     <prov:generalEntity prov:ref="data:8d84ef91f0aba379f5edc3836b4b5f6727920f22"/>
   </prov:specializationOf>
   <prov:hadMember>
-    <prov:collection prov:ref="id:0f2f543c-695b-45c6-b31d-5c8740425f3c"/>
-    <prov:entity prov:ref="id:daf9ca4c-2d3f-4485-a07f-43ef8273020a"/>
+    <prov:collection prov:ref="id:ddfddee2-1c54-48a2-a45f-8edf28af1d65"/>
+    <prov:entity prov:ref="id:c33fb8ba-d775-47e6-a356-7a31541c3a54"/>
   </prov:hadMember>
-  <prov:entity prov:id="id:79be28a7-70ef-4241-91e3-d5e8349cfd64">
+  <prov:entity prov:id="id:4f43d441-3e01-473d-adbb-50810da33c6c">
     <prov:type xsi:type="xsd:QName">prov:KeyEntityPair</prov:type>
-    <prov:pairEntity xsi:type="xsd:QName">id:daf9ca4c-2d3f-4485-a07f-43ef8273020a</prov:pairEntity>
+    <prov:pairEntity xsi:type="xsd:QName">id:c33fb8ba-d775-47e6-a356-7a31541c3a54</prov:pairEntity>
     <prov:pairKey>bar</prov:pairKey>
   </prov:entity>
   <prov:entity prov:id="data:d60dd58346cf7e533252f35399cd510b1b1467f7">
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
   </prov:entity>
-  <prov:entity prov:id="id:b280830d-2952-4f46-964a-bf8ca781adc1">
+  <prov:entity prov:id="id:6f360b00-3ef7-4a0a-9be0-6be2f7fc929d">
     <prov:type xsi:type="xsd:QName">wf4ever:File</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
     <cwlprov:basename>foo</cwlprov:basename>
   </prov:entity>
   <prov:specializationOf>
-    <prov:specificEntity prov:ref="id:b280830d-2952-4f46-964a-bf8ca781adc1"/>
+    <prov:specificEntity prov:ref="id:6f360b00-3ef7-4a0a-9be0-6be2f7fc929d"/>
     <prov:generalEntity prov:ref="data:d60dd58346cf7e533252f35399cd510b1b1467f7"/>
   </prov:specializationOf>
   <prov:hadMember>
-    <prov:collection prov:ref="id:0f2f543c-695b-45c6-b31d-5c8740425f3c"/>
-    <prov:entity prov:ref="id:b280830d-2952-4f46-964a-bf8ca781adc1"/>
+    <prov:collection prov:ref="id:ddfddee2-1c54-48a2-a45f-8edf28af1d65"/>
+    <prov:entity prov:ref="id:6f360b00-3ef7-4a0a-9be0-6be2f7fc929d"/>
   </prov:hadMember>
-  <prov:entity prov:id="id:36d252c7-be92-4775-9e88-bb46d36fa958">
+  <prov:entity prov:id="id:b9a13f00-59e0-4bb4-ab99-4ad4c84c2dae">
     <prov:type xsi:type="xsd:QName">prov:KeyEntityPair</prov:type>
-    <prov:pairEntity xsi:type="xsd:QName">id:b280830d-2952-4f46-964a-bf8ca781adc1</prov:pairEntity>
+    <prov:pairEntity xsi:type="xsd:QName">id:6f360b00-3ef7-4a0a-9be0-6be2f7fc929d</prov:pairEntity>
     <prov:pairKey>foo</prov:pairKey>
   </prov:entity>
   <prov:used>
-    <prov:activity prov:ref="id:86e05e63-d4dd-4a06-8235-9d26df405724"/>
-    <prov:entity prov:ref="id:0f2f543c-695b-45c6-b31d-5c8740425f3c"/>
-    <prov:time>2022-12-16T12:36:06.459563</prov:time>
+    <prov:activity prov:ref="id:422fecc5-1e57-45bc-a653-1513a7a6fe70"/>
+    <prov:entity prov:ref="id:ddfddee2-1c54-48a2-a45f-8edf28af1d65"/>
+    <prov:time>2023-02-17T16:20:30.240732</prov:time>
     <prov:role xsi:type="xsd:QName">wf:main/in_dir</prov:role>
   </prov:used>
   <prov:entity prov:id="data:1078cf414b2625a240b16392085d66580bb66f4d">
@@ -109,42 +110,43 @@
     <prov:value xsi:type="xsd:string">lazy</prov:value>
   </prov:entity>
   <prov:used>
-    <prov:activity prov:ref="id:86e05e63-d4dd-4a06-8235-9d26df405724"/>
+    <prov:activity prov:ref="id:422fecc5-1e57-45bc-a653-1513a7a6fe70"/>
     <prov:entity prov:ref="data:1078cf414b2625a240b16392085d66580bb66f4d"/>
-    <prov:time>2022-12-16T12:36:06.460038</prov:time>
+    <prov:time>2023-02-17T16:20:30.241214</prov:time>
     <prov:role xsi:type="xsd:QName">wf:main/pattern</prov:role>
   </prov:used>
-  <prov:activity prov:id="id:0d286a0e-18b1-4138-b379-955431bc89d7">
+  <prov:activity prov:id="id:c0ef8f15-2df6-4cd0-9d5b-7ffef1ba9e76">
     <prov:label>Run of workflow/packed.cwl#main/grep</prov:label>
     <prov:type xsi:type="xsd:QName">wfprov:ProcessRun</prov:type>
   </prov:activity>
   <prov:wasAssociatedWith>
-    <prov:activity prov:ref="id:0d286a0e-18b1-4138-b379-955431bc89d7"/>
-    <prov:agent prov:ref="id:d5698c0a-ec2b-4775-a77d-0ffc182ab4f0"/>
+    <prov:activity prov:ref="id:c0ef8f15-2df6-4cd0-9d5b-7ffef1ba9e76"/>
+    <prov:agent prov:ref="id:e355dead-5bb7-4566-a6bb-eacd7cbdcea4"/>
     <prov:plan prov:ref="wf:main/grep"/>
   </prov:wasAssociatedWith>
   <prov:wasStartedBy>
-    <prov:activity prov:ref="id:0d286a0e-18b1-4138-b379-955431bc89d7"/>
-    <prov:starter prov:ref="id:86e05e63-d4dd-4a06-8235-9d26df405724"/>
-    <prov:time>2022-12-16T12:36:06.464238</prov:time>
+    <prov:activity prov:ref="id:c0ef8f15-2df6-4cd0-9d5b-7ffef1ba9e76"/>
+    <prov:starter prov:ref="id:422fecc5-1e57-45bc-a653-1513a7a6fe70"/>
+    <prov:time>2023-02-17T16:20:30.244317</prov:time>
   </prov:wasStartedBy>
-  <prov:collection prov:id="id:e1d7deea-4b5c-4fb7-8634-fe763373ad5c">
+  <prov:collection prov:id="id:a632ff01-ca44-453b-982f-96879f1b85ba">
     <prov:type xsi:type="xsd:QName">prov:Dictionary</prov:type>
     <prov:type xsi:type="xsd:QName">ro:Folder</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
-    <ore:isDescribedBy xsi:type="xsd:QName">metadata:directory-e1d7deea-4b5c-4fb7-8634-fe763373ad5c.ttl</ore:isDescribedBy>
-    <prov:hadDictionaryMember xsi:type="xsd:QName">id:7c33b44f-ffe5-4381-87d6-56d0ec8de7d5</prov:hadDictionaryMember>
-    <prov:hadDictionaryMember xsi:type="xsd:QName">id:f973d2dc-7338-4943-acbd-5dc52541cf9a</prov:hadDictionaryMember>
+    <cwlprov:basename>grepucase_in</cwlprov:basename>
+    <ore:isDescribedBy xsi:type="xsd:QName">metadata:directory-a632ff01-ca44-453b-982f-96879f1b85ba.ttl</ore:isDescribedBy>
+    <prov:hadDictionaryMember xsi:type="xsd:QName">id:93dc7383-4670-4192-9954-659613284713</prov:hadDictionaryMember>
+    <prov:hadDictionaryMember xsi:type="xsd:QName">id:dfa94007-0aba-4189-a4a2-f4be72d084ef</prov:hadDictionaryMember>
   </prov:collection>
   <prov:mentionOf>
-    <prov:specificEntity prov:ref="id:e1d7deea-4b5c-4fb7-8634-fe763373ad5c#ore"/>
-    <prov:generalEntity prov:ref="id:e1d7deea-4b5c-4fb7-8634-fe763373ad5c"/>
-    <prov:bundle prov:ref="metadata:directory-e1d7deea-4b5c-4fb7-8634-fe763373ad5c.ttl"/>
+    <prov:specificEntity prov:ref="id:a632ff01-ca44-453b-982f-96879f1b85ba#ore"/>
+    <prov:generalEntity prov:ref="id:a632ff01-ca44-453b-982f-96879f1b85ba"/>
+    <prov:bundle prov:ref="metadata:directory-a632ff01-ca44-453b-982f-96879f1b85ba.ttl"/>
   </prov:mentionOf>
   <prov:entity prov:id="data:8d84ef91f0aba379f5edc3836b4b5f6727920f22">
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
   </prov:entity>
-  <prov:entity prov:id="id:1c8520cb-7dbd-4d64-b9d3-073417163918">
+  <prov:entity prov:id="id:3890a779-35f5-4753-8cce-9c4645221ea2">
     <prov:type xsi:type="xsd:QName">wf4ever:File</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
     <cwlprov:basename>bar</cwlprov:basename>
@@ -152,22 +154,22 @@
     <cwlprov:nameroot>bar</cwlprov:nameroot>
   </prov:entity>
   <prov:specializationOf>
-    <prov:specificEntity prov:ref="id:1c8520cb-7dbd-4d64-b9d3-073417163918"/>
+    <prov:specificEntity prov:ref="id:3890a779-35f5-4753-8cce-9c4645221ea2"/>
     <prov:generalEntity prov:ref="data:8d84ef91f0aba379f5edc3836b4b5f6727920f22"/>
   </prov:specializationOf>
   <prov:hadMember>
-    <prov:collection prov:ref="id:e1d7deea-4b5c-4fb7-8634-fe763373ad5c"/>
-    <prov:entity prov:ref="id:1c8520cb-7dbd-4d64-b9d3-073417163918"/>
+    <prov:collection prov:ref="id:a632ff01-ca44-453b-982f-96879f1b85ba"/>
+    <prov:entity prov:ref="id:3890a779-35f5-4753-8cce-9c4645221ea2"/>
   </prov:hadMember>
-  <prov:entity prov:id="id:f973d2dc-7338-4943-acbd-5dc52541cf9a">
+  <prov:entity prov:id="id:93dc7383-4670-4192-9954-659613284713">
     <prov:type xsi:type="xsd:QName">prov:KeyEntityPair</prov:type>
-    <prov:pairEntity xsi:type="xsd:QName">id:1c8520cb-7dbd-4d64-b9d3-073417163918</prov:pairEntity>
+    <prov:pairEntity xsi:type="xsd:QName">id:3890a779-35f5-4753-8cce-9c4645221ea2</prov:pairEntity>
     <prov:pairKey>bar</prov:pairKey>
   </prov:entity>
   <prov:entity prov:id="data:d60dd58346cf7e533252f35399cd510b1b1467f7">
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
   </prov:entity>
-  <prov:entity prov:id="id:66cd879a-29f6-4a6e-9e17-a36e9d6293e5">
+  <prov:entity prov:id="id:c7636f08-692c-4e1e-927f-823e9e76aac7">
     <prov:type xsi:type="xsd:QName">wf4ever:File</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
     <cwlprov:basename>foo</cwlprov:basename>
@@ -175,22 +177,22 @@
     <cwlprov:nameroot>foo</cwlprov:nameroot>
   </prov:entity>
   <prov:specializationOf>
-    <prov:specificEntity prov:ref="id:66cd879a-29f6-4a6e-9e17-a36e9d6293e5"/>
+    <prov:specificEntity prov:ref="id:c7636f08-692c-4e1e-927f-823e9e76aac7"/>
     <prov:generalEntity prov:ref="data:d60dd58346cf7e533252f35399cd510b1b1467f7"/>
   </prov:specializationOf>
   <prov:hadMember>
-    <prov:collection prov:ref="id:e1d7deea-4b5c-4fb7-8634-fe763373ad5c"/>
-    <prov:entity prov:ref="id:66cd879a-29f6-4a6e-9e17-a36e9d6293e5"/>
+    <prov:collection prov:ref="id:a632ff01-ca44-453b-982f-96879f1b85ba"/>
+    <prov:entity prov:ref="id:c7636f08-692c-4e1e-927f-823e9e76aac7"/>
   </prov:hadMember>
-  <prov:entity prov:id="id:7c33b44f-ffe5-4381-87d6-56d0ec8de7d5">
+  <prov:entity prov:id="id:dfa94007-0aba-4189-a4a2-f4be72d084ef">
     <prov:type xsi:type="xsd:QName">prov:KeyEntityPair</prov:type>
-    <prov:pairEntity xsi:type="xsd:QName">id:66cd879a-29f6-4a6e-9e17-a36e9d6293e5</prov:pairEntity>
+    <prov:pairEntity xsi:type="xsd:QName">id:c7636f08-692c-4e1e-927f-823e9e76aac7</prov:pairEntity>
     <prov:pairKey>foo</prov:pairKey>
   </prov:entity>
   <prov:used>
-    <prov:activity prov:ref="id:0d286a0e-18b1-4138-b379-955431bc89d7"/>
-    <prov:entity prov:ref="id:e1d7deea-4b5c-4fb7-8634-fe763373ad5c"/>
-    <prov:time>2022-12-16T12:36:06.470729</prov:time>
+    <prov:activity prov:ref="id:c0ef8f15-2df6-4cd0-9d5b-7ffef1ba9e76"/>
+    <prov:entity prov:ref="id:a632ff01-ca44-453b-982f-96879f1b85ba"/>
+    <prov:time>2023-02-17T16:20:30.248798</prov:time>
     <prov:role xsi:type="xsd:QName">wf:main/grep/g_in_dir</prov:role>
   </prov:used>
   <prov:entity prov:id="data:1078cf414b2625a240b16392085d66580bb66f4d">
@@ -198,329 +200,333 @@
     <prov:value xsi:type="xsd:string">lazy</prov:value>
   </prov:entity>
   <prov:used>
-    <prov:activity prov:ref="id:0d286a0e-18b1-4138-b379-955431bc89d7"/>
+    <prov:activity prov:ref="id:c0ef8f15-2df6-4cd0-9d5b-7ffef1ba9e76"/>
     <prov:entity prov:ref="data:1078cf414b2625a240b16392085d66580bb66f4d"/>
-    <prov:time>2022-12-16T12:36:06.471068</prov:time>
+    <prov:time>2023-02-17T16:20:30.249115</prov:time>
     <prov:role xsi:type="xsd:QName">wf:main/grep/g_pattern</prov:role>
   </prov:used>
-  <prov:collection prov:id="id:894a0b93-ea8e-40d5-b0fb-4923df529cca">
+  <prov:collection prov:id="id:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766">
     <prov:type xsi:type="xsd:QName">prov:Dictionary</prov:type>
     <prov:type xsi:type="xsd:QName">ro:Folder</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
-    <ore:isDescribedBy xsi:type="xsd:QName">metadata:directory-894a0b93-ea8e-40d5-b0fb-4923df529cca.ttl</ore:isDescribedBy>
-    <prov:hadDictionaryMember xsi:type="xsd:QName">id:0d4232ac-a098-474c-8ee3-a7710811c376</prov:hadDictionaryMember>
-    <prov:hadDictionaryMember xsi:type="xsd:QName">id:239eafb4-4463-46ff-afac-5113c6e74e67</prov:hadDictionaryMember>
+    <cwlprov:basename>grep_out</cwlprov:basename>
+    <ore:isDescribedBy xsi:type="xsd:QName">metadata:directory-f8a7cd48-1c1d-4cb3-97b1-f157bdd83766.ttl</ore:isDescribedBy>
+    <prov:hadDictionaryMember xsi:type="xsd:QName">id:37153125-a58a-42c6-8079-c87897c73fa1</prov:hadDictionaryMember>
+    <prov:hadDictionaryMember xsi:type="xsd:QName">id:b1cd1002-9728-4419-8471-c9746d177e00</prov:hadDictionaryMember>
   </prov:collection>
   <prov:mentionOf>
-    <prov:specificEntity prov:ref="id:894a0b93-ea8e-40d5-b0fb-4923df529cca#ore"/>
-    <prov:generalEntity prov:ref="id:894a0b93-ea8e-40d5-b0fb-4923df529cca"/>
-    <prov:bundle prov:ref="metadata:directory-894a0b93-ea8e-40d5-b0fb-4923df529cca.ttl"/>
+    <prov:specificEntity prov:ref="id:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766#ore"/>
+    <prov:generalEntity prov:ref="id:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766"/>
+    <prov:bundle prov:ref="metadata:directory-f8a7cd48-1c1d-4cb3-97b1-f157bdd83766.ttl"/>
   </prov:mentionOf>
   <prov:entity prov:id="data:8545949f96b96cb721485066bafad9b768bc4e52">
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
   </prov:entity>
-  <prov:entity prov:id="id:6f1e9cdf-9128-4d1e-a8cb-34e8255c88eb">
+  <prov:entity prov:id="id:a51961e0-708a-4c2c-8bd1-a56b6782c191">
     <prov:type xsi:type="xsd:QName">wf4ever:File</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
     <cwlprov:basename>bar.out</cwlprov:basename>
   </prov:entity>
   <prov:specializationOf>
-    <prov:specificEntity prov:ref="id:6f1e9cdf-9128-4d1e-a8cb-34e8255c88eb"/>
+    <prov:specificEntity prov:ref="id:a51961e0-708a-4c2c-8bd1-a56b6782c191"/>
     <prov:generalEntity prov:ref="data:8545949f96b96cb721485066bafad9b768bc4e52"/>
   </prov:specializationOf>
   <prov:hadMember>
-    <prov:collection prov:ref="id:894a0b93-ea8e-40d5-b0fb-4923df529cca"/>
-    <prov:entity prov:ref="id:6f1e9cdf-9128-4d1e-a8cb-34e8255c88eb"/>
+    <prov:collection prov:ref="id:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766"/>
+    <prov:entity prov:ref="id:a51961e0-708a-4c2c-8bd1-a56b6782c191"/>
   </prov:hadMember>
-  <prov:entity prov:id="id:0d4232ac-a098-474c-8ee3-a7710811c376">
+  <prov:entity prov:id="id:b1cd1002-9728-4419-8471-c9746d177e00">
     <prov:type xsi:type="xsd:QName">prov:KeyEntityPair</prov:type>
-    <prov:pairEntity xsi:type="xsd:QName">id:6f1e9cdf-9128-4d1e-a8cb-34e8255c88eb</prov:pairEntity>
+    <prov:pairEntity xsi:type="xsd:QName">id:a51961e0-708a-4c2c-8bd1-a56b6782c191</prov:pairEntity>
     <prov:pairKey>bar.out</prov:pairKey>
   </prov:entity>
   <prov:entity prov:id="data:5aa9aa3b336778cf2a7db648fc530892c3b3dabb">
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
   </prov:entity>
-  <prov:entity prov:id="id:1f9b8a9c-386a-44da-a873-4b68f6c85451">
+  <prov:entity prov:id="id:2621f642-a5fd-4a21-a99e-8432350445d9">
     <prov:type xsi:type="xsd:QName">wf4ever:File</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
     <cwlprov:basename>foo.out</cwlprov:basename>
   </prov:entity>
   <prov:specializationOf>
-    <prov:specificEntity prov:ref="id:1f9b8a9c-386a-44da-a873-4b68f6c85451"/>
+    <prov:specificEntity prov:ref="id:2621f642-a5fd-4a21-a99e-8432350445d9"/>
     <prov:generalEntity prov:ref="data:5aa9aa3b336778cf2a7db648fc530892c3b3dabb"/>
   </prov:specializationOf>
   <prov:hadMember>
-    <prov:collection prov:ref="id:894a0b93-ea8e-40d5-b0fb-4923df529cca"/>
-    <prov:entity prov:ref="id:1f9b8a9c-386a-44da-a873-4b68f6c85451"/>
+    <prov:collection prov:ref="id:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766"/>
+    <prov:entity prov:ref="id:2621f642-a5fd-4a21-a99e-8432350445d9"/>
   </prov:hadMember>
-  <prov:entity prov:id="id:239eafb4-4463-46ff-afac-5113c6e74e67">
+  <prov:entity prov:id="id:37153125-a58a-42c6-8079-c87897c73fa1">
     <prov:type xsi:type="xsd:QName">prov:KeyEntityPair</prov:type>
-    <prov:pairEntity xsi:type="xsd:QName">id:1f9b8a9c-386a-44da-a873-4b68f6c85451</prov:pairEntity>
+    <prov:pairEntity xsi:type="xsd:QName">id:2621f642-a5fd-4a21-a99e-8432350445d9</prov:pairEntity>
     <prov:pairKey>foo.out</prov:pairKey>
   </prov:entity>
   <prov:wasGeneratedBy>
-    <prov:entity prov:ref="id:894a0b93-ea8e-40d5-b0fb-4923df529cca"/>
-    <prov:activity prov:ref="id:0d286a0e-18b1-4138-b379-955431bc89d7"/>
-    <prov:time>2022-12-16T12:36:06.481613</prov:time>
+    <prov:entity prov:ref="id:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766"/>
+    <prov:activity prov:ref="id:c0ef8f15-2df6-4cd0-9d5b-7ffef1ba9e76"/>
+    <prov:time>2023-02-17T16:20:30.262141</prov:time>
     <prov:role xsi:type="xsd:QName">wf:main/grep/g_out_dir</prov:role>
   </prov:wasGeneratedBy>
   <prov:wasEndedBy>
-    <prov:activity prov:ref="id:0d286a0e-18b1-4138-b379-955431bc89d7"/>
-    <prov:ender prov:ref="id:86e05e63-d4dd-4a06-8235-9d26df405724"/>
-    <prov:time>2022-12-16T12:36:06.481601</prov:time>
+    <prov:activity prov:ref="id:c0ef8f15-2df6-4cd0-9d5b-7ffef1ba9e76"/>
+    <prov:ender prov:ref="id:422fecc5-1e57-45bc-a653-1513a7a6fe70"/>
+    <prov:time>2023-02-17T16:20:30.262128</prov:time>
   </prov:wasEndedBy>
-  <prov:activity prov:id="id:d2887ecb-09de-4806-b5c0-cb7348506c7b">
+  <prov:activity prov:id="id:5c55e35c-69de-424c-8987-501e3d645e0c">
     <prov:label>Run of workflow/packed.cwl#main/ucase</prov:label>
     <prov:type xsi:type="xsd:QName">wfprov:ProcessRun</prov:type>
   </prov:activity>
   <prov:wasAssociatedWith>
-    <prov:activity prov:ref="id:d2887ecb-09de-4806-b5c0-cb7348506c7b"/>
-    <prov:agent prov:ref="id:d5698c0a-ec2b-4775-a77d-0ffc182ab4f0"/>
+    <prov:activity prov:ref="id:5c55e35c-69de-424c-8987-501e3d645e0c"/>
+    <prov:agent prov:ref="id:e355dead-5bb7-4566-a6bb-eacd7cbdcea4"/>
     <prov:plan prov:ref="wf:main/ucase"/>
   </prov:wasAssociatedWith>
   <prov:wasStartedBy>
-    <prov:activity prov:ref="id:d2887ecb-09de-4806-b5c0-cb7348506c7b"/>
-    <prov:starter prov:ref="id:86e05e63-d4dd-4a06-8235-9d26df405724"/>
-    <prov:time>2022-12-16T12:36:06.489493</prov:time>
+    <prov:activity prov:ref="id:5c55e35c-69de-424c-8987-501e3d645e0c"/>
+    <prov:starter prov:ref="id:422fecc5-1e57-45bc-a653-1513a7a6fe70"/>
+    <prov:time>2023-02-17T16:20:30.269435</prov:time>
   </prov:wasStartedBy>
   <prov:used>
-    <prov:activity prov:ref="id:d2887ecb-09de-4806-b5c0-cb7348506c7b"/>
-    <prov:entity prov:ref="id:894a0b93-ea8e-40d5-b0fb-4923df529cca"/>
-    <prov:time>2022-12-16T12:36:06.490262</prov:time>
+    <prov:activity prov:ref="id:5c55e35c-69de-424c-8987-501e3d645e0c"/>
+    <prov:entity prov:ref="id:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766"/>
+    <prov:time>2023-02-17T16:20:30.269993</prov:time>
     <prov:role xsi:type="xsd:QName">wf:main/ucase/u_in_dir</prov:role>
   </prov:used>
-  <prov:collection prov:id="id:c3ab4de7-e45b-469e-a6e2-940f9721cc9b">
+  <prov:collection prov:id="id:5b25d2eb-2e89-4d62-8145-2ea3656ba173">
     <prov:type xsi:type="xsd:QName">prov:Dictionary</prov:type>
     <prov:type xsi:type="xsd:QName">ro:Folder</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
-    <ore:isDescribedBy xsi:type="xsd:QName">metadata:directory-c3ab4de7-e45b-469e-a6e2-940f9721cc9b.ttl</ore:isDescribedBy>
-    <prov:hadDictionaryMember xsi:type="xsd:QName">id:4b9bc400-4df4-480b-b59d-6987c04f500f</prov:hadDictionaryMember>
-    <prov:hadDictionaryMember xsi:type="xsd:QName">id:a752267f-a0a9-4838-aacd-4b60b1aca9f3</prov:hadDictionaryMember>
+    <cwlprov:basename>ucase_out</cwlprov:basename>
+    <ore:isDescribedBy xsi:type="xsd:QName">metadata:directory-5b25d2eb-2e89-4d62-8145-2ea3656ba173.ttl</ore:isDescribedBy>
+    <prov:hadDictionaryMember xsi:type="xsd:QName">id:3c9e35a6-42d6-4905-8a27-0e4159882180</prov:hadDictionaryMember>
+    <prov:hadDictionaryMember xsi:type="xsd:QName">id:8fc06ba2-c479-498a-b95e-61eb975eb53b</prov:hadDictionaryMember>
   </prov:collection>
   <prov:mentionOf>
-    <prov:specificEntity prov:ref="id:c3ab4de7-e45b-469e-a6e2-940f9721cc9b#ore"/>
-    <prov:generalEntity prov:ref="id:c3ab4de7-e45b-469e-a6e2-940f9721cc9b"/>
-    <prov:bundle prov:ref="metadata:directory-c3ab4de7-e45b-469e-a6e2-940f9721cc9b.ttl"/>
+    <prov:specificEntity prov:ref="id:5b25d2eb-2e89-4d62-8145-2ea3656ba173#ore"/>
+    <prov:generalEntity prov:ref="id:5b25d2eb-2e89-4d62-8145-2ea3656ba173"/>
+    <prov:bundle prov:ref="metadata:directory-5b25d2eb-2e89-4d62-8145-2ea3656ba173.ttl"/>
   </prov:mentionOf>
-  <prov:collection prov:id="id:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98">
+  <prov:collection prov:id="id:8cb9abec-9ecf-4e54-86b5-7f08a073ce60">
     <prov:type xsi:type="xsd:QName">prov:Dictionary</prov:type>
     <prov:type xsi:type="xsd:QName">ro:Folder</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
-    <ore:isDescribedBy xsi:type="xsd:QName">metadata:directory-3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98.ttl</ore:isDescribedBy>
-    <prov:hadDictionaryMember xsi:type="xsd:QName">id:83160fd7-e052-40ef-9f0c-8af9b40c952b</prov:hadDictionaryMember>
+    <cwlprov:basename>bar.out</cwlprov:basename>
+    <ore:isDescribedBy xsi:type="xsd:QName">metadata:directory-8cb9abec-9ecf-4e54-86b5-7f08a073ce60.ttl</ore:isDescribedBy>
+    <prov:hadDictionaryMember xsi:type="xsd:QName">id:899d951e-0ef0-42a7-a460-3cf4c3b3aff5</prov:hadDictionaryMember>
   </prov:collection>
   <prov:mentionOf>
-    <prov:specificEntity prov:ref="id:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98#ore"/>
-    <prov:generalEntity prov:ref="id:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98"/>
-    <prov:bundle prov:ref="metadata:directory-3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98.ttl"/>
+    <prov:specificEntity prov:ref="id:8cb9abec-9ecf-4e54-86b5-7f08a073ce60#ore"/>
+    <prov:generalEntity prov:ref="id:8cb9abec-9ecf-4e54-86b5-7f08a073ce60"/>
+    <prov:bundle prov:ref="metadata:directory-8cb9abec-9ecf-4e54-86b5-7f08a073ce60.ttl"/>
   </prov:mentionOf>
   <prov:entity prov:id="data:3ccdc7533084b641e6c941cc6dbb091d2e5f8a41">
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
   </prov:entity>
-  <prov:entity prov:id="id:54ed715b-cb81-46d5-bbd0-41c8c4131a56">
+  <prov:entity prov:id="id:2c6ae84c-c98c-4173-aa24-44b9bb21d372">
     <prov:type xsi:type="xsd:QName">wf4ever:File</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
     <cwlprov:basename>bar.out.out</cwlprov:basename>
   </prov:entity>
   <prov:specializationOf>
-    <prov:specificEntity prov:ref="id:54ed715b-cb81-46d5-bbd0-41c8c4131a56"/>
+    <prov:specificEntity prov:ref="id:2c6ae84c-c98c-4173-aa24-44b9bb21d372"/>
     <prov:generalEntity prov:ref="data:3ccdc7533084b641e6c941cc6dbb091d2e5f8a41"/>
   </prov:specializationOf>
   <prov:hadMember>
-    <prov:collection prov:ref="id:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98"/>
-    <prov:entity prov:ref="id:54ed715b-cb81-46d5-bbd0-41c8c4131a56"/>
+    <prov:collection prov:ref="id:8cb9abec-9ecf-4e54-86b5-7f08a073ce60"/>
+    <prov:entity prov:ref="id:2c6ae84c-c98c-4173-aa24-44b9bb21d372"/>
   </prov:hadMember>
-  <prov:entity prov:id="id:83160fd7-e052-40ef-9f0c-8af9b40c952b">
+  <prov:entity prov:id="id:899d951e-0ef0-42a7-a460-3cf4c3b3aff5">
     <prov:type xsi:type="xsd:QName">prov:KeyEntityPair</prov:type>
-    <prov:pairEntity xsi:type="xsd:QName">id:54ed715b-cb81-46d5-bbd0-41c8c4131a56</prov:pairEntity>
+    <prov:pairEntity xsi:type="xsd:QName">id:2c6ae84c-c98c-4173-aa24-44b9bb21d372</prov:pairEntity>
     <prov:pairKey>bar.out.out</prov:pairKey>
   </prov:entity>
   <prov:hadMember>
-    <prov:collection prov:ref="id:c3ab4de7-e45b-469e-a6e2-940f9721cc9b"/>
-    <prov:entity prov:ref="id:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98"/>
+    <prov:collection prov:ref="id:5b25d2eb-2e89-4d62-8145-2ea3656ba173"/>
+    <prov:entity prov:ref="id:8cb9abec-9ecf-4e54-86b5-7f08a073ce60"/>
   </prov:hadMember>
-  <prov:entity prov:id="id:a752267f-a0a9-4838-aacd-4b60b1aca9f3">
+  <prov:entity prov:id="id:8fc06ba2-c479-498a-b95e-61eb975eb53b">
     <prov:type xsi:type="xsd:QName">prov:KeyEntityPair</prov:type>
-    <prov:pairEntity xsi:type="xsd:QName">id:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98</prov:pairEntity>
+    <prov:pairEntity xsi:type="xsd:QName">id:8cb9abec-9ecf-4e54-86b5-7f08a073ce60</prov:pairEntity>
     <prov:pairKey>bar.out</prov:pairKey>
   </prov:entity>
-  <prov:collection prov:id="id:378648cc-14bb-42ba-90e5-fbf9e4099a1c">
+  <prov:collection prov:id="id:bea1dc23-0537-4874-82ce-454f48c08d0a">
     <prov:type xsi:type="xsd:QName">prov:Dictionary</prov:type>
     <prov:type xsi:type="xsd:QName">ro:Folder</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
-    <ore:isDescribedBy xsi:type="xsd:QName">metadata:directory-378648cc-14bb-42ba-90e5-fbf9e4099a1c.ttl</ore:isDescribedBy>
-    <prov:hadDictionaryMember xsi:type="xsd:QName">id:eb32dcb0-f27a-42ec-a3ed-6314546844a0</prov:hadDictionaryMember>
+    <cwlprov:basename>foo.out</cwlprov:basename>
+    <ore:isDescribedBy xsi:type="xsd:QName">metadata:directory-bea1dc23-0537-4874-82ce-454f48c08d0a.ttl</ore:isDescribedBy>
+    <prov:hadDictionaryMember xsi:type="xsd:QName">id:7329bf41-05c0-4881-8bd3-1203a530f736</prov:hadDictionaryMember>
   </prov:collection>
   <prov:mentionOf>
-    <prov:specificEntity prov:ref="id:378648cc-14bb-42ba-90e5-fbf9e4099a1c#ore"/>
-    <prov:generalEntity prov:ref="id:378648cc-14bb-42ba-90e5-fbf9e4099a1c"/>
-    <prov:bundle prov:ref="metadata:directory-378648cc-14bb-42ba-90e5-fbf9e4099a1c.ttl"/>
+    <prov:specificEntity prov:ref="id:bea1dc23-0537-4874-82ce-454f48c08d0a#ore"/>
+    <prov:generalEntity prov:ref="id:bea1dc23-0537-4874-82ce-454f48c08d0a"/>
+    <prov:bundle prov:ref="metadata:directory-bea1dc23-0537-4874-82ce-454f48c08d0a.ttl"/>
   </prov:mentionOf>
   <prov:entity prov:id="data:ec0270052a78321508502ed915815c4daf75fe46">
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
   </prov:entity>
-  <prov:entity prov:id="id:0867ef40-bf1d-4b05-87ab-03a90f476d5e">
+  <prov:entity prov:id="id:cb12bf67-5541-4f8c-b897-47a87e11a242">
     <prov:type xsi:type="xsd:QName">wf4ever:File</prov:type>
     <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
     <cwlprov:basename>foo.out.out</cwlprov:basename>
   </prov:entity>
   <prov:specializationOf>
-    <prov:specificEntity prov:ref="id:0867ef40-bf1d-4b05-87ab-03a90f476d5e"/>
+    <prov:specificEntity prov:ref="id:cb12bf67-5541-4f8c-b897-47a87e11a242"/>
     <prov:generalEntity prov:ref="data:ec0270052a78321508502ed915815c4daf75fe46"/>
   </prov:specializationOf>
   <prov:hadMember>
-    <prov:collection prov:ref="id:378648cc-14bb-42ba-90e5-fbf9e4099a1c"/>
-    <prov:entity prov:ref="id:0867ef40-bf1d-4b05-87ab-03a90f476d5e"/>
+    <prov:collection prov:ref="id:bea1dc23-0537-4874-82ce-454f48c08d0a"/>
+    <prov:entity prov:ref="id:cb12bf67-5541-4f8c-b897-47a87e11a242"/>
   </prov:hadMember>
-  <prov:entity prov:id="id:eb32dcb0-f27a-42ec-a3ed-6314546844a0">
+  <prov:entity prov:id="id:7329bf41-05c0-4881-8bd3-1203a530f736">
     <prov:type xsi:type="xsd:QName">prov:KeyEntityPair</prov:type>
-    <prov:pairEntity xsi:type="xsd:QName">id:0867ef40-bf1d-4b05-87ab-03a90f476d5e</prov:pairEntity>
+    <prov:pairEntity xsi:type="xsd:QName">id:cb12bf67-5541-4f8c-b897-47a87e11a242</prov:pairEntity>
     <prov:pairKey>foo.out.out</prov:pairKey>
   </prov:entity>
   <prov:hadMember>
-    <prov:collection prov:ref="id:c3ab4de7-e45b-469e-a6e2-940f9721cc9b"/>
-    <prov:entity prov:ref="id:378648cc-14bb-42ba-90e5-fbf9e4099a1c"/>
+    <prov:collection prov:ref="id:5b25d2eb-2e89-4d62-8145-2ea3656ba173"/>
+    <prov:entity prov:ref="id:bea1dc23-0537-4874-82ce-454f48c08d0a"/>
   </prov:hadMember>
-  <prov:entity prov:id="id:4b9bc400-4df4-480b-b59d-6987c04f500f">
+  <prov:entity prov:id="id:3c9e35a6-42d6-4905-8a27-0e4159882180">
     <prov:type xsi:type="xsd:QName">prov:KeyEntityPair</prov:type>
-    <prov:pairEntity xsi:type="xsd:QName">id:378648cc-14bb-42ba-90e5-fbf9e4099a1c</prov:pairEntity>
+    <prov:pairEntity xsi:type="xsd:QName">id:bea1dc23-0537-4874-82ce-454f48c08d0a</prov:pairEntity>
     <prov:pairKey>foo.out</prov:pairKey>
   </prov:entity>
   <prov:wasGeneratedBy>
-    <prov:entity prov:ref="id:c3ab4de7-e45b-469e-a6e2-940f9721cc9b"/>
-    <prov:activity prov:ref="id:d2887ecb-09de-4806-b5c0-cb7348506c7b"/>
-    <prov:time>2022-12-16T12:36:06.505432</prov:time>
+    <prov:entity prov:ref="id:5b25d2eb-2e89-4d62-8145-2ea3656ba173"/>
+    <prov:activity prov:ref="id:5c55e35c-69de-424c-8987-501e3d645e0c"/>
+    <prov:time>2023-02-17T16:20:30.288242</prov:time>
     <prov:role xsi:type="xsd:QName">wf:main/ucase/u_out_dir</prov:role>
   </prov:wasGeneratedBy>
   <prov:wasEndedBy>
-    <prov:activity prov:ref="id:d2887ecb-09de-4806-b5c0-cb7348506c7b"/>
-    <prov:ender prov:ref="id:86e05e63-d4dd-4a06-8235-9d26df405724"/>
-    <prov:time>2022-12-16T12:36:06.505421</prov:time>
+    <prov:activity prov:ref="id:5c55e35c-69de-424c-8987-501e3d645e0c"/>
+    <prov:ender prov:ref="id:422fecc5-1e57-45bc-a653-1513a7a6fe70"/>
+    <prov:time>2023-02-17T16:20:30.288229</prov:time>
   </prov:wasEndedBy>
   <prov:wasGeneratedBy>
-    <prov:entity prov:ref="id:c3ab4de7-e45b-469e-a6e2-940f9721cc9b"/>
-    <prov:activity prov:ref="id:86e05e63-d4dd-4a06-8235-9d26df405724"/>
-    <prov:time>2022-12-16T12:36:06.520512</prov:time>
+    <prov:entity prov:ref="id:5b25d2eb-2e89-4d62-8145-2ea3656ba173"/>
+    <prov:activity prov:ref="id:422fecc5-1e57-45bc-a653-1513a7a6fe70"/>
+    <prov:time>2023-02-17T16:20:30.300103</prov:time>
     <prov:role xsi:type="xsd:QName">wf:main/primary/out_dir</prov:role>
   </prov:wasGeneratedBy>
   <prov:wasEndedBy>
-    <prov:activity prov:ref="id:86e05e63-d4dd-4a06-8235-9d26df405724"/>
-    <prov:ender prov:ref="id:d5698c0a-ec2b-4775-a77d-0ffc182ab4f0"/>
-    <prov:time>2022-12-16T12:36:06.520585</prov:time>
+    <prov:activity prov:ref="id:422fecc5-1e57-45bc-a653-1513a7a6fe70"/>
+    <prov:ender prov:ref="id:e355dead-5bb7-4566-a6bb-eacd7cbdcea4"/>
+    <prov:time>2023-02-17T16:20:30.300171</prov:time>
   </prov:wasEndedBy>
-  <prov:bundleContent prov:id="metadata:directory-0f2f543c-695b-45c6-b31d-5c8740425f3c.ttl">
-    <prov:entity prov:id="id:0f2f543c-695b-45c6-b31d-5c8740425f3c">
+  <prov:bundleContent prov:id="metadata:directory-ddfddee2-1c54-48a2-a45f-8edf28af1d65.ttl">
+    <prov:entity prov:id="id:ddfddee2-1c54-48a2-a45f-8edf28af1d65">
       <prov:type xsi:type="xsd:QName">ore:Aggregation</prov:type>
       <prov:type xsi:type="xsd:QName">ro:Folder</prov:type>
-      <ore:aggregates xsi:type="xsd:QName">id:36d252c7-be92-4775-9e88-bb46d36fa958</ore:aggregates>
-      <ore:aggregates xsi:type="xsd:QName">id:79be28a7-70ef-4241-91e3-d5e8349cfd64</ore:aggregates>
+      <ore:aggregates xsi:type="xsd:QName">id:4f43d441-3e01-473d-adbb-50810da33c6c</ore:aggregates>
+      <ore:aggregates xsi:type="xsd:QName">id:b9a13f00-59e0-4bb4-ab99-4ad4c84c2dae</ore:aggregates>
     </prov:entity>
-    <prov:entity prov:id="id:79be28a7-70ef-4241-91e3-d5e8349cfd64">
+    <prov:entity prov:id="id:4f43d441-3e01-473d-adbb-50810da33c6c">
       <prov:type xsi:type="xsd:QName">ore:Proxy</prov:type>
       <prov:type xsi:type="xsd:QName">ro:FolderEntry</prov:type>
-      <ore:proxyFor xsi:type="xsd:QName">id:daf9ca4c-2d3f-4485-a07f-43ef8273020a</ore:proxyFor>
-      <ore:proxyIn xsi:type="xsd:QName">id:0f2f543c-695b-45c6-b31d-5c8740425f3c</ore:proxyIn>
+      <ore:proxyFor xsi:type="xsd:QName">id:c33fb8ba-d775-47e6-a356-7a31541c3a54</ore:proxyFor>
+      <ore:proxyIn xsi:type="xsd:QName">id:ddfddee2-1c54-48a2-a45f-8edf28af1d65</ore:proxyIn>
       <ro:entryName>bar</ro:entryName>
     </prov:entity>
-    <prov:entity prov:id="id:36d252c7-be92-4775-9e88-bb46d36fa958">
+    <prov:entity prov:id="id:b9a13f00-59e0-4bb4-ab99-4ad4c84c2dae">
       <prov:type xsi:type="xsd:QName">ore:Proxy</prov:type>
       <prov:type xsi:type="xsd:QName">ro:FolderEntry</prov:type>
-      <ore:proxyFor xsi:type="xsd:QName">id:b280830d-2952-4f46-964a-bf8ca781adc1</ore:proxyFor>
-      <ore:proxyIn xsi:type="xsd:QName">id:0f2f543c-695b-45c6-b31d-5c8740425f3c</ore:proxyIn>
+      <ore:proxyFor xsi:type="xsd:QName">id:6f360b00-3ef7-4a0a-9be0-6be2f7fc929d</ore:proxyFor>
+      <ore:proxyIn xsi:type="xsd:QName">id:ddfddee2-1c54-48a2-a45f-8edf28af1d65</ore:proxyIn>
       <ro:entryName>foo</ro:entryName>
     </prov:entity>
   </prov:bundleContent>
-  <prov:bundleContent prov:id="metadata:directory-e1d7deea-4b5c-4fb7-8634-fe763373ad5c.ttl">
-    <prov:entity prov:id="id:e1d7deea-4b5c-4fb7-8634-fe763373ad5c">
+  <prov:bundleContent prov:id="metadata:directory-a632ff01-ca44-453b-982f-96879f1b85ba.ttl">
+    <prov:entity prov:id="id:a632ff01-ca44-453b-982f-96879f1b85ba">
       <prov:type xsi:type="xsd:QName">ore:Aggregation</prov:type>
       <prov:type xsi:type="xsd:QName">ro:Folder</prov:type>
-      <ore:aggregates xsi:type="xsd:QName">id:7c33b44f-ffe5-4381-87d6-56d0ec8de7d5</ore:aggregates>
-      <ore:aggregates xsi:type="xsd:QName">id:f973d2dc-7338-4943-acbd-5dc52541cf9a</ore:aggregates>
+      <ore:aggregates xsi:type="xsd:QName">id:93dc7383-4670-4192-9954-659613284713</ore:aggregates>
+      <ore:aggregates xsi:type="xsd:QName">id:dfa94007-0aba-4189-a4a2-f4be72d084ef</ore:aggregates>
     </prov:entity>
-    <prov:entity prov:id="id:f973d2dc-7338-4943-acbd-5dc52541cf9a">
+    <prov:entity prov:id="id:93dc7383-4670-4192-9954-659613284713">
       <prov:type xsi:type="xsd:QName">ore:Proxy</prov:type>
       <prov:type xsi:type="xsd:QName">ro:FolderEntry</prov:type>
-      <ore:proxyFor xsi:type="xsd:QName">id:1c8520cb-7dbd-4d64-b9d3-073417163918</ore:proxyFor>
-      <ore:proxyIn xsi:type="xsd:QName">id:e1d7deea-4b5c-4fb7-8634-fe763373ad5c</ore:proxyIn>
+      <ore:proxyFor xsi:type="xsd:QName">id:3890a779-35f5-4753-8cce-9c4645221ea2</ore:proxyFor>
+      <ore:proxyIn xsi:type="xsd:QName">id:a632ff01-ca44-453b-982f-96879f1b85ba</ore:proxyIn>
       <ro:entryName>bar</ro:entryName>
     </prov:entity>
-    <prov:entity prov:id="id:7c33b44f-ffe5-4381-87d6-56d0ec8de7d5">
+    <prov:entity prov:id="id:dfa94007-0aba-4189-a4a2-f4be72d084ef">
       <prov:type xsi:type="xsd:QName">ore:Proxy</prov:type>
       <prov:type xsi:type="xsd:QName">ro:FolderEntry</prov:type>
-      <ore:proxyFor xsi:type="xsd:QName">id:66cd879a-29f6-4a6e-9e17-a36e9d6293e5</ore:proxyFor>
-      <ore:proxyIn xsi:type="xsd:QName">id:e1d7deea-4b5c-4fb7-8634-fe763373ad5c</ore:proxyIn>
+      <ore:proxyFor xsi:type="xsd:QName">id:c7636f08-692c-4e1e-927f-823e9e76aac7</ore:proxyFor>
+      <ore:proxyIn xsi:type="xsd:QName">id:a632ff01-ca44-453b-982f-96879f1b85ba</ore:proxyIn>
       <ro:entryName>foo</ro:entryName>
     </prov:entity>
   </prov:bundleContent>
-  <prov:bundleContent prov:id="metadata:directory-894a0b93-ea8e-40d5-b0fb-4923df529cca.ttl">
-    <prov:entity prov:id="id:894a0b93-ea8e-40d5-b0fb-4923df529cca">
+  <prov:bundleContent prov:id="metadata:directory-f8a7cd48-1c1d-4cb3-97b1-f157bdd83766.ttl">
+    <prov:entity prov:id="id:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766">
       <prov:type xsi:type="xsd:QName">ore:Aggregation</prov:type>
       <prov:type xsi:type="xsd:QName">ro:Folder</prov:type>
-      <ore:aggregates xsi:type="xsd:QName">id:0d4232ac-a098-474c-8ee3-a7710811c376</ore:aggregates>
-      <ore:aggregates xsi:type="xsd:QName">id:239eafb4-4463-46ff-afac-5113c6e74e67</ore:aggregates>
+      <ore:aggregates xsi:type="xsd:QName">id:37153125-a58a-42c6-8079-c87897c73fa1</ore:aggregates>
+      <ore:aggregates xsi:type="xsd:QName">id:b1cd1002-9728-4419-8471-c9746d177e00</ore:aggregates>
     </prov:entity>
-    <prov:entity prov:id="id:0d4232ac-a098-474c-8ee3-a7710811c376">
+    <prov:entity prov:id="id:b1cd1002-9728-4419-8471-c9746d177e00">
       <prov:type xsi:type="xsd:QName">ore:Proxy</prov:type>
       <prov:type xsi:type="xsd:QName">ro:FolderEntry</prov:type>
-      <ore:proxyFor xsi:type="xsd:QName">id:6f1e9cdf-9128-4d1e-a8cb-34e8255c88eb</ore:proxyFor>
-      <ore:proxyIn xsi:type="xsd:QName">id:894a0b93-ea8e-40d5-b0fb-4923df529cca</ore:proxyIn>
+      <ore:proxyFor xsi:type="xsd:QName">id:a51961e0-708a-4c2c-8bd1-a56b6782c191</ore:proxyFor>
+      <ore:proxyIn xsi:type="xsd:QName">id:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766</ore:proxyIn>
       <ro:entryName>bar.out</ro:entryName>
     </prov:entity>
-    <prov:entity prov:id="id:239eafb4-4463-46ff-afac-5113c6e74e67">
+    <prov:entity prov:id="id:37153125-a58a-42c6-8079-c87897c73fa1">
       <prov:type xsi:type="xsd:QName">ore:Proxy</prov:type>
       <prov:type xsi:type="xsd:QName">ro:FolderEntry</prov:type>
-      <ore:proxyFor xsi:type="xsd:QName">id:1f9b8a9c-386a-44da-a873-4b68f6c85451</ore:proxyFor>
-      <ore:proxyIn xsi:type="xsd:QName">id:894a0b93-ea8e-40d5-b0fb-4923df529cca</ore:proxyIn>
+      <ore:proxyFor xsi:type="xsd:QName">id:2621f642-a5fd-4a21-a99e-8432350445d9</ore:proxyFor>
+      <ore:proxyIn xsi:type="xsd:QName">id:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766</ore:proxyIn>
       <ro:entryName>foo.out</ro:entryName>
     </prov:entity>
   </prov:bundleContent>
-  <prov:bundleContent prov:id="metadata:directory-c3ab4de7-e45b-469e-a6e2-940f9721cc9b.ttl">
-    <prov:entity prov:id="id:c3ab4de7-e45b-469e-a6e2-940f9721cc9b">
+  <prov:bundleContent prov:id="metadata:directory-5b25d2eb-2e89-4d62-8145-2ea3656ba173.ttl">
+    <prov:entity prov:id="id:5b25d2eb-2e89-4d62-8145-2ea3656ba173">
       <prov:type xsi:type="xsd:QName">ore:Aggregation</prov:type>
       <prov:type xsi:type="xsd:QName">ro:Folder</prov:type>
-      <ore:aggregates xsi:type="xsd:QName">id:4b9bc400-4df4-480b-b59d-6987c04f500f</ore:aggregates>
-      <ore:aggregates xsi:type="xsd:QName">id:a752267f-a0a9-4838-aacd-4b60b1aca9f3</ore:aggregates>
+      <ore:aggregates xsi:type="xsd:QName">id:3c9e35a6-42d6-4905-8a27-0e4159882180</ore:aggregates>
+      <ore:aggregates xsi:type="xsd:QName">id:8fc06ba2-c479-498a-b95e-61eb975eb53b</ore:aggregates>
     </prov:entity>
-    <prov:entity prov:id="id:a752267f-a0a9-4838-aacd-4b60b1aca9f3">
+    <prov:entity prov:id="id:8fc06ba2-c479-498a-b95e-61eb975eb53b">
       <prov:type xsi:type="xsd:QName">ore:Proxy</prov:type>
       <prov:type xsi:type="xsd:QName">ro:FolderEntry</prov:type>
-      <ore:proxyFor xsi:type="xsd:QName">id:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98</ore:proxyFor>
-      <ore:proxyIn xsi:type="xsd:QName">id:c3ab4de7-e45b-469e-a6e2-940f9721cc9b</ore:proxyIn>
+      <ore:proxyFor xsi:type="xsd:QName">id:8cb9abec-9ecf-4e54-86b5-7f08a073ce60</ore:proxyFor>
+      <ore:proxyIn xsi:type="xsd:QName">id:5b25d2eb-2e89-4d62-8145-2ea3656ba173</ore:proxyIn>
       <ro:entryName>bar.out</ro:entryName>
     </prov:entity>
-    <prov:entity prov:id="id:4b9bc400-4df4-480b-b59d-6987c04f500f">
+    <prov:entity prov:id="id:3c9e35a6-42d6-4905-8a27-0e4159882180">
       <prov:type xsi:type="xsd:QName">ore:Proxy</prov:type>
       <prov:type xsi:type="xsd:QName">ro:FolderEntry</prov:type>
-      <ore:proxyFor xsi:type="xsd:QName">id:378648cc-14bb-42ba-90e5-fbf9e4099a1c</ore:proxyFor>
-      <ore:proxyIn xsi:type="xsd:QName">id:c3ab4de7-e45b-469e-a6e2-940f9721cc9b</ore:proxyIn>
+      <ore:proxyFor xsi:type="xsd:QName">id:bea1dc23-0537-4874-82ce-454f48c08d0a</ore:proxyFor>
+      <ore:proxyIn xsi:type="xsd:QName">id:5b25d2eb-2e89-4d62-8145-2ea3656ba173</ore:proxyIn>
       <ro:entryName>foo.out</ro:entryName>
     </prov:entity>
   </prov:bundleContent>
-  <prov:bundleContent prov:id="metadata:directory-3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98.ttl">
-    <prov:entity prov:id="id:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98">
+  <prov:bundleContent prov:id="metadata:directory-8cb9abec-9ecf-4e54-86b5-7f08a073ce60.ttl">
+    <prov:entity prov:id="id:8cb9abec-9ecf-4e54-86b5-7f08a073ce60">
       <prov:type xsi:type="xsd:QName">ore:Aggregation</prov:type>
       <prov:type xsi:type="xsd:QName">ro:Folder</prov:type>
-      <ore:aggregates xsi:type="xsd:QName">id:83160fd7-e052-40ef-9f0c-8af9b40c952b</ore:aggregates>
+      <ore:aggregates xsi:type="xsd:QName">id:899d951e-0ef0-42a7-a460-3cf4c3b3aff5</ore:aggregates>
     </prov:entity>
-    <prov:entity prov:id="id:83160fd7-e052-40ef-9f0c-8af9b40c952b">
+    <prov:entity prov:id="id:899d951e-0ef0-42a7-a460-3cf4c3b3aff5">
       <prov:type xsi:type="xsd:QName">ore:Proxy</prov:type>
       <prov:type xsi:type="xsd:QName">ro:FolderEntry</prov:type>
-      <ore:proxyFor xsi:type="xsd:QName">id:54ed715b-cb81-46d5-bbd0-41c8c4131a56</ore:proxyFor>
-      <ore:proxyIn xsi:type="xsd:QName">id:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98</ore:proxyIn>
+      <ore:proxyFor xsi:type="xsd:QName">id:2c6ae84c-c98c-4173-aa24-44b9bb21d372</ore:proxyFor>
+      <ore:proxyIn xsi:type="xsd:QName">id:8cb9abec-9ecf-4e54-86b5-7f08a073ce60</ore:proxyIn>
       <ro:entryName>bar.out.out</ro:entryName>
     </prov:entity>
   </prov:bundleContent>
-  <prov:bundleContent prov:id="metadata:directory-378648cc-14bb-42ba-90e5-fbf9e4099a1c.ttl">
-    <prov:entity prov:id="id:378648cc-14bb-42ba-90e5-fbf9e4099a1c">
+  <prov:bundleContent prov:id="metadata:directory-bea1dc23-0537-4874-82ce-454f48c08d0a.ttl">
+    <prov:entity prov:id="id:bea1dc23-0537-4874-82ce-454f48c08d0a">
       <prov:type xsi:type="xsd:QName">ore:Aggregation</prov:type>
       <prov:type xsi:type="xsd:QName">ro:Folder</prov:type>
-      <ore:aggregates xsi:type="xsd:QName">id:eb32dcb0-f27a-42ec-a3ed-6314546844a0</ore:aggregates>
+      <ore:aggregates xsi:type="xsd:QName">id:7329bf41-05c0-4881-8bd3-1203a530f736</ore:aggregates>
     </prov:entity>
-    <prov:entity prov:id="id:eb32dcb0-f27a-42ec-a3ed-6314546844a0">
+    <prov:entity prov:id="id:7329bf41-05c0-4881-8bd3-1203a530f736">
       <prov:type xsi:type="xsd:QName">ore:Proxy</prov:type>
       <prov:type xsi:type="xsd:QName">ro:FolderEntry</prov:type>
-      <ore:proxyFor xsi:type="xsd:QName">id:0867ef40-bf1d-4b05-87ab-03a90f476d5e</ore:proxyFor>
-      <ore:proxyIn xsi:type="xsd:QName">id:378648cc-14bb-42ba-90e5-fbf9e4099a1c</ore:proxyIn>
+      <ore:proxyFor xsi:type="xsd:QName">id:cb12bf67-5541-4f8c-b897-47a87e11a242</ore:proxyFor>
+      <ore:proxyIn xsi:type="xsd:QName">id:bea1dc23-0537-4874-82ce-454f48c08d0a</ore:proxyIn>
       <ro:entryName>foo.out.out</ro:entryName>
     </prov:entity>
   </prov:bundleContent>

@@ -79,12 +79,12 @@ def test_revsort(data_dir, tmpdir):
             assert entity["value"] == "True"
         else:
             assert "File" in entity.type
-            assert "alternateName" in entity
-            assert "sha1" in entity
+            assert entity["alternateName"] == "whale.txt"
+            assert entity["sha1"] == entity.id.rsplit("/")[-1]
             wf_input_file = entity
     wf_output_file = wf_results[0]
-    assert "alternateName" in wf_output_file
-    assert "sha1" in wf_output_file
+    assert wf_output_file["alternateName"] == "output.txt"
+    assert wf_output_file["sha1"] == wf_output_file.id.rsplit("/")[-1]
     assert "File" in wf_output_file.type
     steps = workflow["step"]
     assert len(steps) == 2
@@ -273,15 +273,28 @@ def test_dir_io(data_dir, tmpdir):
             wf_input_dir = entity
     wf_output_dir = wf_results[0]
     assert wf_input_dir.type == wf_output_dir.type == "Dataset"
+    assert wf_input_dir["alternateName"] == "grepucase_in"
     assert len(wf_input_dir["hasPart"]) == 2
     for f in wf_input_dir["hasPart"]:
         assert f.type == "File"
+    assert set(_["alternateName"] for _ in wf_input_dir["hasPart"]) == {
+        "grepucase_in/bar", "grepucase_in/foo"
+    }
+    assert wf_output_dir["alternateName"] == "ucase_out"
     assert len(wf_output_dir["hasPart"]) == 2
     for d in wf_output_dir["hasPart"]:
         assert d.type == "Dataset"
         assert len(d["hasPart"]) == 1
         for f in d["hasPart"]:
             assert f.type == "File"
+    assert set(_["alternateName"] for _ in wf_output_dir["hasPart"]) == {
+        "ucase_out/bar.out", "ucase_out/foo.out"
+    }
+    for d in wf_output_dir["hasPart"]:
+        if d["alternateName"] == "ucase_out/bar.out":
+            assert d["hasPart"][0]["alternateName"] == "ucase_out/bar.out/bar.out.out"
+        else:
+            assert d["hasPart"][0]["alternateName"] == "ucase_out/foo.out/foo.out.out"
     greptool_action = action_map["packed.cwl#greptool.cwl"]
     greptool_objects = greptool_action["object"]
     greptool_results = greptool_action["result"]

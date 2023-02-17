@@ -2,18 +2,11 @@
   {
     "@graph": [
       {
-        "@id": "urn:hash::sha1:ec0270052a78321508502ed915815c4daf75fe46",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/wfprov#Artifact"
-        ]
-      },
-      {
-        "@id": "urn:uuid:daf9ca4c-2d3f-4485-a07f-43ef8273020a",
+        "@id": "urn:uuid:c33fb8ba-d775-47e6-a356-7a31541c3a54",
         "@type": [
           "http://purl.org/wf4ever/wf4ever#File",
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/wfprov#Artifact"
+          "http://purl.org/wf4ever/wfprov#Artifact",
+          "http://www.w3.org/ns/prov#Entity"
         ],
         "http://www.w3.org/ns/prov#specializationOf": [
           {
@@ -27,42 +20,7 @@
         ]
       },
       {
-        "@id": "urn:uuid:d5698c0a-ec2b-4775-a77d-0ffc182ab4f0",
-        "@type": [
-          "http://www.w3.org/ns/prov#Agent",
-          "http://purl.org/wf4ever/wfprov#WorkflowEngine",
-          "http://www.w3.org/ns/prov#SoftwareAgent"
-        ],
-        "http://www.w3.org/2000/01/rdf-schema#label": [
-          {
-            "@value": "cwltool 3.1.20221201130942"
-          }
-        ],
-        "http://www.w3.org/ns/prov#qualifiedStart": [
-          {
-            "@id": "_:N4f9eac1c223f43328163daa2ae091fbc"
-          }
-        ]
-      },
-      {
-        "@id": "_:N4f9eac1c223f43328163daa2ae091fbc",
-        "@type": [
-          "http://www.w3.org/ns/prov#Start"
-        ],
-        "http://www.w3.org/ns/prov#atTime": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.421206"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadActivity": [
-          {
-            "@id": "urn:uuid:61b1ade5-aba5-4177-870a-68aca11d7eaa"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:86e05e63-d4dd-4a06-8235-9d26df405724",
+        "@id": "urn:uuid:422fecc5-1e57-45bc-a653-1513a7a6fe70",
         "@type": [
           "http://purl.org/wf4ever/wfprov#WorkflowRun",
           "http://www.w3.org/ns/prov#Activity"
@@ -74,98 +32,65 @@
         ],
         "http://www.w3.org/ns/prov#qualifiedAssociation": [
           {
-            "@id": "_:N518f534455eb45af8bd885b80bb34cef"
+            "@id": "_:N9e4710bcc14e428b8298607dca2078b4"
           }
         ],
         "http://www.w3.org/ns/prov#qualifiedEnd": [
           {
-            "@id": "_:Neb0e4e3700144b2bb9fee8e3c80b935d"
+            "@id": "_:Nf091f141e0664374a819717feda642ff"
           }
         ],
         "http://www.w3.org/ns/prov#qualifiedStart": [
           {
-            "@id": "_:Nfea5cd1dfa174d35830edeb119a9b6ae"
+            "@id": "_:Ndeb9c3200aef4322a7b53d4bbc7a9f34"
           }
         ],
         "http://www.w3.org/ns/prov#qualifiedUsage": [
           {
-            "@id": "_:N819887134922439b95d13488800f2dbc"
+            "@id": "_:Nff55dcf8cc9b46d3bdace6a1361f57d4"
           },
           {
-            "@id": "_:Nce56315244054276b6ad8eab24770472"
+            "@id": "_:N1497dca3f77a4c8788f11d6e8bb6d503"
           }
         ],
         "http://www.w3.org/ns/prov#startedAtTime": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.421234"
+            "@value": "2023-02-17T16:20:30.199310"
           }
         ],
         "http://www.w3.org/ns/prov#wasAssociatedWith": [
           {
-            "@id": "urn:uuid:d5698c0a-ec2b-4775-a77d-0ffc182ab4f0"
+            "@id": "urn:uuid:e355dead-5bb7-4566-a6bb-eacd7cbdcea4"
           }
         ]
       },
       {
-        "@id": "_:N518f534455eb45af8bd885b80bb34cef",
-        "@type": [
-          "http://www.w3.org/ns/prov#Association"
-        ],
-        "http://www.w3.org/ns/prov#hadPlan": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main"
-          }
-        ]
-      },
-      {
-        "@id": "_:Nfea5cd1dfa174d35830edeb119a9b6ae",
+        "@id": "_:Ndeb9c3200aef4322a7b53d4bbc7a9f34",
         "@type": [
           "http://www.w3.org/ns/prov#Start"
         ],
         "http://www.w3.org/ns/prov#atTime": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.421298"
+            "@value": "2023-02-17T16:20:30.199371"
           }
         ],
         "http://www.w3.org/ns/prov#hadActivity": [
           {
-            "@id": "urn:uuid:d5698c0a-ec2b-4775-a77d-0ffc182ab4f0"
+            "@id": "urn:uuid:e355dead-5bb7-4566-a6bb-eacd7cbdcea4"
           }
         ]
       },
       {
-        "@id": "_:N819887134922439b95d13488800f2dbc",
+        "@id": "_:Nff55dcf8cc9b46d3bdace6a1361f57d4",
         "@type": [
           "http://www.w3.org/ns/prov#Usage"
         ],
         "http://www.w3.org/ns/prov#atTime": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.459563"
-          }
-        ],
-        "http://www.w3.org/ns/prov#entity": [
-          {
-            "@id": "urn:uuid:0f2f543c-695b-45c6-b31d-5c8740425f3c"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadRole": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/in_dir"
-          }
-        ]
-      },
-      {
-        "@id": "_:Nce56315244054276b6ad8eab24770472",
-        "@type": [
-          "http://www.w3.org/ns/prov#Usage"
-        ],
-        "http://www.w3.org/ns/prov#atTime": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.460038"
+            "@value": "2023-02-17T16:20:30.241214"
           }
         ],
         "http://www.w3.org/ns/prov#entity": [
@@ -175,49 +100,560 @@
         ],
         "http://www.w3.org/ns/prov#hadRole": [
           {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/pattern"
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/pattern"
           }
         ]
       },
       {
-        "@id": "_:Neb0e4e3700144b2bb9fee8e3c80b935d",
+        "@id": "_:N1497dca3f77a4c8788f11d6e8bb6d503",
+        "@type": [
+          "http://www.w3.org/ns/prov#Usage"
+        ],
+        "http://www.w3.org/ns/prov#atTime": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-02-17T16:20:30.240732"
+          }
+        ],
+        "http://www.w3.org/ns/prov#entity": [
+          {
+            "@id": "urn:uuid:ddfddee2-1c54-48a2-a45f-8edf28af1d65"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadRole": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/in_dir"
+          }
+        ]
+      },
+      {
+        "@id": "_:N9e4710bcc14e428b8298607dca2078b4",
+        "@type": [
+          "http://www.w3.org/ns/prov#Association"
+        ],
+        "http://www.w3.org/ns/prov#hadPlan": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main"
+          }
+        ]
+      },
+      {
+        "@id": "_:Nf091f141e0664374a819717feda642ff",
         "@type": [
           "http://www.w3.org/ns/prov#End"
         ],
         "http://www.w3.org/ns/prov#atTime": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.520585"
+            "@value": "2023-02-17T16:20:30.300171"
           }
         ],
         "http://www.w3.org/ns/prov#hadActivity": [
           {
-            "@id": "urn:uuid:d5698c0a-ec2b-4775-a77d-0ffc182ab4f0"
+            "@id": "urn:uuid:e355dead-5bb7-4566-a6bb-eacd7cbdcea4"
           }
         ]
       },
       {
-        "@id": "urn:uuid:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98#ore",
+        "@id": "urn:uuid:a632ff01-ca44-453b-982f-96879f1b85ba",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://purl.org/wf4ever/ro#Folder",
+          "http://purl.org/wf4ever/wfprov#Artifact",
+          "http://www.w3.org/ns/prov#Collection",
+          "http://www.w3.org/ns/prov#Dictionary"
+        ],
+        "http://www.openarchives.org/ore/terms/isDescribedBy": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-a632ff01-ca44-453b-982f-96879f1b85ba.ttl"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadDictionaryMember": [
+          {
+            "@id": "urn:uuid:93dc7383-4670-4192-9954-659613284713"
+          },
+          {
+            "@id": "urn:uuid:dfa94007-0aba-4189-a4a2-f4be72d084ef"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadMember": [
+          {
+            "@id": "urn:uuid:3890a779-35f5-4753-8cce-9c4645221ea2"
+          },
+          {
+            "@id": "urn:uuid:c7636f08-692c-4e1e-927f-823e9e76aac7"
+          }
+        ],
+        "https://w3id.org/cwl/prov#basename": [
+          {
+            "@value": "grepucase_in"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:5b25d2eb-2e89-4d62-8145-2ea3656ba173",
+        "@type": [
+          "http://purl.org/wf4ever/wfprov#Artifact",
+          "http://www.w3.org/ns/prov#Entity",
+          "http://www.w3.org/ns/prov#Collection",
+          "http://www.w3.org/ns/prov#Dictionary",
+          "http://purl.org/wf4ever/ro#Folder"
+        ],
+        "http://www.openarchives.org/ore/terms/isDescribedBy": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-5b25d2eb-2e89-4d62-8145-2ea3656ba173.ttl"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadDictionaryMember": [
+          {
+            "@id": "urn:uuid:3c9e35a6-42d6-4905-8a27-0e4159882180"
+          },
+          {
+            "@id": "urn:uuid:8fc06ba2-c479-498a-b95e-61eb975eb53b"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadMember": [
+          {
+            "@id": "urn:uuid:bea1dc23-0537-4874-82ce-454f48c08d0a"
+          },
+          {
+            "@id": "urn:uuid:8cb9abec-9ecf-4e54-86b5-7f08a073ce60"
+          }
+        ],
+        "http://www.w3.org/ns/prov#qualifiedGeneration": [
+          {
+            "@id": "_:Naf8df2f113d14f02b28d43f0500bb392"
+          },
+          {
+            "@id": "_:N0dfb1f9a33324bb3852bb77b47dc9272"
+          }
+        ],
+        "https://w3id.org/cwl/prov#basename": [
+          {
+            "@value": "ucase_out"
+          }
+        ]
+      },
+      {
+        "@id": "_:Naf8df2f113d14f02b28d43f0500bb392",
+        "@type": [
+          "http://www.w3.org/ns/prov#Generation"
+        ],
+        "http://www.w3.org/ns/prov#activity": [
+          {
+            "@id": "urn:uuid:5c55e35c-69de-424c-8987-501e3d645e0c"
+          }
+        ],
+        "http://www.w3.org/ns/prov#atTime": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-02-17T16:20:30.288242"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadRole": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/ucase/u_out_dir"
+          }
+        ]
+      },
+      {
+        "@id": "_:N0dfb1f9a33324bb3852bb77b47dc9272",
+        "@type": [
+          "http://www.w3.org/ns/prov#Generation"
+        ],
+        "http://www.w3.org/ns/prov#activity": [
+          {
+            "@id": "urn:uuid:422fecc5-1e57-45bc-a653-1513a7a6fe70"
+          }
+        ],
+        "http://www.w3.org/ns/prov#atTime": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-02-17T16:20:30.300103"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadRole": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/primary/out_dir"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:6f360b00-3ef7-4a0a-9be0-6be2f7fc929d",
+        "@type": [
+          "http://purl.org/wf4ever/wfprov#Artifact",
+          "http://www.w3.org/ns/prov#Entity",
+          "http://purl.org/wf4ever/wf4ever#File"
+        ],
+        "http://www.w3.org/ns/prov#specializationOf": [
+          {
+            "@id": "urn:hash::sha1:d60dd58346cf7e533252f35399cd510b1b1467f7"
+          }
+        ],
+        "https://w3id.org/cwl/prov#basename": [
+          {
+            "@value": "foo"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:4746e065-2941-4133-a52b-c36d6c54dde1",
+        "@type": [
+          "http://www.w3.org/ns/prov#Agent"
+        ]
+      },
+      {
+        "@id": "urn:uuid:a632ff01-ca44-453b-982f-96879f1b85ba#ore",
         "http://www.w3.org/ns/prov#asInBundle": [
           {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98.ttl"
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-a632ff01-ca44-453b-982f-96879f1b85ba.ttl"
           }
         ],
         "http://www.w3.org/ns/prov#mentionOf": [
           {
-            "@id": "urn:uuid:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98"
+            "@id": "urn:uuid:a632ff01-ca44-453b-982f-96879f1b85ba"
           }
         ]
       },
       {
-        "@id": "urn:uuid:4b9bc400-4df4-480b-b59d-6987c04f500f",
+        "@id": "urn:uuid:93dc7383-4670-4192-9954-659613284713",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://www.w3.org/ns/prov#KeyEntityPair"
+        ],
+        "http://www.w3.org/ns/prov#pairEntity": [
+          {
+            "@id": "urn:uuid:3890a779-35f5-4753-8cce-9c4645221ea2"
+          }
+        ],
+        "http://www.w3.org/ns/prov#pairKey": [
+          {
+            "@value": "bar"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:bea1dc23-0537-4874-82ce-454f48c08d0a",
+        "@type": [
+          "http://purl.org/wf4ever/ro#Folder",
+          "http://purl.org/wf4ever/wfprov#Artifact",
+          "http://www.w3.org/ns/prov#Collection",
+          "http://www.w3.org/ns/prov#Dictionary",
+          "http://www.w3.org/ns/prov#Entity"
+        ],
+        "http://www.openarchives.org/ore/terms/isDescribedBy": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-bea1dc23-0537-4874-82ce-454f48c08d0a.ttl"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadDictionaryMember": [
+          {
+            "@id": "urn:uuid:7329bf41-05c0-4881-8bd3-1203a530f736"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadMember": [
+          {
+            "@id": "urn:uuid:cb12bf67-5541-4f8c-b897-47a87e11a242"
+          }
+        ],
+        "https://w3id.org/cwl/prov#basename": [
+          {
+            "@value": "foo.out"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:c0ef8f15-2df6-4cd0-9d5b-7ffef1ba9e76",
+        "@type": [
+          "http://www.w3.org/ns/prov#Activity",
+          "http://purl.org/wf4ever/wfprov#ProcessRun"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#label": [
+          {
+            "@value": "Run of workflow/packed.cwl#main/grep"
+          }
+        ],
+        "http://www.w3.org/ns/prov#qualifiedAssociation": [
+          {
+            "@id": "_:N65d2f98741d2474fafee597622b5371e"
+          }
+        ],
+        "http://www.w3.org/ns/prov#qualifiedEnd": [
+          {
+            "@id": "_:N391e646a69e1478cab583335010ad512"
+          }
+        ],
+        "http://www.w3.org/ns/prov#qualifiedStart": [
+          {
+            "@id": "_:N624c67fb87d347e8a0622a321dd3285e"
+          }
+        ],
+        "http://www.w3.org/ns/prov#qualifiedUsage": [
+          {
+            "@id": "_:N3615dc4ec6304efeab39f7c46242233c"
+          },
+          {
+            "@id": "_:Ne6c35e5895734111833cd49a72676652"
+          }
+        ],
+        "http://www.w3.org/ns/prov#wasAssociatedWith": [
+          {
+            "@id": "urn:uuid:e355dead-5bb7-4566-a6bb-eacd7cbdcea4"
+          }
+        ]
+      },
+      {
+        "@id": "_:N624c67fb87d347e8a0622a321dd3285e",
+        "@type": [
+          "http://www.w3.org/ns/prov#Start"
+        ],
+        "http://www.w3.org/ns/prov#atTime": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-02-17T16:20:30.244317"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadActivity": [
+          {
+            "@id": "urn:uuid:422fecc5-1e57-45bc-a653-1513a7a6fe70"
+          }
+        ]
+      },
+      {
+        "@id": "_:N391e646a69e1478cab583335010ad512",
+        "@type": [
+          "http://www.w3.org/ns/prov#End"
+        ],
+        "http://www.w3.org/ns/prov#atTime": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-02-17T16:20:30.262128"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadActivity": [
+          {
+            "@id": "urn:uuid:422fecc5-1e57-45bc-a653-1513a7a6fe70"
+          }
+        ]
+      },
+      {
+        "@id": "_:N65d2f98741d2474fafee597622b5371e",
+        "@type": [
+          "http://www.w3.org/ns/prov#Association"
+        ],
+        "http://www.w3.org/ns/prov#hadPlan": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/grep"
+          }
+        ]
+      },
+      {
+        "@id": "_:N3615dc4ec6304efeab39f7c46242233c",
+        "@type": [
+          "http://www.w3.org/ns/prov#Usage"
+        ],
+        "http://www.w3.org/ns/prov#atTime": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-02-17T16:20:30.248798"
+          }
+        ],
+        "http://www.w3.org/ns/prov#entity": [
+          {
+            "@id": "urn:uuid:a632ff01-ca44-453b-982f-96879f1b85ba"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadRole": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/grep/g_in_dir"
+          }
+        ]
+      },
+      {
+        "@id": "_:Ne6c35e5895734111833cd49a72676652",
+        "@type": [
+          "http://www.w3.org/ns/prov#Usage"
+        ],
+        "http://www.w3.org/ns/prov#atTime": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-02-17T16:20:30.249115"
+          }
+        ],
+        "http://www.w3.org/ns/prov#entity": [
+          {
+            "@id": "urn:hash::sha1:1078cf414b2625a240b16392085d66580bb66f4d"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadRole": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/grep/g_pattern"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:b9a13f00-59e0-4bb4-ab99-4ad4c84c2dae",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://www.w3.org/ns/prov#KeyEntityPair"
+        ],
+        "http://www.w3.org/ns/prov#pairEntity": [
+          {
+            "@id": "urn:uuid:6f360b00-3ef7-4a0a-9be0-6be2f7fc929d"
+          }
+        ],
+        "http://www.w3.org/ns/prov#pairKey": [
+          {
+            "@value": "foo"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:ddfddee2-1c54-48a2-a45f-8edf28af1d65",
+        "@type": [
+          "http://www.w3.org/ns/prov#Collection",
+          "http://purl.org/wf4ever/wfprov#Artifact",
+          "http://www.w3.org/ns/prov#Entity",
+          "http://purl.org/wf4ever/ro#Folder",
+          "http://www.w3.org/ns/prov#Dictionary"
+        ],
+        "http://www.openarchives.org/ore/terms/isDescribedBy": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-ddfddee2-1c54-48a2-a45f-8edf28af1d65.ttl"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadDictionaryMember": [
+          {
+            "@id": "urn:uuid:b9a13f00-59e0-4bb4-ab99-4ad4c84c2dae"
+          },
+          {
+            "@id": "urn:uuid:4f43d441-3e01-473d-adbb-50810da33c6c"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadMember": [
+          {
+            "@id": "urn:uuid:c33fb8ba-d775-47e6-a356-7a31541c3a54"
+          },
+          {
+            "@id": "urn:uuid:6f360b00-3ef7-4a0a-9be0-6be2f7fc929d"
+          }
+        ],
+        "https://w3id.org/cwl/prov#basename": [
+          {
+            "@value": "grepucase_in"
+          }
+        ]
+      },
+      {
+        "@id": "urn:hash::sha1:1078cf414b2625a240b16392085d66580bb66f4d",
+        "@type": [
+          "http://purl.org/wf4ever/wfprov#Artifact",
+          "http://www.w3.org/ns/prov#Entity"
+        ],
+        "http://www.w3.org/ns/prov#value": [
+          {
+            "@value": "lazy"
+          }
+        ]
+      },
+      {
+        "@id": "urn:hash::sha1:d60dd58346cf7e533252f35399cd510b1b1467f7",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://purl.org/wf4ever/wfprov#Artifact"
+        ]
+      },
+      {
+        "@id": "urn:uuid:8fc06ba2-c479-498a-b95e-61eb975eb53b",
         "@type": [
           "http://www.w3.org/ns/prov#KeyEntityPair",
           "http://www.w3.org/ns/prov#Entity"
         ],
         "http://www.w3.org/ns/prov#pairEntity": [
           {
-            "@id": "urn:uuid:378648cc-14bb-42ba-90e5-fbf9e4099a1c"
+            "@id": "urn:uuid:8cb9abec-9ecf-4e54-86b5-7f08a073ce60"
+          }
+        ],
+        "http://www.w3.org/ns/prov#pairKey": [
+          {
+            "@value": "bar.out"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:e355dead-5bb7-4566-a6bb-eacd7cbdcea4",
+        "@type": [
+          "http://www.w3.org/ns/prov#Agent",
+          "http://www.w3.org/ns/prov#SoftwareAgent",
+          "http://purl.org/wf4ever/wfprov#WorkflowEngine"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#label": [
+          {
+            "@value": "cwltool 3.1.20230213100550"
+          }
+        ],
+        "http://www.w3.org/ns/prov#qualifiedStart": [
+          {
+            "@id": "_:N00407c5417e348c89458fb3d7b4463a2"
+          }
+        ]
+      },
+      {
+        "@id": "_:N00407c5417e348c89458fb3d7b4463a2",
+        "@type": [
+          "http://www.w3.org/ns/prov#Start"
+        ],
+        "http://www.w3.org/ns/prov#atTime": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-02-17T16:20:30.199275"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadActivity": [
+          {
+            "@id": "urn:uuid:4746e065-2941-4133-a52b-c36d6c54dde1"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766#ore",
+        "http://www.w3.org/ns/prov#asInBundle": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-f8a7cd48-1c1d-4cb3-97b1-f157bdd83766.ttl"
+          }
+        ],
+        "http://www.w3.org/ns/prov#mentionOf": [
+          {
+            "@id": "urn:uuid:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:dfa94007-0aba-4189-a4a2-f4be72d084ef",
+        "@type": [
+          "http://www.w3.org/ns/prov#KeyEntityPair",
+          "http://www.w3.org/ns/prov#Entity"
+        ],
+        "http://www.w3.org/ns/prov#pairEntity": [
+          {
+            "@id": "urn:uuid:c7636f08-692c-4e1e-927f-823e9e76aac7"
+          }
+        ],
+        "http://www.w3.org/ns/prov#pairKey": [
+          {
+            "@value": "foo"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:37153125-a58a-42c6-8079-c87897c73fa1",
+        "@type": [
+          "http://www.w3.org/ns/prov#KeyEntityPair",
+          "http://www.w3.org/ns/prov#Entity"
+        ],
+        "http://www.w3.org/ns/prov#pairEntity": [
+          {
+            "@id": "urn:uuid:2621f642-a5fd-4a21-a99e-8432350445d9"
           }
         ],
         "http://www.w3.org/ns/prov#pairKey": [
@@ -227,23 +663,51 @@
         ]
       },
       {
-        "@id": "urn:uuid:894a0b93-ea8e-40d5-b0fb-4923df529cca#ore",
+        "@id": "urn:uuid:bea1dc23-0537-4874-82ce-454f48c08d0a#ore",
         "http://www.w3.org/ns/prov#asInBundle": [
           {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-894a0b93-ea8e-40d5-b0fb-4923df529cca.ttl"
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-bea1dc23-0537-4874-82ce-454f48c08d0a.ttl"
           }
         ],
         "http://www.w3.org/ns/prov#mentionOf": [
           {
-            "@id": "urn:uuid:894a0b93-ea8e-40d5-b0fb-4923df529cca"
+            "@id": "urn:uuid:bea1dc23-0537-4874-82ce-454f48c08d0a"
           }
         ]
       },
       {
-        "@id": "urn:uuid:0867ef40-bf1d-4b05-87ab-03a90f476d5e",
+        "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main",
         "@type": [
           "http://www.w3.org/ns/prov#Entity",
+          "http://www.w3.org/ns/prov#Plan",
+          "http://purl.org/wf4ever/wfdesc#Workflow"
+        ],
+        "http://purl.org/wf4ever/wfdesc#hasSubProcess": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/grep"
+          },
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/ucase"
+          }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#label": [
+          {
+            "@value": "Prospective provenance"
+          }
+        ]
+      },
+      {
+        "@id": "urn:hash::sha1:5aa9aa3b336778cf2a7db648fc530892c3b3dabb",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://purl.org/wf4ever/wfprov#Artifact"
+        ]
+      },
+      {
+        "@id": "urn:uuid:cb12bf67-5541-4f8c-b897-47a87e11a242",
+        "@type": [
           "http://purl.org/wf4ever/wfprov#Artifact",
+          "http://www.w3.org/ns/prov#Entity",
           "http://purl.org/wf4ever/wf4ever#File"
         ],
         "http://www.w3.org/ns/prov#specializationOf": [
@@ -258,88 +722,131 @@
         ]
       },
       {
-        "@id": "urn:uuid:f973d2dc-7338-4943-acbd-5dc52541cf9a",
+        "@id": "urn:uuid:5c55e35c-69de-424c-8987-501e3d645e0c",
         "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://www.w3.org/ns/prov#KeyEntityPair"
+          "http://purl.org/wf4ever/wfprov#ProcessRun",
+          "http://www.w3.org/ns/prov#Activity"
         ],
-        "http://www.w3.org/ns/prov#pairEntity": [
+        "http://www.w3.org/2000/01/rdf-schema#label": [
           {
-            "@id": "urn:uuid:1c8520cb-7dbd-4d64-b9d3-073417163918"
+            "@value": "Run of workflow/packed.cwl#main/ucase"
           }
         ],
-        "http://www.w3.org/ns/prov#pairKey": [
+        "http://www.w3.org/ns/prov#qualifiedAssociation": [
           {
-            "@value": "bar"
-          }
-        ]
-      },
-      {
-        "@id": "urn:hash::sha1:8545949f96b96cb721485066bafad9b768bc4e52",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/wfprov#Artifact"
-        ]
-      },
-      {
-        "@id": "urn:hash::sha1:3ccdc7533084b641e6c941cc6dbb091d2e5f8a41",
-        "@type": [
-          "http://purl.org/wf4ever/wfprov#Artifact",
-          "http://www.w3.org/ns/prov#Entity"
-        ]
-      },
-      {
-        "@id": "urn:uuid:7c33b44f-ffe5-4381-87d6-56d0ec8de7d5",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://www.w3.org/ns/prov#KeyEntityPair"
-        ],
-        "http://www.w3.org/ns/prov#pairEntity": [
-          {
-            "@id": "urn:uuid:66cd879a-29f6-4a6e-9e17-a36e9d6293e5"
+            "@id": "_:Nc374bcb3df034aeabdfdedd88bb7c60f"
           }
         ],
-        "http://www.w3.org/ns/prov#pairKey": [
+        "http://www.w3.org/ns/prov#qualifiedEnd": [
           {
-            "@value": "foo"
+            "@id": "_:Nf9594b3f5fc64c4ba93de1a0fccfa7d4"
+          }
+        ],
+        "http://www.w3.org/ns/prov#qualifiedStart": [
+          {
+            "@id": "_:Nb2cf4cdcc487457d985785d92c78d750"
+          }
+        ],
+        "http://www.w3.org/ns/prov#qualifiedUsage": [
+          {
+            "@id": "_:N9b71ea48a84245548ef5ab759ebddbdf"
+          }
+        ],
+        "http://www.w3.org/ns/prov#wasAssociatedWith": [
+          {
+            "@id": "urn:uuid:e355dead-5bb7-4566-a6bb-eacd7cbdcea4"
           }
         ]
       },
       {
-        "@id": "urn:uuid:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98",
+        "@id": "_:N9b71ea48a84245548ef5ab759ebddbdf",
         "@type": [
-          "http://www.w3.org/ns/prov#Dictionary",
+          "http://www.w3.org/ns/prov#Usage"
+        ],
+        "http://www.w3.org/ns/prov#atTime": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-02-17T16:20:30.269993"
+          }
+        ],
+        "http://www.w3.org/ns/prov#entity": [
+          {
+            "@id": "urn:uuid:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadRole": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/ucase/u_in_dir"
+          }
+        ]
+      },
+      {
+        "@id": "_:Nc374bcb3df034aeabdfdedd88bb7c60f",
+        "@type": [
+          "http://www.w3.org/ns/prov#Association"
+        ],
+        "http://www.w3.org/ns/prov#hadPlan": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/ucase"
+          }
+        ]
+      },
+      {
+        "@id": "_:Nb2cf4cdcc487457d985785d92c78d750",
+        "@type": [
+          "http://www.w3.org/ns/prov#Start"
+        ],
+        "http://www.w3.org/ns/prov#atTime": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-02-17T16:20:30.269435"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadActivity": [
+          {
+            "@id": "urn:uuid:422fecc5-1e57-45bc-a653-1513a7a6fe70"
+          }
+        ]
+      },
+      {
+        "@id": "_:Nf9594b3f5fc64c4ba93de1a0fccfa7d4",
+        "@type": [
+          "http://www.w3.org/ns/prov#End"
+        ],
+        "http://www.w3.org/ns/prov#atTime": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-02-17T16:20:30.288229"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadActivity": [
+          {
+            "@id": "urn:uuid:422fecc5-1e57-45bc-a653-1513a7a6fe70"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:8cb9abec-9ecf-4e54-86b5-7f08a073ce60",
+        "@type": [
           "http://www.w3.org/ns/prov#Entity",
           "http://purl.org/wf4ever/ro#Folder",
           "http://purl.org/wf4ever/wfprov#Artifact",
-          "http://www.w3.org/ns/prov#Collection"
+          "http://www.w3.org/ns/prov#Collection",
+          "http://www.w3.org/ns/prov#Dictionary"
         ],
         "http://www.openarchives.org/ore/terms/isDescribedBy": [
           {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98.ttl"
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-8cb9abec-9ecf-4e54-86b5-7f08a073ce60.ttl"
           }
         ],
         "http://www.w3.org/ns/prov#hadDictionaryMember": [
           {
-            "@id": "urn:uuid:83160fd7-e052-40ef-9f0c-8af9b40c952b"
+            "@id": "urn:uuid:899d951e-0ef0-42a7-a460-3cf4c3b3aff5"
           }
         ],
         "http://www.w3.org/ns/prov#hadMember": [
           {
-            "@id": "urn:uuid:54ed715b-cb81-46d5-bbd0-41c8c4131a56"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:6f1e9cdf-9128-4d1e-a8cb-34e8255c88eb",
-        "@type": [
-          "http://purl.org/wf4ever/wf4ever#File",
-          "http://purl.org/wf4ever/wfprov#Artifact",
-          "http://www.w3.org/ns/prov#Entity"
-        ],
-        "http://www.w3.org/ns/prov#specializationOf": [
-          {
-            "@id": "urn:hash::sha1:8545949f96b96cb721485066bafad9b768bc4e52"
+            "@id": "urn:uuid:2c6ae84c-c98c-4173-aa24-44b9bb21d372"
           }
         ],
         "https://w3id.org/cwl/prov#basename": [
@@ -349,91 +856,58 @@
         ]
       },
       {
-        "@id": "urn:hash::sha1:1078cf414b2625a240b16392085d66580bb66f4d",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/wfprov#Artifact"
-        ],
-        "http://www.w3.org/ns/prov#value": [
-          {
-            "@value": "lazy"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:e1d7deea-4b5c-4fb7-8634-fe763373ad5c",
-        "@type": [
-          "http://www.w3.org/ns/prov#Dictionary",
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#Folder",
-          "http://purl.org/wf4ever/wfprov#Artifact",
-          "http://www.w3.org/ns/prov#Collection"
-        ],
-        "http://www.openarchives.org/ore/terms/isDescribedBy": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-e1d7deea-4b5c-4fb7-8634-fe763373ad5c.ttl"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadDictionaryMember": [
-          {
-            "@id": "urn:uuid:f973d2dc-7338-4943-acbd-5dc52541cf9a"
-          },
-          {
-            "@id": "urn:uuid:7c33b44f-ffe5-4381-87d6-56d0ec8de7d5"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadMember": [
-          {
-            "@id": "urn:uuid:66cd879a-29f6-4a6e-9e17-a36e9d6293e5"
-          },
-          {
-            "@id": "urn:uuid:1c8520cb-7dbd-4d64-b9d3-073417163918"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:e1d7deea-4b5c-4fb7-8634-fe763373ad5c#ore",
-        "http://www.w3.org/ns/prov#asInBundle": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-e1d7deea-4b5c-4fb7-8634-fe763373ad5c.ttl"
-          }
-        ],
-        "http://www.w3.org/ns/prov#mentionOf": [
-          {
-            "@id": "urn:uuid:e1d7deea-4b5c-4fb7-8634-fe763373ad5c"
-          }
-        ]
-      },
-      {
-        "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main",
-        "@type": [
-          "http://www.w3.org/ns/prov#Plan",
-          "http://purl.org/wf4ever/wfdesc#Workflow",
-          "http://www.w3.org/ns/prov#Entity"
-        ],
-        "http://purl.org/wf4ever/wfdesc#hasSubProcess": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/grep"
-          },
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/ucase"
-          }
-        ],
-        "http://www.w3.org/2000/01/rdf-schema#label": [
-          {
-            "@value": "Prospective provenance"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:239eafb4-4463-46ff-afac-5113c6e74e67",
+        "@id": "urn:uuid:7329bf41-05c0-4881-8bd3-1203a530f736",
         "@type": [
           "http://www.w3.org/ns/prov#KeyEntityPair",
           "http://www.w3.org/ns/prov#Entity"
         ],
         "http://www.w3.org/ns/prov#pairEntity": [
           {
-            "@id": "urn:uuid:1f9b8a9c-386a-44da-a873-4b68f6c85451"
+            "@id": "urn:uuid:cb12bf67-5541-4f8c-b897-47a87e11a242"
+          }
+        ],
+        "http://www.w3.org/ns/prov#pairKey": [
+          {
+            "@value": "foo.out.out"
+          }
+        ]
+      },
+      {
+        "@id": "urn:hash::sha1:8545949f96b96cb721485066bafad9b768bc4e52",
+        "@type": [
+          "http://purl.org/wf4ever/wfprov#Artifact",
+          "http://www.w3.org/ns/prov#Entity"
+        ]
+      },
+      {
+        "@id": "urn:uuid:5b25d2eb-2e89-4d62-8145-2ea3656ba173#ore",
+        "http://www.w3.org/ns/prov#asInBundle": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-5b25d2eb-2e89-4d62-8145-2ea3656ba173.ttl"
+          }
+        ],
+        "http://www.w3.org/ns/prov#mentionOf": [
+          {
+            "@id": "urn:uuid:5b25d2eb-2e89-4d62-8145-2ea3656ba173"
+          }
+        ]
+      },
+      {
+        "@id": "urn:hash::sha1:8d84ef91f0aba379f5edc3836b4b5f6727920f22",
+        "@type": [
+          "http://purl.org/wf4ever/wfprov#Artifact",
+          "http://www.w3.org/ns/prov#Entity"
+        ]
+      },
+      {
+        "@id": "urn:uuid:3c9e35a6-42d6-4905-8a27-0e4159882180",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://www.w3.org/ns/prov#KeyEntityPair"
+        ],
+        "http://www.w3.org/ns/prov#pairEntity": [
+          {
+            "@id": "urn:uuid:bea1dc23-0537-4874-82ce-454f48c08d0a"
           }
         ],
         "http://www.w3.org/ns/prov#pairKey": [
@@ -443,76 +917,19 @@
         ]
       },
       {
-        "@id": "urn:hash::sha1:d60dd58346cf7e533252f35399cd510b1b1467f7",
+        "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/grep",
         "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/wfprov#Artifact"
+          "http://www.w3.org/ns/prov#Plan",
+          "http://purl.org/wf4ever/wfdesc#Process",
+          "http://www.w3.org/ns/prov#Entity"
         ]
       },
       {
-        "@id": "urn:uuid:894a0b93-ea8e-40d5-b0fb-4923df529cca",
+        "@id": "urn:uuid:c7636f08-692c-4e1e-927f-823e9e76aac7",
         "@type": [
-          "http://www.w3.org/ns/prov#Dictionary",
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#Folder",
+          "http://purl.org/wf4ever/wf4ever#File",
           "http://purl.org/wf4ever/wfprov#Artifact",
-          "http://www.w3.org/ns/prov#Collection"
-        ],
-        "http://www.openarchives.org/ore/terms/isDescribedBy": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-894a0b93-ea8e-40d5-b0fb-4923df529cca.ttl"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadDictionaryMember": [
-          {
-            "@id": "urn:uuid:239eafb4-4463-46ff-afac-5113c6e74e67"
-          },
-          {
-            "@id": "urn:uuid:0d4232ac-a098-474c-8ee3-a7710811c376"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadMember": [
-          {
-            "@id": "urn:uuid:6f1e9cdf-9128-4d1e-a8cb-34e8255c88eb"
-          },
-          {
-            "@id": "urn:uuid:1f9b8a9c-386a-44da-a873-4b68f6c85451"
-          }
-        ],
-        "http://www.w3.org/ns/prov#qualifiedGeneration": [
-          {
-            "@id": "_:Nda4584f477964975a3afe7d5bb87b256"
-          }
-        ]
-      },
-      {
-        "@id": "_:Nda4584f477964975a3afe7d5bb87b256",
-        "@type": [
-          "http://www.w3.org/ns/prov#Generation"
-        ],
-        "http://www.w3.org/ns/prov#activity": [
-          {
-            "@id": "urn:uuid:0d286a0e-18b1-4138-b379-955431bc89d7"
-          }
-        ],
-        "http://www.w3.org/ns/prov#atTime": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.481613"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadRole": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/grep/g_out_dir"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:b280830d-2952-4f46-964a-bf8ca781adc1",
-        "@type": [
-          "http://purl.org/wf4ever/wfprov#Artifact",
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/wf4ever#File"
+          "http://www.w3.org/ns/prov#Entity"
         ],
         "http://www.w3.org/ns/prov#specializationOf": [
           {
@@ -523,149 +940,24 @@
           {
             "@value": "foo"
           }
-        ]
-      },
-      {
-        "@id": "urn:uuid:0d286a0e-18b1-4138-b379-955431bc89d7",
-        "@type": [
-          "http://purl.org/wf4ever/wfprov#ProcessRun",
-          "http://www.w3.org/ns/prov#Activity"
         ],
-        "http://www.w3.org/2000/01/rdf-schema#label": [
+        "https://w3id.org/cwl/prov#nameext": [
           {
-            "@value": "Run of workflow/packed.cwl#main/grep"
+            "@value": ""
           }
         ],
-        "http://www.w3.org/ns/prov#qualifiedAssociation": [
+        "https://w3id.org/cwl/prov#nameroot": [
           {
-            "@id": "_:N10ca879fed084bccbb62302532d8742e"
-          }
-        ],
-        "http://www.w3.org/ns/prov#qualifiedEnd": [
-          {
-            "@id": "_:N9d2e1bd149fe47d2867e216c2f62d21a"
-          }
-        ],
-        "http://www.w3.org/ns/prov#qualifiedStart": [
-          {
-            "@id": "_:N0f26098a5d4d4f0ab6609775ed69129b"
-          }
-        ],
-        "http://www.w3.org/ns/prov#qualifiedUsage": [
-          {
-            "@id": "_:N7d810f5db0fb4bf084a875bc12b7d05b"
-          },
-          {
-            "@id": "_:Ne7c62672a68f4d37aa044dbdfc8c4229"
-          }
-        ],
-        "http://www.w3.org/ns/prov#wasAssociatedWith": [
-          {
-            "@id": "urn:uuid:d5698c0a-ec2b-4775-a77d-0ffc182ab4f0"
+            "@value": "foo"
           }
         ]
       },
       {
-        "@id": "_:N7d810f5db0fb4bf084a875bc12b7d05b",
-        "@type": [
-          "http://www.w3.org/ns/prov#Usage"
-        ],
-        "http://www.w3.org/ns/prov#atTime": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.470729"
-          }
-        ],
-        "http://www.w3.org/ns/prov#entity": [
-          {
-            "@id": "urn:uuid:e1d7deea-4b5c-4fb7-8634-fe763373ad5c"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadRole": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/grep/g_in_dir"
-          }
-        ]
-      },
-      {
-        "@id": "_:Ne7c62672a68f4d37aa044dbdfc8c4229",
-        "@type": [
-          "http://www.w3.org/ns/prov#Usage"
-        ],
-        "http://www.w3.org/ns/prov#atTime": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.471068"
-          }
-        ],
-        "http://www.w3.org/ns/prov#entity": [
-          {
-            "@id": "urn:hash::sha1:1078cf414b2625a240b16392085d66580bb66f4d"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadRole": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/grep/g_pattern"
-          }
-        ]
-      },
-      {
-        "@id": "_:N9d2e1bd149fe47d2867e216c2f62d21a",
-        "@type": [
-          "http://www.w3.org/ns/prov#End"
-        ],
-        "http://www.w3.org/ns/prov#atTime": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.481601"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadActivity": [
-          {
-            "@id": "urn:uuid:86e05e63-d4dd-4a06-8235-9d26df405724"
-          }
-        ]
-      },
-      {
-        "@id": "_:N0f26098a5d4d4f0ab6609775ed69129b",
-        "@type": [
-          "http://www.w3.org/ns/prov#Start"
-        ],
-        "http://www.w3.org/ns/prov#atTime": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.464238"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadActivity": [
-          {
-            "@id": "urn:uuid:86e05e63-d4dd-4a06-8235-9d26df405724"
-          }
-        ]
-      },
-      {
-        "@id": "_:N10ca879fed084bccbb62302532d8742e",
-        "@type": [
-          "http://www.w3.org/ns/prov#Association"
-        ],
-        "http://www.w3.org/ns/prov#hadPlan": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/grep"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:61b1ade5-aba5-4177-870a-68aca11d7eaa",
-        "@type": [
-          "http://www.w3.org/ns/prov#Agent"
-        ]
-      },
-      {
-        "@id": "urn:uuid:54ed715b-cb81-46d5-bbd0-41c8c4131a56",
+        "@id": "urn:uuid:2c6ae84c-c98c-4173-aa24-44b9bb21d372",
         "@type": [
           "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/wfprov#Artifact",
-          "http://purl.org/wf4ever/wf4ever#File"
+          "http://purl.org/wf4ever/wf4ever#File",
+          "http://purl.org/wf4ever/wfprov#Artifact"
         ],
         "http://www.w3.org/ns/prov#specializationOf": [
           {
@@ -679,118 +971,10 @@
         ]
       },
       {
-        "@id": "urn:uuid:c3ab4de7-e45b-469e-a6e2-940f9721cc9b",
+        "@id": "urn:uuid:2621f642-a5fd-4a21-a99e-8432350445d9",
         "@type": [
-          "http://www.w3.org/ns/prov#Dictionary",
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#Folder",
           "http://purl.org/wf4ever/wfprov#Artifact",
-          "http://www.w3.org/ns/prov#Collection"
-        ],
-        "http://www.openarchives.org/ore/terms/isDescribedBy": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-c3ab4de7-e45b-469e-a6e2-940f9721cc9b.ttl"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadDictionaryMember": [
-          {
-            "@id": "urn:uuid:a752267f-a0a9-4838-aacd-4b60b1aca9f3"
-          },
-          {
-            "@id": "urn:uuid:4b9bc400-4df4-480b-b59d-6987c04f500f"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadMember": [
-          {
-            "@id": "urn:uuid:378648cc-14bb-42ba-90e5-fbf9e4099a1c"
-          },
-          {
-            "@id": "urn:uuid:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98"
-          }
-        ],
-        "http://www.w3.org/ns/prov#qualifiedGeneration": [
-          {
-            "@id": "_:Ne35cf84c124041f98d73b326a74e688a"
-          },
-          {
-            "@id": "_:N6d0d98d53be5437ca7d8e23a04d05958"
-          }
-        ]
-      },
-      {
-        "@id": "_:Ne35cf84c124041f98d73b326a74e688a",
-        "@type": [
-          "http://www.w3.org/ns/prov#Generation"
-        ],
-        "http://www.w3.org/ns/prov#activity": [
-          {
-            "@id": "urn:uuid:d2887ecb-09de-4806-b5c0-cb7348506c7b"
-          }
-        ],
-        "http://www.w3.org/ns/prov#atTime": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.505432"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadRole": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/ucase/u_out_dir"
-          }
-        ]
-      },
-      {
-        "@id": "_:N6d0d98d53be5437ca7d8e23a04d05958",
-        "@type": [
-          "http://www.w3.org/ns/prov#Generation"
-        ],
-        "http://www.w3.org/ns/prov#activity": [
-          {
-            "@id": "urn:uuid:86e05e63-d4dd-4a06-8235-9d26df405724"
-          }
-        ],
-        "http://www.w3.org/ns/prov#atTime": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.520512"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadRole": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/primary/out_dir"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:36d252c7-be92-4775-9e88-bb46d36fa958",
-        "@type": [
-          "http://www.w3.org/ns/prov#KeyEntityPair",
-          "http://www.w3.org/ns/prov#Entity"
-        ],
-        "http://www.w3.org/ns/prov#pairEntity": [
-          {
-            "@id": "urn:uuid:b280830d-2952-4f46-964a-bf8ca781adc1"
-          }
-        ],
-        "http://www.w3.org/ns/prov#pairKey": [
-          {
-            "@value": "foo"
-          }
-        ]
-      },
-      {
-        "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/grep",
-        "@type": [
-          "http://www.w3.org/ns/prov#Plan",
-          "http://purl.org/wf4ever/wfdesc#Process",
-          "http://www.w3.org/ns/prov#Entity"
-        ]
-      },
-      {
-        "@id": "urn:uuid:1f9b8a9c-386a-44da-a873-4b68f6c85451",
-        "@type": [
           "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/wfprov#Artifact",
           "http://purl.org/wf4ever/wf4ever#File"
         ],
         "http://www.w3.org/ns/prov#specializationOf": [
@@ -805,11 +989,191 @@
         ]
       },
       {
-        "@id": "urn:uuid:1c8520cb-7dbd-4d64-b9d3-073417163918",
+        "@id": "urn:hash::sha1:3ccdc7533084b641e6c941cc6dbb091d2e5f8a41",
         "@type": [
-          "http://purl.org/wf4ever/wf4ever#File",
           "http://purl.org/wf4ever/wfprov#Artifact",
           "http://www.w3.org/ns/prov#Entity"
+        ]
+      },
+      {
+        "@id": "urn:hash::sha1:ec0270052a78321508502ed915815c4daf75fe46",
+        "@type": [
+          "http://purl.org/wf4ever/wfprov#Artifact",
+          "http://www.w3.org/ns/prov#Entity"
+        ]
+      },
+      {
+        "@id": "urn:uuid:4f43d441-3e01-473d-adbb-50810da33c6c",
+        "@type": [
+          "http://www.w3.org/ns/prov#KeyEntityPair",
+          "http://www.w3.org/ns/prov#Entity"
+        ],
+        "http://www.w3.org/ns/prov#pairEntity": [
+          {
+            "@id": "urn:uuid:c33fb8ba-d775-47e6-a356-7a31541c3a54"
+          }
+        ],
+        "http://www.w3.org/ns/prov#pairKey": [
+          {
+            "@value": "bar"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:a51961e0-708a-4c2c-8bd1-a56b6782c191",
+        "@type": [
+          "http://purl.org/wf4ever/wfprov#Artifact",
+          "http://www.w3.org/ns/prov#Entity",
+          "http://purl.org/wf4ever/wf4ever#File"
+        ],
+        "http://www.w3.org/ns/prov#specializationOf": [
+          {
+            "@id": "urn:hash::sha1:8545949f96b96cb721485066bafad9b768bc4e52"
+          }
+        ],
+        "https://w3id.org/cwl/prov#basename": [
+          {
+            "@value": "bar.out"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:ddfddee2-1c54-48a2-a45f-8edf28af1d65#ore",
+        "http://www.w3.org/ns/prov#asInBundle": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-ddfddee2-1c54-48a2-a45f-8edf28af1d65.ttl"
+          }
+        ],
+        "http://www.w3.org/ns/prov#mentionOf": [
+          {
+            "@id": "urn:uuid:ddfddee2-1c54-48a2-a45f-8edf28af1d65"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:b1cd1002-9728-4419-8471-c9746d177e00",
+        "@type": [
+          "http://www.w3.org/ns/prov#KeyEntityPair",
+          "http://www.w3.org/ns/prov#Entity"
+        ],
+        "http://www.w3.org/ns/prov#pairEntity": [
+          {
+            "@id": "urn:uuid:a51961e0-708a-4c2c-8bd1-a56b6782c191"
+          }
+        ],
+        "http://www.w3.org/ns/prov#pairKey": [
+          {
+            "@value": "bar.out"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:899d951e-0ef0-42a7-a460-3cf4c3b3aff5",
+        "@type": [
+          "http://www.w3.org/ns/prov#KeyEntityPair",
+          "http://www.w3.org/ns/prov#Entity"
+        ],
+        "http://www.w3.org/ns/prov#pairEntity": [
+          {
+            "@id": "urn:uuid:2c6ae84c-c98c-4173-aa24-44b9bb21d372"
+          }
+        ],
+        "http://www.w3.org/ns/prov#pairKey": [
+          {
+            "@value": "bar.out.out"
+          }
+        ]
+      },
+      {
+        "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/ucase",
+        "@type": [
+          "http://purl.org/wf4ever/wfdesc#Process",
+          "http://www.w3.org/ns/prov#Entity",
+          "http://www.w3.org/ns/prov#Plan"
+        ]
+      },
+      {
+        "@id": "urn:uuid:8cb9abec-9ecf-4e54-86b5-7f08a073ce60#ore",
+        "http://www.w3.org/ns/prov#asInBundle": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-8cb9abec-9ecf-4e54-86b5-7f08a073ce60.ttl"
+          }
+        ],
+        "http://www.w3.org/ns/prov#mentionOf": [
+          {
+            "@id": "urn:uuid:8cb9abec-9ecf-4e54-86b5-7f08a073ce60"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766",
+        "@type": [
+          "http://purl.org/wf4ever/ro#Folder",
+          "http://www.w3.org/ns/prov#Dictionary",
+          "http://www.w3.org/ns/prov#Collection",
+          "http://purl.org/wf4ever/wfprov#Artifact",
+          "http://www.w3.org/ns/prov#Entity"
+        ],
+        "http://www.openarchives.org/ore/terms/isDescribedBy": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-f8a7cd48-1c1d-4cb3-97b1-f157bdd83766.ttl"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadDictionaryMember": [
+          {
+            "@id": "urn:uuid:37153125-a58a-42c6-8079-c87897c73fa1"
+          },
+          {
+            "@id": "urn:uuid:b1cd1002-9728-4419-8471-c9746d177e00"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadMember": [
+          {
+            "@id": "urn:uuid:2621f642-a5fd-4a21-a99e-8432350445d9"
+          },
+          {
+            "@id": "urn:uuid:a51961e0-708a-4c2c-8bd1-a56b6782c191"
+          }
+        ],
+        "http://www.w3.org/ns/prov#qualifiedGeneration": [
+          {
+            "@id": "_:N0e7a59b98b0c4922b5ba87e72527e3ba"
+          }
+        ],
+        "https://w3id.org/cwl/prov#basename": [
+          {
+            "@value": "grep_out"
+          }
+        ]
+      },
+      {
+        "@id": "_:N0e7a59b98b0c4922b5ba87e72527e3ba",
+        "@type": [
+          "http://www.w3.org/ns/prov#Generation"
+        ],
+        "http://www.w3.org/ns/prov#activity": [
+          {
+            "@id": "urn:uuid:c0ef8f15-2df6-4cd0-9d5b-7ffef1ba9e76"
+          }
+        ],
+        "http://www.w3.org/ns/prov#atTime": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-02-17T16:20:30.262141"
+          }
+        ],
+        "http://www.w3.org/ns/prov#hadRole": [
+          {
+            "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/workflow/packed.cwl#main/grep/g_out_dir"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:3890a779-35f5-4753-8cce-9c4645221ea2",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://purl.org/wf4ever/wf4ever#File",
+          "http://purl.org/wf4ever/wfprov#Artifact"
         ],
         "http://www.w3.org/ns/prov#specializationOf": [
           {
@@ -831,370 +1195,59 @@
             "@value": "bar"
           }
         ]
-      },
-      {
-        "@id": "urn:uuid:c3ab4de7-e45b-469e-a6e2-940f9721cc9b#ore",
-        "http://www.w3.org/ns/prov#asInBundle": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-c3ab4de7-e45b-469e-a6e2-940f9721cc9b.ttl"
-          }
-        ],
-        "http://www.w3.org/ns/prov#mentionOf": [
-          {
-            "@id": "urn:uuid:c3ab4de7-e45b-469e-a6e2-940f9721cc9b"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:378648cc-14bb-42ba-90e5-fbf9e4099a1c",
-        "@type": [
-          "http://purl.org/wf4ever/ro#Folder",
-          "http://purl.org/wf4ever/wfprov#Artifact",
-          "http://www.w3.org/ns/prov#Collection",
-          "http://www.w3.org/ns/prov#Dictionary",
-          "http://www.w3.org/ns/prov#Entity"
-        ],
-        "http://www.openarchives.org/ore/terms/isDescribedBy": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-378648cc-14bb-42ba-90e5-fbf9e4099a1c.ttl"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadDictionaryMember": [
-          {
-            "@id": "urn:uuid:eb32dcb0-f27a-42ec-a3ed-6314546844a0"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadMember": [
-          {
-            "@id": "urn:uuid:0867ef40-bf1d-4b05-87ab-03a90f476d5e"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:a752267f-a0a9-4838-aacd-4b60b1aca9f3",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://www.w3.org/ns/prov#KeyEntityPair"
-        ],
-        "http://www.w3.org/ns/prov#pairEntity": [
-          {
-            "@id": "urn:uuid:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98"
-          }
-        ],
-        "http://www.w3.org/ns/prov#pairKey": [
-          {
-            "@value": "bar.out"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:66cd879a-29f6-4a6e-9e17-a36e9d6293e5",
-        "@type": [
-          "http://purl.org/wf4ever/wfprov#Artifact",
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/wf4ever#File"
-        ],
-        "http://www.w3.org/ns/prov#specializationOf": [
-          {
-            "@id": "urn:hash::sha1:d60dd58346cf7e533252f35399cd510b1b1467f7"
-          }
-        ],
-        "https://w3id.org/cwl/prov#basename": [
-          {
-            "@value": "foo"
-          }
-        ],
-        "https://w3id.org/cwl/prov#nameext": [
-          {
-            "@value": ""
-          }
-        ],
-        "https://w3id.org/cwl/prov#nameroot": [
-          {
-            "@value": "foo"
-          }
-        ]
-      },
-      {
-        "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/ucase",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/wfdesc#Process",
-          "http://www.w3.org/ns/prov#Plan"
-        ]
-      },
-      {
-        "@id": "urn:uuid:0f2f543c-695b-45c6-b31d-5c8740425f3c#ore",
-        "http://www.w3.org/ns/prov#asInBundle": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-0f2f543c-695b-45c6-b31d-5c8740425f3c.ttl"
-          }
-        ],
-        "http://www.w3.org/ns/prov#mentionOf": [
-          {
-            "@id": "urn:uuid:0f2f543c-695b-45c6-b31d-5c8740425f3c"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:83160fd7-e052-40ef-9f0c-8af9b40c952b",
-        "@type": [
-          "http://www.w3.org/ns/prov#KeyEntityPair",
-          "http://www.w3.org/ns/prov#Entity"
-        ],
-        "http://www.w3.org/ns/prov#pairEntity": [
-          {
-            "@id": "urn:uuid:54ed715b-cb81-46d5-bbd0-41c8c4131a56"
-          }
-        ],
-        "http://www.w3.org/ns/prov#pairKey": [
-          {
-            "@value": "bar.out.out"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:79be28a7-70ef-4241-91e3-d5e8349cfd64",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://www.w3.org/ns/prov#KeyEntityPair"
-        ],
-        "http://www.w3.org/ns/prov#pairEntity": [
-          {
-            "@id": "urn:uuid:daf9ca4c-2d3f-4485-a07f-43ef8273020a"
-          }
-        ],
-        "http://www.w3.org/ns/prov#pairKey": [
-          {
-            "@value": "bar"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:0f2f543c-695b-45c6-b31d-5c8740425f3c",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#Folder",
-          "http://www.w3.org/ns/prov#Collection",
-          "http://www.w3.org/ns/prov#Dictionary",
-          "http://purl.org/wf4ever/wfprov#Artifact"
-        ],
-        "http://www.openarchives.org/ore/terms/isDescribedBy": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-0f2f543c-695b-45c6-b31d-5c8740425f3c.ttl"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadDictionaryMember": [
-          {
-            "@id": "urn:uuid:79be28a7-70ef-4241-91e3-d5e8349cfd64"
-          },
-          {
-            "@id": "urn:uuid:36d252c7-be92-4775-9e88-bb46d36fa958"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadMember": [
-          {
-            "@id": "urn:uuid:daf9ca4c-2d3f-4485-a07f-43ef8273020a"
-          },
-          {
-            "@id": "urn:uuid:b280830d-2952-4f46-964a-bf8ca781adc1"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:d2887ecb-09de-4806-b5c0-cb7348506c7b",
-        "@type": [
-          "http://purl.org/wf4ever/wfprov#ProcessRun",
-          "http://www.w3.org/ns/prov#Activity"
-        ],
-        "http://www.w3.org/2000/01/rdf-schema#label": [
-          {
-            "@value": "Run of workflow/packed.cwl#main/ucase"
-          }
-        ],
-        "http://www.w3.org/ns/prov#qualifiedAssociation": [
-          {
-            "@id": "_:N579770e9f85847df94c6d31ad98453b4"
-          }
-        ],
-        "http://www.w3.org/ns/prov#qualifiedEnd": [
-          {
-            "@id": "_:N4a2c8c2675e44b91b4e9c907211c6a3b"
-          }
-        ],
-        "http://www.w3.org/ns/prov#qualifiedStart": [
-          {
-            "@id": "_:N063d4a3723bf46fbb9f5b0800691a265"
-          }
-        ],
-        "http://www.w3.org/ns/prov#qualifiedUsage": [
-          {
-            "@id": "_:N03f806bbb54a4b98ac44108df7c363fd"
-          }
-        ],
-        "http://www.w3.org/ns/prov#wasAssociatedWith": [
-          {
-            "@id": "urn:uuid:d5698c0a-ec2b-4775-a77d-0ffc182ab4f0"
-          }
-        ]
-      },
-      {
-        "@id": "_:N4a2c8c2675e44b91b4e9c907211c6a3b",
-        "@type": [
-          "http://www.w3.org/ns/prov#End"
-        ],
-        "http://www.w3.org/ns/prov#atTime": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.505421"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadActivity": [
-          {
-            "@id": "urn:uuid:86e05e63-d4dd-4a06-8235-9d26df405724"
-          }
-        ]
-      },
-      {
-        "@id": "_:N063d4a3723bf46fbb9f5b0800691a265",
-        "@type": [
-          "http://www.w3.org/ns/prov#Start"
-        ],
-        "http://www.w3.org/ns/prov#atTime": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.489493"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadActivity": [
-          {
-            "@id": "urn:uuid:86e05e63-d4dd-4a06-8235-9d26df405724"
-          }
-        ]
-      },
-      {
-        "@id": "_:N03f806bbb54a4b98ac44108df7c363fd",
-        "@type": [
-          "http://www.w3.org/ns/prov#Usage"
-        ],
-        "http://www.w3.org/ns/prov#atTime": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2022-12-16T12:36:06.490262"
-          }
-        ],
-        "http://www.w3.org/ns/prov#entity": [
-          {
-            "@id": "urn:uuid:894a0b93-ea8e-40d5-b0fb-4923df529cca"
-          }
-        ],
-        "http://www.w3.org/ns/prov#hadRole": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/ucase/u_in_dir"
-          }
-        ]
-      },
-      {
-        "@id": "_:N579770e9f85847df94c6d31ad98453b4",
-        "@type": [
-          "http://www.w3.org/ns/prov#Association"
-        ],
-        "http://www.w3.org/ns/prov#hadPlan": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/workflow/packed.cwl#main/ucase"
-          }
-        ]
-      },
-      {
-        "@id": "urn:hash::sha1:8d84ef91f0aba379f5edc3836b4b5f6727920f22",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/wfprov#Artifact"
-        ]
-      },
-      {
-        "@id": "urn:uuid:378648cc-14bb-42ba-90e5-fbf9e4099a1c#ore",
-        "http://www.w3.org/ns/prov#asInBundle": [
-          {
-            "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-378648cc-14bb-42ba-90e5-fbf9e4099a1c.ttl"
-          }
-        ],
-        "http://www.w3.org/ns/prov#mentionOf": [
-          {
-            "@id": "urn:uuid:378648cc-14bb-42ba-90e5-fbf9e4099a1c"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:eb32dcb0-f27a-42ec-a3ed-6314546844a0",
-        "@type": [
-          "http://www.w3.org/ns/prov#KeyEntityPair",
-          "http://www.w3.org/ns/prov#Entity"
-        ],
-        "http://www.w3.org/ns/prov#pairEntity": [
-          {
-            "@id": "urn:uuid:0867ef40-bf1d-4b05-87ab-03a90f476d5e"
-          }
-        ],
-        "http://www.w3.org/ns/prov#pairKey": [
-          {
-            "@value": "foo.out.out"
-          }
-        ]
-      },
-      {
-        "@id": "urn:hash::sha1:5aa9aa3b336778cf2a7db648fc530892c3b3dabb",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/wfprov#Artifact"
-        ]
-      },
-      {
-        "@id": "urn:uuid:0d4232ac-a098-474c-8ee3-a7710811c376",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://www.w3.org/ns/prov#KeyEntityPair"
-        ],
-        "http://www.w3.org/ns/prov#pairEntity": [
-          {
-            "@id": "urn:uuid:6f1e9cdf-9128-4d1e-a8cb-34e8255c88eb"
-          }
-        ],
-        "http://www.w3.org/ns/prov#pairKey": [
-          {
-            "@value": "bar.out"
-          }
-        ]
       }
     ]
   },
   {
     "@graph": [
       {
-        "@id": "urn:uuid:f973d2dc-7338-4943-acbd-5dc52541cf9a",
+        "@id": "urn:uuid:37153125-a58a-42c6-8079-c87897c73fa1",
         "@type": [
           "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#FolderEntry",
-          "http://www.openarchives.org/ore/terms/Proxy"
+          "http://www.openarchives.org/ore/terms/Proxy",
+          "http://purl.org/wf4ever/ro#FolderEntry"
         ],
         "http://purl.org/wf4ever/ro#entryName": [
           {
-            "@value": "bar"
+            "@value": "foo.out"
           }
         ],
         "http://www.openarchives.org/ore/terms/proxyFor": [
           {
-            "@id": "urn:uuid:1c8520cb-7dbd-4d64-b9d3-073417163918"
+            "@id": "urn:uuid:2621f642-a5fd-4a21-a99e-8432350445d9"
           }
         ],
         "http://www.openarchives.org/ore/terms/proxyIn": [
           {
-            "@id": "urn:uuid:e1d7deea-4b5c-4fb7-8634-fe763373ad5c"
+            "@id": "urn:uuid:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766"
           }
         ]
       },
       {
-        "@id": "urn:uuid:e1d7deea-4b5c-4fb7-8634-fe763373ad5c",
+        "@id": "urn:uuid:b1cd1002-9728-4419-8471-c9746d177e00",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://www.openarchives.org/ore/terms/Proxy",
+          "http://purl.org/wf4ever/ro#FolderEntry"
+        ],
+        "http://purl.org/wf4ever/ro#entryName": [
+          {
+            "@value": "bar.out"
+          }
+        ],
+        "http://www.openarchives.org/ore/terms/proxyFor": [
+          {
+            "@id": "urn:uuid:a51961e0-708a-4c2c-8bd1-a56b6782c191"
+          }
+        ],
+        "http://www.openarchives.org/ore/terms/proxyIn": [
+          {
+            "@id": "urn:uuid:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:f8a7cd48-1c1d-4cb3-97b1-f157bdd83766",
         "@type": [
           "http://www.w3.org/ns/prov#Entity",
           "http://www.openarchives.org/ore/terms/Aggregation",
@@ -1202,47 +1255,37 @@
         ],
         "http://www.openarchives.org/ore/terms/aggregates": [
           {
-            "@id": "urn:uuid:f973d2dc-7338-4943-acbd-5dc52541cf9a"
+            "@id": "urn:uuid:37153125-a58a-42c6-8079-c87897c73fa1"
           },
           {
-            "@id": "urn:uuid:7c33b44f-ffe5-4381-87d6-56d0ec8de7d5"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:7c33b44f-ffe5-4381-87d6-56d0ec8de7d5",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#FolderEntry",
-          "http://www.openarchives.org/ore/terms/Proxy"
-        ],
-        "http://purl.org/wf4ever/ro#entryName": [
-          {
-            "@value": "foo"
-          }
-        ],
-        "http://www.openarchives.org/ore/terms/proxyFor": [
-          {
-            "@id": "urn:uuid:66cd879a-29f6-4a6e-9e17-a36e9d6293e5"
-          }
-        ],
-        "http://www.openarchives.org/ore/terms/proxyIn": [
-          {
-            "@id": "urn:uuid:e1d7deea-4b5c-4fb7-8634-fe763373ad5c"
+            "@id": "urn:uuid:b1cd1002-9728-4419-8471-c9746d177e00"
           }
         ]
       }
     ],
-    "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-e1d7deea-4b5c-4fb7-8634-fe763373ad5c.ttl"
+    "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-f8a7cd48-1c1d-4cb3-97b1-f157bdd83766.ttl"
   },
   {
     "@graph": [
       {
-        "@id": "urn:uuid:eb32dcb0-f27a-42ec-a3ed-6314546844a0",
+        "@id": "urn:uuid:bea1dc23-0537-4874-82ce-454f48c08d0a",
         "@type": [
           "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#FolderEntry",
-          "http://www.openarchives.org/ore/terms/Proxy"
+          "http://www.openarchives.org/ore/terms/Aggregation",
+          "http://purl.org/wf4ever/ro#Folder"
+        ],
+        "http://www.openarchives.org/ore/terms/aggregates": [
+          {
+            "@id": "urn:uuid:7329bf41-05c0-4881-8bd3-1203a530f736"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:7329bf41-05c0-4881-8bd3-1203a530f736",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://www.openarchives.org/ore/terms/Proxy",
+          "http://purl.org/wf4ever/ro#FolderEntry"
         ],
         "http://purl.org/wf4ever/ro#entryName": [
           {
@@ -1251,58 +1294,22 @@
         ],
         "http://www.openarchives.org/ore/terms/proxyFor": [
           {
-            "@id": "urn:uuid:0867ef40-bf1d-4b05-87ab-03a90f476d5e"
+            "@id": "urn:uuid:cb12bf67-5541-4f8c-b897-47a87e11a242"
           }
         ],
         "http://www.openarchives.org/ore/terms/proxyIn": [
           {
-            "@id": "urn:uuid:378648cc-14bb-42ba-90e5-fbf9e4099a1c"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:378648cc-14bb-42ba-90e5-fbf9e4099a1c",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://www.openarchives.org/ore/terms/Aggregation",
-          "http://purl.org/wf4ever/ro#Folder"
-        ],
-        "http://www.openarchives.org/ore/terms/aggregates": [
-          {
-            "@id": "urn:uuid:eb32dcb0-f27a-42ec-a3ed-6314546844a0"
+            "@id": "urn:uuid:bea1dc23-0537-4874-82ce-454f48c08d0a"
           }
         ]
       }
     ],
-    "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-378648cc-14bb-42ba-90e5-fbf9e4099a1c.ttl"
+    "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-bea1dc23-0537-4874-82ce-454f48c08d0a.ttl"
   },
   {
     "@graph": [
       {
-        "@id": "urn:uuid:83160fd7-e052-40ef-9f0c-8af9b40c952b",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#FolderEntry",
-          "http://www.openarchives.org/ore/terms/Proxy"
-        ],
-        "http://purl.org/wf4ever/ro#entryName": [
-          {
-            "@value": "bar.out.out"
-          }
-        ],
-        "http://www.openarchives.org/ore/terms/proxyFor": [
-          {
-            "@id": "urn:uuid:54ed715b-cb81-46d5-bbd0-41c8c4131a56"
-          }
-        ],
-        "http://www.openarchives.org/ore/terms/proxyIn": [
-          {
-            "@id": "urn:uuid:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98",
+        "@id": "urn:uuid:5b25d2eb-2e89-4d62-8145-2ea3656ba173",
         "@type": [
           "http://www.w3.org/ns/prov#Entity",
           "http://www.openarchives.org/ore/terms/Aggregation",
@@ -1310,60 +1317,19 @@
         ],
         "http://www.openarchives.org/ore/terms/aggregates": [
           {
-            "@id": "urn:uuid:83160fd7-e052-40ef-9f0c-8af9b40c952b"
-          }
-        ]
-      }
-    ],
-    "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98.ttl"
-  },
-  {
-    "@graph": [
-      {
-        "@id": "urn:uuid:4b9bc400-4df4-480b-b59d-6987c04f500f",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#FolderEntry",
-          "http://www.openarchives.org/ore/terms/Proxy"
-        ],
-        "http://purl.org/wf4ever/ro#entryName": [
-          {
-            "@value": "foo.out"
-          }
-        ],
-        "http://www.openarchives.org/ore/terms/proxyFor": [
-          {
-            "@id": "urn:uuid:378648cc-14bb-42ba-90e5-fbf9e4099a1c"
-          }
-        ],
-        "http://www.openarchives.org/ore/terms/proxyIn": [
-          {
-            "@id": "urn:uuid:c3ab4de7-e45b-469e-a6e2-940f9721cc9b"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:c3ab4de7-e45b-469e-a6e2-940f9721cc9b",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://www.openarchives.org/ore/terms/Aggregation",
-          "http://purl.org/wf4ever/ro#Folder"
-        ],
-        "http://www.openarchives.org/ore/terms/aggregates": [
-          {
-            "@id": "urn:uuid:4b9bc400-4df4-480b-b59d-6987c04f500f"
+            "@id": "urn:uuid:3c9e35a6-42d6-4905-8a27-0e4159882180"
           },
           {
-            "@id": "urn:uuid:a752267f-a0a9-4838-aacd-4b60b1aca9f3"
+            "@id": "urn:uuid:8fc06ba2-c479-498a-b95e-61eb975eb53b"
           }
         ]
       },
       {
-        "@id": "urn:uuid:a752267f-a0a9-4838-aacd-4b60b1aca9f3",
+        "@id": "urn:uuid:8fc06ba2-c479-498a-b95e-61eb975eb53b",
         "@type": [
           "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#FolderEntry",
-          "http://www.openarchives.org/ore/terms/Proxy"
+          "http://www.openarchives.org/ore/terms/Proxy",
+          "http://purl.org/wf4ever/ro#FolderEntry"
         ],
         "http://purl.org/wf4ever/ro#entryName": [
           {
@@ -1372,65 +1338,49 @@
         ],
         "http://www.openarchives.org/ore/terms/proxyFor": [
           {
-            "@id": "urn:uuid:3504fafc-d1b7-4165-a4d7-7a0c4bfbbe98"
+            "@id": "urn:uuid:8cb9abec-9ecf-4e54-86b5-7f08a073ce60"
           }
         ],
         "http://www.openarchives.org/ore/terms/proxyIn": [
           {
-            "@id": "urn:uuid:c3ab4de7-e45b-469e-a6e2-940f9721cc9b"
+            "@id": "urn:uuid:5b25d2eb-2e89-4d62-8145-2ea3656ba173"
           }
         ]
-      }
-    ],
-    "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-c3ab4de7-e45b-469e-a6e2-940f9721cc9b.ttl"
-  },
-  {
-    "@graph": [
+      },
       {
-        "@id": "urn:uuid:36d252c7-be92-4775-9e88-bb46d36fa958",
+        "@id": "urn:uuid:3c9e35a6-42d6-4905-8a27-0e4159882180",
         "@type": [
           "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#FolderEntry",
-          "http://www.openarchives.org/ore/terms/Proxy"
+          "http://www.openarchives.org/ore/terms/Proxy",
+          "http://purl.org/wf4ever/ro#FolderEntry"
         ],
         "http://purl.org/wf4ever/ro#entryName": [
           {
-            "@value": "foo"
+            "@value": "foo.out"
           }
         ],
         "http://www.openarchives.org/ore/terms/proxyFor": [
           {
-            "@id": "urn:uuid:b280830d-2952-4f46-964a-bf8ca781adc1"
+            "@id": "urn:uuid:bea1dc23-0537-4874-82ce-454f48c08d0a"
           }
         ],
         "http://www.openarchives.org/ore/terms/proxyIn": [
           {
-            "@id": "urn:uuid:0f2f543c-695b-45c6-b31d-5c8740425f3c"
+            "@id": "urn:uuid:5b25d2eb-2e89-4d62-8145-2ea3656ba173"
           }
         ]
-      },
+      }
+    ],
+    "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-5b25d2eb-2e89-4d62-8145-2ea3656ba173.ttl"
+  },
+  {
+    "@graph": [
       {
-        "@id": "urn:uuid:0f2f543c-695b-45c6-b31d-5c8740425f3c",
+        "@id": "urn:uuid:4f43d441-3e01-473d-adbb-50810da33c6c",
         "@type": [
           "http://www.w3.org/ns/prov#Entity",
-          "http://www.openarchives.org/ore/terms/Aggregation",
-          "http://purl.org/wf4ever/ro#Folder"
-        ],
-        "http://www.openarchives.org/ore/terms/aggregates": [
-          {
-            "@id": "urn:uuid:36d252c7-be92-4775-9e88-bb46d36fa958"
-          },
-          {
-            "@id": "urn:uuid:79be28a7-70ef-4241-91e3-d5e8349cfd64"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:79be28a7-70ef-4241-91e3-d5e8349cfd64",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#FolderEntry",
-          "http://www.openarchives.org/ore/terms/Proxy"
+          "http://www.openarchives.org/ore/terms/Proxy",
+          "http://purl.org/wf4ever/ro#FolderEntry"
         ],
         "http://purl.org/wf4ever/ro#entryName": [
           {
@@ -1439,68 +1389,17 @@
         ],
         "http://www.openarchives.org/ore/terms/proxyFor": [
           {
-            "@id": "urn:uuid:daf9ca4c-2d3f-4485-a07f-43ef8273020a"
+            "@id": "urn:uuid:c33fb8ba-d775-47e6-a356-7a31541c3a54"
           }
         ],
         "http://www.openarchives.org/ore/terms/proxyIn": [
           {
-            "@id": "urn:uuid:0f2f543c-695b-45c6-b31d-5c8740425f3c"
-          }
-        ]
-      }
-    ],
-    "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-0f2f543c-695b-45c6-b31d-5c8740425f3c.ttl"
-  },
-  {
-    "@graph": [
-      {
-        "@id": "urn:uuid:239eafb4-4463-46ff-afac-5113c6e74e67",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#FolderEntry",
-          "http://www.openarchives.org/ore/terms/Proxy"
-        ],
-        "http://purl.org/wf4ever/ro#entryName": [
-          {
-            "@value": "foo.out"
-          }
-        ],
-        "http://www.openarchives.org/ore/terms/proxyFor": [
-          {
-            "@id": "urn:uuid:1f9b8a9c-386a-44da-a873-4b68f6c85451"
-          }
-        ],
-        "http://www.openarchives.org/ore/terms/proxyIn": [
-          {
-            "@id": "urn:uuid:894a0b93-ea8e-40d5-b0fb-4923df529cca"
+            "@id": "urn:uuid:ddfddee2-1c54-48a2-a45f-8edf28af1d65"
           }
         ]
       },
       {
-        "@id": "urn:uuid:0d4232ac-a098-474c-8ee3-a7710811c376",
-        "@type": [
-          "http://www.w3.org/ns/prov#Entity",
-          "http://purl.org/wf4ever/ro#FolderEntry",
-          "http://www.openarchives.org/ore/terms/Proxy"
-        ],
-        "http://purl.org/wf4ever/ro#entryName": [
-          {
-            "@value": "bar.out"
-          }
-        ],
-        "http://www.openarchives.org/ore/terms/proxyFor": [
-          {
-            "@id": "urn:uuid:6f1e9cdf-9128-4d1e-a8cb-34e8255c88eb"
-          }
-        ],
-        "http://www.openarchives.org/ore/terms/proxyIn": [
-          {
-            "@id": "urn:uuid:894a0b93-ea8e-40d5-b0fb-4923df529cca"
-          }
-        ]
-      },
-      {
-        "@id": "urn:uuid:894a0b93-ea8e-40d5-b0fb-4923df529cca",
+        "@id": "urn:uuid:ddfddee2-1c54-48a2-a45f-8edf28af1d65",
         "@type": [
           "http://www.w3.org/ns/prov#Entity",
           "http://www.openarchives.org/ore/terms/Aggregation",
@@ -1508,14 +1407,145 @@
         ],
         "http://www.openarchives.org/ore/terms/aggregates": [
           {
-            "@id": "urn:uuid:239eafb4-4463-46ff-afac-5113c6e74e67"
+            "@id": "urn:uuid:4f43d441-3e01-473d-adbb-50810da33c6c"
           },
           {
-            "@id": "urn:uuid:0d4232ac-a098-474c-8ee3-a7710811c376"
+            "@id": "urn:uuid:b9a13f00-59e0-4bb4-ab99-4ad4c84c2dae"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:b9a13f00-59e0-4bb4-ab99-4ad4c84c2dae",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://www.openarchives.org/ore/terms/Proxy",
+          "http://purl.org/wf4ever/ro#FolderEntry"
+        ],
+        "http://purl.org/wf4ever/ro#entryName": [
+          {
+            "@value": "foo"
+          }
+        ],
+        "http://www.openarchives.org/ore/terms/proxyFor": [
+          {
+            "@id": "urn:uuid:6f360b00-3ef7-4a0a-9be0-6be2f7fc929d"
+          }
+        ],
+        "http://www.openarchives.org/ore/terms/proxyIn": [
+          {
+            "@id": "urn:uuid:ddfddee2-1c54-48a2-a45f-8edf28af1d65"
           }
         ]
       }
     ],
-    "@id": "arcp://uuid,86e05e63-d4dd-4a06-8235-9d26df405724/metadata/directory-894a0b93-ea8e-40d5-b0fb-4923df529cca.ttl"
+    "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-ddfddee2-1c54-48a2-a45f-8edf28af1d65.ttl"
+  },
+  {
+    "@graph": [
+      {
+        "@id": "urn:uuid:8cb9abec-9ecf-4e54-86b5-7f08a073ce60",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://www.openarchives.org/ore/terms/Aggregation",
+          "http://purl.org/wf4ever/ro#Folder"
+        ],
+        "http://www.openarchives.org/ore/terms/aggregates": [
+          {
+            "@id": "urn:uuid:899d951e-0ef0-42a7-a460-3cf4c3b3aff5"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:899d951e-0ef0-42a7-a460-3cf4c3b3aff5",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://www.openarchives.org/ore/terms/Proxy",
+          "http://purl.org/wf4ever/ro#FolderEntry"
+        ],
+        "http://purl.org/wf4ever/ro#entryName": [
+          {
+            "@value": "bar.out.out"
+          }
+        ],
+        "http://www.openarchives.org/ore/terms/proxyFor": [
+          {
+            "@id": "urn:uuid:2c6ae84c-c98c-4173-aa24-44b9bb21d372"
+          }
+        ],
+        "http://www.openarchives.org/ore/terms/proxyIn": [
+          {
+            "@id": "urn:uuid:8cb9abec-9ecf-4e54-86b5-7f08a073ce60"
+          }
+        ]
+      }
+    ],
+    "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-8cb9abec-9ecf-4e54-86b5-7f08a073ce60.ttl"
+  },
+  {
+    "@graph": [
+      {
+        "@id": "urn:uuid:dfa94007-0aba-4189-a4a2-f4be72d084ef",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://www.openarchives.org/ore/terms/Proxy",
+          "http://purl.org/wf4ever/ro#FolderEntry"
+        ],
+        "http://purl.org/wf4ever/ro#entryName": [
+          {
+            "@value": "foo"
+          }
+        ],
+        "http://www.openarchives.org/ore/terms/proxyFor": [
+          {
+            "@id": "urn:uuid:c7636f08-692c-4e1e-927f-823e9e76aac7"
+          }
+        ],
+        "http://www.openarchives.org/ore/terms/proxyIn": [
+          {
+            "@id": "urn:uuid:a632ff01-ca44-453b-982f-96879f1b85ba"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:a632ff01-ca44-453b-982f-96879f1b85ba",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://www.openarchives.org/ore/terms/Aggregation",
+          "http://purl.org/wf4ever/ro#Folder"
+        ],
+        "http://www.openarchives.org/ore/terms/aggregates": [
+          {
+            "@id": "urn:uuid:dfa94007-0aba-4189-a4a2-f4be72d084ef"
+          },
+          {
+            "@id": "urn:uuid:93dc7383-4670-4192-9954-659613284713"
+          }
+        ]
+      },
+      {
+        "@id": "urn:uuid:93dc7383-4670-4192-9954-659613284713",
+        "@type": [
+          "http://www.w3.org/ns/prov#Entity",
+          "http://www.openarchives.org/ore/terms/Proxy",
+          "http://purl.org/wf4ever/ro#FolderEntry"
+        ],
+        "http://purl.org/wf4ever/ro#entryName": [
+          {
+            "@value": "bar"
+          }
+        ],
+        "http://www.openarchives.org/ore/terms/proxyFor": [
+          {
+            "@id": "urn:uuid:3890a779-35f5-4753-8cce-9c4645221ea2"
+          }
+        ],
+        "http://www.openarchives.org/ore/terms/proxyIn": [
+          {
+            "@id": "urn:uuid:a632ff01-ca44-453b-982f-96879f1b85ba"
+          }
+        ]
+      }
+    ],
+    "@id": "arcp://uuid,422fecc5-1e57-45bc-a653-1513a7a6fe70/metadata/directory-a632ff01-ca44-453b-982f-96879f1b85ba.ttl"
   }
 ]
