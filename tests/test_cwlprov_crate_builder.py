@@ -762,9 +762,7 @@ def test_secondary_files(data_dir, tmpdir):
     }
     wf_action = actions["packed.cwl"]
     wf_objects = {_.type: _ for _ in wf_action["object"]}
-    # The following should be {"Collection", "PropertyValue"}. CWLProv does
-    # not record secondaryFiles for the workflow run (only for step runs)
-    assert set(wf_objects) == {"File", "PropertyValue"}
+    assert set(wf_objects) == {"Collection", "PropertyValue"}
     grep_action = actions["packed.cwl#greptool.cwl"]
     assert len(grep_action["object"]) == 1
     grep_collection = grep_action["object"][0]
@@ -775,9 +773,7 @@ def test_secondary_files(data_dir, tmpdir):
     assert len(collection_parts) == 2
     assert main_file.id in collection_parts
     aux_file = [v for k, v in collection_parts.items() if k != main_file.id][0]
-    # grepsort_in should also be in the exampleOfWork, see above mention of
-    # CWLProv issue
-    assert grep_collection["exampleOfWork"] == grep_in
+    assert set(grep_collection["exampleOfWork"]) == {grep_in, grepsort_in}
     # file contents
     text_main = (root / "data/b6/b64565ee76fcd5296c48314f858f8e4672c71439").read_text()
     text_aux = (root / "data/c7/c708d7ef841f7e1748436b8ef5670d0b2de1a227").read_text()

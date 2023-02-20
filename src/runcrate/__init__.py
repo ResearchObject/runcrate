@@ -64,6 +64,12 @@ PROFILES_VERSION = "0.1"
 WROC_PROFILE_VERSION = "1.0"
 
 
+def as_list(value):
+    if isinstance(value, list):
+        return value
+    return [value]
+
+
 def convert_cwl_type(cwl_type):
     if isinstance(cwl_type, list):
         s = set(convert_cwl_type(_) for _ in cwl_type)
@@ -259,6 +265,7 @@ class ProvCrateBuilder:
         self.add_workflow(crate)
         self.add_engine_run(crate)
         self.add_action(crate, self.workflow_run)
+        self.patch_workflow_input_collection(crate)
         return crate
 
     def add_profiles(self, crate):
@@ -586,3 +593,53 @@ class ProvCrateBuilder:
                 pass
             to_param = get_fragment(out.id)
             connect(from_param, to_param, workflow)
+
+    def patch_workflow_input_collection(self, crate, wf=None):
+        """\
+        CWLProv records secondary files only in step runs, not in the workflow
+        run. Thus, when the conversion of parameter values is completed,
+        workflow-level parameters with secondary files get mapped to the main
+        entity of the collection alone (a File). This method fixes the mapping
+        by retrieving the correct Collection entity from the relevant tool
+        execution.
+        """
+        if wf is None:
+            wf = crate.mainEntity
+        sel = [_ for _ in crate.contextual_entities
+               if "CreateAction" in as_list(_.type) and _.get("instrument") is wf]
+        if not sel:
+            raise RuntimeError(f"{wf.id} has no corresponding action")
+        wf_action = sel[0]
+        connections = [_ for _ in crate.contextual_entities
+                       if "ParameterConnection" in as_list(_.type)]
+        for param in wf.get("input", []):
+            if param.get("additionalType") == "Collection":
+                src_sel = [_ for _ in wf_action.get("object", [])
+                           if param in as_list(_.get("exampleOfWork"))]
+                if not src_sel:
+                    raise RuntimeError(f"object for param {param.id} not found")
+                obj = src_sel[0]
+                if obj.type != "Collection":
+                    param_connections = [_ for _ in connections if _["sourceParameter"] is param]
+                    if not param_connections:
+                        continue
+                    pc = param_connections[0]
+                    tgt_param = pc["targetParameter"]
+                    tgt_sel = [_ for _ in crate.get_entities()
+                               if tgt_param in as_list(_.get("exampleOfWork"))]
+                    if not tgt_sel:
+                        raise RuntimeError(f"object for param {tgt_param.id} not found")
+                    tgt_obj = tgt_sel[0]
+                    wf_action["object"] = [
+                        _ for _ in as_list(wf_action["object"]) if _ is not obj
+                    ] + [tgt_obj]
+                    tgt_obj.append_to("exampleOfWork", param)
+                    obj["exampleOfWork"] = [_ for _ in as_list(obj["exampleOfWork"])
+                                            if _ is not param]
+                    if len(obj["exampleOfWork"]) == 1:
+                        obj["exampleOfWork"] = obj["exampleOfWork"][0]
+                    if len(obj["exampleOfWork"]) == 0:
+                        del obj["exampleOfWork"]
+        for tool in wf.get("hasPart", []):
+            if "ComputationalWorkflow" in as_list(tool.type):
+                self.patch_workflow_input_collection(crate, wf=tool)
