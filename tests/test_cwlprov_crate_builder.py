@@ -136,6 +136,16 @@ def test_revsort(data_dir, tmpdir):
     assert (output / rev_output_file.id).read_text() == rev_out_text
     out_text = (root / "data/b9/b9214658cc453331b62c2282b772a5c063dbd284").read_text()
     assert (output / wf_output_file.id).read_text() == out_text
+    # declared profile conformance
+    proc_prof = crate.get("https://w3id.org/ro/wfrun/process/0.1")
+    wf_prof = crate.get("https://w3id.org/ro/wfrun/workflow/0.1")
+    prov_prof = crate.get("https://w3id.org/ro/wfrun/provenance/0.1")
+    wroc_prof = crate.get("https://w3id.org/workflowhub/workflow-ro-crate/1.0")
+    profiles = [proc_prof, wf_prof, prov_prof, wroc_prof]
+    assert all(profiles)
+    assert set(profiles) <= set(crate.root_dataset["conformsTo"])
+    assert set(_.type for _ in profiles) == {"CreativeWork"}
+    assert [_["version"] for _ in profiles] == ["0.1", "0.1", "0.1", "1.0"]
 
 
 def test_no_input(data_dir, tmpdir):

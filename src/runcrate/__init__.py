@@ -58,8 +58,10 @@ EXTRA_TERMS = {
     "sha1": "https://w3id.org/ro/terms/workflow-run#sha1"
 }
 
-
 CWLPROV_NONE = "https://w3id.org/cwl/prov#None"
+
+PROFILES_VERSION = "0.1"
+WROC_PROFILE_VERSION = "1.0"
 
 
 def convert_cwl_type(cwl_type):
@@ -253,10 +255,30 @@ class ProvCrateBuilder:
     def build(self):
         crate = ROCrate(gen_preview=False)
         crate.metadata.extra_terms.update(EXTRA_TERMS)
+        self.add_profiles(crate)
         self.add_workflow(crate)
         self.add_engine_run(crate)
         self.add_action(crate, self.workflow_run)
         return crate
+
+    def add_profiles(self, crate):
+        profiles = []
+        for p in "process", "workflow", "provenance":
+            id_ = f"https://w3id.org/ro/wfrun/{p}/{PROFILES_VERSION}"
+            profiles.append(crate.add(ContextEntity(crate, id_, properties={
+                "@type": "CreativeWork",
+                "name": f"{p.title()} Run Crate",
+                "version": PROFILES_VERSION,
+            })))
+        # FIXME: in the future, this could go out of sync with the wroc
+        # profile added by ro-crate-py to the metadata descriptor
+        wroc_profile_id = f"https://w3id.org/workflowhub/workflow-ro-crate/{WROC_PROFILE_VERSION}"
+        profiles.append(crate.add(ContextEntity(crate, wroc_profile_id, properties={
+            "@type": "CreativeWork",
+            "name": "Workflow RO-Crate",
+            "version": WROC_PROFILE_VERSION,
+        })))
+        crate.root_dataset["conformsTo"] = profiles
 
     def add_workflow(self, crate):
         lang_version = self.cwl_defs[WORKFLOW_BASENAME].cwlVersion
