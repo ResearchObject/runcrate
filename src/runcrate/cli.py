@@ -47,13 +47,18 @@ def cli():
     metavar="STRING",
     help="original workflow name",
 )
-def convert(root, output, license, workflow_name):
+@click.option(
+    "--readme",
+    type=click.Path(exists=True, dir_okay=False, readable=True, path_type=Path),
+    help="path to a README file (should be README.md in Markdown format)",
+)
+def convert(root, output, license, workflow_name, readme):
     """\
     RO_DIR: top-level directory of the CWLProv RO
     """
     if not output:
         output = Path(f"{root.name}.crate.zip")
-    builder = ProvCrateBuilder(root, workflow_name, license)
+    builder = ProvCrateBuilder(root, workflow_name, license, readme)
     crate = builder.build()
     if output.suffix == ".zip":
         crate.write_zip(output)

@@ -180,10 +180,11 @@ def get_workflow(wf_path):
 
 class ProvCrateBuilder:
 
-    def __init__(self, root, workflow_name=None, license=None):
+    def __init__(self, root, workflow_name=None, license=None, readme=None):
         self.root = Path(root)
         self.workflow_name = workflow_name
         self.license = license
+        self.readme = Path(readme) if readme else readme
         self.wf_path = self.root / "workflow" / WORKFLOW_BASENAME
         self.cwl_defs = get_workflow(self.wf_path)
         self.step_maps = self._get_step_maps(self.cwl_defs)
@@ -261,12 +262,22 @@ class ProvCrateBuilder:
     def build(self):
         crate = ROCrate(gen_preview=False)
         crate.metadata.extra_terms.update(EXTRA_TERMS)
+        self.add_root_metadata(crate)
         self.add_profiles(crate)
         self.add_workflow(crate)
         self.add_engine_run(crate)
         self.add_action(crate, self.workflow_run)
         self.patch_workflow_input_collection(crate)
         return crate
+
+    def add_root_metadata(self, crate):
+        if self.license:
+            crate.root_dataset["license"] = self.license
+        if self.readme:
+            readme = crate.add_file(self.readme)
+            readme["about"] = crate.root_dataset
+            if self.readme.suffix.lower() == ".md":
+                readme["encodingFormat"] = "text/markdown"
 
     def add_profiles(self, crate):
         profiles = []
@@ -297,8 +308,6 @@ class ProvCrateBuilder:
             self.wf_path, self.wf_path.name, main=True, lang="cwl",
             lang_version=lang_version, gen_cwl=False, properties=properties
         )
-        if self.license:
-            crate.root_dataset["license"] = self.license
         cwl_workflow = self.cwl_defs[workflow.id]
         workflow["input"] = self.add_params(crate, cwl_workflow.inputs)
         workflow["output"] = self.add_params(crate, cwl_workflow.outputs)

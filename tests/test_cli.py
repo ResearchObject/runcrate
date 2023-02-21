@@ -78,3 +78,14 @@ def test_cli_convert_workflow_name(data_dir, tmpdir):
     crate = ROCrate(crate_dir)
     workflow = crate.mainEntity
     assert workflow["name"] == workflow_name
+
+
+def test_cli_convert_readme(data_dir, tmpdir):
+    root = data_dir / "revsort-run-1"
+    crate_dir = tmpdir / "revsort-run-1-crate"
+    readme = data_dir / "README.md"
+    runner = CliRunner()
+    args = ["convert", str(root), "-o", str(crate_dir), "--readme", readme]
+    assert runner.invoke(cli, args).exit_code == 0
+    crate = ROCrate(crate_dir)
+    assert crate.get(readme.name)

@@ -29,11 +29,17 @@ def test_revsort(data_dir, tmpdir):
     root = data_dir / "revsort-run-1"
     output = tmpdir / "revsort-run-1-crate"
     license = "Apache-2.0"
+    readme = data_dir / "README.md"
     workflow_name = "RevSort"
-    builder = ProvCrateBuilder(root, workflow_name=workflow_name, license=license)
+    builder = ProvCrateBuilder(root, workflow_name=workflow_name, license=license, readme=readme)
     crate = builder.build()
     crate.write(output)
     assert crate.root_dataset["license"] == "Apache-2.0"
+    readme_f = crate.get(readme.name)
+    assert readme_f
+    assert readme_f.type == "File"
+    assert readme_f["encodingFormat"] == "text/markdown"
+    assert readme_f["about"] is crate.root_dataset
     workflow = crate.mainEntity
     assert workflow.id == "packed.cwl"
     assert workflow["name"] == "RevSort"
@@ -136,6 +142,7 @@ def test_revsort(data_dir, tmpdir):
     assert (output / rev_output_file.id).read_text() == rev_out_text
     out_text = (root / "data/b9/b9214658cc453331b62c2282b772a5c063dbd284").read_text()
     assert (output / wf_output_file.id).read_text() == out_text
+    assert (output / readme.name).read_text() == readme.read_text()
     # declared profile conformance
     proc_prof = crate.get("https://w3id.org/ro/wfrun/process/0.1")
     wf_prof = crate.get("https://w3id.org/ro/wfrun/workflow/0.1")
