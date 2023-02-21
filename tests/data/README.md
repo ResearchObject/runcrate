@@ -65,3 +65,8 @@ Similar to [revsort](#revsort-run-1), but the parameter to reverse the order is 
 ## grepsort-run-1
 
 Runs a grep on the input file, taking the patterns to search for from another file. Used to test support for `wasDerivedFrom => cwlprov:SecondaryFile`.
+
+
+## greprevgrep-run-1
+
+Runs a `grep -f` on the input file, then a `rev` and another `grep -f` using the same pattern file. Used to check that exampleOfWork does not end up having duplicates (file entity maps to same formal parameter in two different steps).

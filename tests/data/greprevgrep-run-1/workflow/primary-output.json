@@ -1,0 +1,13 @@
+{
+    "wf_out": {
+        "location": "../data/90/90857206e4921cb6ddfbb00d605816df4cf465c0",
+        "basename": "grep_out.txt",
+        "nameroot": "grep_out",
+        "nameext": ".txt",
+        "class": "File",
+        "checksum": "sha1$90857206e4921cb6ddfbb00d605816df4cf465c0",
+        "size": 9,
+        "http://commonwl.org/cwltool#generation": 0,
+        "@id": "urn:uuid:20ad8039-9e82-4ff7-be75-74dfaac35097"
+    }
+}
