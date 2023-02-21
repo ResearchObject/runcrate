@@ -54,11 +54,20 @@ EXTRA_TERMS = {
     "ParameterConnection": "https://w3id.org/ro/terms/workflow-run#ParameterConnection",
     "connection": "https://w3id.org/ro/terms/workflow-run#connection",
     "sourceParameter": "https://w3id.org/ro/terms/workflow-run#sourceParameter",
-    "targetParameter": "https://w3id.org/ro/terms/workflow-run#targetParameter"
+    "targetParameter": "https://w3id.org/ro/terms/workflow-run#targetParameter",
+    "sha1": "https://w3id.org/ro/terms/workflow-run#sha1"
 }
 
-
 CWLPROV_NONE = "https://w3id.org/cwl/prov#None"
+
+PROFILES_VERSION = "0.1"
+WROC_PROFILE_VERSION = "1.0"
+
+
+def as_list(value):
+    if isinstance(value, list):
+        return value
+    return [value]
 
 
 def convert_cwl_type(cwl_type):
@@ -171,10 +180,11 @@ def get_workflow(wf_path):
 
 class ProvCrateBuilder:
 
-    def __init__(self, root, workflow_name=None, license=None):
+    def __init__(self, root, workflow_name=None, license=None, readme=None):
         self.root = Path(root)
         self.workflow_name = workflow_name
         self.license = license
+        self.readme = Path(readme) if readme else readme
         self.wf_path = self.root / "workflow" / WORKFLOW_BASENAME
         self.cwl_defs = get_workflow(self.wf_path)
         self.step_maps = self._get_step_maps(self.cwl_defs)
@@ -252,10 +262,41 @@ class ProvCrateBuilder:
     def build(self):
         crate = ROCrate(gen_preview=False)
         crate.metadata.extra_terms.update(EXTRA_TERMS)
+        self.add_root_metadata(crate)
+        self.add_profiles(crate)
         self.add_workflow(crate)
         self.add_engine_run(crate)
         self.add_action(crate, self.workflow_run)
+        self.patch_workflow_input_collection(crate)
         return crate
+
+    def add_root_metadata(self, crate):
+        if self.license:
+            crate.root_dataset["license"] = self.license
+        if self.readme:
+            readme = crate.add_file(self.readme)
+            readme["about"] = crate.root_dataset
+            if self.readme.suffix.lower() == ".md":
+                readme["encodingFormat"] = "text/markdown"
+
+    def add_profiles(self, crate):
+        profiles = []
+        for p in "process", "workflow", "provenance":
+            id_ = f"https://w3id.org/ro/wfrun/{p}/{PROFILES_VERSION}"
+            profiles.append(crate.add(ContextEntity(crate, id_, properties={
+                "@type": "CreativeWork",
+                "name": f"{p.title()} Run Crate",
+                "version": PROFILES_VERSION,
+            })))
+        # FIXME: in the future, this could go out of sync with the wroc
+        # profile added by ro-crate-py to the metadata descriptor
+        wroc_profile_id = f"https://w3id.org/workflowhub/workflow-ro-crate/{WROC_PROFILE_VERSION}"
+        profiles.append(crate.add(ContextEntity(crate, wroc_profile_id, properties={
+            "@type": "CreativeWork",
+            "name": "Workflow RO-Crate",
+            "version": WROC_PROFILE_VERSION,
+        })))
+        crate.root_dataset["conformsTo"] = profiles
 
     def add_workflow(self, crate):
         lang_version = self.cwl_defs[WORKFLOW_BASENAME].cwlVersion
@@ -267,8 +308,6 @@ class ProvCrateBuilder:
             self.wf_path, self.wf_path.name, main=True, lang="cwl",
             lang_version=lang_version, gen_cwl=False, properties=properties
         )
-        if self.license:
-            crate.root_dataset["license"] = self.license
         cwl_workflow = self.cwl_defs[workflow.id]
         workflow["input"] = self.add_params(crate, cwl_workflow.inputs)
         workflow["output"] = self.add_params(crate, cwl_workflow.outputs)
@@ -459,7 +498,18 @@ class ProvCrateBuilder:
             action_params.append(action_p)
         return action_params
 
-    def convert_param(self, prov_param, crate, convert_secondary=True, parent=""):
+    @staticmethod
+    def _set_alternate_name(prov_param, action_p, parent=None):
+        basename = getattr(prov_param, "basename", None)
+        if not basename:
+            return
+        if not parent:
+            action_p["alternateName"] = basename
+            return
+        if "alternateName" in parent:
+            action_p["alternateName"] = (Path(parent["alternateName"]) / basename).as_posix()
+
+    def convert_param(self, prov_param, crate, convert_secondary=True, parent=None):
         type_names = frozenset(str(_) for _ in prov_param.types())
         secondary_files = [_.generated_entity() for _ in prov_param.derivations()
                            if str(_.type) == "cwlprov:SecondaryFile"]
@@ -479,20 +529,24 @@ class ProvCrateBuilder:
             return action_p
         if "wf4ever:File" in type_names:
             hash_ = self.hashes[prov_param.id.localpart]
-            dest = Path(parent) / hash_
+            dest = Path(parent.id if parent else "") / hash_
             action_p = crate.dereference(dest.as_posix())
             if not action_p:
                 source = self.root / Path("data") / hash_[:2] / hash_
-                action_p = crate.add_file(source, dest)
+                action_p = crate.add_file(source, dest, properties={
+                    "sha1": hash_,
+                })
+                self._set_alternate_name(prov_param, action_p, parent=parent)
             return action_p
         if "ro:Folder" in type_names:
             hash_ = self.hashes[prov_param.id.localpart]
-            dest = Path(parent) / hash_
+            dest = Path(parent.id if parent else "") / hash_
             action_p = crate.dereference(dest.as_posix())
             if not action_p:
                 action_p = crate.add_directory(dest_path=dest)
+                self._set_alternate_name(prov_param, action_p, parent=parent)
                 for child in self.get_dict(prov_param).values():
-                    part = self.convert_param(child, crate, parent=dest)
+                    part = self.convert_param(child, crate, parent=action_p)
                     action_p.append_to("hasPart", part)
             return action_p
         if prov_param.value is not None:
@@ -548,3 +602,53 @@ class ProvCrateBuilder:
                 pass
             to_param = get_fragment(out.id)
             connect(from_param, to_param, workflow)
+
+    def patch_workflow_input_collection(self, crate, wf=None):
+        """\
+        CWLProv records secondary files only in step runs, not in the workflow
+        run. Thus, when the conversion of parameter values is completed,
+        workflow-level parameters with secondary files get mapped to the main
+        entity of the collection alone (a File). This method fixes the mapping
+        by retrieving the correct Collection entity from the relevant tool
+        execution.
+        """
+        if wf is None:
+            wf = crate.mainEntity
+        sel = [_ for _ in crate.contextual_entities
+               if "CreateAction" in as_list(_.type) and _.get("instrument") is wf]
+        if not sel:
+            raise RuntimeError(f"{wf.id} has no corresponding action")
+        wf_action = sel[0]
+        connections = [_ for _ in crate.contextual_entities
+                       if "ParameterConnection" in as_list(_.type)]
+        for param in wf.get("input", []):
+            if param.get("additionalType") == "Collection":
+                src_sel = [_ for _ in wf_action.get("object", [])
+                           if param in as_list(_.get("exampleOfWork"))]
+                if not src_sel:
+                    raise RuntimeError(f"object for param {param.id} not found")
+                obj = src_sel[0]
+                if obj.type != "Collection":
+                    param_connections = [_ for _ in connections if _["sourceParameter"] is param]
+                    if not param_connections:
+                        continue
+                    pc = param_connections[0]
+                    tgt_param = pc["targetParameter"]
+                    tgt_sel = [_ for _ in crate.get_entities()
+                               if tgt_param in as_list(_.get("exampleOfWork"))]
+                    if not tgt_sel:
+                        raise RuntimeError(f"object for param {tgt_param.id} not found")
+                    tgt_obj = tgt_sel[0]
+                    wf_action["object"] = [
+                        _ for _ in as_list(wf_action["object"]) if _ is not obj
+                    ] + [tgt_obj]
+                    tgt_obj.append_to("exampleOfWork", param)
+                    obj["exampleOfWork"] = [_ for _ in as_list(obj["exampleOfWork"])
+                                            if _ is not param]
+                    if len(obj["exampleOfWork"]) == 1:
+                        obj["exampleOfWork"] = obj["exampleOfWork"][0]
+                    if len(obj["exampleOfWork"]) == 0:
+                        del obj["exampleOfWork"]
+        for tool in wf.get("hasPart", []):
+            if "ComputationalWorkflow" in as_list(tool.type):
+                self.patch_workflow_input_collection(crate, wf=tool)

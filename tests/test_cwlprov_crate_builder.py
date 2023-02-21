@@ -29,11 +29,17 @@ def test_revsort(data_dir, tmpdir):
     root = data_dir / "revsort-run-1"
     output = tmpdir / "revsort-run-1-crate"
     license = "Apache-2.0"
+    readme = data_dir / "README.md"
     workflow_name = "RevSort"
-    builder = ProvCrateBuilder(root, workflow_name=workflow_name, license=license)
+    builder = ProvCrateBuilder(root, workflow_name=workflow_name, license=license, readme=readme)
     crate = builder.build()
     crate.write(output)
     assert crate.root_dataset["license"] == "Apache-2.0"
+    readme_f = crate.get(readme.name)
+    assert readme_f
+    assert readme_f.type == "File"
+    assert readme_f["encodingFormat"] == "text/markdown"
+    assert readme_f["about"] is crate.root_dataset
     workflow = crate.mainEntity
     assert workflow.id == "packed.cwl"
     assert workflow["name"] == "RevSort"
@@ -79,8 +85,12 @@ def test_revsort(data_dir, tmpdir):
             assert entity["value"] == "True"
         else:
             assert "File" in entity.type
+            assert entity["alternateName"] == "whale.txt"
+            assert entity["sha1"] == entity.id.rsplit("/")[-1]
             wf_input_file = entity
     wf_output_file = wf_results[0]
+    assert wf_output_file["alternateName"] == "output.txt"
+    assert wf_output_file["sha1"] == wf_output_file.id.rsplit("/")[-1]
     assert "File" in wf_output_file.type
     steps = workflow["step"]
     assert len(steps) == 2
@@ -132,6 +142,17 @@ def test_revsort(data_dir, tmpdir):
     assert (output / rev_output_file.id).read_text() == rev_out_text
     out_text = (root / "data/b9/b9214658cc453331b62c2282b772a5c063dbd284").read_text()
     assert (output / wf_output_file.id).read_text() == out_text
+    assert (output / readme.name).read_text() == readme.read_text()
+    # declared profile conformance
+    proc_prof = crate.get("https://w3id.org/ro/wfrun/process/0.1")
+    wf_prof = crate.get("https://w3id.org/ro/wfrun/workflow/0.1")
+    prov_prof = crate.get("https://w3id.org/ro/wfrun/provenance/0.1")
+    wroc_prof = crate.get("https://w3id.org/workflowhub/workflow-ro-crate/1.0")
+    profiles = [proc_prof, wf_prof, prov_prof, wroc_prof]
+    assert all(profiles)
+    assert set(profiles) <= set(crate.root_dataset["conformsTo"])
+    assert set(_.type for _ in profiles) == {"CreativeWork"}
+    assert [_["version"] for _ in profiles] == ["0.1", "0.1", "0.1", "1.0"]
 
 
 def test_no_input(data_dir, tmpdir):
@@ -269,15 +290,28 @@ def test_dir_io(data_dir, tmpdir):
             wf_input_dir = entity
     wf_output_dir = wf_results[0]
     assert wf_input_dir.type == wf_output_dir.type == "Dataset"
+    assert wf_input_dir["alternateName"] == "grepucase_in"
     assert len(wf_input_dir["hasPart"]) == 2
     for f in wf_input_dir["hasPart"]:
         assert f.type == "File"
+    assert set(_["alternateName"] for _ in wf_input_dir["hasPart"]) == {
+        "grepucase_in/bar", "grepucase_in/foo"
+    }
+    assert wf_output_dir["alternateName"] == "ucase_out"
     assert len(wf_output_dir["hasPart"]) == 2
     for d in wf_output_dir["hasPart"]:
         assert d.type == "Dataset"
         assert len(d["hasPart"]) == 1
         for f in d["hasPart"]:
             assert f.type == "File"
+    assert set(_["alternateName"] for _ in wf_output_dir["hasPart"]) == {
+        "ucase_out/bar.out", "ucase_out/foo.out"
+    }
+    for d in wf_output_dir["hasPart"]:
+        if d["alternateName"] == "ucase_out/bar.out":
+            assert d["hasPart"][0]["alternateName"] == "ucase_out/bar.out/bar.out.out"
+        else:
+            assert d["hasPart"][0]["alternateName"] == "ucase_out/foo.out/foo.out.out"
     greptool_action = action_map["packed.cwl#greptool.cwl"]
     greptool_objects = greptool_action["object"]
     greptool_results = greptool_action["result"]
@@ -735,9 +769,7 @@ def test_secondary_files(data_dir, tmpdir):
     }
     wf_action = actions["packed.cwl"]
     wf_objects = {_.type: _ for _ in wf_action["object"]}
-    # The following should be {"Collection", "PropertyValue"}. CWLProv does
-    # not record secondaryFiles for the workflow run (only for step runs)
-    assert set(wf_objects) == {"File", "PropertyValue"}
+    assert set(wf_objects) == {"Collection", "PropertyValue"}
     grep_action = actions["packed.cwl#greptool.cwl"]
     assert len(grep_action["object"]) == 1
     grep_collection = grep_action["object"][0]
@@ -748,9 +780,7 @@ def test_secondary_files(data_dir, tmpdir):
     assert len(collection_parts) == 2
     assert main_file.id in collection_parts
     aux_file = [v for k, v in collection_parts.items() if k != main_file.id][0]
-    # grepsort_in should also be in the exampleOfWork, see above mention of
-    # CWLProv issue
-    assert grep_collection["exampleOfWork"] == grep_in
+    assert set(grep_collection["exampleOfWork"]) == {grep_in, grepsort_in}
     # file contents
     text_main = (root / "data/b6/b64565ee76fcd5296c48314f858f8e4672c71439").read_text()
     text_aux = (root / "data/c7/c708d7ef841f7e1748436b8ef5670d0b2de1a227").read_text()
