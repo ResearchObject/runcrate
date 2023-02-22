@@ -1,0 +1,20 @@
+{
+    "wf_in": {
+        "class": "File",
+        "location": "../data/d2/d24d8bb5362da4fa29f9644f5cab4f1931707d67",
+        "size": 64,
+        "basename": "lines.txt",
+        "nameroot": "lines",
+        "nameext": ".txt",
+        "checksum": "sha1$d24d8bb5362da4fa29f9644f5cab4f1931707d67"
+    },
+    "wf_pattern_file": {
+        "class": "File",
+        "location": "../data/4d/4d952a954710cd355f0670367910889d834f7b0c",
+        "size": 6,
+        "basename": "pattern.txt",
+        "nameroot": "pattern",
+        "nameext": ".txt",
+        "checksum": "sha1$4d952a954710cd355f0670367910889d834f7b0c"
+    }
+}

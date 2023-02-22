@@ -1,0 +1,29 @@
+[2023-02-21T16:55:01,245.412827Z] [cwltool] /home/simleo/git/runcrate/venv/bin/cwltool --provenance ro greprevgrep.cwl params.yml
+[2023-02-21T16:55:01,247.031927Z] Resolved 'greprevgrep.cwl' to 'file:///home/simleo/git/runcrate/cwl/greprevgrep/greprevgrep.cwl'
+[2023-02-21T16:55:02,337.846756Z] [provenance] Adding to RO file:///home/simleo/git/runcrate/cwl/greprevgrep/lines.txt
+[2023-02-21T16:55:02,338.463306Z] [provenance] Adding to RO file:///home/simleo/git/runcrate/cwl/greprevgrep/pattern.txt
+[2023-02-21T16:55:02,340.536118Z] [workflow ] start
+[2023-02-21T16:55:02,340.836048Z] [workflow ] starting step grep1
+[2023-02-21T16:55:02,341.021776Z] [step grep1] start
+[2023-02-21T16:55:02,343.388319Z] [job grep1] /tmp/zijk3jc_$ grep \
+    -f \
+    /tmp/j3fykfcx/stgee3e1a4c-b5b8-4a6a-bb7c-299bcce8f1b4/pattern.txt \
+    /tmp/j3fykfcx/stg59579adf-1d88-4ff5-b969-919d1291536e/lines.txt > /tmp/zijk3jc_/grep_out.txt
+[2023-02-21T16:55:02,349.277020Z] [job grep1] completed success
+[2023-02-21T16:55:02,349.573135Z] [step grep1] completed success
+[2023-02-21T16:55:02,350.143433Z] [workflow ] starting step reverse
+[2023-02-21T16:55:02,350.410223Z] [step reverse] start
+[2023-02-21T16:55:02,353.214264Z] [job reverse] /tmp/fwxumute$ rev \
+    /tmp/dcj7i6tj/stgdb9772d5-cc46-425d-b6f4-0acda4fba279/grep_out.txt > /tmp/fwxumute/rev_out.txt
+[2023-02-21T16:55:02,359.527826Z] [job reverse] completed success
+[2023-02-21T16:55:02,359.775305Z] [step reverse] completed success
+[2023-02-21T16:55:02,360.239506Z] [workflow ] starting step grep2
+[2023-02-21T16:55:02,360.421896Z] [step grep2] start
+[2023-02-21T16:55:02,362.895966Z] [job grep2] /tmp/n3pdjw59$ grep \
+    -f \
+    /tmp/mmv1npfi/stg019511a4-d0f1-49e5-a868-290926eeeb1c/pattern.txt \
+    /tmp/mmv1npfi/stg9c93cc17-faa6-476f-9c9d-eff29a583b58/rev_out.txt > /tmp/n3pdjw59/grep_out.txt
+[2023-02-21T16:55:02,368.671417Z] [job grep2] completed success
+[2023-02-21T16:55:02,368.961573Z] [step grep2] completed success
+[2023-02-21T16:55:02,369.132042Z] [workflow ] completed success
+[2023-02-21T16:55:02,436.669111Z] Final process status is success

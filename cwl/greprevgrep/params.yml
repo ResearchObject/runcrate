@@ -1,0 +1,6 @@
+wf_in:
+  class: File
+  location: lines.txt
+wf_pattern_file:
+  class: File
+  location: pattern.txt
