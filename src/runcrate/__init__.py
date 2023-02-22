@@ -494,7 +494,11 @@ class ProvCrateBuilder:
                     "name": k,
                 }))
                 action_p["value"] = value
-            action_p.append_to("exampleOfWork", wf_p, compact=True)
+            action_p["exampleOfWork"] = list(set(
+                as_list(action_p.get("exampleOfWork", [])) + [wf_p]
+            ))
+            if len(action_p["exampleOfWork"]) == 1:
+                action_p["exampleOfWork"] = action_p["exampleOfWork"][0]
             action_params.append(action_p)
         return action_params
 

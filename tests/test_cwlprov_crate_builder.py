@@ -786,3 +786,20 @@ def test_secondary_files(data_dir, tmpdir):
     text_aux = (root / "data/c7/c708d7ef841f7e1748436b8ef5670d0b2de1a227").read_text()
     assert (output / main_file.id).read_text() == text_main
     assert (output / aux_file.id).read_text() == text_aux
+
+
+def test_exampleofwork_duplicates(data_dir, tmpdir):
+    root = data_dir / "greprevgrep-run-1"
+    output = tmpdir / "greprevgrep-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
+    sel = [_ for _ in crate.data_entities if _.get("alternateName") == "pattern.txt"]
+    assert len(sel) == 1
+    pattern_file = sel[0]
+    assert set(_.id for _ in pattern_file["exampleOfWork"]) == {
+        "packed.cwl#main/wf_pattern_file", "packed.cwl#greptool.cwl/pattern_file"
+    }
+    assert len(pattern_file["exampleOfWork"]) == 2  # no duplicates
