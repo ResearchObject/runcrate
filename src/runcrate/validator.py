@@ -53,7 +53,7 @@ class CrateValidator():
     def _detect_profiles(self):
         """Auto-detect Run Crate profile based on conformsTo
 
-        Return a tuple (process_run, workflow_run, provenance_run) with
+        Return a tuple (workflow, process_run, workflow_run, provenance_run) with
         the corresponding detected profiles URIs. Profiles not detected are
         represented as ``None`` in the tuple.
         """
@@ -61,18 +61,19 @@ class CrateValidator():
         if not isinstance(profiles, list):
             profiles = [profiles]
         
-        process_run, workflow_run, provenance_run = (None,)*3
+        workflow, process_run, workflow_run, provenance_run = (None,)*4
         for p in profiles:
             if self.debug:
                 print("Detected profile {}".format(p.id))
+            if p.id.startswith("https://w3id.org/workflowhub/workflow-ro-crate/"):
+                workflow = p
             if p.id.startswith("https://w3id.org/ro/wfrun/process/"):
                 process_run = p
             if p.id.startswith("https://w3id.org/ro/wfrun/workflow/"):
                 workflow_run = p
             if p.id.startswith("https://w3id.org/ro/wfrun/provenance/"):
                 provenance_run = p
-            # TODO: Also check for Workflow profile stand-alone
-        return (process_run, workflow_run, provenance_run)
+        return (workflow, process_run, workflow_run, provenance_run)
 
     def ro_crate_check(self):
         print("Validating RO-Crate {}".format(self.root))
@@ -157,7 +158,7 @@ class CrateValidator():
         self._validate_shex("process-crate-0.1.shex")
 
     def workflow_check(self):
-        pass
+        self._validate_shex("workflow-crate-1.0.shex")
 
     def workflow_run_check(self):
         pass
