@@ -20,7 +20,7 @@ from rocrate.rocrate import ROCrate
 import rocrateValidator.validate
 
 from importlib_resources import files
-# FIXME: For Python 3.10++ below is sufficient
+# FIXME: For Python 3.10++, below code is sufficient:
 #from importlib.resources import files
 
 import sys
@@ -99,7 +99,7 @@ class CrateValidator():
 
     @property
     def metadataFile(self) -> Path:
-        p = self.root / "ro-crate-metadata.jsonld"
+        p = self.root / "ro-crate-metadata.json"
         if not p.is_file():
             raise IOError("Can't find RO-Crate Metadata file {}".format(p))
         return p
@@ -140,12 +140,21 @@ class CrateValidator():
         raise RootEntityError("Can't find RO-Crate root")
 
     def _load_shex(self, profile):
+        return files('runcrate.shex').joinpath(profile).read_text()
 
+    def _validate_shex(self, profile):
+        shex = self._load_shex(profile)
+        rslt, reason = evaluate(self.graph, shex, self.rootIRI)
+        if rslt:
+            print("CONFORMS")
+        else:
+            print("DOES NOT CONFORM")
+            if reason:
+                print(reason)
+        return rslt
 
     def process_run_check(self):
-        print(self.rootIRI)
-        
-
+        self._validate_shex("process-crate-0.1.shex")
 
     def workflow_check(self):
         pass

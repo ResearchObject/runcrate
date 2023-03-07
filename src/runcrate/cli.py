@@ -107,13 +107,13 @@ def validate(crate, skip_ro_crate_check, process_run, workflow_run, provenance_r
 
     if process_run:
         print("Validating against Process Run profile")
-        print(validator.process_run_check())        
+        validator.process_run_check()
     elif workflow_run:
         print("Validating against Workflow Run profile")
-        print(validator.workflow_run_check())
+        validator.workflow_run_check()
     elif provenance_run:
         print("Validating against Provenance Run profile")
-        print(validator.provenance_run_check())
+        validator.provenance_run_check()
     else:
         print("Could not detect profile, check \"conformsTo\" or force profile check (e.g. --workflow-run)", file=sys.stderr)
         return -1
