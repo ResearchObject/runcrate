@@ -1,3 +1,6 @@
+## Test with 
+# shexeval -fn "arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/" tests/data/profile-examples/process-ex1/ro-crate-metadata.ttl shex/process-must.shex
+
 PREFIX p: <http://profile.example.com/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX s: <http://schema.org/>
