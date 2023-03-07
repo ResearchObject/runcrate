@@ -108,18 +108,24 @@ p:Dataset {
 # FIXME: Need a skeleton Root node for ^s:hasPart back-references
 # to avoid recursion?
 
-p:Root { # EXTRA s:mentions dct:conformsTo s:hasPart s:about {
+## NOTE: EXTRA should be enabled to allow extension of the profile, 
+# but may cause unneccessary recursions and confusing errors
+# when something deeper does not match.
+
+p:Root { # EXTRA s:mentions dct:conformsTo s:hasPart s:about {  
   ^s:about @p:MetadataFile;
   dct:conformsTo [<https://w3id.org/ro/wfrun/process/0.1>];
   s:mentions @p:Process+;
   s:hasPart @p:File+;
 }
 
+# https://www.researchobject.org/ro-crate/1.1/root-data-entity.html#ro-crate-metadata-file-descriptor
 p:MetadataFile {
     a [s:CreativeWork];
     dct:conformsTo @p:ROCrateSpec;
 }
 
+# https://www.researchobject.org/ro-crate/1.1/appendix/relative-uris.html#establishing-absolute-uri-for-ro-crate-root
 p:ROCrateSpec IRI 
   /^https:\/\/w3id.org\/ro\/crate\//
   {
