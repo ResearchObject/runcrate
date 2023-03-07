@@ -24,7 +24,8 @@ PREFIX bioschemas: <https://bioschemas.org/>
 
 start = @p:Root
 
-p:Root EXTRA s:hasPart {  
+p:Root {  
+  # Fails as WorkflowHub also adds ro-crate-preview.html with s:about
   #^s:about @p:MetadataFile;
   s:mainEntity @p:MainWorkflow;
   (
@@ -50,7 +51,9 @@ p:MainWorkflow {
   ( ^s:hasPart @p:Dataset | 
     ^s:hasPart @p:Root;
   );
-  s:programmingLanguage p:ComputerLanguage;
+  # FIXME: Profile does not require the contextual entity?
+  #s:programmingLanguage @p:ComputerLanguage;
+  s:programmingLanguage IRI;
   s:subjectOf @p:CWLDescription?;
   s:image @p:WorkflowDiagram?;
 }
@@ -64,11 +67,6 @@ p:Dataset {
   );
 }
 
-p:ComputerLanguage { 
-  a [s:ComputerLanguage];
-  # TODO: Name not strictly required by profile?
-  s:name xsd:string;
-}
 
 p:CWLDescription { 
   a [s:MediaObject];
@@ -76,7 +74,6 @@ p:CWLDescription {
   a [s:HowTo];
   s:programmingLanguage [<https://w3id.org/workflowhub/workflow-ro-crate#cwl>];
 }
-
 
 p:WorkflowDiagram {
   a [s:MediaObject];
