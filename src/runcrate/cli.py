@@ -12,11 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import sys
 from pathlib import Path
-
 import click
 
 from . import ProvCrateBuilder
+from .validator import CrateValidator
 
 
 @click.group()
@@ -53,7 +54,8 @@ def cli():
     help="path to a README file (should be README.md in Markdown format)",
 )
 def convert(root, output, license, workflow_name, readme):
-    """\
+    """Convert workflow run outputs to Workflow Run Crate
+
     RO_DIR: top-level directory of the CWLProv RO
     """
     if not output:
@@ -65,6 +67,43 @@ def convert(root, output, license, workflow_name, readme):
     else:
         crate.write(output)
 
+
+@cli.command()
+@click.option("-s", "--skip-ro-crate-check", is_flag=True, help="Skip general RO-Crate validation")
+@click.option("-p", "--process-run", is_flag=True, help="Validate against the Process Run Crate profile")
+@click.option("-w", "--workflow-run", is_flag=True, help="Validate against the Workflow Run Crate profile")
+@click.option("-P", "--provenance-run", is_flag=True, help="Validate against the Provenance Run Crate profile")
+@click.argument(
+    "crate",
+    metavar="CRATE",
+    type=click.Path(exists=True, file_okay=False, readable=True, path_type=Path),
+)
+
+def validate(crate, skip_ro_crate_check, process_run, workflow_run, provenance_run):
+    """Validate a Process/Workflow/Provenance Run Crate
+    
+    CRATE: RO-Crate Root directory
+
+    Unless forced (e.g. --workflow-run), the validation will use
+    the crate's profile(s) as indicated with conformsTo.
+    """
+    validator = CrateValidator(crate)
+    if not skip_ro_crate_check:
+        validator.ro_crate_check()
+    if not process_run and not workflow_run and not process_run:
+        # Detect profile from conformsTo
+        (process_run,workflow_run,provenance_run) = validator._detect_profiles()
+
+    print("Validating {}".format(crate))
+    if process_run:
+        print(validator.process_run_check())        
+    elif workflow_run:
+        print(validator.workflow_run_check())
+    elif provenance_run:
+        print(validator.provenance_run_check())
+    else:
+        print("Could not detect profile, check \"conformsTo\" or force profile check (e.g. --workflow-run)", file=sys.stderr)
+        return -1
 
 if __name__ == '__main__':
     cli()
