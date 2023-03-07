@@ -159,10 +159,13 @@ class CrateValidator():
 
     def workflow_check(self):
         self._validate_shex("workflow-crate-1.0.shex")
+        # TODO: Add Bioschemas profile
 
     def workflow_run_check(self):
-        pass
+        # TODO: Finish
+        self._validate_shex("workflow-run-crate-0.1.shex")
     
     def provenance_run_check(self):
-        pass
+        # TODO: Implement
+        self._validate_shex("provenance-crate-0.1.shex")
 

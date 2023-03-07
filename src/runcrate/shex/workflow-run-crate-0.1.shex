@@ -1,0 +1,77 @@
+# Copyright 2023 The University of Manchester
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+## ShEX shape for https://w3id.org/ro/wfrun/workflow/0.1
+
+## TODO:
+# This is work in progress and does not quite validate yet
+
+## FIXME: Reflect back in namespace
+PREFIX p: <https://w3id.org/ro/wfrun/workflow/0.1/shape#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX s: <http://schema.org/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX bioschemas: <https://bioschemas.org/>
+
+start = @p:Root
+
+p:Root {  
+  s:mainEntity @p:MainWorkflow;
+  dct:conformsTo [<https://w3id.org/workflowhub/workflow-ro-crate/1.0>];
+  dct:conformsTo [<https://w3id.org/ro/wfrun/workflow/0.1>];
+  dct:conformsTo [<https://w3id.org/ro/wfrun/process/0.1>];
+  s:mentions @p:Process+;
+}
+
+p:Process {
+  s:instrument @p:MainWorkflow;
+}
+
+p:MainWorkflow { 
+  a [bioschemas:ComputationalWorkflow];
+  # Must be data entity in crate
+  ( ^s:hasPart @p:Dataset | 
+    ^s:hasPart @p:Root;
+  );
+  bioschemas:input p:FormalParameter*;
+  bioschemas:output p:FormalParameter*;
+}
+
+p:FormalParameter { 
+  a [ bioschemas:FormalParameter ]
+  ## TODO: link with workExample etc.
+}
+
+# An aggregated (potentially nested) dataset
+p:Dataset {
+  a [s:Dataset];
+  s:name xsd:string;
+  ( ^s:hasPart @p:Dataset | 
+    ^s:hasPart @p:Root;
+  );
+}
+
+
+p:CWLDescription { 
+  a [s:MediaObject];
+  a [s:SoftwareSourceCode];
+  a [s:HowTo];
+  s:programmingLanguage [<https://w3id.org/workflowhub/workflow-ro-crate#cwl>];
+}
+
+p:WorkflowDiagram {
+  a [s:MediaObject];
+  a [s:ImageObject];
+}

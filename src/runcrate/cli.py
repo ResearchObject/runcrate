@@ -102,7 +102,8 @@ def validate(crate, skip_ro_crate_check, workflow, process_run, workflow_run, pr
     if not validator.metadata_file_check():
         return -2
 
-    if not workflow and not process_run and not workflow_run and not process_run:
+    guess_profile = not workflow and not process_run and not workflow_run and not process_run
+    if guess_profile:
         # Detect profile from conformsTo
         (workflow,process_run,workflow_run,provenance_run) = validator._detect_profiles()
 
