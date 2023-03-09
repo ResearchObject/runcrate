@@ -14,8 +14,8 @@
 
 ## ShEx shape for https://w3id.org/ro/wfrun/process/0.1
 
-## FIXME: Reflect back in namespace
-PREFIX p: <https://w3id.org/ro/wfrun/process/0.1/shape#>
+## FIXME: Update namespace
+PREFIX p: <https://w3id.example.org/ro/wfrun/process/0.1/shape#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX s: <http://schema.org/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
