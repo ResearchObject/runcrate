@@ -32,6 +32,8 @@ from rocrate.model.contextentity import ContextEntity
 from rocrate.model.softwareapplication import SoftwareApplication
 from rocrate.rocrate import ROCrate
 
+from .utils import as_list
+
 
 WORKFLOW_BASENAME = "packed.cwl"
 
@@ -62,12 +64,6 @@ CWLPROV_NONE = "https://w3id.org/cwl/prov#None"
 
 PROFILES_VERSION = "0.1"
 WROC_PROFILE_VERSION = "1.0"
-
-
-def as_list(value):
-    if isinstance(value, list):
-        return value
-    return [value]
 
 
 def convert_cwl_type(cwl_type):
