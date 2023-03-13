@@ -12,11 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import sys
 from pathlib import Path
 
 import click
 
-from . import ProvCrateBuilder
+from . import __version__
+from .convert import ProvCrateBuilder
 from .report import dump_crate_actions
 
 
@@ -55,6 +57,8 @@ def cli():
 )
 def convert(root, output, license, workflow_name, readme):
     """\
+    Convert a CWLProv RO bundle into a Workflow Run RO-Crate.
+
     RO_DIR: top-level directory of the CWLProv RO
     """
     if not output:
@@ -75,9 +79,19 @@ def convert(root, output, license, workflow_name, readme):
 )
 def report(crate):
     """\
+    Read a Workflow Run RO-Crate and report on the actions it describes.
+
     RO_CRATE: RO-Crate directory or zip file.
     """
     dump_crate_actions(crate)
+
+
+@cli.command()
+def version():
+    """\
+    Print version string and exit.
+    """
+    sys.stdout.write(f"{__version__}\n")
 
 
 if __name__ == '__main__':

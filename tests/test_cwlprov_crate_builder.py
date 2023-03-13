@@ -14,7 +14,7 @@
 
 from rocrate.rocrate import ROCrate
 
-from runcrate import ProvCrateBuilder
+from runcrate.convert import ProvCrateBuilder
 
 
 CWL_ID = "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
