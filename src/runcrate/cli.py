@@ -16,7 +16,7 @@ from pathlib import Path
 
 import click
 
-from . import ProvCrateBuilder
+from .convert import ProvCrateBuilder
 from .report import dump_crate_actions
 
 
