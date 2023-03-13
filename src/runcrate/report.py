@@ -23,14 +23,14 @@ from rocrate.rocrate import ROCrate
 from .utils import as_list
 
 
-def dump_action(tool, action, control_action=None, f=None):
+def dump_action(action, control_action=None, f=None):
     if f is None:
         f = sys.stdout
-    instrument = action["instrument"]
+    tool = action["instrument"]
     f.write(f"action: {action.id}\n")
     if control_action:
         f.write(f"  step: {control_action['instrument'].id}\n")
-    f.write(f"  instrument: {instrument.id} ({instrument.type})\n")
+    f.write(f"  instrument: {tool.id} ({tool.type})\n")
     start_time = action.get('startTime')
     if start_time:
         f.write(f"  started: {start_time}\n")
@@ -64,18 +64,24 @@ def dump_crate_actions(crate, f=None):
         f = sys.stdout
     if not isinstance(crate, ROCrate):
         crate = ROCrate(crate)
-    wf = crate.mainEntity
     actions = {}
     for a in crate.contextual_entities:
         if a.type == "CreateAction":
             actions.setdefault(a["instrument"].id, []).append(a)
+    wf = crate.mainEntity
+    if not wf:  # process run crate
+        for action_list in actions.values():
+            for a in action_list:
+                dump_action(a, f=f)
+                f.write("\n")
+        return
     assert len(actions[wf.id]) == 1
     wf_action = actions[wf.id][0]
     control_actions = {a: ca for ca in crate.contextual_entities
                        for a in as_list(ca.get("object", []))
                        if ca.type == "ControlAction"}
-    dump_action(wf, wf_action, f=f)
+    dump_action(wf_action, f=f)
     for tool in wf.get("hasPart", []):
         for a in actions.get(tool.id, []):
             f.write("\n")
-            dump_action(tool, a, control_actions.get(a), f=f)
+            dump_action(a, control_actions.get(a), f=f)
