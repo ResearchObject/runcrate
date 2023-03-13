@@ -27,30 +27,36 @@ def dump_action(tool, action, control_action=None, f=None):
     if f is None:
         f = sys.stdout
     instrument = action["instrument"]
-    f.write(f"action {action.id}\n")
+    f.write(f"action: {action.id}\n")
     if control_action:
         f.write(f"  step: {control_action['instrument'].id}\n")
     f.write(f"  instrument: {instrument.id} ({instrument.type})\n")
-    f.write(f"  started: {action.get('startTime', '???')}\n")
-    f.write(f"  ended: {action.get('endTime', '???')}\n")
-    objects = {p.id: obj for obj in action.get("object", [])
-               for p in as_list(obj.get("exampleOfWork", []))}
-    results = {p.id: res for res in action.get("result", [])
-               for p in as_list(res.get("exampleOfWork", []))}
-    f.write("  inputs:\n")
-    for in_ in tool.get("input", []):
-        obj = objects.get(in_.id)
-        f.write(f"    {in_.id}: {obj.get('value', obj.id) if obj else ''}\n")
-    for obj in action.get("object", []):
-        if "exampleOfWork" not in obj:
-            f.write(f"    ???: {obj.get('value', obj.id)}\n")
-    f.write("  outputs:\n")
-    for out in tool.get("output", []):
-        res = results.get(out.id)
-        f.write(f"    {out.id}: {res.get('value', res.id) if res else ''}\n")
-    for res in action.get("result", []):
-        if "exampleOfWork" not in res:
-            f.write(f"    ???: {res.get('value', res.id)}\n")
+    start_time = action.get('startTime')
+    if start_time:
+        f.write(f"  started: {start_time}\n")
+    end_time = action.get('endTime')
+    if end_time:
+        f.write(f"  ended: {end_time}\n")
+    objects = action.get("object", [])
+    if objects:
+        f.write("  inputs:\n")
+        inputs = set(tool.get("input", []))
+        for obj in objects:
+            f.write(f"    {obj.get('value', obj.id)}")
+            for p in as_list(obj.get("exampleOfWork", [])):
+                if p in inputs:
+                    f.write(f" <- {p.id}")
+            f.write("\n")
+    results = action.get("result", [])
+    if results:
+        f.write("  outputs:\n")
+        outputs = set(tool.get("output", []))
+        for res in results:
+            f.write(f"    {res.get('value', res.id)}")
+            for p in as_list(res.get("exampleOfWork", [])):
+                if p in outputs:
+                    f.write(f" <- {p.id}")
+            f.write("\n")
 
 
 def dump_crate_actions(crate, f=None):
