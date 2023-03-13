@@ -13,50 +13,51 @@
 # limitations under the License.
 
 """\
-Example of consuming a Workflow Run RO-Crate.
+Read a Workflow Run RO-Crate and report on the actions it describes.
 """
 
-import argparse
+import sys
 
 from rocrate.rocrate import ROCrate
 
-
-def as_list(value):
-    if isinstance(value, list):
-        return value
-    return [value]
+from .utils import as_list
 
 
-def dump_run_results(tool, action, control_action=None):
+def dump_action(tool, action, control_action=None, f=None):
+    if f is None:
+        f = sys.stdout
     instrument = action["instrument"]
-    print(f"action {action.id}")
+    f.write(f"action {action.id}\n")
     if control_action:
-        print("  step:", control_action["instrument"].id)
-    print("  instrument:", instrument.id, f"({instrument.type})")
-    print("  started:", action.get("startTime", "???"))
-    print("  ended:", action.get("endTime", "???"))
+        f.write(f"  step: {control_action['instrument'].id}\n")
+    f.write(f"  instrument: {instrument.id} ({instrument.type})\n")
+    f.write(f"  started: {action.get('startTime', '???')}\n")
+    f.write(f"  ended: {action.get('endTime', '???')}\n")
     objects = {p.id: obj for obj in action.get("object", [])
                for p in as_list(obj.get("exampleOfWork", []))}
     results = {p.id: res for res in action.get("result", [])
                for p in as_list(res.get("exampleOfWork", []))}
-    print("  inputs:")
+    f.write("  inputs:\n")
     for in_ in tool.get("input", []):
         obj = objects.get(in_.id)
-        print(f"    {in_.id}: {obj.get('value', obj.id) if obj else ''}")
+        f.write(f"    {in_.id}: {obj.get('value', obj.id) if obj else ''}\n")
     for obj in action.get("object", []):
         if "exampleOfWork" not in obj:
-            print(f"    ???: {obj.get('value', obj.id)}")
-    print("  outputs:")
+            f.write(f"    ???: {obj.get('value', obj.id)}\n")
+    f.write("  outputs:\n")
     for out in tool.get("output", []):
         res = results.get(out.id)
-        print(f"    {out.id}: {res.get('value', res.id) if res else ''}")
+        f.write(f"    {out.id}: {res.get('value', res.id) if res else ''}\n")
     for res in action.get("result", []):
         if "exampleOfWork" not in res:
-            print(f"    ???: {res.get('value', res.id)}")
+            f.write(f"    ???: {res.get('value', res.id)}\n")
 
 
-def main(args):
-    crate = ROCrate(args.crate)
+def dump_crate_actions(crate, f=None):
+    if f is None:
+        f = sys.stdout
+    if not isinstance(crate, ROCrate):
+        crate = ROCrate(crate)
     wf = crate.mainEntity
     actions = {}
     for a in crate.contextual_entities:
@@ -67,17 +68,8 @@ def main(args):
     control_actions = {a: ca for ca in crate.contextual_entities
                        for a in as_list(ca.get("object", []))
                        if ca.type == "ControlAction"}
-    dump_run_results(wf, wf_action)
+    dump_action(wf, wf_action, f=f)
     for tool in wf.get("hasPart", []):
         for a in actions.get(tool.id, []):
-            print()
-            dump_run_results(tool, a, control_actions.get(a))
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description=__doc__, formatter_class=argparse.RawTextHelpFormatter
-    )
-    parser.add_argument("crate", metavar="CRATE",
-                        help="input RO-Crate directory or zip file")
-    main(parser.parse_args())
+            f.write("\n")
+            dump_action(tool, a, control_actions.get(a), f=f)

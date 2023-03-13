@@ -89,3 +89,13 @@ def test_cli_convert_readme(data_dir, tmpdir):
     assert runner.invoke(cli, args).exit_code == 0
     crate = ROCrate(crate_dir)
     assert crate.get(readme.name)
+
+
+def test_cli_report_provenance_minimal(data_dir, caplog):
+    crate_dir = data_dir / "revsort-provenance-crate-minimal"
+    runner = CliRunner()
+    args = ["report", str(crate_dir)]
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0
+    out_lines = result.stdout.splitlines()
+    assert sum([_.startswith("action") for _ in out_lines]) == 3

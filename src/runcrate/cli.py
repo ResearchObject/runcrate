@@ -17,6 +17,7 @@ from pathlib import Path
 import click
 
 from . import ProvCrateBuilder
+from .report import dump_crate_actions
 
 
 @click.group()
@@ -64,6 +65,19 @@ def convert(root, output, license, workflow_name, readme):
         crate.write_zip(output)
     else:
         crate.write(output)
+
+
+@cli.command()
+@click.argument(
+    "crate",
+    metavar="RO_CRATE",
+    type=click.Path(exists=True, readable=True, path_type=Path),
+)
+def report(crate):
+    """\
+    RO_CRATE: RO-Crate directory or zip file.
+    """
+    dump_crate_actions(crate)
 
 
 if __name__ == '__main__':
