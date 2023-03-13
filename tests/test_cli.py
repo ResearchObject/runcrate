@@ -15,6 +15,7 @@
 from click.testing import CliRunner
 from rocrate.rocrate import ROCrate
 
+from runcrate import __version__
 from runcrate.cli import cli
 
 
@@ -99,3 +100,10 @@ def test_cli_report_provenance_minimal(data_dir, caplog):
     assert result.exit_code == 0
     out_lines = result.stdout.splitlines()
     assert sum([_.startswith("action") for _ in out_lines]) == 3
+
+
+def test_cli_version():
+    runner = CliRunner()
+    result = runner.invoke(cli, ["version"])
+    assert result.exit_code == 0
+    assert result.stdout.strip() == __version__
