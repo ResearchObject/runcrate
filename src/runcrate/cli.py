@@ -1,4 +1,4 @@
-# Copyright 2022 CRS4.
+# Copyright 2022-2023 CRS4.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,12 +13,14 @@
 # limitations under the License.
 
 import sys
-
 from pathlib import Path
 import click
 
+from . import __version__
 from . import ProvCrateBuilder
 from .validator import CrateValidator
+from .convert import ProvCrateBuilder
+from .report import dump_crate_actions
 
 
 @click.group()
@@ -55,7 +57,7 @@ def cli():
     help="path to a README file (should be README.md in Markdown format)",
 )
 def convert(root, output, license, workflow_name, readme):
-    """Convert workflow run outputs to Workflow Run Crate
+    """Convert a CWLProv RO bundle into a Workflow Run RO-Crate.
 
     RO_DIR: top-level directory of the CWLProv RO
     """
@@ -124,6 +126,27 @@ def validate(crate, skip_ro_crate_check, workflow, process_run, workflow_run, pr
         print("Validating against Provenance Run profile")
         validator.provenance_run_check()
         return
+@click.argument(
+    "crate",
+    metavar="RO_CRATE",
+    type=click.Path(exists=True, readable=True, path_type=Path),
+)
+def report(crate):
+    """\
+    Read a Workflow Run RO-Crate and report on the actions it describes.
+
+    RO_CRATE: RO-Crate directory or zip file.
+    """
+    dump_crate_actions(crate)
+
+
+@cli.command()
+def version():
+    """\
+    Print version string and exit.
+    """
+    sys.stdout.write(f"{__version__}\n")
+
 
 if __name__ == '__main__':
     cli()
