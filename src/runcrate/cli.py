@@ -17,7 +17,6 @@ from pathlib import Path
 import click
 
 from . import __version__
-from . import ProvCrateBuilder
 from .validator import CrateValidator
 from .convert import ProvCrateBuilder
 from .report import dump_crate_actions
