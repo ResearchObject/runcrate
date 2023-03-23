@@ -20,6 +20,7 @@ import click
 from . import __version__
 from .convert import ProvCrateBuilder
 from .report import dump_crate_actions
+from .run import run_crate
 
 
 @click.group()
@@ -84,6 +85,21 @@ def report(crate):
     RO_CRATE: RO-Crate directory or zip file.
     """
     dump_crate_actions(crate)
+
+
+@cli.command()
+@click.argument(
+    "crate",
+    metavar="RO_CRATE",
+    type=click.Path(exists=True, readable=True, path_type=Path),
+)
+def run(crate):
+    """\
+    Run the workflow from a Workflow Run RO-Crate.
+
+    RO_CRATE: RO-Crate directory or zip file.
+    """
+    run_crate(crate)
 
 
 @cli.command()
