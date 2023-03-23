@@ -35,11 +35,15 @@ def check_runnable(crate):
     lang = wf.get("programmingLanguage")
     if not lang or getattr(lang, "id", None) != CWL_ID:
         raise RuntimeError(f"workflow language must be {CWL_ID}")
-    return wf
+    actions = [_ for _ in crate.get_entities()
+               if "CreateAction" in as_list(_.type) and _.get("instrument") is wf]
+    if not actions:
+        raise RuntimeError(f"no CreateAction associated to {wf.id}")
+    return wf, actions[0]
 
 
 def run_crate(crate):
     if not isinstance(crate, ROCrate):
         crate = ROCrate(crate)
-    wf = check_runnable(crate)
-    sys.stdout.write(f"workflow: {wf.id}\n")
+    wf, action = check_runnable(crate)
+    sys.stdout.write(f"workflow: {wf.id}; action: {action.id}\n")
