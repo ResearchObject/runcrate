@@ -5,6 +5,7 @@ include *.rst
 include LICENSE
 include requirements.txt
 include CODE_OF_CONDUCT.md
+include CITATION.cff
 
 exclude tox.ini
 

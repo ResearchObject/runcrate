@@ -1,0 +1,12 @@
+cff-version: 1.1.0
+message: "Cite as"
+authors:
+  - family-names: Leo
+    given-names: Simone
+    orcid: https://orcid.org/0000-0001-8271-5429
+  - family-names: Soiland-Reyes
+    given-names: Stian
+    orcid: https://orcid.org/0000-0001-9842-9718
+title: "runcrate"
+version: 0.1.1
+date-released: 2023-03-23

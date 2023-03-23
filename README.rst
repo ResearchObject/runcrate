@@ -10,3 +10,5 @@ Runcrate
    :alt: Codecov
 
 Runcrate is a software toolkit to manipulate `Workflow Run RO-Crate <https://www.researchobject.org/workflow-run-crate/>`_ packages.
+
+Documentation is at http://www.researchobject.org/runcrate/.
