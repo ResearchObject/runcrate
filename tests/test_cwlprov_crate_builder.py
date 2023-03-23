@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
+
 from rocrate.rocrate import ROCrate
 
 from runcrate.convert import ProvCrateBuilder
@@ -153,6 +155,20 @@ def test_revsort(data_dir, tmpdir):
     assert set(profiles) <= set(crate.root_dataset["conformsTo"])
     assert set(_.type for _ in profiles) == {"CreativeWork"}
     assert [_["version"] for _ in profiles] == ["0.1", "0.1", "0.1", "1.0"]
+    # extra terms
+    with open(output / "ro-crate-metadata.json") as f:
+        metadata = json.load(f)
+    context = metadata['@context']
+    context_extensions = [_ for _ in context if isinstance(_, dict)]
+    assert len(context_extensions) == 1
+    extra_terms = context_extensions[0]
+    assert extra_terms == {
+        "ParameterConnection": "https://w3id.org/ro/terms/workflow-run#ParameterConnection",
+        "connection": "https://w3id.org/ro/terms/workflow-run#connection",
+        "sha1": "https://w3id.org/ro/terms/workflow-run#sha1",
+        "sourceParameter": "https://w3id.org/ro/terms/workflow-run#sourceParameter",
+        "targetParameter": "https://w3id.org/ro/terms/workflow-run#targetParameter"
+    }
 
 
 def test_no_input(data_dir, tmpdir):
