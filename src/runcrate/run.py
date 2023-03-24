@@ -17,7 +17,10 @@ Run the workflow from a Workflow Run RO-Crate.
 """
 
 import json
+import shutil
+import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 from rocrate.rocrate import ROCrate
@@ -27,6 +30,7 @@ from .utils import as_list
 
 CWL_ID = "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
 PARAMS_FILENAME = "params.json"
+EXECUTABLE = "cwltool"
 
 
 def check_runnable(crate):
@@ -141,7 +145,24 @@ def run_crate(crate):
         crate = ROCrate(crate)
     wf, action = check_runnable(crate)
     sys.stdout.write(f"workflow: {wf.id}; action: {action.id}\n")
+    workdir = Path(tempfile.mkdtemp(prefix="runcrate_"))
+    sys.stdout.write(f"working dir: {workdir}\n")
     params = gen_params(wf, action)
-    params_path = Path(PARAMS_FILENAME)  # to be changed
+    crate.write(workdir)
+    params_path = Path(workdir / PARAMS_FILENAME)
     with open(params_path, "w") as f:
         json.dump(params, f, indent=4)
+    for obj in action.get("object", []):
+        alt_name = obj.get("alternateName")
+        if alt_name:
+            dst_path = workdir / alt_name
+            if "Dataset" in as_list(obj.type):
+                (dst_path).mkdir(parents=True, exist_ok=True)
+            if "File" in as_list(obj.type):
+                (dst_path.parent).mkdir(parents=True, exist_ok=True)
+                src_path = workdir / obj.id
+                shutil.copy(src_path, dst_path)
+    wf_path = workdir / wf.id
+    sys.stdout.write(f"running {wf_path}\n")
+    args = [EXECUTABLE, wf_path, params_path]
+    subprocess.run(args)
