@@ -140,6 +140,27 @@ def gen_params(wf, action):
     return params
 
 
+def rename_data_entities(obj, workdir):
+    if "Collection" in as_list(obj.type):
+        parts = set(as_list(obj.get("hasPart", [])))
+        main_entity = obj.get("mainEntity")
+        if main_entity:
+            parts.add(main_entity)  # should already be in parts
+        for p in parts:
+            rename_data_entities(p, workdir)
+    alt_name = obj.get("alternateName")
+    if alt_name:
+        dst_path = workdir / alt_name
+        if "Dataset" in as_list(obj.type):
+            (dst_path).mkdir(parents=True, exist_ok=True)
+            for p in set(as_list(obj.get("hasPart", []))):
+                rename_data_entities(p, workdir)
+        if "File" in as_list(obj.type):
+            (dst_path.parent).mkdir(parents=True, exist_ok=True)
+            src_path = workdir / obj.id
+            shutil.copy(src_path, dst_path)
+
+
 def run_crate(crate):
     if not isinstance(crate, ROCrate):
         crate = ROCrate(crate)
@@ -153,15 +174,7 @@ def run_crate(crate):
     with open(params_path, "w") as f:
         json.dump(params, f, indent=4)
     for obj in action.get("object", []):
-        alt_name = obj.get("alternateName")
-        if alt_name:
-            dst_path = workdir / alt_name
-            if "Dataset" in as_list(obj.type):
-                (dst_path).mkdir(parents=True, exist_ok=True)
-            if "File" in as_list(obj.type):
-                (dst_path.parent).mkdir(parents=True, exist_ok=True)
-                src_path = workdir / obj.id
-                shutil.copy(src_path, dst_path)
+        rename_data_entities(obj, workdir)
     wf_path = workdir / wf.id
     sys.stdout.write(f"running {wf_path}\n")
     args = [EXECUTABLE, wf_path, params_path]
