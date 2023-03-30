@@ -27,7 +27,7 @@ PREFIX bioschemas: <https://bioschemas.org/>
 
 start = @p:Root
 
-p:Root {  
+p:Root extra dct:conformsTo s:mentions { 
   s:mainEntity @p:MainWorkflow;
   dct:conformsTo [<https://w3id.org/ro/wfrun/process/0.1>];
   dct:conformsTo [<https://w3id.org/workflowhub/workflow-ro-crate/1.0>];

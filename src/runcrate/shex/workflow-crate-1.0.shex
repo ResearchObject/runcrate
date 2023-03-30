@@ -36,20 +36,20 @@ p:Root {
 
 
 # https://www.researchobject.org/ro-crate/1.1/root-data-entity.html#ro-crate-metadata-file-descriptor
-p:MetadataFile {
+p:MetadataFile EXTRA dct:conformsTo a {
     a [s:CreativeWork];
     # FIXME: Update Workflow RO-Crate profile to move conformsTo to root
     dct:conformsTo [<https://w3id.org/workflowhub/workflow-ro-crate/1.0>];
     dct:conformsTo [<https://w3id.org/ro/crate/1.1>]
 }
 
-p:MainWorkflow { 
+p:MainWorkflow extra a { 
   a [s:MediaObject];
   a [s:SoftwareSourceCode];
   a [bioschemas:ComputationalWorkflow];
   # Must be data entity in crate
-  ( ^s:hasPart @p:Dataset | 
-    ^s:hasPart @p:Root;
+  ( ^s:hasPart @p:Root | 
+    ^s:hasPart @p:Dataset;
   );
   # FIXME: Profile does not require the contextual entity?
   #s:programmingLanguage @p:ComputerLanguage;
@@ -59,12 +59,9 @@ p:MainWorkflow {
 }
 
 # An aggregated (potentially nested) dataset
-p:Dataset {
+p:Dataset extra a {
   a [s:Dataset];
   s:name xsd:string;
-  ( ^s:hasPart @p:Dataset | 
-    ^s:hasPart @p:Root;
-  );
 }
 
 

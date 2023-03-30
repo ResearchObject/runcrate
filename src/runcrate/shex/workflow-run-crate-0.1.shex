@@ -39,7 +39,7 @@ p:Process {
   s:instrument @p:MainWorkflow;
 }
 
-p:MainWorkflow { 
+p:MainWorkflow extra a { 
   a [bioschemas:ComputationalWorkflow];
   # Must be data entity in crate
   ( ^s:hasPart @p:Dataset | 
@@ -55,7 +55,7 @@ p:FormalParameter {
 }
 
 # An aggregated (potentially nested) dataset
-p:Dataset {
+p:Dataset extra a {
   a [s:Dataset];
   s:name xsd:string;
   ( ^s:hasPart @p:Dataset | 
@@ -64,7 +64,7 @@ p:Dataset {
 }
 
 
-p:CWLDescription { 
+p:CWLDescription extra a { 
   a [s:MediaObject];
   a [s:SoftwareSourceCode];
   a [s:HowTo];

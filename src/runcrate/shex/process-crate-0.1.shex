@@ -83,8 +83,8 @@ p:PropertyValue {
 p:File EXTRA a { 
   a [s:MediaObject];
   # Either part of another dataset or the root
-  ( ^s:hasPart @p:Dataset | 
-    ^s:hasPart @p:Root;
+  ( ^s:hasPart @p:Root |
+    ^s:hasPart @p:Dataset ;
   );
   s:alternateName xsd:string?;
   (
@@ -114,8 +114,8 @@ p:Collection  {
 p:Dataset {
   a [s:Dataset];
   s:name xsd:string;
-  ( ^s:hasPart @p:Dataset | 
-    ^s:hasPart @p:Root;
+  ( ^s:hasPart @p:Root | 
+    ^s:hasPart @p:Dataset
   );
 }
 
@@ -126,15 +126,15 @@ p:Dataset {
 # but may cause unneccessary recursions and confusing errors
 # when something deeper does not match.
 
-p:Root { # EXTRA s:mentions dct:conformsTo s:hasPart s:about {  
+p:Root EXTRA s:mentions {  
   ^s:about @p:MetadataFile;
   dct:conformsTo [<https://w3id.org/ro/wfrun/process/0.1>];
+  dct:conformsTo IRI*;
   s:mentions @p:Process+;
-  s:hasPart @p:File+;
 }
 
 # https://www.researchobject.org/ro-crate/1.1/root-data-entity.html#ro-crate-metadata-file-descriptor
-p:MetadataFile {
+p:MetadataFile EXTRA dct:conformsTo {
     a [s:CreativeWork];
     dct:conformsTo @p:ROCrateSpec;
 }

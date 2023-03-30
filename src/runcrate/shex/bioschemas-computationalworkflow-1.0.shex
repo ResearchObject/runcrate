@@ -35,7 +35,7 @@ start = @p:Root
 p:Root {  
   s:mainEntity @p:MainWorkflow;
 }
-p:MainWorkflow { 
+p:MainWorkflow extra a { 
   ## Marginality: Minimum
 
   a [bioschemas:ComputationalWorkflow];
@@ -57,7 +57,7 @@ p:MainWorkflow {
   )+;
   s:name LITERAL;
 
-  ( s:programmingLanguage Literal | 
+  ( s:programmingLanguage LITERAL | 
     s:programmingLanguage {
       # Require contextual entity in RO-Crate
       a [s:ComputerLanguage];
@@ -160,7 +160,7 @@ p:MainWorkflow {
   )?;
 }
 
-p:PersonOrOrg {
+p:PersonOrOrg extra a {
     # As we're in RO-Crate, the contextual entity is required
     (a [s:Person] | 
      a [s:Organization]
