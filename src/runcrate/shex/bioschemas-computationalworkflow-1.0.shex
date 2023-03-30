@@ -30,11 +30,12 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX bioschemas: <https://bioschemas.org/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
 
 start = @p:Root
 
 p:Root {  
-  s:mainEntity @p:MainWorkflow;
+  s:mainEntity IRI @p:MainWorkflow;
 }
 p:MainWorkflow extra rdf:type { 
   ## Marginality: Minimum
@@ -82,7 +83,7 @@ p:MainWorkflow extra rdf:type {
       a [s:CreativeWork];
 #      s:name xsd:string
     };
-  )*;
+  )* // sh:severity sh:Info // sh:message "It is RECOMMENDED to include a citation";
 
   s:contributor @p:PersonOrOrg*;
   
