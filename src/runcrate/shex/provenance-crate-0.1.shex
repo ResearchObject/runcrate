@@ -46,13 +46,20 @@ p:MainWorkflow {
   a [bioschemas:ComputationalWorkflow];
   a [s:HowTo];
   s:hasPart @p:SoftwareApplication+;
-  s:step 
+  s:step @p:HowToStep;
+}
+
+p:HowToStep {
+  a [s:HowToStep];
+  s:workExample @p:SoftwareApplication+;
+  (s:position xsd:integer MinInclusive 0 | 
+   s:position xsd:string /[1-9][0-9]*/);
 }
 
 p:SoftwareApplication EXTRA a { 
   ( a [s:SoftwareApplication] | 
     a [s:SoftwareSourceCode ] | 
-    a [bioschema:ComputationalWorkflow] 
+    a [bioschemas:ComputationalWorkflow] 
   );
   s:name xsd:string;
   ( s:url xsd:string |

@@ -63,7 +63,7 @@ p:Agent {
 p:SoftwareApplication EXTRA a { 
   ( a [s:SoftwareApplication] | 
     a [s:SoftwareSourceCode ] | 
-    a [bioschema:ComputationalWorkflow] 
+    a [bioschemas:ComputationalWorkflow] 
   );
   s:name xsd:string;
   ( s:url xsd:string |

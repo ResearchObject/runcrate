@@ -29,20 +29,21 @@ PREFIX s: <http://schema.org/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX bioschemas: <https://bioschemas.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 start = @p:Root
 
 p:Root {  
   s:mainEntity @p:MainWorkflow;
 }
-p:MainWorkflow extra a { 
+p:MainWorkflow extra rdf:type { 
   ## Marginality: Minimum
 
   a [bioschemas:ComputationalWorkflow];
-  dct:conformsTo [<https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE>]
-  s:creator @sd:PersonOrOrg+;
+  dct:conformsTo [<https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE>];
+  s:creator @p:PersonOrOrg+;
   # NOTE: We won't be picky about xsd type even if profile insists Date or DateTime
-  s:dateCreated Literal;
+  s:dateCreated LITERAL;
 
   # NOTE: interpret profile liberally,  in/out can be 0 if no input/output, otherwise required
   s:input @p:FormalParameter*;
@@ -51,7 +52,7 @@ p:MainWorkflow extra a {
   ( s:licence LITERAL |
     s:licence {
       # Require contextual entity in RO-Crate
-      a [s:Creativework]
+      a [s:Creativework];
       s:name LITERAL;
     }
   )+;
@@ -65,7 +66,7 @@ p:MainWorkflow extra a {
     }
   );
 
-  s:sdPublisher @sd:PersonOrOrg;
+  s:sdPublisher @p:PersonOrOrg;
   ( # Depends on context
     s:url IRI|
     s:url xsd:string;
@@ -83,7 +84,7 @@ p:MainWorkflow extra a {
     };
   )*;
 
-  s:contributor @sd:PersonOrOrg*;
+  s:contributor @p:PersonOrOrg*;
   
   ( s:creativeWorkStatus LITERAL | 
     s:creativeWorkStatus IRI;
@@ -115,11 +116,11 @@ p:MainWorkflow extra a {
 
   s:keywords LITERAL?;
   
-  s:maintainer @sd:PersonOrOrg*;
+  s:maintainer @p:PersonOrOrg*;
 
-  s:producer @sd:PersonOrOrg*;
+  s:producer @p:PersonOrOrg*;
   
-  s:publisher @sd:PersonOrOrg*;
+  s:publisher @p:PersonOrOrg*;
 
   s:runtimePlatform LITERAL?;
   ( 
@@ -160,17 +161,17 @@ p:MainWorkflow extra a {
   )?;
 }
 
-p:PersonOrOrg extra a {
+p:PersonOrOrg extra rdf:type {
     # As we're in RO-Crate, the contextual entity is required
     (a [s:Person] | 
      a [s:Organization]
-    )
+    );
     s:name LITERAL;
   }
 
 p:FormalParameter { 
   a [bioschemas:FormalParameter];
-  dct:conformsTo [<>];
+  dct:conformsTo [<https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE>];
   s:name LITERAL;
   s:additionalType IRI*;
   s:description LITERAL?;
@@ -180,9 +181,16 @@ p:FormalParameter {
   )?;
   ( 
     s:defaultValue Literal |
-    s:defaultValue IR
+    s:defaultValue IRI;
   )?;
-  &identifier*;
+  #&identifier*;
+  (
+    s:identifier {
+      a [s:PropertyValue];
+    } | 
+    s:identifier xsd:string;
+    s:identifier IRI;
+  )*;
   s:valueRequired xsd:boolean?;
 }
 
