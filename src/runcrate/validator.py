@@ -61,11 +61,14 @@ class CrateValidator():
         if not isinstance(profiles, list):
             profiles = [profiles]
         
-        workflow, process_run, workflow_run, provenance_run = (None,)*4
+        workflow, process_run, workflow_run, provenance_run,bioschemas = (None,)*5
         for p in profiles:
+            # Check profiles on root data set
             if self.debug:
                 print("Detected profile {}".format(p.id))
             if p.id.startswith("https://w3id.org/workflowhub/workflow-ro-crate/"):
+                # FIXME: Should we also detect this on legacy metadata file entity?
+                # (Note: wfrun/workflow profile require above on Dataset)
                 workflow = p
             if p.id.startswith("https://w3id.org/ro/wfrun/process/"):
                 process_run = p
@@ -73,7 +76,16 @@ class CrateValidator():
                 workflow_run = p
             if p.id.startswith("https://w3id.org/ro/wfrun/provenance/"):
                 provenance_run = p
-        return (workflow, process_run, workflow_run, provenance_run)
+        if self.crate.mainEntity:
+            # Detect ComputationalWorkflow profile on main entity
+            profiles = self.crate.mainEntity.get("conformsTo", [])
+            if not isinstance(profiles, list):
+                profiles = [profiles]
+            for p in profiles:
+                if p.id.startswith("https://bioschemas.org/profiles/ComputationalWorkflow/"):
+                    bioschemas = p
+
+        return (workflow, process_run, workflow_run, provenance_run, bioschemas)
 
     def ro_crate_check(self):
         print("Validating RO-Crate {}".format(self.root))
@@ -157,9 +169,11 @@ class CrateValidator():
     def process_run_check(self):
         self._validate_shex("process-crate-0.1.shex")
 
+    def computationalworkflow_check(self):
+        self._validate_shex("bioschemas-computationalworkflow-1.0.shex")
+
     def workflow_check(self):
         self._validate_shex("workflow-crate-1.0.shex")
-        # TODO: Add Bioschemas profile
 
     def workflow_run_check(self):
         # TODO: Finish

@@ -75,6 +75,7 @@ def convert(root, output, license, workflow_name, readme):
 @click.option("-w", "--workflow-run", is_flag=True, help="Validate against the Workflow Run Crate profile")
 @click.option("-P", "--provenance-run", is_flag=True, help="Validate against the Provenance Run Crate profile")
 @click.option("-W", "--workflow", is_flag=True, help="Validate against the Workflow RO-Crate profile")
+@click.option("-b", "--bioschemas", is_flag=True, help="Validate against Bioschemas profiles (ComputationalWorkflow FormalParameter)")
 @click.option("-d", "--debug", is_flag=True, help="Enable debug output")
 
 @click.argument(
@@ -83,7 +84,7 @@ def convert(root, output, license, workflow_name, readme):
     type=click.Path(exists=True, file_okay=False, readable=True, path_type=Path),
 )
 
-def validate(crate, skip_ro_crate_check, workflow, process_run, workflow_run, provenance_run, debug):
+def validate(crate, skip_ro_crate_check, workflow, process_run, workflow_run, provenance_run, bioschemas, debug):
     """Validate a Process/Workflow/Provenance Run Crate (experimental)
     
     CRATE: RO-Crate Root directory
@@ -102,10 +103,10 @@ def validate(crate, skip_ro_crate_check, workflow, process_run, workflow_run, pr
     if not validator.metadata_file_check():
         return -2
 
-    guess_profile = not workflow and not process_run and not workflow_run and not process_run
+    guess_profile = not workflow and not process_run and not workflow_run and not process_run and not bioschemas
     if guess_profile:
         # Detect profile from conformsTo
-        (workflow,process_run,workflow_run,provenance_run) = validator._detect_profiles()
+        (workflow,process_run,workflow_run,provenance_run,bioschemas) = validator._detect_profiles()
 
     if not workflow and not process_run and not workflow_run and not process_run:
         print("Could not detect profile, check \"conformsTo\" or force profile check (e.g. --workflow-run)", file=sys.stderr)
@@ -114,6 +115,9 @@ def validate(crate, skip_ro_crate_check, workflow, process_run, workflow_run, pr
     if workflow:
         print("Validating against Workflow profile")
         validator.workflow_check()
+    if bioschemas:
+        print("Validating against Bioschemas ComputationalWorkflow profile")
+        validator.computationalworkflow_check()
     if process_run:
         print("Validating against Process Run profile")
         validator.process_run_check()
