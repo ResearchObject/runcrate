@@ -1,4 +1,4 @@
-# Copyright 2022 CRS4.
+# Copyright 2022-2023 CRS4.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from runcrate import ProvCrateBuilder, get_workflow
+from runcrate.convert import ProvCrateBuilder, get_workflow
 
 
 def test_step_maps(data_dir):

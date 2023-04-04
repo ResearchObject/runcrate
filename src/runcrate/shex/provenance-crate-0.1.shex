@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-## ShEX shape for https://w3id.org/ro/wfrun/workflow/0.1
+## ShEX shape for https://w3id.org/ro/wfrun/provenance/0.1
 
 ## TODO:
 # This is work in progress and does not quite validate yet
 
 ## FIXME: Update namespace
-PREFIX p: <https://w3id.example.org/ro/wfrun/workflow/0.1/shape#>
+PREFIX p: <https://w3id.example.org/ro/wfrun/provenance/0.1/shape#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX s: <http://schema.org/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
@@ -27,51 +27,46 @@ PREFIX bioschemas: <https://bioschemas.org/>
 
 start = @p:Root
 
-p:Root {  
+p:Root extra dct:conformsTo s:mentions { 
   s:mainEntity @p:MainWorkflow;
-  dct:conformsTo [<https://w3id.org/workflowhub/workflow-ro-crate/1.0>];
-  dct:conformsTo [<https://w3id.org/ro/wfrun/workflow/0.1>];
   dct:conformsTo [<https://w3id.org/ro/wfrun/process/0.1>];
-  s:mentions @p:Process+;
+  dct:conformsTo [<https://w3id.org/workflowhub/workflow-ro-crate/1.0>];
+  dct:conformsTo [<https://w3id.org/ro/wfrun/provenance/0.1>];
+  dct:conformsTo [<https://w3id.org/ro/wfrun/workflow/0.1>];
+  s:mentions @p:MainProcess+;
 }
 
-p:Process {
+p:MainProcess {
   s:instrument @p:MainWorkflow;
 }
 
-p:MainWorkflow extra a { 
-  a [bioschemas:ComputationalWorkflow];
-  # Must be data entity in crate
-  ( ^s:hasPart @p:Dataset | 
-    ^s:hasPart @p:Root;
-  );
-  bioschemas:input p:FormalParameter*;
-  bioschemas:output p:FormalParameter*;
-}
-
-p:FormalParameter { 
-  a [ bioschemas:FormalParameter ]
-  ## TODO: link with workExample etc.
-}
-
-# An aggregated (potentially nested) dataset
-p:Dataset extra a {
-  a [s:Dataset];
-  s:name xsd:string;
-  ( ^s:hasPart @p:Dataset | 
-    ^s:hasPart @p:Root;
-  );
-}
-
-
-p:CWLDescription extra a { 
+p:MainWorkflow { 
   a [s:MediaObject];
   a [s:SoftwareSourceCode];
+  a [bioschemas:ComputationalWorkflow];
   a [s:HowTo];
-  s:programmingLanguage [<https://w3id.org/workflowhub/workflow-ro-crate#cwl>];
+  s:hasPart @p:SoftwareApplication+;
+  s:step @p:HowToStep;
 }
 
-p:WorkflowDiagram {
-  a [s:MediaObject];
-  a [s:ImageObject];
+p:HowToStep {
+  a [s:HowToStep];
+  s:workExample @p:SoftwareApplication+;
+  (s:position xsd:integer MinInclusive 0 | 
+   s:position xsd:string /[1-9][0-9]*/);
 }
+
+p:SoftwareApplication EXTRA a { 
+  ( a [s:SoftwareApplication] | 
+    a [s:SoftwareSourceCode ] | 
+    a [bioschemas:ComputationalWorkflow] 
+  );
+  s:name xsd:string;
+  ( s:url xsd:string |
+    s:url IRI
+  );
+  ( s:version xsd:string |
+    s:softwareVersion xsd:string 
+  );
+}
+

@@ -1,4 +1,4 @@
-# Copyright 2022 CRS4.
+# Copyright 2022-2023 CRS4.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 from rocrate.rocrate import ROCrate
 
-from runcrate import ProvCrateBuilder
+from runcrate.convert import ProvCrateBuilder
 
 
 CWL_ID = "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
