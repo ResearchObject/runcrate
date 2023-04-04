@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
+
 from rocrate.rocrate import ROCrate
 
 from runcrate.convert import ProvCrateBuilder
@@ -54,11 +56,14 @@ def test_revsort(data_dir, tmpdir):
     for entity in inputs + outputs:
         assert "FormalParameter" in entity.type
     input_map = {_.id.rsplit("/", 1)[-1]: _ for _ in inputs}
+    assert input_map["input"]["name"] == "input"
     assert input_map["input"]["additionalType"] == "File"
     assert "encodingFormat" in input_map["input"]
     assert input_map["input"]["defaultValue"] == "file:///home/stain/src/cwltool/tests/wf/hello.txt"
+    assert input_map["reverse_sort"]["name"] == "reverse_sort"
     assert input_map["reverse_sort"]["additionalType"] == "Boolean"
     assert input_map["reverse_sort"]["defaultValue"] == "True"
+    assert outputs[0]["name"] == "output"
     assert outputs[0]["additionalType"] == "File"
     assert workflow["programmingLanguage"].id == CWL_ID
     sel = [_ for _ in crate.contextual_entities if "OrganizeAction" in _.type]
@@ -153,6 +158,20 @@ def test_revsort(data_dir, tmpdir):
     assert set(profiles) <= set(crate.root_dataset["conformsTo"])
     assert set(_.type for _ in profiles) == {"CreativeWork"}
     assert [_["version"] for _ in profiles] == ["0.1", "0.1", "0.1", "1.0"]
+    # extra terms
+    with open(output / "ro-crate-metadata.json") as f:
+        metadata = json.load(f)
+    context = metadata['@context']
+    context_extensions = [_ for _ in context if isinstance(_, dict)]
+    assert len(context_extensions) == 1
+    extra_terms = context_extensions[0]
+    assert extra_terms == {
+        "ParameterConnection": "https://w3id.org/ro/terms/workflow-run#ParameterConnection",
+        "connection": "https://w3id.org/ro/terms/workflow-run#connection",
+        "sha1": "https://w3id.org/ro/terms/workflow-run#sha1",
+        "sourceParameter": "https://w3id.org/ro/terms/workflow-run#sourceParameter",
+        "targetParameter": "https://w3id.org/ro/terms/workflow-run#targetParameter"
+    }
 
 
 def test_no_input(data_dir, tmpdir):
@@ -204,19 +223,30 @@ def test_param_types(data_dir, tmpdir):
     for entity in inputs + outputs:
         assert "FormalParameter" in entity.type
     input_map = {_.id.rsplit("/", 1)[-1]: _ for _ in inputs}
+    assert input_map["in_array"]["name"] == "in_array"
     assert input_map["in_array"]["additionalType"] == "Text"
     assert input_map["in_array"]["multipleValues"] == "True"
+    assert input_map["in_any"]["name"] == "in_any"
     assert input_map["in_any"]["additionalType"] == "DataType"
+    assert input_map["in_str"]["name"] == "in_str"
     assert input_map["in_str"]["additionalType"] == "Text"
+    assert input_map["in_bool"]["name"] == "in_bool"
     assert input_map["in_bool"]["additionalType"] == "Boolean"
+    assert input_map["in_int"]["name"] == "in_int"
     assert input_map["in_int"]["additionalType"] == "Integer"
+    assert input_map["in_long"]["name"] == "in_long"
     assert input_map["in_long"]["additionalType"] == "Integer"
+    assert input_map["in_float"]["name"] == "in_float"
     assert input_map["in_float"]["additionalType"] == "Float"
+    assert input_map["in_double"]["name"] == "in_double"
     assert input_map["in_double"]["additionalType"] == "Float"
+    assert input_map["in_enum"]["name"] == "in_enum"
     assert input_map["in_enum"]["additionalType"] == "Text"
     assert input_map["in_enum"]["valuePattern"] == "A|B"
+    assert input_map["in_record"]["name"] == "in_record"
     assert input_map["in_record"]["additionalType"] == "PropertyValue"
     assert input_map["in_record"]["multipleValues"] == "True"
+    assert input_map["in_multi"]["name"] == "in_multi"
     assert set(input_map["in_multi"]["additionalType"]) == {"Integer", "Float"}
     assert input_map["in_multi"]["defaultValue"] == "9.99"
     assert input_map["in_multi"]["valueRequired"] == "False"
@@ -230,21 +260,34 @@ def test_param_types(data_dir, tmpdir):
     for obj in objects:
         assert "PropertyValue" in obj.type
     obj_map = {_.id.rsplit("/", 1)[-1]: _ for _ in objects}
+    assert obj_map["in_array"]["name"] == "in_array"
     assert obj_map["in_array"]["value"] == ["foo", "bar"]
+    assert obj_map["in_any"]["name"] == "in_any"
     assert obj_map["in_any"]["value"] == "tar"
+    assert obj_map["in_str"]["name"] == "in_str"
     assert obj_map["in_str"]["value"] == "spam"
+    assert obj_map["in_bool"]["name"] == "in_bool"
     assert obj_map["in_bool"]["value"] == "True"
+    assert obj_map["in_int"]["name"] == "in_int"
     assert obj_map["in_int"]["value"] == "42"
+    assert obj_map["in_long"]["name"] == "in_long"
     assert obj_map["in_long"]["value"] == "420"
+    assert obj_map["in_float"]["name"] == "in_float"
     assert obj_map["in_float"]["value"] == "3.14"
+    assert obj_map["in_double"]["name"] == "in_double"
     assert obj_map["in_double"]["value"] == "3.142"
+    assert obj_map["in_enum"]["name"] == "in_enum"
     assert obj_map["in_enum"]["value"] == "B"
     record_pv = obj_map["in_record"]
+    assert record_pv["name"] == "in_record"
     v_A = crate.dereference(f"{record_pv.id}/in_record_A")
+    assert v_A["name"] == "in_record_A"
     assert v_A["value"] == "Tom"
     v_B = crate.dereference(f"{record_pv.id}/in_record_B")
+    assert v_B["name"] == "in_record_B"
     assert v_B["value"] == "Jerry"
     assert set(record_pv["value"]) == {v_A, v_B}
+    assert obj_map["in_multi"]["name"] == "in_multi"
     assert obj_map["in_multi"]["value"] == "9.99"
     results = action["result"]
     assert len(results) == 1

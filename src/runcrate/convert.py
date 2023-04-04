@@ -352,7 +352,7 @@ class ProvCrateBuilder:
         for cwl_p in cwl_params:
             p_id = get_relative_uri(cwl_p.id)
             properties = properties_from_cwl_param(cwl_p)
-            properties["name"] = get_fragment(p_id)
+            properties["name"] = p_id.rsplit("/", 1)[-1]
             p = crate.add(ContextEntity(crate, p_id, properties=properties))
             params.append(p)
         return params
@@ -474,12 +474,12 @@ class ProvCrateBuilder:
                 if isinstance(value, dict):
                     value = [crate.add(ContextEntity(crate, f"#pv-{k}/{nk}", properties={
                         "@type": "PropertyValue",
-                        "name": f"{k}/{nk}",
+                        "name": nk,
                         "value": nv,
                     })) for nk, nv in value.items()]
                 action_p = crate.add(ContextEntity(crate, f"#pv-{k}", properties={
                     "@type": "PropertyValue",
-                    "name": k,
+                    "name": k.rsplit("/", 1)[-1],
                 }))
                 action_p["value"] = value
             action_p["exampleOfWork"] = list(set(

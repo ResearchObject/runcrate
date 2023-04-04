@@ -37,7 +37,7 @@ def dump_action(action, control_action=None, f=None):
     end_time = action.get('endTime')
     if end_time:
         f.write(f"  ended: {end_time}\n")
-    objects = action.get("object", [])
+    objects = as_list(action.get("object", []))
     if objects:
         f.write("  inputs:\n")
         inputs = set(tool.get("input", []))
@@ -47,7 +47,7 @@ def dump_action(action, control_action=None, f=None):
                 if p in inputs:
                     f.write(f" <- {p.id}")
             f.write("\n")
-    results = action.get("result", [])
+    results = as_list(action.get("result", []))
     if results:
         f.write("  outputs:\n")
         outputs = set(tool.get("output", []))
@@ -64,24 +64,17 @@ def dump_crate_actions(crate, f=None):
         f = sys.stdout
     if not isinstance(crate, ROCrate):
         crate = ROCrate(crate)
-    actions = {}
+    actions = []
     for a in crate.contextual_entities:
-        if a.type == "CreateAction":
-            actions.setdefault(a["instrument"].id, []).append(a)
-    wf = crate.mainEntity
-    if not wf:  # process run crate
-        for action_list in actions.values():
-            for a in action_list:
-                dump_action(a, f=f)
-                f.write("\n")
-        return
-    assert len(actions[wf.id]) == 1
-    wf_action = actions[wf.id][0]
+        if "CreateAction" in as_list(a.type):
+            if a.get("instrument") is crate.mainEntity:
+                actions.insert(0, a)
+            else:
+                actions.append(a)
     control_actions = {a: ca for ca in crate.contextual_entities
                        for a in as_list(ca.get("object", []))
-                       if ca.type == "ControlAction"}
-    dump_action(wf_action, f=f)
-    for tool in wf.get("hasPart", []):
-        for a in actions.get(tool.id, []):
-            f.write("\n")
-            dump_action(a, control_actions.get(a), f=f)
+                       if "ControlAction" in as_list(ca.type)}
+    for a in actions:
+        ca = control_actions.get(a)
+        dump_action(a, control_action=ca, f=f)
+        f.write("\n")
