@@ -161,7 +161,7 @@ def rename_data_entities(obj, workdir):
             shutil.copy(src_path, dst_path)
 
 
-def run_crate(crate):
+def run_crate(crate, keep_wd=False):
     if not isinstance(crate, ROCrate):
         crate = ROCrate(crate)
     wf, action = check_runnable(crate)
@@ -178,4 +178,8 @@ def run_crate(crate):
     wf_path = workdir / wf.id
     sys.stdout.write(f"running {wf_path}\n")
     args = [EXECUTABLE, wf_path, params_path]
-    subprocess.run(args)
+    try:
+        subprocess.check_call(args)
+    finally:
+        if not keep_wd:
+            shutil.rmtree(workdir)
