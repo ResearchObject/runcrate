@@ -1,0 +1,1175 @@
+
+
+<html>
+<head>
+
+
+<script type="application/ld+json"> 
+  {
+  "@context": [
+    "https://w3id.org/ro/crate/1.1/context",
+    {
+      "ParameterConnection": "https://w3id.org/ro/terms/workflow-run#ParameterConnection",
+      "connection": "https://w3id.org/ro/terms/workflow-run#connection",
+      "sha1": "https://w3id.org/ro/terms/workflow-run#sha1",
+      "sourceParameter": "https://w3id.org/ro/terms/workflow-run#sourceParameter",
+      "targetParameter": "https://w3id.org/ro/terms/workflow-run#targetParameter"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "conformsTo": [
+        {
+          "@id": "https://w3id.org/ro/wfrun/process/0.1"
+        },
+        {
+          "@id": "https://w3id.org/ro/wfrun/workflow/0.1"
+        },
+        {
+          "@id": "https://w3id.org/ro/wfrun/provenance/0.1"
+        },
+        {
+          "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0"
+        }
+      ],
+      "datePublished": "2023-03-24T07:53:37+00:00",
+      "hasPart": [
+        {
+          "@id": "packed.cwl"
+        },
+        {
+          "@id": "4bd8e7e358488e833bf32cf5028695292cecb05b"
+        }
+      ],
+      "license": "Apache-2.0",
+      "mainEntity": {
+        "@id": "packed.cwl"
+      },
+      "mentions": [
+        {
+          "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+        }
+      ],
+      "@reverse": {
+        "about": [
+          {
+            "@id": "ro-crate-metadata.json"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "./"
+      },
+      "conformsTo": [
+        {
+          "@id": "https://w3id.org/ro/crate/1.1"
+        },
+        {
+          "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0"
+        }
+      ]
+    },
+    {
+      "@id": "https://w3id.org/ro/wfrun/process/0.1",
+      "@type": "CreativeWork",
+      "name": "Process Run Crate",
+      "version": "0.1",
+      "@reverse": {
+        "conformsTo": [
+          {
+            "@id": "./"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "https://w3id.org/ro/wfrun/workflow/0.1",
+      "@type": "CreativeWork",
+      "name": "Workflow Run Crate",
+      "version": "0.1",
+      "@reverse": {
+        "conformsTo": [
+          {
+            "@id": "./"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "https://w3id.org/ro/wfrun/provenance/0.1",
+      "@type": "CreativeWork",
+      "name": "Provenance Run Crate",
+      "version": "0.1",
+      "@reverse": {
+        "conformsTo": [
+          {
+            "@id": "./"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0",
+      "@type": "CreativeWork",
+      "name": "Workflow RO-Crate",
+      "version": "1.0",
+      "@reverse": {
+        "conformsTo": [
+          {
+            "@id": "./"
+          },
+          {
+            "@id": "ro-crate-metadata.json"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "packed.cwl",
+      "@type": [
+        "File",
+        "SoftwareSourceCode",
+        "ComputationalWorkflow",
+        "HowTo"
+      ],
+      "input": [
+        {
+          "@id": "packed.cwl#main/in_any"
+        },
+        {
+          "@id": "packed.cwl#main/in_array"
+        },
+        {
+          "@id": "packed.cwl#main/in_bool"
+        },
+        {
+          "@id": "packed.cwl#main/in_double"
+        },
+        {
+          "@id": "packed.cwl#main/in_enum"
+        },
+        {
+          "@id": "packed.cwl#main/in_float"
+        },
+        {
+          "@id": "packed.cwl#main/in_int"
+        },
+        {
+          "@id": "packed.cwl#main/in_long"
+        },
+        {
+          "@id": "packed.cwl#main/in_multi"
+        },
+        {
+          "@id": "packed.cwl#main/in_record"
+        },
+        {
+          "@id": "packed.cwl#main/in_str"
+        }
+      ],
+      "name": "packed.cwl",
+      "output": [
+        {
+          "@id": "packed.cwl#main/cl_dump"
+        }
+      ],
+      "programmingLanguage": {
+        "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
+      },
+      "@reverse": {
+        "hasPart": [
+          {
+            "@id": "./"
+          }
+        ],
+        "mainEntity": [
+          {
+            "@id": "./"
+          }
+        ],
+        "instrument": [
+          {
+            "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl",
+      "@type": "ComputerLanguage",
+      "alternateName": "CWL",
+      "identifier": {
+        "@id": "https://w3id.org/cwl/v1.0/"
+      },
+      "name": "Common Workflow Language",
+      "url": {
+        "@id": "https://www.commonwl.org/"
+      },
+      "version": "v1.0",
+      "@reverse": {
+        "programmingLanguage": [
+          {
+            "@id": "packed.cwl"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "packed.cwl#main/in_any",
+      "@type": "FormalParameter",
+      "additionalType": "DataType",
+      "name": "in_any",
+      "@reverse": {
+        "input": [
+          {
+            "@id": "packed.cwl"
+          }
+        ],
+        "exampleOfWork": [
+          {
+            "@id": "#pv-main/in_any"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "packed.cwl#main/in_array",
+      "@type": "FormalParameter",
+      "additionalType": "Text",
+      "multipleValues": "True",
+      "name": "in_array",
+      "@reverse": {
+        "input": [
+          {
+            "@id": "packed.cwl"
+          }
+        ],
+        "exampleOfWork": [
+          {
+            "@id": "#pv-main/in_array"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "packed.cwl#main/in_bool",
+      "@type": "FormalParameter",
+      "additionalType": "Boolean",
+      "name": "in_bool",
+      "@reverse": {
+        "input": [
+          {
+            "@id": "packed.cwl"
+          }
+        ],
+        "exampleOfWork": [
+          {
+            "@id": "#pv-main/in_bool"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "packed.cwl#main/in_double",
+      "@type": "FormalParameter",
+      "additionalType": "Float",
+      "name": "in_double",
+      "@reverse": {
+        "input": [
+          {
+            "@id": "packed.cwl"
+          }
+        ],
+        "exampleOfWork": [
+          {
+            "@id": "#pv-main/in_double"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "packed.cwl#main/in_enum",
+      "@type": "FormalParameter",
+      "additionalType": "Text",
+      "name": "in_enum",
+      "valuePattern": "A|B",
+      "@reverse": {
+        "input": [
+          {
+            "@id": "packed.cwl"
+          }
+        ],
+        "exampleOfWork": [
+          {
+            "@id": "#pv-main/in_enum"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "packed.cwl#main/in_float",
+      "@type": "FormalParameter",
+      "additionalType": "Float",
+      "name": "in_float",
+      "@reverse": {
+        "input": [
+          {
+            "@id": "packed.cwl"
+          }
+        ],
+        "exampleOfWork": [
+          {
+            "@id": "#pv-main/in_float"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "packed.cwl#main/in_int",
+      "@type": "FormalParameter",
+      "additionalType": "Integer",
+      "name": "in_int",
+      "@reverse": {
+        "input": [
+          {
+            "@id": "packed.cwl"
+          }
+        ],
+        "exampleOfWork": [
+          {
+            "@id": "#pv-main/in_int"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "packed.cwl#main/in_long",
+      "@type": "FormalParameter",
+      "additionalType": "Integer",
+      "name": "in_long",
+      "@reverse": {
+        "input": [
+          {
+            "@id": "packed.cwl"
+          }
+        ],
+        "exampleOfWork": [
+          {
+            "@id": "#pv-main/in_long"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "packed.cwl#main/in_multi",
+      "@type": "FormalParameter",
+      "additionalType": [
+        "Float",
+        "Integer"
+      ],
+      "defaultValue": "9.99",
+      "name": "in_multi",
+      "valueRequired": "False",
+      "@reverse": {
+        "input": [
+          {
+            "@id": "packed.cwl"
+          }
+        ],
+        "exampleOfWork": [
+          {
+            "@id": "#pv-main/in_multi"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "packed.cwl#main/in_record",
+      "@type": "FormalParameter",
+      "additionalType": "PropertyValue",
+      "multipleValues": "True",
+      "name": "in_record",
+      "@reverse": {
+        "input": [
+          {
+            "@id": "packed.cwl"
+          }
+        ],
+        "exampleOfWork": [
+          {
+            "@id": "#pv-main/in_record"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "packed.cwl#main/in_str",
+      "@type": "FormalParameter",
+      "additionalType": "Text",
+      "name": "in_str",
+      "@reverse": {
+        "input": [
+          {
+            "@id": "packed.cwl"
+          }
+        ],
+        "exampleOfWork": [
+          {
+            "@id": "#pv-main/in_str"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "packed.cwl#main/cl_dump",
+      "@type": "FormalParameter",
+      "additionalType": "File",
+      "name": "cl_dump",
+      "@reverse": {
+        "output": [
+          {
+            "@id": "packed.cwl"
+          }
+        ],
+        "exampleOfWork": [
+          {
+            "@id": "4bd8e7e358488e833bf32cf5028695292cecb05b"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#011ba6cb-9622-4cec-bb95-da634b2ffc5e",
+      "@type": "SoftwareApplication",
+      "name": "cwltool 3.1.20220224085855",
+      "@reverse": {
+        "instrument": [
+          {
+            "@id": "#74481571-11f4-493c-8edf-3eb9bd5994e0"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#74481571-11f4-493c-8edf-3eb9bd5994e0",
+      "@type": "OrganizeAction",
+      "instrument": {
+        "@id": "#011ba6cb-9622-4cec-bb95-da634b2ffc5e"
+      },
+      "name": "Run of cwltool 3.1.20220224085855",
+      "result": {
+        "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+      },
+      "startTime": "2022-04-22T12:27:13.313333"
+    },
+    {
+      "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894",
+      "@type": "CreateAction",
+      "endTime": "2022-04-22T12:27:13.328912",
+      "instrument": {
+        "@id": "packed.cwl"
+      },
+      "name": "Run of workflow/packed.cwl#main",
+      "object": [
+        {
+          "@id": "#pv-main/in_array"
+        },
+        {
+          "@id": "#pv-main/in_any"
+        },
+        {
+          "@id": "#pv-main/in_str"
+        },
+        {
+          "@id": "#pv-main/in_bool"
+        },
+        {
+          "@id": "#pv-main/in_int"
+        },
+        {
+          "@id": "#pv-main/in_long"
+        },
+        {
+          "@id": "#pv-main/in_float"
+        },
+        {
+          "@id": "#pv-main/in_double"
+        },
+        {
+          "@id": "#pv-main/in_enum"
+        },
+        {
+          "@id": "#pv-main/in_record"
+        },
+        {
+          "@id": "#pv-main/in_multi"
+        }
+      ],
+      "result": [
+        {
+          "@id": "4bd8e7e358488e833bf32cf5028695292cecb05b"
+        }
+      ],
+      "startTime": "2022-04-22T12:27:13.313422",
+      "@reverse": {
+        "mentions": [
+          {
+            "@id": "./"
+          }
+        ],
+        "result": [
+          {
+            "@id": "#74481571-11f4-493c-8edf-3eb9bd5994e0"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#pv-main/in_array",
+      "@type": "PropertyValue",
+      "exampleOfWork": {
+        "@id": "packed.cwl#main/in_array"
+      },
+      "name": "in_array",
+      "value": [
+        "foo",
+        "bar"
+      ],
+      "@reverse": {
+        "object": [
+          {
+            "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#pv-main/in_any",
+      "@type": "PropertyValue",
+      "exampleOfWork": {
+        "@id": "packed.cwl#main/in_any"
+      },
+      "name": "in_any",
+      "value": "tar",
+      "@reverse": {
+        "object": [
+          {
+            "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#pv-main/in_str",
+      "@type": "PropertyValue",
+      "exampleOfWork": {
+        "@id": "packed.cwl#main/in_str"
+      },
+      "name": "in_str",
+      "value": "spam",
+      "@reverse": {
+        "object": [
+          {
+            "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#pv-main/in_bool",
+      "@type": "PropertyValue",
+      "exampleOfWork": {
+        "@id": "packed.cwl#main/in_bool"
+      },
+      "name": "in_bool",
+      "value": "True",
+      "@reverse": {
+        "object": [
+          {
+            "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#pv-main/in_int",
+      "@type": "PropertyValue",
+      "exampleOfWork": {
+        "@id": "packed.cwl#main/in_int"
+      },
+      "name": "in_int",
+      "value": "42",
+      "@reverse": {
+        "object": [
+          {
+            "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#pv-main/in_long",
+      "@type": "PropertyValue",
+      "exampleOfWork": {
+        "@id": "packed.cwl#main/in_long"
+      },
+      "name": "in_long",
+      "value": "420",
+      "@reverse": {
+        "object": [
+          {
+            "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#pv-main/in_float",
+      "@type": "PropertyValue",
+      "exampleOfWork": {
+        "@id": "packed.cwl#main/in_float"
+      },
+      "name": "in_float",
+      "value": "3.14",
+      "@reverse": {
+        "object": [
+          {
+            "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#pv-main/in_double",
+      "@type": "PropertyValue",
+      "exampleOfWork": {
+        "@id": "packed.cwl#main/in_double"
+      },
+      "name": "in_double",
+      "value": "3.142",
+      "@reverse": {
+        "object": [
+          {
+            "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#pv-main/in_enum",
+      "@type": "PropertyValue",
+      "exampleOfWork": {
+        "@id": "packed.cwl#main/in_enum"
+      },
+      "name": "in_enum",
+      "value": "B",
+      "@reverse": {
+        "object": [
+          {
+            "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#pv-main/in_record/in_record_B",
+      "@type": "PropertyValue",
+      "name": "in_record_B",
+      "value": "Jerry",
+      "@reverse": {
+        "value": [
+          {
+            "@id": "#pv-main/in_record"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#pv-main/in_record/in_record_A",
+      "@type": "PropertyValue",
+      "name": "in_record_A",
+      "value": "Tom",
+      "@reverse": {
+        "value": [
+          {
+            "@id": "#pv-main/in_record"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#pv-main/in_record",
+      "@type": "PropertyValue",
+      "exampleOfWork": {
+        "@id": "packed.cwl#main/in_record"
+      },
+      "name": "in_record",
+      "value": [
+        {
+          "@id": "#pv-main/in_record/in_record_B"
+        },
+        {
+          "@id": "#pv-main/in_record/in_record_A"
+        }
+      ],
+      "@reverse": {
+        "object": [
+          {
+            "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#pv-main/in_multi",
+      "@type": "PropertyValue",
+      "exampleOfWork": {
+        "@id": "packed.cwl#main/in_multi"
+      },
+      "name": "in_multi",
+      "value": "9.99",
+      "@reverse": {
+        "object": [
+          {
+            "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "4bd8e7e358488e833bf32cf5028695292cecb05b",
+      "@type": "File",
+      "alternateName": "output.txt",
+      "exampleOfWork": {
+        "@id": "packed.cwl#main/cl_dump"
+      },
+      "sha1": "4bd8e7e358488e833bf32cf5028695292cecb05b",
+      "@reverse": {
+        "hasPart": [
+          {
+            "@id": "./"
+          }
+        ],
+        "result": [
+          {
+            "@id": "#f4a43df6-8216-4b72-abf2-8beab8ca9894"
+          }
+        ]
+      }
+    }
+  ]
+}
+</script>
+
+    
+<!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script -->
+<script src="https://unpkg.com/ro-crate-html-js/dist/ro-crate-dynamic.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<meta charset='utf-8'/>
+<style>
+
+table.table {
+  padding-bottom: 300px;
+}
+</style>
+</head>
+
+
+<body>
+
+  <nav class="navbar">
+
+    <ul class="nav navbar-nav" >
+        <li ><a href="#"><span class="glyphicon glyphicon-home dataset_name">&nbsp;</span></a></li>
+    </ul>
+
+  </nav>
+<div class="container">
+<div class="jumbotron">
+<h4 class="citation"></h3>
+<h3 class="item_name"></h4>
+
+
+<a href="./ro-crate-metadata.json">⬇️🏷️ Download all the metadata for <span class='name'></span> in JSON-LD format</a>
+
+
+<div id="check"></div>
+
+
+</div>
+
+
+
+<div id="summary">
+<div class='all-meta'>
+           <div>
+            <h3> ./</h3>
+            
+            
+            
+            
+        <div id="./">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>./</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Dataset</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">datePublished<span>&nbsp;</span><a href="http://schema.org/datePublished">[?]</a></th>
+            <td style='text-align:left'><span>2023-03-24T07:53:37+00:00</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">conformsTo<span>&nbsp;</span><a href="http://purl.org/dc/terms/conformsTo">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#https%3A//w3id.org/ro/wfrun/process/0.1">Process Run Crate</a></li>
+                        
+                        <li><a href="#https%3A//w3id.org/ro/wfrun/workflow/0.1">Workflow Run Crate</a></li>
+                        
+                        <li><a href="#https%3A//w3id.org/ro/wfrun/provenance/0.1">Provenance Run Crate</a></li>
+                        
+                        <li><a href="#https%3A//w3id.org/workflowhub/workflow-ro-crate/1.0">Workflow RO-Crate</a></li>
+                        </ul></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#packed.cwl">packed.cwl</a></li>
+                        
+                        <li><a href="#4bd8e7e358488e833bf32cf5028695292cecb05b">4bd8e7e358488e833bf32cf5028695292cecb05b</a></li>
+                        </ul></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">license<span>&nbsp;</span><a href="http://schema.org/license">[?]</a></th>
+            <td style='text-align:left'><span>Apache-2.0</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">mainEntity<span>&nbsp;</span><a href="http://schema.org/mainEntity">[?]</a></th>
+            <td style='text-align:left'><a href="#packed.cwl">packed.cwl</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">mentions<span>&nbsp;</span><a href="http://schema.org/mentions">[?]</a></th>
+            <td style='text-align:left'><a href="#%23f4a43df6-8216-4b72-abf2-8beab8ca9894">Run of workflow/packed.cwl#main</a></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">about<span>&nbsp;</span><a href="http://schema.org/about">[?]</a></th>
+            <td style='text-align:left'><a href="#ro-crate-metadata.json">ro-crate-metadata.json</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        </div>
+        <hr/><br/><br/>
+           <div>
+            <h3><a href="https://w3id.org/ro/wfrun/process/0.1">Go to: </a> Process Run Crate</h3>
+            
+            
+            
+            
+        <div id="https://w3id.org/ro/wfrun/process/0.1">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><a href="https://w3id.org/ro/wfrun/process/0.1">https://w3id.org/ro/wfrun/process/0.1</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Process Run Crate</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>CreativeWork</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">version<span>&nbsp;</span><a href="http://schema.org/version">[?]</a></th>
+            <td style='text-align:left'><span>0.1</span></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">conformsTo<span>&nbsp;</span><a href="http://purl.org/dc/terms/conformsTo">[?]</a></th>
+            <td style='text-align:left'><a href="#./">./</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        </div>
+        <hr/><br/><br/>
+           <div>
+            <h3><a href="https://w3id.org/ro/wfrun/workflow/0.1">Go to: </a> Workflow Run Crate</h3>
+            
+            
+            
+            
+        <div id="https://w3id.org/ro/wfrun/workflow/0.1">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><a href="https://w3id.org/ro/wfrun/workflow/0.1">https://w3id.org/ro/wfrun/workflow/0.1</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Workflow Run Crate</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>CreativeWork</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">version<span>&nbsp;</span><a href="http://schema.org/version">[?]</a></th>
+            <td style='text-align:left'><span>0.1</span></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">conformsTo<span>&nbsp;</span><a href="http://purl.org/dc/terms/conformsTo">[?]</a></th>
+            <td style='text-align:left'><a href="#./">./</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        </div>
+        <hr/><br/><br/>
+           <div>
+            <h3><a href="https://w3id.org/ro/wfrun/provenance/0.1">Go to: </a> Provenance Run Crate</h3>
+            
+            
+            
+            
+        <div id="https://w3id.org/ro/wfrun/provenance/0.1">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><a href="https://w3id.org/ro/wfrun/provenance/0.1">https://w3id.org/ro/wfrun/provenance/0.1</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Provenance Run Crate</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>CreativeWork</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">version<span>&nbsp;</span><a href="http://schema.org/version">[?]</a></th>
+            <td style='text-align:left'><span>0.1</span></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">conformsTo<span>&nbsp;</span><a href="http://purl.org/dc/terms/conformsTo">[?]</a></th>
+            <td style='text-align:left'><a href="#./">./</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        </div>
+        <hr/><br/><br/>
+           <div>
+            <h3><a href="https://w3id.org/workflowhub/workflow-ro-crate/1.0">Go to: </a> Workflow RO-Crate</h3>
+            
+            
+            
+            
+        <div id="https://w3id.org/workflowhub/workflow-ro-crate/1.0">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><a href="https://w3id.org/workflowhub/workflow-ro-crate/1.0">https://w3id.org/workflowhub/workflow-ro-crate/1.0</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Workflow RO-Crate</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>CreativeWork</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">version<span>&nbsp;</span><a href="http://schema.org/version">[?]</a></th>
+            <td style='text-align:left'><span>1.0</span></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">conformsTo<span>&nbsp;</span><a href="http://purl.org/dc/terms/conformsTo">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#./">./</a></li>
+                        
+                        <li><a href="#ro-crate-metadata.json">ro-crate-metadata.json</a></li>
+                        </ul></td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        </div>
+        <hr/><br/><br/>
+           <div>
+            <h3><a href="packed.cwl">⬇️ Download: </a> packed.cwl</h3>
+            
+            
+            
+            
+        <div id="packed.cwl">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>packed.cwl</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>packed.cwl</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><ul>
+                        <li><span>File</span></li>
+                        
+                        <li><span>SoftwareSourceCode</span></li>
+                        
+                        <li><span>ComputationalWorkflow</span></li>
+                        
+                        <li><span>HowTo</span></li>
+                        </ul></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">input<span>&nbsp;</span><a href="https://bioschemas.org/ComputationalWorkflow#input">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#packed.cwl%23main/in_any">in_any</a></li>
+                        
+                        <li><a href="#packed.cwl%23main/in_array">in_array</a></li>
+                        
+                        <li><a href="#packed.cwl%23main/in_bool">in_bool</a></li>
+                        
+                        <li><a href="#packed.cwl%23main/in_double">in_double</a></li>
+                        
+                        <li><a href="#packed.cwl%23main/in_enum">in_enum</a></li>
+                        
+                        <li><a href="#packed.cwl%23main/in_float">in_float</a></li>
+                        
+                        <li><a href="#packed.cwl%23main/in_int">in_int</a></li>
+                        
+                        <li><a href="#packed.cwl%23main/in_long">in_long</a></li>
+                        
+                        <li><a href="#packed.cwl%23main/in_multi">in_multi</a></li>
+                        
+                        <li><a href="#packed.cwl%23main/in_record">in_record</a></li>
+                        
+                        <li><a href="#packed.cwl%23main/in_str">in_str</a></li>
+                        </ul></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">output<span>&nbsp;</span><a href="https://bioschemas.org/ComputationalWorkflow#output">[?]</a></th>
+            <td style='text-align:left'><a href="#packed.cwl%23main/cl_dump">cl_dump</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">programmingLanguage<span>&nbsp;</span><a href="http://schema.org/programmingLanguage">[?]</a></th>
+            <td style='text-align:left'><a href="#https%3A//w3id.org/workflowhub/workflow-ro-crate%23cwl">Common Workflow Language</a></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#./">./</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">mainEntity<span>&nbsp;</span><a href="http://schema.org/mainEntity">[?]</a></th>
+            <td style='text-align:left'><a href="#./">./</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">instrument<span>&nbsp;</span><a href="http://schema.org/instrument">[?]</a></th>
+            <td style='text-align:left'><a href="#%23f4a43df6-8216-4b72-abf2-8beab8ca9894">Run of workflow/packed.cwl#main</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        </div>
+        <hr/><br/><br/>
+           <div>
+            <h3><a href="4bd8e7e358488e833bf32cf5028695292cecb05b">⬇️ Download: </a> 4bd8e7e358488e833bf32cf5028695292cecb05b</h3>
+            
+            
+            
+            
+        <div id="4bd8e7e358488e833bf32cf5028695292cecb05b">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>4bd8e7e358488e833bf32cf5028695292cecb05b</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>File</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">alternateName<span>&nbsp;</span><a href="http://schema.org/alternateName">[?]</a></th>
+            <td style='text-align:left'><span>output.txt</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">exampleOfWork<span>&nbsp;</span><a href="http://schema.org/exampleOfWork">[?]</a></th>
+            <td style='text-align:left'><a href="#packed.cwl%23main/cl_dump">cl_dump</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">sha1<span>&nbsp;</span><a href="https://w3id.org/ro/terms/workflow-run#sha1">[?]</a></th>
+            <td style='text-align:left'><span>4bd8e7e358488e833bf32cf5028695292cecb05b</span></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#./">./</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">result<span>&nbsp;</span><a href="http://schema.org/result">[?]</a></th>
+            <td style='text-align:left'><a href="#%23f4a43df6-8216-4b72-abf2-8beab8ca9894">Run of workflow/packed.cwl#main</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        </div>
+        <hr/><br/><br/>
+           <div>
+            <h3> Run of workflow/packed.cwl#main</h3>
+            
+            
+            
+            
+        <div id="#f4a43df6-8216-4b72-abf2-8beab8ca9894">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>#f4a43df6-8216-4b72-abf2-8beab8ca9894</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>Run of workflow/packed.cwl#main</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>CreateAction</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">endTime<span>&nbsp;</span><a href="http://schema.org/endTime">[?]</a></th>
+            <td style='text-align:left'><span>2022-04-22T12:27:13.328912</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">instrument<span>&nbsp;</span><a href="http://schema.org/instrument">[?]</a></th>
+            <td style='text-align:left'><a href="#packed.cwl">packed.cwl</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">object<span>&nbsp;</span><a href="http://schema.org/object">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li>in_array: foo,bar</li>
+                        
+                        <li>in_any: tar</li>
+                        
+                        <li>in_str: spam</li>
+                        
+                        <li>in_bool: True</li>
+                        
+                        <li>in_int: 42</li>
+                        
+                        <li>in_long: 420</li>
+                        
+                        <li>in_float: 3.14</li>
+                        
+                        <li>in_double: 3.142</li>
+                        
+                        <li>in_enum: B</li>
+                        
+                        <li>in_record: [object Object],[object Object]</li>
+                        
+                        <li>in_multi: 9.99</li>
+                        </ul></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">result<span>&nbsp;</span><a href="http://schema.org/result">[?]</a></th>
+            <td style='text-align:left'><a href="#4bd8e7e358488e833bf32cf5028695292cecb05b">4bd8e7e358488e833bf32cf5028695292cecb05b</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">startTime<span>&nbsp;</span><a href="http://schema.org/startTime">[?]</a></th>
+            <td style='text-align:left'><span>2022-04-22T12:27:13.313422</span></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">mentions<span>&nbsp;</span><a href="http://schema.org/mentions">[?]</a></th>
+            <td style='text-align:left'><a href="#./">./</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">result<span>&nbsp;</span><a href="http://schema.org/result">[?]</a></th>
+            <td style='text-align:left'><a href="#%2374481571-11f4-493c-8edf-3eb9bd5994e0">Run of cwltool 3.1.20220224085855</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        </div>
+        <hr/><br/><br/></div>
+</div>
+
+
+
+
+
+</body>
+</html>

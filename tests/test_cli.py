@@ -111,8 +111,8 @@ def test_cli_version():
     assert result.stdout.strip() == __version__
 
 
-def test_cli_run_provenance_minimal(data_dir, tmpdir, monkeypatch):
-    crate_dir = data_dir / "revsort-provenance-crate-minimal"
+def test_cli_run(data_dir, tmpdir, monkeypatch):
+    crate_dir = data_dir / "type-zoo-run-1-crate"
     runner = CliRunner()
     args = ["run", str(crate_dir)]
     monkeypatch.chdir(str(tmpdir))
@@ -120,5 +120,5 @@ def test_cli_run_provenance_minimal(data_dir, tmpdir, monkeypatch):
     assert result.exit_code == 0
     out_path = Path("output.txt")
     assert out_path.is_file()
-    crate_out_path = crate_dir / "b9214658cc453331b62c2282b772a5c063dbd284"
+    crate_out_path = crate_dir / "4bd8e7e358488e833bf32cf5028695292cecb05b"
     assert out_path.read_text() == crate_out_path.read_text()
