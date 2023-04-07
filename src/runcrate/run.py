@@ -31,6 +31,7 @@ from .utils import as_list
 CWL_ID = "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
 PARAMS_FILENAME = "params.json"
 EXECUTABLE = "cwltool"
+STREAMFLOW_FILE = "streamflow.yml"
 
 
 def check_runnable(crate):
@@ -161,7 +162,17 @@ def rename_data_entities(obj, workdir):
             shutil.copy(src_path, dst_path)
 
 
-def run_crate(crate, keep_wd=False):
+def find_streamflow_file(crate):
+    for e in crate.get_entities():
+        if "File" not in as_list(e.type):
+            continue
+        candidates = e.id, e.get("alternateName", "")
+        for c in candidates:
+            if c.lower().rsplit("/", 1)[-1] == STREAMFLOW_FILE:
+                return e.id
+
+
+def run_crate(crate, keep_wd=False, dry_run=False):
     if not isinstance(crate, ROCrate):
         crate = ROCrate(crate)
     wf, action = check_runnable(crate)
@@ -175,9 +186,16 @@ def run_crate(crate, keep_wd=False):
         json.dump(params, f, indent=4)
     for obj in action.get("object", []):
         rename_data_entities(obj, workdir)
+    if dry_run:
+        return
     wf_path = workdir / wf.id
-    sys.stdout.write(f"running {wf_path}\n")
-    args = [EXECUTABLE, wf_path, params_path]
+    streamflow_relpath = find_streamflow_file(crate)
+    if streamflow_relpath:
+        streamflow_file = workdir / streamflow_relpath
+        args = ["cwl-runner", "--streamflow-file", streamflow_file, wf_path, params_path]
+    else:
+        args = [EXECUTABLE, wf_path, params_path]
+    sys.stdout.write(f"running {args}\n")
     try:
         subprocess.check_call(args)
     finally:
