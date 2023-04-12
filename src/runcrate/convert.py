@@ -37,6 +37,7 @@ from .utils import as_list
 
 
 WORKFLOW_BASENAME = "packed.cwl"
+INPUTS_FILE_BASENAME = "primary-job.json"
 
 CWL_TYPE_MAP = {
     "string": "Text",
@@ -256,6 +257,7 @@ class ProvCrateBuilder:
         self.add_engine_run(crate)
         self.add_action(crate, self.workflow_run)
         self.patch_workflow_input_collection(crate)
+        self.add_inputs_file(crate)
         return crate
 
     def add_root_metadata(self, crate):
@@ -644,3 +646,11 @@ class ProvCrateBuilder:
         for tool in wf.get("hasPart", []):
             if "ComputationalWorkflow" in as_list(tool.type):
                 self.patch_workflow_input_collection(crate, wf=tool)
+
+    def add_inputs_file(self, crate):
+        path = self.root / "workflow" / INPUTS_FILE_BASENAME
+        if path.is_file():
+            crate.add_file(path, properties={
+                "name": "input object document",
+                "encodingFormat": "application/json",
+            })

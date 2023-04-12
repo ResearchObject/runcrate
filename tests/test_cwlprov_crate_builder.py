@@ -32,6 +32,7 @@ def test_revsort(data_dir, tmpdir):
     output = tmpdir / "revsort-run-1-crate"
     license = "Apache-2.0"
     readme = data_dir / "README.md"
+    inputs_file = data_dir / "workflow" / "primary-job.json"
     workflow_name = "RevSort"
     builder = ProvCrateBuilder(root, workflow_name=workflow_name, license=license, readme=readme)
     crate = builder.build()
@@ -140,6 +141,11 @@ def test_revsort(data_dir, tmpdir):
     assert set(_connected(workflow)) == set([
         ("packed.cwl#sorttool.cwl/output", "packed.cwl#main/output"),
     ])
+    inputs_f = crate.get(inputs_file.name)
+    assert inputs_f
+    assert inputs_f.type == "File"
+    assert inputs_f["encodingFormat"] == "application/json"
+
     # file contents
     in_text = (root / "data/32/327fc7aedf4f6b69a42a7c8b808dc5a7aff61376").read_text()
     assert (output / wf_input_file.id).read_text() == in_text
