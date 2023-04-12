@@ -47,6 +47,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#runcrate">runcrate</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#runcrate-convert">convert</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#runcrate-report">report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#runcrate-run">run</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#runcrate-version">version</a></li>
 </ul>
 </li>
@@ -138,6 +139,40 @@
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-runcrate-report-arg-RO_CRATE">
 <span id="cmdoption-runcrate-report-arg-ro-crate"></span><span class="sig-name descname"><span class="pre">RO_CRATE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-runcrate-report-arg-RO_CRATE" title="Permalink to this definition"></a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="runcrate-run">
+<h3>run<a class="headerlink" href="#runcrate-run" title="Permalink to this heading"></a></h3>
+<p>Run the workflow from a Workflow Run RO-Crate.</p>
+<p>RO_CRATE: RO-Crate directory or zip file.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>runcrate<span class="w"> </span>run<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>RO_CRATE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-runcrate-run-executable">
+<span class="sig-name descname"><span class="pre">--executable</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;executable&gt;</span></span><a class="headerlink" href="#cmdoption-runcrate-run-executable" title="Permalink to this definition"></a></dt>
+<dd><p>workflow runner executable</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-runcrate-run-keep-wd">
+<span class="sig-name descname"><span class="pre">--keep-wd</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-runcrate-run-keep-wd" title="Permalink to this definition"></a></dt>
+<dd><p>keep working directory</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-runcrate-run-dry-run">
+<span class="sig-name descname"><span class="pre">--dry-run</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-runcrate-run-dry-run" title="Permalink to this definition"></a></dt>
+<dd><p>do not actually run the workflow (implies –keep-wd)</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-runcrate-run-arg-RO_CRATE">
+<span id="cmdoption-runcrate-run-arg-ro-crate"></span><span class="sig-name descname"><span class="pre">RO_CRATE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-runcrate-run-arg-RO_CRATE" title="Permalink to this definition"></a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
