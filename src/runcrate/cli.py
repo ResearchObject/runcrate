@@ -93,19 +93,20 @@ def report(crate):
     metavar="RO_CRATE",
     type=click.Path(exists=True, readable=True, path_type=Path),
 )
+@click.option("--executable", help="workflow runner executable")
 @click.option("--keep-wd", help="keep working directory", is_flag=True)
 @click.option(
     "--dry-run",
     help="do not actually run the workflow (implies --keep-wd)",
     is_flag=True
 )
-def run(crate, keep_wd, dry_run):
+def run(crate, executable, keep_wd, dry_run):
     """\
     Run the workflow from a Workflow Run RO-Crate.
 
     RO_CRATE: RO-Crate directory or zip file.
     """
-    run_crate(crate, keep_wd=keep_wd, dry_run=dry_run)
+    run_crate(crate, executable=executable, keep_wd=keep_wd, dry_run=dry_run)
 
 
 @cli.command()

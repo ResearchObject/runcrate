@@ -14,6 +14,8 @@
 
 """\
 Run the workflow from a Workflow Run RO-Crate.
+
+Only CWL is supported for now.
 """
 
 import json
@@ -30,7 +32,7 @@ from .utils import as_list
 
 CWL_ID = "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
 PARAMS_FILENAME = "params.json"
-EXECUTABLE = "cwltool"
+EXECUTABLE = "cwl-runner"
 STREAMFLOW_FILE = "streamflow.yml"
 
 
@@ -172,7 +174,9 @@ def find_streamflow_file(crate):
                 return e.id
 
 
-def run_crate(crate, keep_wd=False, dry_run=False):
+def run_crate(crate, executable=None, keep_wd=False, dry_run=False):
+    if executable is None:
+        executable = EXECUTABLE
     if not isinstance(crate, ROCrate):
         crate = ROCrate(crate)
     wf, action = check_runnable(crate)
@@ -192,9 +196,9 @@ def run_crate(crate, keep_wd=False, dry_run=False):
     streamflow_relpath = find_streamflow_file(crate)
     if streamflow_relpath:
         streamflow_file = workdir / streamflow_relpath
-        args = ["cwl-runner", "--streamflow-file", streamflow_file, wf_path, params_path]
+        args = [executable, "--streamflow-file", streamflow_file, wf_path, params_path]
     else:
-        args = [EXECUTABLE, wf_path, params_path]
+        args = [executable, wf_path, params_path]
     sys.stdout.write(f"running {args}\n")
     try:
         subprocess.check_call(args)
