@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from pathlib import Path
+
 from click.testing import CliRunner
 from rocrate.rocrate import ROCrate
 
@@ -107,3 +109,16 @@ def test_cli_version():
     result = runner.invoke(cli, ["version"])
     assert result.exit_code == 0
     assert result.stdout.strip() == __version__
+
+
+def test_cli_run(data_dir, tmpdir, monkeypatch):
+    crate_dir = data_dir / "type-zoo-run-1-crate"
+    runner = CliRunner()
+    args = ["run", str(crate_dir)]
+    monkeypatch.chdir(str(tmpdir))
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0
+    out_path = Path("output.txt")
+    assert out_path.is_file()
+    crate_out_path = crate_dir / "4bd8e7e358488e833bf32cf5028695292cecb05b"
+    assert out_path.read_text() == crate_out_path.read_text()

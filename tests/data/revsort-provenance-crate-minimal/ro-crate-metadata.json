@@ -1,10 +1,33 @@
 {
-    "@context": "https://w3id.org/ro/crate/1.1/context",
+    "@context": [
+        "https://w3id.org/ro/crate/1.1/context",
+        {
+            "ParameterConnection": "https://w3id.org/ro/terms/workflow-run#ParameterConnection",
+            "connection": "https://w3id.org/ro/terms/workflow-run#connection",
+            "sha1": "https://w3id.org/ro/terms/workflow-run#sha1",
+            "sourceParameter": "https://w3id.org/ro/terms/workflow-run#sourceParameter",
+            "targetParameter": "https://w3id.org/ro/terms/workflow-run#targetParameter"
+        }
+    ],
     "@graph": [
         {
             "@id": "./",
             "@type": "Dataset",
-            "datePublished": "2022-10-07T10:01:24+00:00",
+            "conformsTo": [
+                {
+                    "@id": "https://w3id.org/ro/wfrun/process/0.1"
+                },
+                {
+                    "@id": "https://w3id.org/ro/wfrun/workflow/0.1"
+                },
+                {
+                    "@id": "https://w3id.org/ro/wfrun/provenance/0.1"
+                },
+                {
+                    "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0"
+                }
+            ],
+            "datePublished": "2023-03-23T14:39:57+00:00",
             "hasPart": [
                 {
                     "@id": "packed.cwl"
@@ -19,12 +42,13 @@
                     "@id": "97fe1b50b4582cebc7d853796ebd62e3e163aa3f"
                 }
             ],
+            "license": "Apache-2.0",
             "mainEntity": {
                 "@id": "packed.cwl"
             },
             "mentions": [
                 {
-                    "@id": "#7aeba0c9-78f6-4fb7-85d9-fcbe18fce057"
+                    "@id": "#654421a2-66b7-47c0-889a-4047fd22aace"
                 }
             ]
         },
@@ -44,12 +68,35 @@
             ]
         },
         {
+            "@id": "https://w3id.org/ro/wfrun/process/0.1",
+            "@type": "CreativeWork",
+            "name": "Process Run Crate",
+            "version": "0.1"
+        },
+        {
+            "@id": "https://w3id.org/ro/wfrun/workflow/0.1",
+            "@type": "CreativeWork",
+            "name": "Workflow Run Crate",
+            "version": "0.1"
+        },
+        {
+            "@id": "https://w3id.org/ro/wfrun/provenance/0.1",
+            "@type": "CreativeWork",
+            "name": "Provenance Run Crate",
+            "version": "0.1"
+        },
+        {
+            "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0",
+            "@type": "CreativeWork",
+            "name": "Workflow RO-Crate",
+            "version": "1.0"
+        },
+        {
             "@id": "packed.cwl",
             "@type": [
                 "File",
                 "SoftwareSourceCode",
-                "ComputationalWorkflow",
-                "HowTo"
+                "ComputationalWorkflow"
             ],
             "hasPart": [
                 {
@@ -94,28 +141,22 @@
             "@id": "packed.cwl#main/input",
             "@type": "FormalParameter",
             "additionalType": "File",
-            "connectedTo": {
-                "@id": "packed.cwl#revtool.cwl/input"
-            },
             "defaultValue": "file:///home/stain/src/cwltool/tests/wf/hello.txt",
             "encodingFormat": "https://www.iana.org/assignments/media-types/text/plain",
-            "name": "main/input"
+            "name": "input"
         },
         {
             "@id": "packed.cwl#main/reverse_sort",
             "@type": "FormalParameter",
             "additionalType": "Boolean",
-            "connectedTo": {
-                "@id": "packed.cwl#sorttool.cwl/reverse"
-            },
             "defaultValue": "True",
-            "name": "main/reverse_sort"
+            "name": "reverse_sort"
         },
         {
             "@id": "packed.cwl#main/output",
             "@type": "FormalParameter",
             "additionalType": "File",
-            "name": "main/output"
+            "name": "output"
         },
         {
             "@id": "packed.cwl#revtool.cwl",
@@ -137,16 +178,13 @@
             "@id": "packed.cwl#revtool.cwl/input",
             "@type": "FormalParameter",
             "additionalType": "File",
-            "name": "revtool.cwl/input"
+            "name": "input"
         },
         {
             "@id": "packed.cwl#revtool.cwl/output",
             "@type": "FormalParameter",
             "additionalType": "File",
-            "connectedTo": {
-                "@id": "packed.cwl#sorttool.cwl/input"
-            },
-            "name": "revtool.cwl/output"
+            "name": "output"
         },
         {
             "@id": "packed.cwl#sorttool.cwl",
@@ -171,25 +209,22 @@
             "@id": "packed.cwl#sorttool.cwl/reverse",
             "@type": "FormalParameter",
             "additionalType": "Boolean",
-            "name": "sorttool.cwl/reverse"
+            "name": "reverse"
         },
         {
             "@id": "packed.cwl#sorttool.cwl/input",
             "@type": "FormalParameter",
             "additionalType": "File",
-            "name": "sorttool.cwl/input"
+            "name": "input"
         },
         {
             "@id": "packed.cwl#sorttool.cwl/output",
             "@type": "FormalParameter",
             "additionalType": "File",
-            "connectedTo": {
-                "@id": "packed.cwl#main/output"
-            },
-            "name": "sorttool.cwl/output"
+            "name": "output"
         },
         {
-            "@id": "#7aeba0c9-78f6-4fb7-85d9-fcbe18fce057",
+            "@id": "#654421a2-66b7-47c0-889a-4047fd22aace",
             "@type": "CreateAction",
             "endTime": "2018-10-25T15:46:43.020168",
             "instrument": {
@@ -214,6 +249,7 @@
         {
             "@id": "327fc7aedf4f6b69a42a7c8b808dc5a7aff61376",
             "@type": "File",
+            "alternateName": "whale.txt",
             "exampleOfWork": [
                 {
                     "@id": "packed.cwl#main/input"
@@ -221,7 +257,8 @@
                 {
                     "@id": "packed.cwl#revtool.cwl/input"
                 }
-            ]
+            ],
+            "sha1": "327fc7aedf4f6b69a42a7c8b808dc5a7aff61376"
         },
         {
             "@id": "#pv-main/reverse_sort",
@@ -229,12 +266,13 @@
             "exampleOfWork": {
                 "@id": "packed.cwl#main/reverse_sort"
             },
-            "name": "main/reverse_sort",
+            "name": "reverse_sort",
             "value": "True"
         },
         {
             "@id": "b9214658cc453331b62c2282b772a5c063dbd284",
             "@type": "File",
+            "alternateName": "output.txt",
             "exampleOfWork": [
                 {
                     "@id": "packed.cwl#main/output"
@@ -242,10 +280,11 @@
                 {
                     "@id": "packed.cwl#sorttool.cwl/output"
                 }
-            ]
+            ],
+            "sha1": "b9214658cc453331b62c2282b772a5c063dbd284"
         },
         {
-            "@id": "#a439c61f-2378-49fb-a7e5-7258248daaeb",
+            "@id": "#1b0a99b0-bff6-486f-b9d9-50e89f9f8cc0",
             "@type": "CreateAction",
             "endTime": "2018-10-25T15:46:36.967359",
             "instrument": {
@@ -267,6 +306,7 @@
         {
             "@id": "97fe1b50b4582cebc7d853796ebd62e3e163aa3f",
             "@type": "File",
+            "alternateName": "output.txt",
             "exampleOfWork": [
                 {
                     "@id": "packed.cwl#revtool.cwl/output"
@@ -274,10 +314,11 @@
                 {
                     "@id": "packed.cwl#sorttool.cwl/input"
                 }
-            ]
+            ],
+            "sha1": "97fe1b50b4582cebc7d853796ebd62e3e163aa3f"
         },
         {
-            "@id": "#4377b674-1c08-4afe-b3a6-df827c03b1c4",
+            "@id": "#4d406f10-e4a8-4767-8b91-fc0631825b3a",
             "@type": "CreateAction",
             "endTime": "2018-10-25T15:46:38.069110",
             "instrument": {
@@ -305,7 +346,7 @@
             "exampleOfWork": {
                 "@id": "packed.cwl#sorttool.cwl/reverse"
             },
-            "name": "main/sorted/reverse",
+            "name": "reverse",
             "value": "True"
         }
     ]
