@@ -19,6 +19,7 @@ Generate a Workflow Run RO-Crate from a CWLProv RO bundle.
 import hashlib
 import json
 import re
+from io import StringIO
 from pathlib import Path
 
 import networkx as nx
@@ -37,6 +38,7 @@ from .utils import as_list
 
 
 WORKFLOW_BASENAME = "packed.cwl"
+INPUTS_FILE_BASENAME = "primary-job.json"
 
 CWL_TYPE_MAP = {
     "string": "Text",
@@ -186,6 +188,8 @@ class ProvCrateBuilder:
         # index collections by their main entity's id
         self.collections = {}
         self.hashes = {}
+        # map source files to destination files
+        self.file_map = {}
 
     @staticmethod
     def _get_step_maps(cwl_defs):
@@ -256,6 +260,7 @@ class ProvCrateBuilder:
         self.add_engine_run(crate)
         self.add_action(crate, self.workflow_run)
         self.patch_workflow_input_collection(crate)
+        self.add_inputs_file(crate)
         return crate
 
     def add_root_metadata(self, crate):
@@ -529,6 +534,11 @@ class ProvCrateBuilder:
                     "sha1": hash_,
                 })
                 self._set_alternate_name(prov_param, action_p, parent=parent)
+                try:
+                    source_k = str(source.resolve(strict=False))
+                except RuntimeError:
+                    source_k = str(source)
+                self.file_map[source_k] = dest
             return action_p
         if "ro:Folder" in type_names:
             hash_ = self.hashes[prov_param.id.localpart]
@@ -644,3 +654,34 @@ class ProvCrateBuilder:
         for tool in wf.get("hasPart", []):
             if "ComputationalWorkflow" in as_list(tool.type):
                 self.patch_workflow_input_collection(crate, wf=tool)
+
+    def _map_input_data(self, data):
+        if isinstance(data, list):
+            return [self._map_input_data(_) for _ in data]
+        if isinstance(data, dict):
+            rval = {}
+            for k, v in data.items():
+                if k == "location":
+                    source = self.root / "workflow" / v
+                    try:
+                        source_k = str(source.resolve(strict=False))
+                    except RuntimeError:
+                        source_k = str(source)
+                    dest = self.file_map.get(source_k)
+                    rval[k] = str(dest) if dest else v
+                else:
+                    rval[k] = self._map_input_data(v)
+            return rval
+        return data
+
+    def add_inputs_file(self, crate):
+        path = self.root / "workflow" / INPUTS_FILE_BASENAME
+        if path.is_file():
+            with open(path) as f:
+                data = json.load(f)
+            data = self._map_input_data(data)
+            source = StringIO(json.dumps(data, indent=4))
+            crate.add_file(source, path.name, properties={
+                "name": "input object document",
+                "encodingFormat": "application/json",
+            })
