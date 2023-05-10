@@ -122,3 +122,12 @@ def test_cli_run(data_dir, tmpdir, monkeypatch):
     assert out_path.is_file()
     crate_out_path = crate_dir / "4bd8e7e358488e833bf32cf5028695292cecb05b"
     assert out_path.read_text() == crate_out_path.read_text()
+
+
+def test_cli_run_dir_array(data_dir, tmpdir, monkeypatch):
+    crate_dir = data_dir / "dirarray-run-1-crate"
+    runner = CliRunner()
+    args = ["run", str(crate_dir)]
+    monkeypatch.chdir(str(tmpdir))
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0

@@ -1,0 +1,5 @@
+dir_array:
+  - class: Directory
+    location: foo
+  - class: Directory
+    location: bar
