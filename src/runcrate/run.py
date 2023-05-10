@@ -25,6 +25,7 @@ import sys
 import tempfile
 from pathlib import Path
 
+from rocrate.model.entity import Entity
 from rocrate.rocrate import ROCrate
 
 from .utils import as_list
@@ -101,6 +102,13 @@ def convert_value(fp, value):
         return float(value)
     if type_ == "Boolean":
         return value.lower() == "true"
+    if isinstance(value, Entity):
+        if "File" in as_list(value.type):
+            return convert_file(fp, value)
+        elif "Dataset" in as_list(value.type):
+            return convert_dataset(fp, value)
+        # TODO: support Collection
+    raise RuntimeError(f"cannot convert {value!r}")
 
 
 def convert_obj(fp, obj):
@@ -188,8 +196,8 @@ def run_crate(crate, executable=None, keep_wd=False, dry_run=False):
     params_path = Path(workdir / PARAMS_FILENAME)
     with open(params_path, "w") as f:
         json.dump(params, f, indent=4)
-    for obj in action.get("object", []):
-        rename_data_entities(obj, workdir)
+    for e in crate.data_entities:
+        rename_data_entities(e, workdir)
     if dry_run:
         return
     wf_path = workdir / wf.id

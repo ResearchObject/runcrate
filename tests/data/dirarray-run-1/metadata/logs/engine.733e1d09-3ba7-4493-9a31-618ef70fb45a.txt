@@ -1,0 +1,17 @@
+[2023-05-09T13:44:37,494.043589Z] [cwltool] /tmp/venv/bin/cwltool --provenance ro wf.cwl params.yml
+[2023-05-09T13:44:37,495.909691Z] Resolved 'wf.cwl' to 'file:///home/simleo/sandbox/try_cwl/dir_array/wf.cwl'
+[2023-05-09T13:44:38,544.094801Z] [workflow ] start
+[2023-05-09T13:44:38,544.598818Z] [workflow ] starting step date_step
+[2023-05-09T13:44:38,544.867754Z] [step date_step] start
+[2023-05-09T13:44:38,546.530962Z] [job date_step] /tmp/cqu3n3nz$ date \
+    -r \
+    /tmp/2focqn1j/stg9c6fdf15-2b68-476b-87cd-9465b5f401fc/foo
+[2023-05-09T13:44:38,552.666426Z] [job date_step] completed success
+[2023-05-09T13:44:38,553.323746Z] [step date_step] start
+[2023-05-09T13:44:38,555.376291Z] [job date_step_2] /tmp/lc_usa30$ date \
+    -r \
+    /tmp/1v0en4gy/stg1d95dbf7-f83b-4898-bfa0-1c499b61d739/bar
+[2023-05-09T13:44:38,563.530207Z] [job date_step_2] completed success
+[2023-05-09T13:44:38,563.793898Z] [step date_step] completed success
+[2023-05-09T13:44:38,563.899040Z] [workflow ] completed success
+[2023-05-09T13:44:38,628.921747Z] Final process status is success

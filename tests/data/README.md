@@ -70,3 +70,8 @@ Runs a grep on the input file, taking the patterns to search for from another fi
 ## greprevgrep-run-1
 
 Runs a `grep -f` on the input file, then a `rev` and another `grep -f` using the same pattern file. Used to check that exampleOfWork does not end up having duplicates (file entity maps to same formal parameter in two different steps).
+
+
+## dir-array-run-1
+
+Runs `date` on directories from an input array. Used to test support for directory arrays.

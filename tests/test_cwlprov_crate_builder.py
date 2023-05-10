@@ -863,3 +863,37 @@ def test_exampleofwork_duplicates(data_dir, tmpdir):
         "packed.cwl#main/wf_pattern_file", "packed.cwl#greptool.cwl/pattern_file"
     }
     assert len(pattern_file["exampleOfWork"]) == 2  # no duplicates
+
+
+def test_dir_array(data_dir, tmpdir):
+    root = data_dir / "dirarray-run-1"
+    output = tmpdir / "dirarray-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
+    assert crate.root_dataset["license"] == "Apache-2.0"
+    workflow = crate.mainEntity
+    inputs = workflow["input"]
+    assert not workflow.get("output")
+    assert len(inputs) == 1
+    param = inputs[0]
+    assert param.type == "FormalParameter"
+    assert param["additionalType"] == "Dataset"
+    assert param["multipleValues"] == "True"
+    actions = [_ for _ in crate.contextual_entities if "CreateAction" in _.type]
+    assert len(actions) == 3
+    sel = [_ for _ in actions if _["instrument"] is workflow]
+    assert len(sel) == 1
+    wf_action = sel[0]
+    wf_objects = wf_action["object"]
+    assert not wf_action.get("result")
+    assert len(wf_objects) == 1
+    pv = wf_objects[0]
+    assert pv.type == "PropertyValue"
+    assert pv["exampleOfWork"] is param
+    in_dirs = set(pv["value"])
+    assert len(in_dirs) == 2
+    for d in in_dirs:
+        assert d.type == "Dataset"

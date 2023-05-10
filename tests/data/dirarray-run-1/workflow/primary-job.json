@@ -1,0 +1,12 @@
+{
+    "dir_array": [
+        {
+            "class": "Directory",
+            "basename": "foo"
+        },
+        {
+            "class": "Directory",
+            "basename": "bar"
+        }
+    ]
+}
