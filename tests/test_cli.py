@@ -131,3 +131,12 @@ def test_cli_run_dir_array(data_dir, tmpdir, monkeypatch):
     monkeypatch.chdir(str(tmpdir))
     result = runner.invoke(cli, args)
     assert result.exit_code == 0
+
+
+def test_cli_run_file_array(data_dir, tmpdir, monkeypatch):
+    crate_dir = data_dir / "no-output-run-1-crate"
+    runner = CliRunner()
+    args = ["run", str(crate_dir)]
+    monkeypatch.chdir(str(tmpdir))
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0
