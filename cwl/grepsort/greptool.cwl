@@ -1,6 +1,10 @@
 class: CommandLineTool
 cwlVersion: v1.0
 
+hints:
+  - class: ResourceRequirement
+    ramMin: 64
+
 baseCommand: ["bash", "-c"]
 
 inputs:

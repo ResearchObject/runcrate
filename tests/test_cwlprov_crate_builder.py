@@ -817,6 +817,7 @@ def test_secondary_files(data_dir, tmpdir):
         "packed.cwl#sorttool.cwl",
     }
     greptool = wf_tools["packed.cwl#greptool.cwl"]
+    assert greptool["memoryRequirements"] == "64 MB"
     assert len(greptool["input"]) == 1
     grep_in = greptool["input"][0]
     assert grep_in["additionalType"] == "Collection"

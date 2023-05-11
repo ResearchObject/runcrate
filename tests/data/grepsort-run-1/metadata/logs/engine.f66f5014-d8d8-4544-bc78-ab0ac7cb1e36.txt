@@ -1,0 +1,20 @@
+[2023-05-11T12:54:09,213.033438Z] [cwltool] /tmp/venv/bin/cwltool --provenance ro grepsort.cwl params.yml
+[2023-05-11T12:54:09,214.917898Z] Resolved 'grepsort.cwl' to 'file:///home/simleo/git/runcrate/cwl/grepsort/grepsort.cwl'
+[2023-05-11T12:54:09,810.973883Z] [provenance] Adding to RO file:///home/simleo/git/runcrate/cwl/grepsort/lines.txt
+[2023-05-11T12:54:09,811.661243Z] [provenance] Adding to RO file:///home/simleo/git/runcrate/cwl/grepsort/lines.aux
+[2023-05-11T12:54:09,814.031839Z] [workflow ] start
+[2023-05-11T12:54:09,814.396143Z] [workflow ] starting step grep
+[2023-05-11T12:54:09,814.627886Z] [step grep] start
+[2023-05-11T12:54:09,817.400694Z] [job grep] /tmp/_i2f82au$ bash \
+    -c \
+    'grep -f /tmp/26d8jeyl/stgc839385b-f723-4ab7-a7bc-a8c62ddb6ed7/lines.aux /tmp/26d8jeyl/stgc839385b-f723-4ab7-a7bc-a8c62ddb6ed7/lines.txt >grep_out.txt'
+[2023-05-11T12:54:09,825.176477Z] [job grep] completed success
+[2023-05-11T12:54:09,825.467348Z] [step grep] completed success
+[2023-05-11T12:54:09,825.929165Z] [workflow ] starting step sorted
+[2023-05-11T12:54:09,826.179743Z] [step sorted] start
+[2023-05-11T12:54:09,828.734159Z] [job sorted] /tmp/0yah5kc_$ sort \
+    /tmp/e1qxjn80/stgf144cefc-21a6-4547-a687-9617dde38166/grep_out.txt > /tmp/0yah5kc_/sort_out.txt
+[2023-05-11T12:54:09,834.231853Z] [job sorted] completed success
+[2023-05-11T12:54:09,834.487200Z] [step sorted] completed success
+[2023-05-11T12:54:09,834.689617Z] [workflow ] completed success
+[2023-05-11T12:54:09,899.184704Z] Final process status is success
