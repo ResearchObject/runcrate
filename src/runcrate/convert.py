@@ -83,6 +83,11 @@ def properties_from_cwl_param(cwl_p):
         "@type": "FormalParameter",
         "additionalType": additional_type
     }
+    if hasattr(cwl_p, "doc") and cwl_p.doc:
+        properties["description"] = cwl_p.doc
+    elif hasattr(cwl_p, "label") and cwl_p.label:
+        # name is used for the parameter's id to support reproducibility
+        properties["description"] = cwl_p.label
     if cwl_p.format:
         properties["encodingFormat"] = cwl_p.format
     if isinstance(cwl_p.type, list) and "null" in cwl_p.type:
@@ -295,13 +300,19 @@ class ProvCrateBuilder:
         lang_version = self.cwl_defs[WORKFLOW_BASENAME].cwlVersion
         properties = {
             "@type": ["File", "SoftwareSourceCode", "ComputationalWorkflow", "HowTo"],
-            "name": self.workflow_name or self.wf_path.name
         }
         workflow = crate.add_workflow(
             self.wf_path, self.wf_path.name, main=True, lang="cwl",
             lang_version=lang_version, gen_cwl=False, properties=properties
         )
         cwl_workflow = self.cwl_defs[workflow.id]
+        wf_name = self.wf_path.name
+        if hasattr(cwl_workflow, "label") and cwl_workflow.label:
+            wf_name = cwl_workflow.label
+        workflow["name"] = self.workflow_name or wf_name
+        if hasattr(cwl_workflow, "doc") and cwl_workflow.doc:
+            workflow["description"] = cwl_workflow.doc
+        # cannot convert "intent" to featureList: workflow is not a SoftwareApplication
         workflow["input"] = self.add_params(crate, cwl_workflow.inputs)
         workflow["output"] = self.add_params(crate, cwl_workflow.outputs)
         if hasattr(cwl_workflow, "steps"):
@@ -320,6 +331,10 @@ class ProvCrateBuilder:
         }))
         tool = self.add_tool(crate, workflow, cwl_step.run)
         step["workExample"] = tool
+        if hasattr(cwl_step, "label") and cwl_step.label:
+            step["name"] = cwl_step.label
+        if hasattr(cwl_step, "doc") and cwl_step.doc:
+            step["description"] = cwl_step.doc
         workflow.append_to("step", step)
 
     def add_tool(self, crate, workflow, cwl_tool):
@@ -337,10 +352,14 @@ class ProvCrateBuilder:
         properties = {"name": tool_fragment}
         if cwl_tool.doc:
             properties["description"] = cwl_tool.doc
+        if cwl_tool.label:
+            properties["name"] = cwl_tool.label
         if hasattr(cwl_tool, "steps"):
             properties["@type"] = ["SoftwareSourceCode", "ComputationalWorkflow", "HowTo"]
         else:
             properties["@type"] = "SoftwareApplication"
+        if hasattr(cwl_tool, "intent") and cwl_tool.intent:
+            properties["featureList"] = cwl_tool.intent
         if hasattr(cwl_tool, "hints") and cwl_tool.hints:
             hints_map = {_["class"]: _ for _ in cwl_tool.hints}
             rreq = hints_map.get("ResourceRequirement")
