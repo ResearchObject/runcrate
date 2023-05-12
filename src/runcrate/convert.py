@@ -347,7 +347,7 @@ class ProvCrateBuilder:
             if rreq:
                 ramMin = rreq.get("ramMin")
                 if ramMin:
-                    properties["memoryRequirements"] = f"{int(ramMin)} MB"
+                    properties["memoryRequirements"] = f"{int(ramMin)} MiB"
         tool = crate.add(ContextEntity(crate, tool_id, properties=properties))
         tool["input"] = self.add_params(crate, cwl_tool.inputs)
         tool["output"] = self.add_params(crate, cwl_tool.outputs)
