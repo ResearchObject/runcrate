@@ -2,15 +2,27 @@
     "$graph": [
         {
             "class": "Workflow",
+            "label": "grepsort workflow",
+            "doc": "a workflow that performs grep followed by sort",
+            "intent": [
+                "http://example.org/intents/grep",
+                "http://example.org/intents/sort"
+            ],
             "inputs": [
                 {
+                    "label": "grepsort input",
+                    "doc": "input to the grepsort workflow",
                     "type": "File",
                     "secondaryFiles": [
-                        "^.aux"
+                        {
+                            "pattern": "^.aux",
+                            "required": null
+                        }
                     ],
                     "id": "#main/grepsort_in"
                 },
                 {
+                    "label": "reverse_sort input",
                     "type": "boolean",
                     "default": false,
                     "id": "#main/reverse_sort"
@@ -18,6 +30,8 @@
             ],
             "steps": [
                 {
+                    "label": "grep step",
+                    "doc": "performs grep on the input",
                     "in": [
                         {
                             "source": "#main/grepsort_in",
@@ -31,6 +45,7 @@
                     "id": "#main/grep"
                 },
                 {
+                    "doc": "performs sort on the output of grep",
                     "in": [
                         {
                             "source": "#main/reverse_sort",
@@ -59,6 +74,11 @@
         },
         {
             "class": "CommandLineTool",
+            "label": "grep tool",
+            "doc": "a tool wrapper for the grep command",
+            "intent": [
+                "http://example.org/intents/grep"
+            ],
             "hints": [
                 {
                     "class": "ResourceRequirement",
@@ -71,15 +91,21 @@
             ],
             "inputs": [
                 {
+                    "label": "grep input",
+                    "doc": "input file for the grep tool",
                     "type": "File",
                     "secondaryFiles": [
-                        "^.aux"
+                        {
+                            "pattern": "^.aux",
+                            "required": null
+                        }
                     ],
                     "id": "#greptool.cwl/grep_in"
                 }
             ],
             "outputs": [
                 {
+                    "label": "grep output",
                     "type": "File",
                     "outputBinding": {
                         "glob": "grep_out.txt"
@@ -128,5 +154,5 @@
             "id": "#sorttool.cwl"
         }
     ],
-    "cwlVersion": "v1.0"
+    "cwlVersion": "v1.2"
 }

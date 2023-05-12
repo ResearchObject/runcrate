@@ -804,6 +804,9 @@ def test_secondary_files(data_dir, tmpdir):
     crate.write(output)
     crate = ROCrate(output)
     workflow = crate.mainEntity
+    assert workflow["name"] == "grepsort workflow"
+    assert workflow["description"] == "a workflow that performs grep followed by sort"
+    assert "featureList" not in workflow
     wf_inputs = {_.id: _ for _ in workflow["input"]}
     assert set(wf_inputs) == {
         "packed.cwl#main/grepsort_in",
@@ -811,6 +814,15 @@ def test_secondary_files(data_dir, tmpdir):
     }
     grepsort_in = wf_inputs["packed.cwl#main/grepsort_in"]
     assert grepsort_in["additionalType"] == "Collection"
+    assert grepsort_in["description"] == "input to the grepsort workflow"
+    reverse_sort = wf_inputs["packed.cwl#main/reverse_sort"]
+    assert reverse_sort["description"] == "reverse_sort input"
+
+    step_map = {_.id.rsplit("/", 1)[-1]: _ for _ in workflow["step"]}
+    grep = step_map["grep"]
+    assert grep["name"] == "grep step"
+    assert grep["description"] == "performs grep on the input"
+    assert step_map["sorted"]["description"] == "performs sort on the output of grep"
     wf_tools = {_.id: _ for _ in workflow["hasPart"]}
     assert set(wf_tools) == {
         "packed.cwl#greptool.cwl",
@@ -818,9 +830,15 @@ def test_secondary_files(data_dir, tmpdir):
     }
     greptool = wf_tools["packed.cwl#greptool.cwl"]
     assert greptool["memoryRequirements"] == "64 MiB"
+    assert greptool["name"] == "grep tool"
+    assert greptool["description"] == "a tool wrapper for the grep command"
+    assert greptool["featureList"] == ["http://example.org/intents/grep"]
     assert len(greptool["input"]) == 1
     grep_in = greptool["input"][0]
     assert grep_in["additionalType"] == "Collection"
+    assert grep_in["description"] == "input file for the grep tool"
+    grep_out = greptool["output"][0]
+    assert grep_out["description"] == "grep output"
     actions = {_["instrument"].id: _ for _ in crate.contextual_entities
                if "CreateAction" in _.type}
     assert set(actions) == {

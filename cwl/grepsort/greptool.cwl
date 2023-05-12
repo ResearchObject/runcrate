@@ -1,5 +1,9 @@
 class: CommandLineTool
-cwlVersion: v1.0
+cwlVersion: v1.2
+
+label: grep tool
+doc: a tool wrapper for the grep command
+intent: ["http://example.org/intents/grep"]
 
 hints:
   - class: ResourceRequirement
@@ -9,11 +13,14 @@ baseCommand: ["bash", "-c"]
 
 inputs:
   grep_in:
+    label: grep input
+    doc: input file for the grep tool
     type: File
     secondaryFiles:
       - "^.aux"
 outputs:
   grep_out:
+    label: grep output
     type: File
     outputBinding:
       glob: grep_out.txt
