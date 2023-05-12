@@ -341,6 +341,13 @@ class ProvCrateBuilder:
             properties["@type"] = ["SoftwareSourceCode", "ComputationalWorkflow", "HowTo"]
         else:
             properties["@type"] = "SoftwareApplication"
+        if hasattr(cwl_tool, "hints") and cwl_tool.hints:
+            hints_map = {_["class"]: _ for _ in cwl_tool.hints}
+            rreq = hints_map.get("ResourceRequirement")
+            if rreq:
+                ramMin = rreq.get("ramMin")
+                if ramMin:
+                    properties["memoryRequirements"] = f"{int(ramMin)} MiB"
         tool = crate.add(ContextEntity(crate, tool_id, properties=properties))
         tool["input"] = self.add_params(crate, cwl_tool.inputs)
         tool["output"] = self.add_params(crate, cwl_tool.outputs)

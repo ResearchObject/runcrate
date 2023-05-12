@@ -59,6 +59,12 @@
         },
         {
             "class": "CommandLineTool",
+            "hints": [
+                {
+                    "class": "ResourceRequirement",
+                    "ramMin": 64
+                }
+            ],
             "baseCommand": [
                 "bash",
                 "-c"
