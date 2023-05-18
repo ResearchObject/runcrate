@@ -916,3 +916,52 @@ def test_dir_array(data_dir, tmpdir):
     assert len(in_dirs) == 2
     for d in in_dirs:
         assert d.type == "Dataset"
+
+
+def test_multisource(data_dir, tmpdir):
+    root = data_dir / "multisource-run-1"
+    output = tmpdir / "multisource-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
+    assert crate.root_dataset["license"] == "Apache-2.0"
+    workflow = crate.mainEntity
+    inputs = workflow["input"]
+    assert len(inputs) == 1
+    wf_in = inputs[0]
+    outputs = workflow["output"]
+    assert len(outputs) == 1
+    wf_out = outputs[0]
+    tool_map = {_.id.rsplit("#", 1)[-1]: _ for _ in workflow["hasPart"]}
+    assert len(tool_map) == 3
+    date = tool_map["datetool.cwl"]
+    isodate = tool_map["isodatetool.cwl"]
+    cat = tool_map["cattool.cwl"]
+    assert len(date["input"]) == 1
+    isodate_in = isodate["input"][0]
+    assert len(isodate["input"]) == 1
+    date_in = date["input"][0]
+    assert len(cat["input"]) == 1
+    cat_in = cat["input"][0]
+    assert len(date["output"]) == 1
+    isodate_out = isodate["output"][0]
+    assert len(isodate["output"]) == 1
+    date_out = date["output"][0]
+    assert len(cat["output"]) == 1
+    cat_out = cat["output"][0]
+    sel = [_ for _ in crate.get_entities() if _.type == "HowToStep"]
+    assert len(sel) == 3
+    step_map = {_.id.rsplit("/", 1)[-1]: _ for _ in sel}
+    date_step = step_map["date"]
+    isodate_step = step_map["isodate"]
+    cat_step = step_map["cat"]
+    assert set(_connected(workflow)) == {(cat_out.id, wf_out.id)}
+    assert set(_connected(date_step)) == {(wf_in.id, date_in.id)}
+    assert set(_connected(isodate_step)) == {(wf_in.id, isodate_in.id)}
+    assert set(_connected(cat_step)) == {
+        (date_out.id, cat_in.id), (isodate_out.id, cat_in.id)
+    }
+    assert int(cat_step["position"]) > int(date_step["position"])
+    assert int(cat_step["position"]) > int(isodate_step["position"])

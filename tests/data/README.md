@@ -75,3 +75,8 @@ Runs a `grep -f` on the input file, then a `rev` and another `grep -f` using the
 ## dir-array-run-1
 
 Runs `date` on directories from an input array. Used to test support for directory arrays.
+
+
+## multisource-run-1
+
+Used to test support for [steps with arrays as input sources](https://www.commonwl.org/v1.2/Workflow.html#Merging_multiple_inbound_data_links).
