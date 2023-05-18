@@ -1,0 +1,28 @@
+[2023-05-18T10:39:39,877.032042Z] [cwltool] /home/simleo/git/runcrate/venv/bin/cwltool --provenance ro wf.cwl params.yml
+[2023-05-18T10:39:39,878.649950Z] Resolved 'wf.cwl' to 'file:///home/simleo/git/runcrate/cwl/multi_source/wf.cwl'
+[2023-05-18T10:39:40,974.623919Z] [provenance] Adding to RO file:///home/simleo/git/runcrate/cwl/multi_source/params.yml
+[2023-05-18T10:39:40,976.307869Z] [workflow ] start
+[2023-05-18T10:39:40,976.533175Z] [workflow ] starting step date
+[2023-05-18T10:39:40,976.695061Z] [step date] start
+[2023-05-18T10:39:40,978.497267Z] [job date] /tmp/cwgltdn2$ date \
+    -r \
+    /tmp/wi2cr2fn/stg206cf0e7-cad6-433c-902e-633f5336a86a/params.yml > /tmp/cwgltdn2/date_out.txt
+[2023-05-18T10:39:40,983.727932Z] [job date] completed success
+[2023-05-18T10:39:40,983.974457Z] [step date] completed success
+[2023-05-18T10:39:40,984.425545Z] [workflow ] starting step isodate
+[2023-05-18T10:39:40,984.595060Z] [step isodate] start
+[2023-05-18T10:39:40,986.933947Z] [job isodate] /tmp/ryg5cryr$ date \
+    -I \
+    -r \
+    /tmp/qsxyxy2n/stgac2b87d5-79b0-4b12-af75-c42d409ad94d/params.yml > /tmp/ryg5cryr/isodate_out.txt
+[2023-05-18T10:39:40,992.918015Z] [job isodate] completed success
+[2023-05-18T10:39:40,993.299723Z] [step isodate] completed success
+[2023-05-18T10:39:40,993.821621Z] [workflow ] starting step cat
+[2023-05-18T10:39:40,994.099379Z] [step cat] start
+[2023-05-18T10:39:40,996.601343Z] [job cat] /tmp/h80013s0$ cat \
+    /tmp/zttx353q/stgd1951142-16f2-400b-88be-06cf6d98f4f9/date_out.txt \
+    /tmp/zttx353q/stg2ffa9946-a56d-4250-8640-85f11071cec0/isodate_out.txt > /tmp/h80013s0/cat_out.txt
+[2023-05-18T10:39:41,1.523018Z] [job cat] completed success
+[2023-05-18T10:39:41,1.748562Z] [step cat] completed success
+[2023-05-18T10:39:41,1.899004Z] [workflow ] completed success
+[2023-05-18T10:39:41,61.043978Z] Final process status is success

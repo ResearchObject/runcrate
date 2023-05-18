@@ -1,0 +1,13 @@
+{
+    "out_file": {
+        "location": "../data/95/95408b08fc5c31cbc4b88e1f22d6d1e98111dc8d",
+        "basename": "cat_out.txt",
+        "nameroot": "cat_out",
+        "nameext": ".txt",
+        "class": "File",
+        "checksum": "sha1$95408b08fc5c31cbc4b88e1f22d6d1e98111dc8d",
+        "size": 41,
+        "http://commonwl.org/cwltool#generation": 0,
+        "@id": "urn:uuid:40eebd5e-6a3b-4804-985b-08928802402f"
+    }
+}
