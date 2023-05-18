@@ -137,9 +137,11 @@ def build_step_graph(cwl_wf):
         fragment = get_fragment(s.id)
         graph.add_node(fragment)
         for i in s.in_:
-            source_fragment = out_map.get(i.source)
-            if source_fragment:
-                graph.add_edge(source_fragment, fragment)
+            sources = [i.source] if not isinstance(i.source, list) else i.source
+            for s in sources:
+                source_fragment = out_map.get(s)
+                if source_fragment:
+                    graph.add_edge(source_fragment, fragment)
     return graph
 
 
@@ -614,13 +616,17 @@ class ProvCrateBuilder:
             ro_step = crate.get(f"{self.wf_path.name}#{step_name}")
             tool_name = step_map[step_name]["tool"]
             for mapping in getattr(step, "in_", []):
-                from_param = get_fragment(mapping.source)
-                try:
-                    from_param = out_map[from_param]
-                except KeyError:
-                    pass  # only needed if source is from another step
-                to_param = get_fragment(mapping.id).replace(step_name, tool_name)
-                connect(from_param, to_param, ro_step)
+                sources = [mapping.source] if not isinstance(
+                    mapping.source, list
+                ) else mapping.source
+                for s in sources:
+                    from_param = get_fragment(s)
+                    try:
+                        from_param = out_map[from_param]
+                    except KeyError:
+                        pass  # only needed if source is from another step
+                    to_param = get_fragment(mapping.id).replace(step_name, tool_name)
+                    connect(from_param, to_param, ro_step)
         for out in getattr(wf_def, "outputs", []):
             from_param = get_fragment(out.outputSource)
             try:
