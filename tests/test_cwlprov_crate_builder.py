@@ -235,7 +235,7 @@ def test_param_types(data_dir, tmpdir):
     workflow = crate.mainEntity
     inputs = workflow["input"]
     outputs = workflow["output"]
-    assert len(inputs) == 11
+    assert len(inputs) == 12
     assert len(outputs) == 1
     for entity in inputs + outputs:
         assert "FormalParameter" in entity.type
@@ -267,13 +267,16 @@ def test_param_types(data_dir, tmpdir):
     assert set(input_map["in_multi"]["additionalType"]) == {"Integer", "Float"}
     assert input_map["in_multi"]["defaultValue"] == "9.99"
     assert input_map["in_multi"]["valueRequired"] == "False"
+    assert input_map["in_array_enum"]["name"] == "in_array_enum"
+    assert input_map["in_array_enum"]["additionalType"] == "Text"
+    assert input_map["in_array_enum"]["multipleValues"] == "True"
     out = outputs[0]
     assert out["additionalType"] == "File"
     actions = [_ for _ in crate.contextual_entities if "CreateAction" in _.type]
     assert len(actions) == 1
     action = actions[0]
     objects = action["object"]
-    assert len(objects) == 11
+    assert len(objects) == 12
     for obj in objects:
         assert "PropertyValue" in obj.type
     obj_map = {_.id.rsplit("/", 1)[-1]: _ for _ in objects}
@@ -306,6 +309,8 @@ def test_param_types(data_dir, tmpdir):
     assert set(record_pv["value"]) == {v_A, v_B}
     assert obj_map["in_multi"]["name"] == "in_multi"
     assert obj_map["in_multi"]["value"] == "9.99"
+    assert obj_map["in_array_enum"]["name"] == "in_array_enum"
+    assert obj_map["in_array_enum"]["value"] == ["X", "Z"]
     results = action["result"]
     assert len(results) == 1
     res = results[0]

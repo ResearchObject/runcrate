@@ -10,11 +10,15 @@
     "in_long": 420,
     "in_float": 3.14,
     "in_double": 3.142,
+    "in_multi": 9.99,
     "in_enum": "B",
     "in_record": {
         "in_record_A": "Tom",
         "in_record_B": "Jerry",
-        "@id": "urn:uuid:e6a86b5c-fb61-47d7-ae3d-6272dd20957f"
+        "@id": "urn:uuid:3ef1283b-32c7-4204-81fc-cfdc248b5066"
     },
-    "in_multi": 9.99
+    "in_array_enum": [
+        "X",
+        "Z"
+    ]
 }
