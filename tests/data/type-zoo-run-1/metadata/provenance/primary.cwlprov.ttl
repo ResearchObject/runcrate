@@ -3,20 +3,20 @@
 @prefix id: <urn:uuid:> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix wf: <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#> .
+@prefix wf: <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#> .
 @prefix wf4ever: <http://purl.org/wf4ever/wf4ever#> .
 @prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
 @prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-id:54e2333d-77d8-4d41-9367-d12d05a81b08 a wf4ever:File,
+id:dd2af01d-9272-4761-bf43-f5903d9d4d7a a wf4ever:File,
         wfprov:Artifact,
         prov:Entity ;
     prov:qualifiedGeneration [ a prov:Generation ;
-            prov:activity id:f8e6f90e-2bf1-4683-ab25-bc4ed714fa34 ;
-            prov:atTime "2022-04-22T12:27:13.328082"^^xsd:dateTime ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/primary/cl_dump> ] ;
-    prov:specializationOf data:4bd8e7e358488e833bf32cf5028695292cecb05b ;
+            prov:activity id:013efb59-328c-47d0-a7bc-70ada476d799 ;
+            prov:atTime "2023-05-23T17:17:52.226497"^^xsd:dateTime ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/primary/cl_dump> ] ;
+    prov:specializationOf data:9ce421333e5f8b0c4de79d5ce4009d4b191c0e55 ;
     cwlprov:basename "output.txt"^^xsd:string ;
     cwlprov:nameext ".txt"^^xsd:string ;
     cwlprov:nameroot "output"^^xsd:string .
@@ -26,224 +26,236 @@ wf:main a wfdesc:Process,
         prov:Plan ;
     rdfs:label "Prospective provenance"^^xsd:string .
 
-data:4bd8e7e358488e833bf32cf5028695292cecb05b a wfprov:Artifact,
+data:9ce421333e5f8b0c4de79d5ce4009d4b191c0e55 a wfprov:Artifact,
         prov:Entity .
 
-id:01c28052-247d-40d1-862b-d14c66e505fd a wfprov:Artifact,
-        prov:Collection,
-        prov:Entity ;
-    prov:hadMember data:0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33,
-        data:62cdb7020ff920e5aa642c3d4066950dd1f01f4d .
-
-id:0cdfeb01-9361-4b2d-b26b-26a4058feb9c a prov:Entity,
-        prov:KeyEntityPair ;
-    prov:pairEntity data:26d58cf3df0903a2298788b72fced5bca9ea7144 ;
-    prov:pairKey "in_record_A"^^xsd:string .
-
-id:18136a05-2dac-4a76-acbe-1e2886afa01b a prov:Entity ;
-    prov:value "42"^^xsd:int .
-
-id:1bb515c0-a371-4c81-82ff-c6232302a5e4 a prov:Entity ;
-    prov:value true .
-
-id:1cc9d7d8-73c1-49c0-8e2d-bc5378f3931a a prov:Entity ;
-    prov:value 3.142e+00 .
-
-id:204a1c17-1c52-4374-88d2-5c74d7751aeb a wfprov:Artifact,
-        prov:Collection,
-        prov:Entity ;
-    prov:hadMember data:0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33,
-        data:62cdb7020ff920e5aa642c3d4066950dd1f01f4d .
-
-id:365948fa-f9ca-44c7-8ef4-411f9cc1a5ae a prov:Entity,
-        prov:KeyEntityPair ;
-    prov:pairEntity data:26d58cf3df0903a2298788b72fced5bca9ea7144 ;
-    prov:pairKey "in_record_A"^^xsd:string .
-
-id:418df892-0ef9-4c98-9774-edc11ec3b123 a prov:Entity,
-        prov:KeyEntityPair ;
-    prov:pairEntity data:3cd1b98a95e3eaead219f4048c2f33dbdbb23b7d ;
-    prov:pairKey "in_record_B"^^xsd:string .
-
-id:510c94d8-96d4-40f0-96c1-d6b6d5d0b890 a prov:Agent .
-
-id:58395ced-44f8-41be-be76-b0b14ef8867a a prov:Entity ;
-    prov:value 9.99e+00 .
-
-id:5c8031d7-d0eb-4516-8712-88358561fd6b a prov:Entity ;
-    prov:value 3.14e+00 .
-
-id:63bc766d-4f51-4161-a7d4-46f04fa7720e a prov:Entity ;
-    prov:value "420"^^xsd:int .
-
-id:6688c591-358a-481b-8b2a-4db2c611142c a prov:Entity,
-        prov:KeyEntityPair ;
-    prov:pairEntity data:3cd1b98a95e3eaead219f4048c2f33dbdbb23b7d ;
-    prov:pairKey "in_record_B"^^xsd:string .
-
-id:72d03fe3-babe-4e1b-bda5-c77195ec1b73 a prov:Entity ;
-    prov:value 9.99e+00 .
-
-id:831db274-fa83-477f-b7f7-0613953961fe a prov:Entity,
-        prov:KeyEntityPair ;
-    prov:pairEntity data:3ce6c05ae48c0357521a9ff9788a45c53c3ef5ac ;
-    prov:pairKey "@id"^^xsd:string .
-
-id:aa86147e-6f22-4b35-841e-b1ed64582174 a wfprov:Artifact,
-        prov:Collection,
-        prov:Dictionary,
-        prov:Entity ;
-    prov:hadDictionaryMember id:0cdfeb01-9361-4b2d-b26b-26a4058feb9c,
-        id:418df892-0ef9-4c98-9774-edc11ec3b123,
-        id:c38d4bf5-b7c6-4078-953e-81712261e3fc ;
-    prov:hadMember data:26d58cf3df0903a2298788b72fced5bca9ea7144,
-        data:3bcbb7bc15b1e539f89f6176a8216b2eb63959e8,
-        data:3cd1b98a95e3eaead219f4048c2f33dbdbb23b7d .
-
-id:b8ab25b1-8657-422b-9faf-abf9cdea064c a prov:Entity ;
-    prov:value 3.142e+00 .
-
-id:c38d4bf5-b7c6-4078-953e-81712261e3fc a prov:Entity,
-        prov:KeyEntityPair ;
-    prov:pairEntity data:3bcbb7bc15b1e539f89f6176a8216b2eb63959e8 ;
-    prov:pairKey "@id"^^xsd:string .
-
-id:d77145bf-9228-47ba-be6e-b560a2e4262d a prov:Entity ;
-    prov:value "420"^^xsd:int .
-
-id:dedffd4b-60c3-4111-89f7-d07ba612adb2 a prov:Entity ;
-    prov:value "42"^^xsd:int .
-
-id:e1ba7b38-2540-4423-aa81-057939579233 a prov:Entity ;
-    prov:value 3.14e+00 .
-
-id:e6a86b5c-fb61-47d7-ae3d-6272dd20957f a wfprov:Artifact,
-        prov:Collection,
-        prov:Dictionary,
-        prov:Entity ;
-    prov:hadDictionaryMember id:365948fa-f9ca-44c7-8ef4-411f9cc1a5ae,
-        id:6688c591-358a-481b-8b2a-4db2c611142c,
-        id:831db274-fa83-477f-b7f7-0613953961fe ;
-    prov:hadMember data:26d58cf3df0903a2298788b72fced5bca9ea7144,
-        data:3cd1b98a95e3eaead219f4048c2f33dbdbb23b7d,
-        data:3ce6c05ae48c0357521a9ff9788a45c53c3ef5ac .
-
-id:f8e6f90e-2bf1-4683-ab25-bc4ed714fa34 a wfprov:WorkflowRun,
+id:013efb59-328c-47d0-a7bc-70ada476d799 a wfprov:WorkflowRun,
         prov:Activity ;
     rdfs:label "Run of workflow/packed.cwl#main"^^xsd:string ;
     prov:qualifiedAssociation [ a prov:Association ;
             prov:hadPlan wf:main ] ;
     prov:qualifiedEnd [ a prov:End ;
-            prov:atTime "2022-04-22T12:27:13.328912"^^xsd:dateTime ;
-            prov:hadActivity id:17b3c655-e21d-40fe-a924-db341c8fc672 ] ;
+            prov:atTime "2023-05-23T17:17:52.227399"^^xsd:dateTime ;
+            prov:hadActivity id:0e5ec30a-a874-4df0-bde9-8d89650dc09b ] ;
     prov:qualifiedStart [ a prov:Start ;
-            prov:atTime "2022-04-22T12:27:13.313422"^^xsd:dateTime ;
-            prov:hadActivity id:17b3c655-e21d-40fe-a924-db341c8fc672 ] ;
+            prov:atTime "2023-05-23T17:17:52.209825"^^xsd:dateTime ;
+            prov:hadActivity id:0e5ec30a-a874-4df0-bde9-8d89650dc09b ] ;
     prov:qualifiedUsage [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.321224"^^xsd:dateTime ;
-            prov:entity id:01c28052-247d-40d1-862b-d14c66e505fd ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/type_zoo.cwl/in_array> ],
+            prov:atTime "2023-05-23T17:17:52.221859"^^xsd:dateTime ;
+            prov:entity id:29bae8b7-56aa-4b18-bfb0-b0855f7b517a ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/type_zoo.cwl/in_array_enum> ],
         [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.323211"^^xsd:dateTime ;
-            prov:entity id:aa86147e-6f22-4b35-841e-b1ed64582174 ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/type_zoo.cwl/in_record> ],
+            prov:atTime "2023-05-23T17:17:52.219915"^^xsd:dateTime ;
+            prov:entity id:bb48b851-60fc-408e-8c07-df8e2a8c60ec ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/type_zoo.cwl/in_long> ],
         [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.321955"^^xsd:dateTime ;
-            prov:entity id:e1ba7b38-2540-4423-aa81-057939579233 ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/type_zoo.cwl/in_float> ],
-        [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.317859"^^xsd:dateTime ;
-            prov:entity data:680254bad1d7ca0d65ec46aaa315d363abf6a50a ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/in_any> ],
-        [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.322010"^^xsd:dateTime ;
-            prov:entity id:b8ab25b1-8657-422b-9faf-abf9cdea064c ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/type_zoo.cwl/in_double> ],
-        [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.321898"^^xsd:dateTime ;
-            prov:entity id:63bc766d-4f51-4161-a7d4-46f04fa7720e ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/type_zoo.cwl/in_long> ],
-        [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.318746"^^xsd:dateTime ;
-            prov:entity data:ae4f281df5a5d0ff3cad6371f76d5c29b6d953ec ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/in_enum> ],
-        [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.318284"^^xsd:dateTime ;
-            prov:entity id:dedffd4b-60c3-4111-89f7-d07ba612adb2 ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/in_int> ],
-        [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.318148"^^xsd:dateTime ;
+            prov:atTime "2023-05-23T17:17:52.219728"^^xsd:dateTime ;
             prov:entity data:ded982e702e07bb7b6effafdc353db3fe172c83f ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/in_str> ],
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/type_zoo.cwl/in_str> ],
         [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.323278"^^xsd:dateTime ;
-            prov:entity id:58395ced-44f8-41be-be76-b0b14ef8867a ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/type_zoo.cwl/in_multi> ],
-        [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.321470"^^xsd:dateTime ;
+            prov:atTime "2023-05-23T17:17:52.219480"^^xsd:dateTime ;
             prov:entity data:680254bad1d7ca0d65ec46aaa315d363abf6a50a ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/type_zoo.cwl/in_any> ],
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/type_zoo.cwl/in_any> ],
         [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.321708"^^xsd:dateTime ;
+            prov:atTime "2023-05-23T17:17:52.215467"^^xsd:dateTime ;
+            prov:entity id:2958be75-8b53-4b16-bb59-dd528f137d01 ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/in_float> ],
+        [ a prov:Usage ;
+            prov:atTime "2023-05-23T17:17:52.219973"^^xsd:dateTime ;
+            prov:entity id:0c4dea9b-bf7e-492d-8792-a8318e422c9e ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/type_zoo.cwl/in_float> ],
+        [ a prov:Usage ;
+            prov:atTime "2023-05-23T17:17:52.220031"^^xsd:dateTime ;
+            prov:entity id:64da4cf8-5373-4bd3-80c6-ecb6e1c3fceb ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/type_zoo.cwl/in_double> ],
+        [ a prov:Usage ;
+            prov:atTime "2023-05-23T17:17:52.217616"^^xsd:dateTime ;
+            prov:entity id:ba0d3bac-98e6-4c4f-a2d6-89cd2e9b0c76 ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/in_array_enum> ],
+        [ a prov:Usage ;
+            prov:atTime "2023-05-23T17:17:52.215406"^^xsd:dateTime ;
+            prov:entity id:c4194a4d-c85c-4013-a313-5a30862ee5da ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/in_long> ],
+        [ a prov:Usage ;
+            prov:atTime "2023-05-23T17:17:52.215345"^^xsd:dateTime ;
+            prov:entity id:cfb2688c-3667-4912-9fef-20a3c53d7a9e ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/in_int> ],
+        [ a prov:Usage ;
+            prov:atTime "2023-05-23T17:17:52.221316"^^xsd:dateTime ;
+            prov:entity id:53470bf8-dc0b-48b9-98da-8fd81a89da59 ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/type_zoo.cwl/in_record> ],
+        [ a prov:Usage ;
+            prov:atTime "2023-05-23T17:17:52.214898"^^xsd:dateTime ;
+            prov:entity data:680254bad1d7ca0d65ec46aaa315d363abf6a50a ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/in_any> ],
+        [ a prov:Usage ;
+            prov:atTime "2023-05-23T17:17:52.215581"^^xsd:dateTime ;
+            prov:entity id:c128d51d-5ddb-44bf-b677-26fd99b4cfe5 ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/in_multi> ],
+        [ a prov:Usage ;
+            prov:atTime "2023-05-23T17:17:52.215283"^^xsd:dateTime ;
+            prov:entity id:41cc5bfe-c0cf-4cde-937a-55f256ec5380 ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/in_bool> ],
+        [ a prov:Usage ;
+            prov:atTime "2023-05-23T17:17:52.215210"^^xsd:dateTime ;
             prov:entity data:ded982e702e07bb7b6effafdc353db3fe172c83f ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/type_zoo.cwl/in_str> ],
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/in_str> ],
         [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.321841"^^xsd:dateTime ;
-            prov:entity id:18136a05-2dac-4a76-acbe-1e2886afa01b ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/type_zoo.cwl/in_int> ],
+            prov:atTime "2023-05-23T17:17:52.214587"^^xsd:dateTime ;
+            prov:entity id:8e3666d5-2c49-43d0-94fb-92b0f7417b0c ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/in_array> ],
         [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.318397"^^xsd:dateTime ;
-            prov:entity id:5c8031d7-d0eb-4516-8712-88358561fd6b ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/in_float> ],
+            prov:atTime "2023-05-23T17:17:52.219860"^^xsd:dateTime ;
+            prov:entity id:6734369a-3ba4-4c9d-898f-85b3841ffc03 ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/type_zoo.cwl/in_int> ],
         [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.318340"^^xsd:dateTime ;
-            prov:entity id:d77145bf-9228-47ba-be6e-b560a2e4262d ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/in_long> ],
+            prov:atTime "2023-05-23T17:17:52.216973"^^xsd:dateTime ;
+            prov:entity id:3ef1283b-32c7-4204-81fc-cfdc248b5066 ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/in_record> ],
         [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.322248"^^xsd:dateTime ;
+            prov:atTime "2023-05-23T17:17:52.215891"^^xsd:dateTime ;
             prov:entity data:ae4f281df5a5d0ff3cad6371f76d5c29b6d953ec ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/type_zoo.cwl/in_enum> ],
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/in_enum> ],
         [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.321780"^^xsd:dateTime ;
-            prov:entity id:1bb515c0-a371-4c81-82ff-c6232302a5e4 ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/type_zoo.cwl/in_bool> ],
+            prov:atTime "2023-05-23T17:17:52.219224"^^xsd:dateTime ;
+            prov:entity id:9360d3cd-0e2a-4c05-83b7-343dbf252522 ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/type_zoo.cwl/in_array> ],
         [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.319752"^^xsd:dateTime ;
-            prov:entity id:e6a86b5c-fb61-47d7-ae3d-6272dd20957f ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/in_record> ],
+            prov:atTime "2023-05-23T17:17:52.219801"^^xsd:dateTime ;
+            prov:entity id:23d56d19-3ecf-46bb-b531-8382f175d16a ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/type_zoo.cwl/in_bool> ],
         [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.317565"^^xsd:dateTime ;
-            prov:entity id:204a1c17-1c52-4374-88d2-5c74d7751aeb ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/in_array> ],
+            prov:atTime "2023-05-23T17:17:52.220089"^^xsd:dateTime ;
+            prov:entity id:87daa478-f58a-408b-bac7-f87c9e4b65e7 ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/type_zoo.cwl/in_multi> ],
         [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.318222"^^xsd:dateTime ;
-            prov:entity id:fffa6a55-ab67-4330-85a3-027077682893 ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/in_bool> ],
+            prov:atTime "2023-05-23T17:17:52.220341"^^xsd:dateTime ;
+            prov:entity data:ae4f281df5a5d0ff3cad6371f76d5c29b6d953ec ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/type_zoo.cwl/in_enum> ],
         [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.318454"^^xsd:dateTime ;
-            prov:entity id:1cc9d7d8-73c1-49c0-8e2d-bc5378f3931a ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/in_double> ],
-        [ a prov:Usage ;
-            prov:atTime "2022-04-22T12:27:13.319817"^^xsd:dateTime ;
-            prov:entity id:72d03fe3-babe-4e1b-bda5-c77195ec1b73 ;
-            prov:hadRole <arcp://uuid,f8e6f90e-2bf1-4683-ab25-bc4ed714fa34/workflow/packed.cwl#main/in_multi> ] ;
-    prov:startedAtTime "2022-04-22T12:27:13.313361"^^xsd:dateTime ;
-    prov:wasAssociatedWith id:17b3c655-e21d-40fe-a924-db341c8fc672 .
+            prov:atTime "2023-05-23T17:17:52.215524"^^xsd:dateTime ;
+            prov:entity id:eb309a53-278d-4a27-a38e-5a8dc5e43db1 ;
+            prov:hadRole <arcp://uuid,013efb59-328c-47d0-a7bc-70ada476d799/workflow/packed.cwl#main/in_double> ] ;
+    prov:startedAtTime "2023-05-23T17:17:52.209667"^^xsd:dateTime ;
+    prov:wasAssociatedWith id:0e5ec30a-a874-4df0-bde9-8d89650dc09b .
 
-id:fffa6a55-ab67-4330-85a3-027077682893 a prov:Entity ;
+id:0c4dea9b-bf7e-492d-8792-a8318e422c9e a prov:Entity ;
+    prov:value 3.14e+00 .
+
+id:23d56d19-3ecf-46bb-b531-8382f175d16a a prov:Entity ;
     prov:value true .
+
+id:2958be75-8b53-4b16-bb59-dd528f137d01 a prov:Entity ;
+    prov:value 3.14e+00 .
+
+id:29bae8b7-56aa-4b18-bfb0-b0855f7b517a a wfprov:Artifact,
+        prov:Collection,
+        prov:Entity ;
+    prov:hadMember data:909f99a779adb66a76fc53ab56c7dd1caf35d0fd,
+        data:c032adc1ff629c9b66f22749ad667e6beadf144b .
+
+id:3ef1283b-32c7-4204-81fc-cfdc248b5066 a wfprov:Artifact,
+        prov:Collection,
+        prov:Dictionary,
+        prov:Entity ;
+    prov:hadDictionaryMember id:78cb10ab-babb-401a-9399-d4792a708981,
+        id:824ff1cb-33c3-42ed-bcbc-b20bfaabaede,
+        id:f64c5146-5dbc-4c1c-b54b-f867133fbdd3 ;
+    prov:hadMember data:26d58cf3df0903a2298788b72fced5bca9ea7144,
+        data:3cd1b98a95e3eaead219f4048c2f33dbdbb23b7d,
+        data:da9e6ea20c19719b5d84472216416621de280624 .
+
+id:41cc5bfe-c0cf-4cde-937a-55f256ec5380 a prov:Entity ;
+    prov:value true .
+
+id:53470bf8-dc0b-48b9-98da-8fd81a89da59 a wfprov:Artifact,
+        prov:Collection,
+        prov:Dictionary,
+        prov:Entity ;
+    prov:hadDictionaryMember id:64c1c725-9da8-493b-8d94-8ee6603c379c,
+        id:6d98a9e0-45c9-4e3c-a27a-c996de451408,
+        id:c8ae3461-6195-4825-be63-a5eb6e5171d3 ;
+    prov:hadMember data:26d58cf3df0903a2298788b72fced5bca9ea7144,
+        data:3cd1b98a95e3eaead219f4048c2f33dbdbb23b7d,
+        data:b7077491222c2c87156fd8d329c38f1e948070c0 .
+
+id:54b8b2f2-d625-49ce-a0e8-5a4d32d5de7d a prov:Agent .
+
+id:64c1c725-9da8-493b-8d94-8ee6603c379c a prov:Entity,
+        prov:KeyEntityPair ;
+    prov:pairEntity data:b7077491222c2c87156fd8d329c38f1e948070c0 ;
+    prov:pairKey "@id"^^xsd:string .
+
+id:64da4cf8-5373-4bd3-80c6-ecb6e1c3fceb a prov:Entity ;
+    prov:value 3.142e+00 .
+
+id:6734369a-3ba4-4c9d-898f-85b3841ffc03 a prov:Entity ;
+    prov:value "42"^^xsd:int .
+
+id:6d98a9e0-45c9-4e3c-a27a-c996de451408 a prov:Entity,
+        prov:KeyEntityPair ;
+    prov:pairEntity data:26d58cf3df0903a2298788b72fced5bca9ea7144 ;
+    prov:pairKey "in_record_A"^^xsd:string .
+
+id:78cb10ab-babb-401a-9399-d4792a708981 a prov:Entity,
+        prov:KeyEntityPair ;
+    prov:pairEntity data:26d58cf3df0903a2298788b72fced5bca9ea7144 ;
+    prov:pairKey "in_record_A"^^xsd:string .
+
+id:824ff1cb-33c3-42ed-bcbc-b20bfaabaede a prov:Entity,
+        prov:KeyEntityPair ;
+    prov:pairEntity data:da9e6ea20c19719b5d84472216416621de280624 ;
+    prov:pairKey "@id"^^xsd:string .
+
+id:87daa478-f58a-408b-bac7-f87c9e4b65e7 a prov:Entity ;
+    prov:value 9.99e+00 .
+
+id:8e3666d5-2c49-43d0-94fb-92b0f7417b0c a wfprov:Artifact,
+        prov:Collection,
+        prov:Entity ;
+    prov:hadMember data:0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33,
+        data:62cdb7020ff920e5aa642c3d4066950dd1f01f4d .
+
+id:9360d3cd-0e2a-4c05-83b7-343dbf252522 a wfprov:Artifact,
+        prov:Collection,
+        prov:Entity ;
+    prov:hadMember data:0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33,
+        data:62cdb7020ff920e5aa642c3d4066950dd1f01f4d .
+
+id:ba0d3bac-98e6-4c4f-a2d6-89cd2e9b0c76 a wfprov:Artifact,
+        prov:Collection,
+        prov:Entity ;
+    prov:hadMember data:909f99a779adb66a76fc53ab56c7dd1caf35d0fd,
+        data:c032adc1ff629c9b66f22749ad667e6beadf144b .
+
+id:bb48b851-60fc-408e-8c07-df8e2a8c60ec a prov:Entity ;
+    prov:value "420"^^xsd:int .
+
+id:c128d51d-5ddb-44bf-b677-26fd99b4cfe5 a prov:Entity ;
+    prov:value 9.99e+00 .
+
+id:c4194a4d-c85c-4013-a313-5a30862ee5da a prov:Entity ;
+    prov:value "420"^^xsd:int .
+
+id:c8ae3461-6195-4825-be63-a5eb6e5171d3 a prov:Entity,
+        prov:KeyEntityPair ;
+    prov:pairEntity data:3cd1b98a95e3eaead219f4048c2f33dbdbb23b7d ;
+    prov:pairKey "in_record_B"^^xsd:string .
+
+id:cfb2688c-3667-4912-9fef-20a3c53d7a9e a prov:Entity ;
+    prov:value "42"^^xsd:int .
+
+id:eb309a53-278d-4a27-a38e-5a8dc5e43db1 a prov:Entity ;
+    prov:value 3.142e+00 .
+
+id:f64c5146-5dbc-4c1c-b54b-f867133fbdd3 a prov:Entity,
+        prov:KeyEntityPair ;
+    prov:pairEntity data:3cd1b98a95e3eaead219f4048c2f33dbdbb23b7d ;
+    prov:pairKey "in_record_B"^^xsd:string .
 
 data:0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33 a wfprov:Artifact,
         prov:Entity ;
     prov:value "foo"^^xsd:string .
-
-data:3bcbb7bc15b1e539f89f6176a8216b2eb63959e8 a wfprov:Artifact,
-        prov:Entity ;
-    prov:value "urn:uuid:aa86147e-6f22-4b35-841e-b1ed64582174"^^xsd:string .
-
-data:3ce6c05ae48c0357521a9ff9788a45c53c3ef5ac a wfprov:Artifact,
-        prov:Entity ;
-    prov:value "urn:uuid:e6a86b5c-fb61-47d7-ae3d-6272dd20957f"^^xsd:string .
 
 data:62cdb7020ff920e5aa642c3d4066950dd1f01f4d a wfprov:Artifact,
         prov:Entity ;
@@ -253,21 +265,37 @@ data:680254bad1d7ca0d65ec46aaa315d363abf6a50a a wfprov:Artifact,
         prov:Entity ;
     prov:value "tar"^^xsd:string .
 
+data:909f99a779adb66a76fc53ab56c7dd1caf35d0fd a wfprov:Artifact,
+        prov:Entity ;
+    prov:value "Z"^^xsd:string .
+
 data:ae4f281df5a5d0ff3cad6371f76d5c29b6d953ec a wfprov:Artifact,
         prov:Entity ;
     prov:value "B"^^xsd:string .
+
+data:b7077491222c2c87156fd8d329c38f1e948070c0 a wfprov:Artifact,
+        prov:Entity ;
+    prov:value "urn:uuid:53470bf8-dc0b-48b9-98da-8fd81a89da59"^^xsd:string .
+
+data:c032adc1ff629c9b66f22749ad667e6beadf144b a wfprov:Artifact,
+        prov:Entity ;
+    prov:value "X"^^xsd:string .
+
+data:da9e6ea20c19719b5d84472216416621de280624 a wfprov:Artifact,
+        prov:Entity ;
+    prov:value "urn:uuid:3ef1283b-32c7-4204-81fc-cfdc248b5066"^^xsd:string .
 
 data:ded982e702e07bb7b6effafdc353db3fe172c83f a wfprov:Artifact,
         prov:Entity ;
     prov:value "spam"^^xsd:string .
 
-id:17b3c655-e21d-40fe-a924-db341c8fc672 a wfprov:WorkflowEngine,
+id:0e5ec30a-a874-4df0-bde9-8d89650dc09b a wfprov:WorkflowEngine,
         prov:Agent,
         prov:SoftwareAgent ;
-    rdfs:label "cwltool 3.1.20220224085855"^^xsd:string ;
+    rdfs:label "cwltool 3.1.20220802125926"^^xsd:string ;
     prov:qualifiedStart [ a prov:Start ;
-            prov:atTime "2022-04-22T12:27:13.313333"^^xsd:dateTime ;
-            prov:hadActivity id:510c94d8-96d4-40f0-96c1-d6b6d5d0b890 ] .
+            prov:atTime "2023-05-23T17:17:52.209637"^^xsd:dateTime ;
+            prov:hadActivity id:54b8b2f2-d625-49ce-a0e8-5a4d32d5de7d ] .
 
 data:26d58cf3df0903a2298788b72fced5bca9ea7144 a wfprov:Artifact,
         prov:Entity ;

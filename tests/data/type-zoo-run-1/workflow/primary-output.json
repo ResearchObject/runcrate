@@ -1,13 +1,13 @@
 {
     "cl_dump": {
-        "location": "../data/4b/4bd8e7e358488e833bf32cf5028695292cecb05b",
+        "location": "../data/9c/9ce421333e5f8b0c4de79d5ce4009d4b191c0e55",
         "basename": "output.txt",
         "nameroot": "output",
         "nameext": ".txt",
         "class": "File",
-        "checksum": "sha1$4bd8e7e358488e833bf32cf5028695292cecb05b",
-        "size": 171,
+        "checksum": "sha1$9ce421333e5f8b0c4de79d5ce4009d4b191c0e55",
+        "size": 191,
         "http://commonwl.org/cwltool#generation": 0,
-        "@id": "urn:uuid:54e2333d-77d8-4d41-9367-d12d05a81b08"
+        "@id": "urn:uuid:dd2af01d-9272-4761-bf43-f5903d9d4d7a"
     }
 }

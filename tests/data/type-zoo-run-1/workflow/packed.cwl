@@ -21,6 +21,23 @@
             "id": "#main/in_array"
         },
         {
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "enum",
+                    "symbols": [
+                        "#main/in_array_enum/X",
+                        "#main/in_array_enum/Y",
+                        "#main/in_array_enum/Z"
+                    ]
+                }
+            },
+            "inputBinding": {
+                "prefix": "--in-array-enum"
+            },
+            "id": "#main/in_array_enum"
+        },
+        {
             "type": "boolean",
             "inputBinding": {
                 "prefix": "--in-bool"

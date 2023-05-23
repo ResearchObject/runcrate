@@ -70,7 +70,7 @@ def convert_cwl_type(cwl_type):
     if cwl_type.type == "enum":
         return "Text"  # use actionOption to represent choices?
     if cwl_type.type == "array":
-        return CWL_TYPE_MAP[cwl_type.items]
+        return convert_cwl_type(cwl_type.items)
     if cwl_type.type == "record":
         return "PropertyValue"
 
