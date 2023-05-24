@@ -1,0 +1,3 @@
+wf_in:
+  class: File
+  location: in.txt
