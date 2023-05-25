@@ -1,0 +1,14 @@
+[2023-05-25T11:31:16,24.269819Z] [cwltool] /home/simleo/git/runcrate/venv/bin/cwltool --provenance step-valuefrom-run-1 wf.cwl params.yml
+[2023-05-25T11:31:16,26.929617Z] Resolved 'wf.cwl' to 'file:///home/simleo/git/runcrate/cwl/step_valuefrom/wf.cwl'
+[2023-05-25T11:31:20,13.793468Z] [provenance] Adding to RO file:///home/simleo/git/runcrate/cwl/step_valuefrom/in.txt
+[2023-05-25T11:31:20,15.956640Z] [workflow ] start
+[2023-05-25T11:31:20,16.201258Z] [workflow ] starting step step1
+[2023-05-25T11:31:20,16.657352Z] [step step1] start
+[2023-05-25T11:31:20,18.600225Z] [job step1] /tmp/3bp5jcuy$ sort \
+    --output \
+    in.txt_sorted \
+    /tmp/2i2_pnlu/stg5e4ca9b2-2dc1-4542-a066-1a9ddd53e8b9/in.txt
+[2023-05-25T11:31:20,24.585724Z] [job step1] completed success
+[2023-05-25T11:31:20,24.797678Z] [step step1] completed success
+[2023-05-25T11:31:20,24.946213Z] [workflow ] completed success
+[2023-05-25T11:31:20,70.524931Z] Final process status is success

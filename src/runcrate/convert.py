@@ -616,6 +616,8 @@ class ProvCrateBuilder:
             ro_step = crate.get(f"{self.wf_path.name}#{step_name}")
             tool_name = step_map[step_name]["tool"]
             for mapping in getattr(step, "in_", []):
+                if not mapping.source:
+                    continue
                 sources = [mapping.source] if not isinstance(
                     mapping.source, list
                 ) else mapping.source

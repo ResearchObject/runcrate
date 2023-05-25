@@ -1,0 +1,13 @@
+{
+    "wf_out": {
+        "location": "../data/4e/4e9467350ac0864d8b27655aa01765680f922582",
+        "basename": "in.txt_sorted",
+        "nameroot": "in",
+        "nameext": ".txt_sorted",
+        "class": "File",
+        "checksum": "sha1$4e9467350ac0864d8b27655aa01765680f922582",
+        "size": 22,
+        "http://commonwl.org/cwltool#generation": 0,
+        "@id": "urn:uuid:c8696b76-423f-4292-b025-5579d9f8f5ca"
+    }
+}
