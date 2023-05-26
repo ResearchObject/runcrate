@@ -970,3 +970,33 @@ def test_multisource(data_dir, tmpdir):
     }
     assert int(cat_step["position"]) > int(date_step["position"])
     assert int(cat_step["position"]) > int(isodate_step["position"])
+
+
+def test_step_in_nosource(data_dir, tmpdir):
+    root = data_dir / "step-valuefrom-run-1"
+    output = tmpdir / "step-valuefrom-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
+    assert crate.root_dataset["license"] == "Apache-2.0"
+    workflow = crate.mainEntity
+    inputs = workflow["input"]
+    assert len(inputs) == 1
+    wf_in = inputs[0]
+    outputs = workflow["output"]
+    assert len(outputs) == 1
+    wf_out = outputs[0]
+    tools = workflow["hasPart"]
+    assert len(tools) == 1
+    sorttool = tools[0]
+    assert len(sorttool["input"]) == 3
+    sorttool_input_map = {_.id.rsplit("/", 1)[-1]: _ for _ in sorttool["input"]}
+    sort_in = sorttool_input_map["sort_in"]
+    assert len(sorttool["output"]) == 1
+    sort_out = sorttool["output"][0]
+    assert len(workflow["step"]) == 1
+    sort_step = workflow["step"][0]
+    assert set(_connected(workflow)) == {(sort_out.id, wf_out.id)}
+    assert set(_connected(sort_step)) == {(wf_in.id, sort_in.id)}
