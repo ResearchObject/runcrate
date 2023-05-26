@@ -1,0 +1,59 @@
+document
+  prefix wfprov <http://purl.org/wf4ever/wfprov#>
+  prefix wfdesc <http://purl.org/wf4ever/wfdesc#>
+  prefix cwlprov <https://w3id.org/cwl/prov#>
+  prefix foaf <http://xmlns.com/foaf/0.1/>
+  prefix schema <http://schema.org/>
+  prefix orcid <https://orcid.org/>
+  prefix id <urn:uuid:>
+  prefix data <urn:hash::sha1:>
+  prefix sha256 <nih:sha-256;>
+  prefix researchobject <arcp://uuid,8ea1203a-87d8-4de2-ba53-6de4b3f45171/>
+  prefix metadata <arcp://uuid,8ea1203a-87d8-4de2-ba53-6de4b3f45171/metadata/>
+  prefix provenance <arcp://uuid,8ea1203a-87d8-4de2-ba53-6de4b3f45171/metadata/provenance/>
+  prefix wf <arcp://uuid,8ea1203a-87d8-4de2-ba53-6de4b3f45171/workflow/packed.cwl#>
+  prefix input <arcp://uuid,8ea1203a-87d8-4de2-ba53-6de4b3f45171/workflow/primary-job.json#>
+  prefix wf4ever <http://purl.org/wf4ever/wf4ever#>
+  
+  agent(id:f1d75665-3e4b-42a0-bd13-a0902ac87827)
+  agent(id:4fd68311-5c2a-4911-affe-9fc0aa3f40a2, [prov:type='wfprov:WorkflowEngine', prov:type='prov:SoftwareAgent', prov:label="cwltool 3.1.20220802125926"])
+  wasStartedBy(id:4fd68311-5c2a-4911-affe-9fc0aa3f40a2, -, id:f1d75665-3e4b-42a0-bd13-a0902ac87827, 2023-05-26T11:09:08.094138)
+  activity(id:8ea1203a-87d8-4de2-ba53-6de4b3f45171, 2023-05-26T11:09:08.094190, -, [prov:type='wfprov:WorkflowRun', prov:label="Run of workflow/packed.cwl#main"])
+  wasAssociatedWith(id:8ea1203a-87d8-4de2-ba53-6de4b3f45171, id:4fd68311-5c2a-4911-affe-9fc0aa3f40a2, wf:main)
+  wasStartedBy(id:8ea1203a-87d8-4de2-ba53-6de4b3f45171, -, id:4fd68311-5c2a-4911-affe-9fc0aa3f40a2, 2023-05-26T11:09:08.094314)
+  entity(wf:main, [prov:type='wfdesc:Workflow', prov:type='prov:Plan', prov:label="Prospective provenance"])
+  entity(wf:main/date, [prov:type='prov:Plan', prov:type='wfdesc:Process'])
+  entity(wf:main, [wfdesc:hasSubProcess='wf:main/date', prov:label="Prospective provenance"])
+  entity(wf:main/isodate, [prov:type='prov:Plan', prov:type='wfdesc:Process'])
+  entity(wf:main, [wfdesc:hasSubProcess='wf:main/isodate', prov:label="Prospective provenance"])
+  entity(data:d51d183a9a5ab7242fc81df22fc65a6c5d302a47, [prov:type='wfprov:Artifact'])
+  entity(id:043af526-17ce-4ff8-a080-86abd46c47f9, [prov:type='wf4ever:File', prov:type='wfprov:Artifact', cwlprov:basename="params.yml", cwlprov:nameroot="params", cwlprov:nameext=".yml"])
+  specializationOf(id:043af526-17ce-4ff8-a080-86abd46c47f9, data:d51d183a9a5ab7242fc81df22fc65a6c5d302a47)
+  used(id:8ea1203a-87d8-4de2-ba53-6de4b3f45171, id:043af526-17ce-4ff8-a080-86abd46c47f9, 2023-05-26T11:09:08.139952, [prov:role='wf:main/in_file'])
+  activity(id:c38e5015-9c26-47a2-bccc-0ebb1760fe4c, -, -, [prov:type='wfprov:ProcessRun', prov:label="Run of workflow/packed.cwl#main/date"])
+  wasAssociatedWith(id:c38e5015-9c26-47a2-bccc-0ebb1760fe4c, id:4fd68311-5c2a-4911-affe-9fc0aa3f40a2, wf:main/date)
+  wasStartedBy(id:c38e5015-9c26-47a2-bccc-0ebb1760fe4c, -, id:8ea1203a-87d8-4de2-ba53-6de4b3f45171, 2023-05-26T11:09:08.143332)
+  entity(data:d51d183a9a5ab7242fc81df22fc65a6c5d302a47, [prov:type='wfprov:Artifact'])
+  entity(id:5fa56a2c-7a30-4996-9cf2-59d78ff32d50, [prov:type='wf4ever:File', prov:type='wfprov:Artifact', cwlprov:basename="params.yml", cwlprov:nameroot="params", cwlprov:nameext=".yml"])
+  specializationOf(id:5fa56a2c-7a30-4996-9cf2-59d78ff32d50, data:d51d183a9a5ab7242fc81df22fc65a6c5d302a47)
+  used(id:c38e5015-9c26-47a2-bccc-0ebb1760fe4c, id:5fa56a2c-7a30-4996-9cf2-59d78ff32d50, 2023-05-26T11:09:08.144668, [prov:role='wf:main/date/somefile'])
+  entity(data:37bfd33cb80fc11081434143c52db941ceeb44ad, [prov:type='wfprov:Artifact'])
+  entity(id:6e57c6dc-cadf-4f84-b946-df864d9a68ec, [prov:type='wf4ever:File', prov:type='wfprov:Artifact', cwlprov:basename="date_out.txt", cwlprov:nameroot="date_out", cwlprov:nameext=".txt"])
+  specializationOf(id:6e57c6dc-cadf-4f84-b946-df864d9a68ec, data:37bfd33cb80fc11081434143c52db941ceeb44ad)
+  wasGeneratedBy(id:6e57c6dc-cadf-4f84-b946-df864d9a68ec, id:c38e5015-9c26-47a2-bccc-0ebb1760fe4c, 2023-05-26T11:09:08.151339, [prov:role='wf:main/date/date_out'])
+  wasEndedBy(id:c38e5015-9c26-47a2-bccc-0ebb1760fe4c, -, id:8ea1203a-87d8-4de2-ba53-6de4b3f45171, 2023-05-26T11:09:08.151319)
+  activity(id:433bbe3f-7204-4446-8e4b-18997df64a9f, -, -, [prov:type='wfprov:ProcessRun', prov:label="Run of workflow/packed.cwl#main/isodate"])
+  wasAssociatedWith(id:433bbe3f-7204-4446-8e4b-18997df64a9f, id:4fd68311-5c2a-4911-affe-9fc0aa3f40a2, wf:main/isodate)
+  wasStartedBy(id:433bbe3f-7204-4446-8e4b-18997df64a9f, -, id:8ea1203a-87d8-4de2-ba53-6de4b3f45171, 2023-05-26T11:09:08.157937)
+  entity(data:d51d183a9a5ab7242fc81df22fc65a6c5d302a47, [prov:type='wfprov:Artifact'])
+  entity(id:fbab9513-6dfe-4016-9b22-5c7759998443, [prov:type='wf4ever:File', prov:type='wfprov:Artifact', cwlprov:basename="params.yml", cwlprov:nameroot="params", cwlprov:nameext=".yml"])
+  specializationOf(id:fbab9513-6dfe-4016-9b22-5c7759998443, data:d51d183a9a5ab7242fc81df22fc65a6c5d302a47)
+  used(id:433bbe3f-7204-4446-8e4b-18997df64a9f, id:fbab9513-6dfe-4016-9b22-5c7759998443, 2023-05-26T11:09:08.159257, [prov:role='wf:main/isodate/somefile'])
+  entity(data:5b7db901c7d1319415081cba09652c8b570cb27d, [prov:type='wfprov:Artifact'])
+  entity(id:f3f597aa-1ee0-460d-b2f1-ce3977cdd485, [prov:type='wf4ever:File', prov:type='wfprov:Artifact', cwlprov:basename="isodate_out.txt", cwlprov:nameroot="isodate_out", cwlprov:nameext=".txt"])
+  specializationOf(id:f3f597aa-1ee0-460d-b2f1-ce3977cdd485, data:5b7db901c7d1319415081cba09652c8b570cb27d)
+  wasGeneratedBy(id:f3f597aa-1ee0-460d-b2f1-ce3977cdd485, id:433bbe3f-7204-4446-8e4b-18997df64a9f, 2023-05-26T11:09:08.164705, [prov:role='wf:main/isodate/date_out'])
+  wasEndedBy(id:433bbe3f-7204-4446-8e4b-18997df64a9f, -, id:8ea1203a-87d8-4de2-ba53-6de4b3f45171, 2023-05-26T11:09:08.164693)
+  wasGeneratedBy(id:6e57c6dc-cadf-4f84-b946-df864d9a68ec, id:8ea1203a-87d8-4de2-ba53-6de4b3f45171, 2023-05-26T11:09:08.168756, [prov:role='wf:main/primary/out_file'])
+  wasEndedBy(id:8ea1203a-87d8-4de2-ba53-6de4b3f45171, -, id:4fd68311-5c2a-4911-affe-9fc0aa3f40a2, 2023-05-26T11:09:08.169014)
+endDocument

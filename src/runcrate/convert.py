@@ -630,14 +630,18 @@ class ProvCrateBuilder:
                     to_param = get_fragment(mapping.id).replace(step_name, tool_name)
                     connect(from_param, to_param, ro_step)
         for out in getattr(wf_def, "outputs", []):
-            from_param = get_fragment(out.outputSource)
-            try:
-                from_param = out_map[from_param]
-            except KeyError:
-                # assuming this is a passthrough for a workflow input parameter
-                pass
-            to_param = get_fragment(out.id)
-            connect(from_param, to_param, workflow)
+            out_sources = [out.outputSource] if not isinstance(
+                out.outputSource, list
+            ) else out.outputSource
+            for out_s in out_sources:
+                from_param = get_fragment(out_s)
+                try:
+                    from_param = out_map[from_param]
+                except KeyError:
+                    # assuming this is a passthrough for a workflow input parameter
+                    pass
+                to_param = get_fragment(out.id)
+                connect(from_param, to_param, workflow)
 
     def patch_workflow_input_collection(self, crate, wf=None):
         """\
