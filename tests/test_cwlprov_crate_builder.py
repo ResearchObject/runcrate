@@ -844,6 +844,8 @@ def test_secondary_files(data_dir, tmpdir):
     assert grep_in["description"] == "input file for the grep tool"
     grep_out = greptool["output"][0]
     assert grep_out["description"] == "grep output"
+    sorttool = wf_tools["packed.cwl#sorttool.cwl"]
+    assert sorttool["memoryRequirements"] == "16 MiB"
     actions = {_["instrument"].id: _ for _ in crate.contextual_entities
                if "CreateAction" in _.type}
     assert set(actions) == {

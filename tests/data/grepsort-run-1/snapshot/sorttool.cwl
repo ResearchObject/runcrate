@@ -1,6 +1,10 @@
 class: CommandLineTool
 cwlVersion: v1.2
 
+requirements:
+  - class: ResourceRequirement
+    ramMin: 16
+
 baseCommand: sort
 
 inputs:

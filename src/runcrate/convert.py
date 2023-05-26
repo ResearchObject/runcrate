@@ -1,4 +1,5 @@
 # Copyright 2022-2023 CRS4.
+# Copyright 2023 Michael R. Crusoe
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -95,16 +96,12 @@ def properties_from_cwl_param(cwl_p):
     if is_structured(cwl_p.type):
         properties["multipleValues"] = "True"
     if hasattr(cwl_p, "default"):
-        try:
-            default_type = cwl_p.default["class"]
-        except (TypeError, KeyError):
-            if not is_structured(cwl_p.type) and cwl_p.default is not None:
-                properties["defaultValue"] = str(cwl_p.default)
-        else:
-            if default_type in ("File", "Directory"):
-                default = cwl_p.default.get("location", cwl_p.default.get("path"))
-                if default:
-                    properties["defaultValue"] = default
+        if hasattr(cwl_p.default, "class_") and cwl_p.default.class_ in ("File", "Directory"):
+            default = cwl_p.default.location or cwl_p.default.path
+            if default:
+                properties["defaultValue"] = default
+        elif not is_structured(cwl_p.type) and cwl_p.default is not None:
+            properties["defaultValue"] = str(cwl_p.default)
         # TODO: support more cases
     if getattr(cwl_p.type, "type", None) == "enum":
         properties["valuePattern"] = "|".join(_.rsplit("/", 1)[-1] for _ in cwl_p.type.symbols)
@@ -163,7 +160,7 @@ def get_workflow(wf_path):
         ns = n.pop("$namespaces", {})
         if ns:
             json_wf.setdefault("$namespaces", {}).update(ns)
-    defs = load_document_by_yaml(json_wf, wf_path.absolute().as_uri())
+    defs = load_document_by_yaml(json_wf, wf_path.absolute().as_uri(), load_all=True)
     if not isinstance(defs, list):
         defs = [defs]
     def_map = {}
@@ -362,13 +359,18 @@ class ProvCrateBuilder:
             properties["@type"] = "SoftwareApplication"
         if hasattr(cwl_tool, "intent") and cwl_tool.intent:
             properties["featureList"] = cwl_tool.intent
+        if hasattr(cwl_tool, "requirements") and cwl_tool.requirements:
+            for req in cwl_tool.requirements:
+                if req.class_ == "ResourceRequirement":
+                    ramMin = req.ramMin
+                    if ramMin:
+                        properties["memoryRequirements"] = f"{int(ramMin)} MiB"
         if hasattr(cwl_tool, "hints") and cwl_tool.hints:
-            hints_map = {_["class"]: _ for _ in cwl_tool.hints}
-            rreq = hints_map.get("ResourceRequirement")
-            if rreq:
-                ramMin = rreq.get("ramMin")
-                if ramMin:
-                    properties["memoryRequirements"] = f"{int(ramMin)} MiB"
+            for req in cwl_tool.hints:
+                if hasattr(req, "class_") and req.class_ == "ResourceRequirement":
+                    ramMin = req.ramMin
+                    if ramMin:
+                        properties["memoryRequirements"] = f"{int(ramMin)} MiB"
         tool = crate.add(ContextEntity(crate, tool_id, properties=properties))
         tool["input"] = self.add_params(crate, cwl_tool.inputs)
         tool["output"] = self.add_params(crate, cwl_tool.outputs)

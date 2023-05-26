@@ -7,6 +7,9 @@ authors:
   - family-names: Soiland-Reyes
     given-names: Stian
     orcid: https://orcid.org/0000-0001-9842-9718
+  - family-names: Crusoe
+    given-names: Michael R.
+    orcid: https://orcid.org/0000-0002-2961-9670
 title: "runcrate"
 version: 0.1.2
 doi: 10.5281/zenodo.7762627
