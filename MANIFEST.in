@@ -1,6 +1,7 @@
 graft docs
 graft src
 
+include *.shex
 include *.rst
 include LICENSE
 include requirements.txt

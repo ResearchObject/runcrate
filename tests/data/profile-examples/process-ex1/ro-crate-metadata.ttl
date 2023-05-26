@@ -1,0 +1,35 @@
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/#SepiaConversion_1> <http://schema.org/agent> <https://orcid.org/0000-0001-9842-9718> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/#SepiaConversion_1> <http://schema.org/description> "convert -sepia-tone 80% test_data/sample/pics/2017-06-11\\ 12.56.14.jpg test_data/sample/pics/sepia_fence.jpg" .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/#SepiaConversion_1> <http://schema.org/endTime> "2018-09-19T17:01:07+10:00" .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/#SepiaConversion_1> <http://schema.org/instrument> <https://www.imagemagick.org/> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/#SepiaConversion_1> <http://schema.org/name> "Convert dog image to sepia" .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/#SepiaConversion_1> <http://schema.org/actionStatus> "CompletedActionStatus" .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/#SepiaConversion_1> <http://schema.org/object> <arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/pics/2017-06-11%2012.56.14.jpg> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/#SepiaConversion_1> <http://schema.org/result> <arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/pics/sepia_fence.jpg> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/#SepiaConversion_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/CreateAction> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/> <http://purl.org/dc/terms/conformsTo> <https://w3id.org/ro/wfrun/process/0.1> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/> <http://schema.org/hasPart> <arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/pics/2017-06-11%2012.56.14.jpg> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/> <http://schema.org/hasPart> <arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/pics/sepia_fence.jpg> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/> <http://schema.org/mentions> <arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/#SepiaConversion_1> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/> <http://schema.org/name> "My Pictures" .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/pics/2017-06-11%2012.56.14.jpg> <http://schema.org/description> "Original image" .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/pics/2017-06-11%2012.56.14.jpg> <http://schema.org/encodingFormat> "image/jpeg" .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/pics/2017-06-11%2012.56.14.jpg> <http://schema.org/name> "2017-06-11 12.56.14.jpg (input)" .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/pics/2017-06-11%2012.56.14.jpg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/MediaObject> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/pics/sepia_fence.jpg> <http://schema.org/description> "The converted picture, now sepia-colored" .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/pics/sepia_fence.jpg> <http://schema.org/encodingFormat> "image/jpeg" .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/pics/sepia_fence.jpg> <http://schema.org/name> "sepia_fence (output)" .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/pics/sepia_fence.jpg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/MediaObject> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/ro-crate-metadata.json> <http://purl.org/dc/terms/conformsTo> <https://w3id.org/ro/crate/1.1> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/ro-crate-metadata.json> <http://schema.org/about> <arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/> .
+<arcp://uuid,1482c1de-4383-4e9e-8cca-ddd922bdf8ac/ro-crate-metadata.json> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/CreativeWork> .
+<https://orcid.org/0000-0001-9842-9718> <http://schema.org/name> "Stian Soiland-Reyes" .
+<https://orcid.org/0000-0001-9842-9718> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Person> .
+<https://w3id.org/ro/wfrun/process/0.1> <http://schema.org/name> "Process Run Crate" .
+<https://w3id.org/ro/wfrun/process/0.1> <http://schema.org/version> "0.1" .
+<https://w3id.org/ro/wfrun/process/0.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/CreativeWork> .
+<https://www.imagemagick.org/> <http://schema.org/name> "ImageMagick" .
+<https://www.imagemagick.org/> <http://schema.org/softwareVersion> "6.9.7-4" .
+<https://www.imagemagick.org/> <http://schema.org/url> "https://www.imagemagick.org/" .
+<https://www.imagemagick.org/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/SoftwareApplication> .

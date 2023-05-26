@@ -1,0 +1,78 @@
+# Copyright 2023 The University of Manchester
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+## ShEX shape for https://w3id.org/workflowhub/workflow-ro-crate/1.0
+
+## FIXME: Update namespace
+PREFIX p: <https://w3id.example.org/workflowhub/workflow-ro-crate/1.0/shape#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX s: <http://schema.org/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX bioschemas: <https://bioschemas.org/>
+
+start = @p:Root
+
+p:Root {  
+  # Fails as WorkflowHub also adds ro-crate-preview.html with s:about
+  #^s:about @p:MetadataFile;
+  s:mainEntity @p:MainWorkflow;
+  (
+    s:licence IRI | 
+    s:licence xsd:string
+  )
+}
+
+
+# https://www.researchobject.org/ro-crate/1.1/root-data-entity.html#ro-crate-metadata-file-descriptor
+p:MetadataFile EXTRA dct:conformsTo a {
+    a [s:CreativeWork];
+    # FIXME: Update Workflow RO-Crate profile to move conformsTo to root
+    dct:conformsTo [<https://w3id.org/workflowhub/workflow-ro-crate/1.0>];
+    dct:conformsTo [<https://w3id.org/ro/crate/1.1>]
+}
+
+p:MainWorkflow extra a { 
+  a [s:MediaObject];
+  a [s:SoftwareSourceCode];
+  a [bioschemas:ComputationalWorkflow];
+  # Must be data entity in crate
+  ( ^s:hasPart @p:Root | 
+    ^s:hasPart @p:Dataset;
+  );
+  # FIXME: Profile does not require the contextual entity?
+  #s:programmingLanguage @p:ComputerLanguage;
+  s:programmingLanguage IRI;
+  s:subjectOf @p:CWLDescription?;
+  s:image @p:WorkflowDiagram?;
+}
+
+# An aggregated (potentially nested) dataset
+p:Dataset extra a {
+  a [s:Dataset];
+  s:name xsd:string;
+}
+
+
+p:CWLDescription { 
+  a [s:MediaObject];
+  a [s:SoftwareSourceCode];
+  a [s:HowTo];
+  s:programmingLanguage [<https://w3id.org/workflowhub/workflow-ro-crate#cwl>];
+}
+
+p:WorkflowDiagram {
+  a [s:MediaObject];
+  a [s:ImageObject];
+}

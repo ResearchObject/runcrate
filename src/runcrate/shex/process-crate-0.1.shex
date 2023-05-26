@@ -1,0 +1,146 @@
+# Copyright 2023 The University of Manchester
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+## ShEx shape for https://w3id.org/ro/wfrun/process/0.1
+
+## FIXME: Update namespace
+PREFIX p: <https://w3id.example.org/ro/wfrun/process/0.1/shape#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX s: <http://schema.org/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX bioschemas: <https://bioschemas.org/>
+
+start = @p:Root
+
+p:Process {
+  ( a [s:CreateAction] | 
+    a [s:ActivateAction] | 
+    a [s:UpdateAction]
+  );
+  s:name xsd:string;
+  s:description xsd:string;
+  s:endTime xsd:string;  
+  s:startTime xsd:string?;
+  s:instrument @p:SoftwareApplication;
+  s:agent @p:Agent;
+  ( 
+    s:object @p:File |
+    s:object @p:Dataset | 
+    s:object @p:Collection | 
+    s:object @p:PropertyValue
+  )?;
+  ( 
+    s:result @p:File | 
+    s:result @p:Dataset | 
+    s:object @p:PropertyValue  
+  );
+  # TODO: Do we permit literals here?
+  s:actionStatus [s:CompletedActionStatus "CompletedActionStatus" s:FailedActionStatus "FailedActionStatus"]?;
+  ( # Error, if present, can be string literal or entity
+    s:error LITERAL | 
+    s:error NonLiteral
+  )?;
+}
+
+
+p:Agent { 
+  a [s:Person];
+  s:name xsd:string;
+}
+
+p:SoftwareApplication EXTRA a { 
+  ( a [s:SoftwareApplication] | 
+    a [s:SoftwareSourceCode ] | 
+    a [bioschemas:ComputationalWorkflow] 
+  );
+  s:name xsd:string;
+  ( s:url xsd:string |
+    s:url IRI
+  );
+  ( s:version xsd:string |
+    s:softwareVersion xsd:string 
+  );
+}
+
+p:PropertyValue { 
+  a [s:PropertyValue ];
+  s:name xsd:string;
+  s:value Literal;
+}
+
+p:File EXTRA a { 
+  a [s:MediaObject];
+  # Either part of another dataset or the root
+  ( ^s:hasPart @p:Root |
+    ^s:hasPart @p:Dataset ;
+  );
+  s:alternateName xsd:string?;
+  (
+    s:encodingFormat xsd:string |
+    s:encodingFormat IRI;
+  );
+  s:description xsd:string?;
+}
+
+
+# A multi-file object
+p:Collection  {
+  a [s:Collection];
+  # FIXME: Do collections need a name?
+  s:name xsd:string?;
+  ^s:mentions @p:Root;
+  ( 
+    s:mainEntity @p:Dataset |
+    s:mainEntity @p:File 
+  )?;
+  ( s:hasPart @p:Dataset | 
+    s:hasPart @p:File;
+  );
+}
+
+# An aggregated (potentially nested) dataset
+p:Dataset {
+  a [s:Dataset];
+  s:name xsd:string;
+  ( ^s:hasPart @p:Root | 
+    ^s:hasPart @p:Dataset
+  );
+}
+
+# FIXME: Need a skeleton Root node for ^s:hasPart back-references
+# to avoid recursion?
+
+## NOTE: EXTRA should be enabled to allow extension of the profile, 
+# but may cause unneccessary recursions and confusing errors
+# when something deeper does not match.
+
+p:Root EXTRA s:mentions {  
+  ^s:about @p:MetadataFile;
+  dct:conformsTo [<https://w3id.org/ro/wfrun/process/0.1>];
+  dct:conformsTo IRI*;
+  s:mentions @p:Process+;
+}
+
+# https://www.researchobject.org/ro-crate/1.1/root-data-entity.html#ro-crate-metadata-file-descriptor
+p:MetadataFile EXTRA dct:conformsTo {
+    a [s:CreativeWork];
+    dct:conformsTo @p:ROCrateSpec;
+}
+
+# https://www.researchobject.org/ro-crate/1.1/appendix/relative-uris.html#establishing-absolute-uri-for-ro-crate-root
+p:ROCrateSpec IRI 
+  /^https:\/\/w3id.org\/ro\/crate\//
+  {
+}
