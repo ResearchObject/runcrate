@@ -123,6 +123,12 @@
         },
         {
             "class": "CommandLineTool",
+            "requirements": [
+                {
+                    "class": "ResourceRequirement",
+                    "ramMin": 16
+                }
+            ],
             "baseCommand": "sort",
             "inputs": [
                 {
