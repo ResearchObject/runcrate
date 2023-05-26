@@ -1,0 +1,13 @@
+{
+    "out_file": {
+        "location": "../data/37/37bfd33cb80fc11081434143c52db941ceeb44ad",
+        "basename": "date_out.txt",
+        "nameroot": "date_out",
+        "nameext": ".txt",
+        "class": "File",
+        "checksum": "sha1$37bfd33cb80fc11081434143c52db941ceeb44ad",
+        "size": 30,
+        "http://commonwl.org/cwltool#generation": 0,
+        "@id": "urn:uuid:6e57c6dc-cadf-4f84-b946-df864d9a68ec"
+    }
+}

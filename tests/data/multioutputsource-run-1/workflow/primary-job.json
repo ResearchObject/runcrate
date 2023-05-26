@@ -1,0 +1,11 @@
+{
+    "in_file": {
+        "class": "File",
+        "location": "../data/d5/d51d183a9a5ab7242fc81df22fc65a6c5d302a47",
+        "size": 46,
+        "basename": "params.yml",
+        "nameroot": "params",
+        "nameext": ".yml",
+        "checksum": "sha1$d51d183a9a5ab7242fc81df22fc65a6c5d302a47"
+    }
+}

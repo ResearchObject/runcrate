@@ -1,0 +1,21 @@
+[2023-05-26T09:09:07,6.926775Z] [cwltool] /home/simleo/git/runcrate/venv/bin/cwltool --provenance ro wf.cwl params.yml
+[2023-05-26T09:09:07,8.531570Z] Resolved 'wf.cwl' to 'file:///home/simleo/sandbox/try_cwl/multi_output_source/wf.cwl'
+[2023-05-26T09:09:08,137.237787Z] [provenance] Adding to RO file:///home/simleo/sandbox/try_cwl/multi_output_source/params.yml
+[2023-05-26T09:09:08,140.062809Z] [workflow ] start
+[2023-05-26T09:09:08,140.442848Z] [workflow ] starting step date
+[2023-05-26T09:09:08,140.694618Z] [step date] start
+[2023-05-26T09:09:08,143.871069Z] [job date] /tmp/8p0jhssw$ date \
+    -r \
+    /tmp/02_ilcav/stgb0078d53-791f-4394-8f6f-74225876ca07/params.yml > /tmp/8p0jhssw/date_out.txt
+[2023-05-26T09:09:08,153.103352Z] [job date] completed success
+[2023-05-26T09:09:08,153.474092Z] [step date] completed success
+[2023-05-26T09:09:08,154.075861Z] [workflow ] starting step isodate
+[2023-05-26T09:09:08,154.509783Z] [step isodate] start
+[2023-05-26T09:09:08,158.412218Z] [job isodate] /tmp/vd32rb7d$ date \
+    -I \
+    -r \
+    /tmp/p9v0z_j5/stgeed40e76-a5ae-4e63-9b05-08713b3c6ab6/params.yml > /tmp/vd32rb7d/isodate_out.txt
+[2023-05-26T09:09:08,165.982723Z] [job isodate] completed success
+[2023-05-26T09:09:08,166.256905Z] [step isodate] completed success
+[2023-05-26T09:09:08,166.709661Z] [workflow ] completed success
+[2023-05-26T09:09:08,218.397617Z] Final process status is success
