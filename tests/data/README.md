@@ -85,3 +85,8 @@ Used to test support for [steps with arrays as input sources](https://www.common
 ## step-valuefrom-run-1
 
 Used to test the handling of step input mappings that don't have a source (e.g., if they only have a valueFrom).
+
+
+## multioutputsource-run-1
+
+Used to test support for workflow outputs with multiple output sources (i.e., when `outputSource` is an array).
