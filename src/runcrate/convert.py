@@ -659,7 +659,7 @@ class ProvCrateBuilder:
         sel = [_ for _ in crate.contextual_entities
                if "CreateAction" in as_list(_.type) and _.get("instrument") is wf]
         if not sel:
-            raise RuntimeError(f"{wf.id} has no corresponding action")
+            return  # skipped subworkflow
         wf_action = sel[0]
         connections = [_ for _ in crate.contextual_entities
                        if "ParameterConnection" in as_list(_.type)]
