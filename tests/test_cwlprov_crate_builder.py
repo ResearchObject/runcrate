@@ -1153,3 +1153,49 @@ def test_revsort_inline(data_dir, tmpdir, cwl_version):
         (reverse_sort_param.id, reverse_param.id),
     }
     assert set(_connected(workflow)) == {(sort_out_param.id, out_file_param.id)}
+
+
+def test_remap_names(data_dir, tmpdir):
+    root = data_dir / "grepucase-run-1"
+    output = tmpdir / "grepucase-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license, remap_names=True)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
+    workflow = crate.mainEntity
+    action_map = {_["instrument"].id: _ for _ in crate.contextual_entities
+                  if "CreateAction" in _.type}
+    assert len(action_map) == 3
+    wf_action = action_map["packed.cwl"]
+    assert wf_action["instrument"] is workflow
+    wf_objects = wf_action["object"]
+    wf_results = wf_action["result"]
+    assert len(wf_objects) == 2
+    assert len(wf_results) == 1
+    wf_objects_map = {_.id: _ for _ in wf_objects}
+    wf_input_dir = wf_objects_map.get("grepucase_in/")
+    assert wf_input_dir
+    wf_output_dir = wf_results[0]
+    assert wf_output_dir.id == "ucase_out/"
+    assert set(_.id for _ in wf_input_dir["hasPart"]) == {
+        "grepucase_in/bar", "grepucase_in/foo"
+    }
+    assert set(_.id for _ in wf_output_dir["hasPart"]) == {
+        "ucase_out/bar.out/", "ucase_out/foo.out/"
+    }
+    for d in wf_output_dir["hasPart"]:
+        if d.id == "ucase_out/bar.out/":
+            assert d["hasPart"][0].id == "ucase_out/bar.out/bar.out.out"
+        else:
+            assert d["hasPart"][0].id == "ucase_out/foo.out/foo.out.out"
+    greptool_action = action_map["packed.cwl#greptool.cwl"]
+    greptool_objects = greptool_action["object"]
+    greptool_results = greptool_action["result"]
+    assert len(greptool_objects) == 2
+    assert len(greptool_results) == 1
+    greptool_objects_map = {_.id: _ for _ in greptool_objects}
+    greptool_input_dir = greptool_objects_map.get("grepucase_in/")
+    assert greptool_input_dir is wf_input_dir
+    greptool_output_dir = greptool_results[0]
+    assert greptool_output_dir.id == "grep_out/"

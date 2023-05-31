@@ -192,7 +192,8 @@ def get_workflow(wf_path):
 
 class ProvCrateBuilder:
 
-    def __init__(self, root, workflow_name=None, license=None, readme=None):
+    def __init__(self, root, workflow_name=None, license=None, readme=None,
+                 remap_names=False):
         self.root = Path(root)
         self.workflow_name = workflow_name
         self.license = license
@@ -213,6 +214,7 @@ class ProvCrateBuilder:
         # map source files to destination files
         self.file_map = {}
         self.manifest = self._get_manifest()
+        self.remap_names = remap_names
 
     @staticmethod
     def _get_step_maps(cwl_defs):
@@ -583,14 +585,19 @@ class ProvCrateBuilder:
             return action_p
         if "wf4ever:File" in type_names:
             hash_ = self.hashes[prov_param.id.localpart]
-            dest = Path(parent.id if parent else "") / hash_
+            if self.remap_names:
+                basename = getattr(prov_param, "basename", hash_)
+            else:
+                basename = hash_
+            dest = Path(parent.id if parent else "") / basename
             action_p = crate.dereference(dest.as_posix())
             if not action_p:
                 source = self.manifest[hash_]
                 action_p = crate.add_file(source, dest, properties={
                     "sha1": hash_,
                 })
-                self._set_alternate_name(prov_param, action_p, parent=parent)
+                if not self.remap_names:
+                    self._set_alternate_name(prov_param, action_p, parent=parent)
                 try:
                     source_k = str(source.resolve(strict=False))
                 except RuntimeError:
@@ -599,11 +606,16 @@ class ProvCrateBuilder:
             return action_p
         if "ro:Folder" in type_names:
             hash_ = self.hashes[prov_param.id.localpart]
-            dest = Path(parent.id if parent else "") / hash_
+            if self.remap_names:
+                basename = getattr(prov_param, "basename", hash_)
+            else:
+                basename = hash_
+            dest = Path(parent.id if parent else "") / basename
             action_p = crate.dereference(dest.as_posix())
             if not action_p:
                 action_p = crate.add_directory(dest_path=dest)
-                self._set_alternate_name(prov_param, action_p, parent=parent)
+                if not self.remap_names:
+                    self._set_alternate_name(prov_param, action_p, parent=parent)
                 for child in self.get_dict(prov_param).values():
                     part = self.convert_param(child, crate, parent=action_p)
                     action_p.append_to("hasPart", part)
