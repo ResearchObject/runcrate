@@ -1,0 +1,15 @@
+[2023-05-30T14:47:15,23.298979Z] [cwltool] /home/simleo/git/runcrate/venv/bin/cwltool --provenance ro revsortlcase.cwl revsortlcase-job.yml
+[2023-05-30T14:47:15,25.133133Z] Resolved 'revsortlcase.cwl' to 'file:///home/simleo/sandbox/try_cwl/conditional_wf/revsortlcase.cwl'
+[2023-05-30T14:47:18,570.350885Z] [provenance] Adding to RO file:///home/simleo/sandbox/try_cwl/conditional_wf/revsortlcase_in.txt
+[2023-05-30T14:47:18,572.472334Z] [workflow ] start
+[2023-05-30T14:47:18,572.729111Z] [workflow ] starting step revsort
+[2023-05-30T14:47:18,573.310137Z] [step revsort] will be skipped
+[2023-05-30T14:47:18,573.388577Z] [step revsort] completed skipped
+[2023-05-30T14:47:18,573.533773Z] [workflow ] starting step lcase
+[2023-05-30T14:47:18,573.679209Z] [step lcase] start
+[2023-05-30T14:47:18,575.441360Z] [job lcase] /tmp/kfrz9f58$ awk \
+    '{print tolower($0)}' < /tmp/0v_klp85/stg88aaf873-e948-461c-b2bf-6dedc8e813af/revsortlcase_in.txt > /tmp/kfrz9f58/lcase_out.txt
+[2023-05-30T14:47:18,581.852674Z] [job lcase] completed success
+[2023-05-30T14:47:18,582.119465Z] [step lcase] completed success
+[2023-05-30T14:47:18,582.437277Z] [workflow ] completed success
+[2023-05-30T14:47:18,631.536961Z] Final process status is success

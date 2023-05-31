@@ -1044,3 +1044,31 @@ def test_multioutputsource(data_dir, tmpdir):
     assert set(_connected(isodate_step)) == {(wf_in.id, isodate_in.id)}
     assert date_step.get("position")
     assert isodate_step.get("position")
+
+
+def test_conditional_wf(data_dir, tmpdir):
+    root = data_dir / "conditional-wf-run-1"
+    output = tmpdir / "conditional-wf-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
+    workflow = crate.mainEntity
+    wf_tools = {_.id: _ for _ in workflow["hasPart"]}
+    assert set(wf_tools) == {
+        "packed.cwl#revsort.cwl",
+        "packed.cwl#lcasetool.cwl"
+    }
+    wf_steps = {_.id: _ for _ in workflow["step"]}
+    assert set(wf_steps) == {
+        "packed.cwl#main/revsort",
+        "packed.cwl#main/lcase"
+    }
+    actions = {_["instrument"].id: _ for _ in crate.contextual_entities
+               if "CreateAction" in _.type}
+    # check that revsort has been skipped
+    assert set(actions) == {
+        "packed.cwl",
+        "packed.cwl#lcasetool.cwl",
+    }

@@ -90,3 +90,8 @@ Used to test the handling of step input mappings that don't have a source (e.g.,
 ## multioutputsource-run-1
 
 Used to test support for workflow outputs with multiple output sources (i.e., when `outputSource` is an array).
+
+
+## conditional-wf-run-1
+
+Used to test workflows with a conditional subworkflow that does not get executed.

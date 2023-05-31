@@ -1,0 +1,49 @@
+document
+  prefix wfprov <http://purl.org/wf4ever/wfprov#>
+  prefix wfdesc <http://purl.org/wf4ever/wfdesc#>
+  prefix cwlprov <https://w3id.org/cwl/prov#>
+  prefix foaf <http://xmlns.com/foaf/0.1/>
+  prefix schema <http://schema.org/>
+  prefix orcid <https://orcid.org/>
+  prefix id <urn:uuid:>
+  prefix data <urn:hash::sha1:>
+  prefix sha256 <nih:sha-256;>
+  prefix researchobject <arcp://uuid,9db2d645-3cc5-49e8-b6df-3eeb0f988399/>
+  prefix metadata <arcp://uuid,9db2d645-3cc5-49e8-b6df-3eeb0f988399/metadata/>
+  prefix provenance <arcp://uuid,9db2d645-3cc5-49e8-b6df-3eeb0f988399/metadata/provenance/>
+  prefix wf <arcp://uuid,9db2d645-3cc5-49e8-b6df-3eeb0f988399/workflow/packed.cwl#>
+  prefix input <arcp://uuid,9db2d645-3cc5-49e8-b6df-3eeb0f988399/workflow/primary-job.json#>
+  prefix wf4ever <http://purl.org/wf4ever/wf4ever#>
+  
+  agent(id:2db43411-e5f7-4ee7-b2a5-f5f55dbc556f)
+  agent(id:4f3dab72-e601-4d20-ade2-db704bca7c6b, [prov:type='wfprov:WorkflowEngine', prov:type='prov:SoftwareAgent', prov:label="cwltool 3.1.20230527103121"])
+  wasStartedBy(id:4f3dab72-e601-4d20-ade2-db704bca7c6b, -, id:2db43411-e5f7-4ee7-b2a5-f5f55dbc556f, 2023-05-30T16:47:18.516479)
+  activity(id:9db2d645-3cc5-49e8-b6df-3eeb0f988399, 2023-05-30T16:47:18.516523, -, [prov:type='wfprov:WorkflowRun', prov:label="Run of workflow/packed.cwl#main"])
+  wasAssociatedWith(id:9db2d645-3cc5-49e8-b6df-3eeb0f988399, id:4f3dab72-e601-4d20-ade2-db704bca7c6b, wf:main)
+  wasStartedBy(id:9db2d645-3cc5-49e8-b6df-3eeb0f988399, -, id:4f3dab72-e601-4d20-ade2-db704bca7c6b, 2023-05-30T16:47:18.516606)
+  entity(wf:main, [prov:type='wfdesc:Workflow', prov:type='prov:Plan', prov:label="Prospective provenance"])
+  entity(wf:main/revsort, [prov:type='prov:Plan', prov:type='wfdesc:Process'])
+  entity(wf:main, [wfdesc:hasSubProcess='wf:main/revsort', prov:label="Prospective provenance"])
+  entity(wf:main/lcase, [prov:type='prov:Plan', prov:type='wfdesc:Process'])
+  entity(wf:main, [wfdesc:hasSubProcess='wf:main/lcase', prov:label="Prospective provenance"])
+  entity(id:a7bd2055-7291-49a2-8f4c-3f2956d469a3, [prov:value="0" %% xsd:boolean])
+  used(id:9db2d645-3cc5-49e8-b6df-3eeb0f988399, id:a7bd2055-7291-49a2-8f4c-3f2956d469a3, 2023-05-30T16:47:18.571733, [prov:role='wf:main/descending_sort'])
+  entity(data:7cb1a4da14ba3e91b983b30e7689e3902bcd2034, [prov:type='wfprov:Artifact'])
+  entity(id:e3678f20-c2cd-4ff3-8b6a-f0ab53b95c92, [prov:type='wfprov:Artifact', prov:type='wf4ever:File', cwlprov:basename="revsortlcase_in.txt", cwlprov:nameroot="revsortlcase_in", cwlprov:nameext=".txt"])
+  specializationOf(id:e3678f20-c2cd-4ff3-8b6a-f0ab53b95c92, data:7cb1a4da14ba3e91b983b30e7689e3902bcd2034)
+  used(id:9db2d645-3cc5-49e8-b6df-3eeb0f988399, id:e3678f20-c2cd-4ff3-8b6a-f0ab53b95c92, 2023-05-30T16:47:18.572379, [prov:role='wf:main/revsortlcase_in'])
+  activity(id:95370897-6df0-4738-ab21-07aaf84b519d, -, -, [prov:type='wfprov:ProcessRun', prov:label="Run of workflow/packed.cwl#main/lcase"])
+  wasAssociatedWith(id:95370897-6df0-4738-ab21-07aaf84b519d, id:4f3dab72-e601-4d20-ade2-db704bca7c6b, wf:main/lcase)
+  wasStartedBy(id:95370897-6df0-4738-ab21-07aaf84b519d, -, id:9db2d645-3cc5-49e8-b6df-3eeb0f988399, 2023-05-30T16:47:18.575099)
+  entity(data:7cb1a4da14ba3e91b983b30e7689e3902bcd2034, [prov:type='wfprov:Artifact'])
+  entity(id:ea08e857-ce81-4560-96fa-6e91c08c8b8c, [prov:type='wfprov:Artifact', prov:type='wf4ever:File', cwlprov:basename="revsortlcase_in.txt", cwlprov:nameroot="revsortlcase_in", cwlprov:nameext=".txt"])
+  specializationOf(id:ea08e857-ce81-4560-96fa-6e91c08c8b8c, data:7cb1a4da14ba3e91b983b30e7689e3902bcd2034)
+  used(id:95370897-6df0-4738-ab21-07aaf84b519d, id:ea08e857-ce81-4560-96fa-6e91c08c8b8c, 2023-05-30T16:47:18.576046, [prov:role='wf:main/lcase/lcase_in'])
+  entity(data:5a9073c86643d95524b509505b54f9fb558eac63, [prov:type='wfprov:Artifact'])
+  entity(id:9eb0b9a1-3467-4511-9c09-32d8e4e88f34, [prov:type='wfprov:Artifact', prov:type='wf4ever:File', cwlprov:basename="lcase_out.txt", cwlprov:nameroot="lcase_out", cwlprov:nameext=".txt"])
+  specializationOf(id:9eb0b9a1-3467-4511-9c09-32d8e4e88f34, data:5a9073c86643d95524b509505b54f9fb558eac63)
+  wasGeneratedBy(id:9eb0b9a1-3467-4511-9c09-32d8e4e88f34, id:95370897-6df0-4738-ab21-07aaf84b519d, 2023-05-30T16:47:18.580761, [prov:role='wf:main/lcase/lcase_out'])
+  wasEndedBy(id:95370897-6df0-4738-ab21-07aaf84b519d, -, id:9db2d645-3cc5-49e8-b6df-3eeb0f988399, 2023-05-30T16:47:18.580751)
+  wasGeneratedBy(id:9eb0b9a1-3467-4511-9c09-32d8e4e88f34, id:9db2d645-3cc5-49e8-b6df-3eeb0f988399, 2023-05-30T16:47:18.583474, [prov:role='wf:main/primary/revsortlcase_out'])
+  wasEndedBy(id:9db2d645-3cc5-49e8-b6df-3eeb0f988399, -, id:4f3dab72-e601-4d20-ade2-db704bca7c6b, 2023-05-30T16:47:18.583594)
+endDocument

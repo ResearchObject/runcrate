@@ -1,0 +1,13 @@
+{
+    "revsortlcase_out": {
+        "location": "../data/5a/5a9073c86643d95524b509505b54f9fb558eac63",
+        "basename": "lcase_out.txt",
+        "nameroot": "lcase_out",
+        "nameext": ".txt",
+        "class": "File",
+        "checksum": "sha1$5a9073c86643d95524b509505b54f9fb558eac63",
+        "size": 22,
+        "http://commonwl.org/cwltool#generation": 0,
+        "@id": "urn:uuid:9eb0b9a1-3467-4511-9c09-32d8e4e88f34"
+    }
+}
