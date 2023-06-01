@@ -1199,3 +1199,23 @@ def test_remap_names(data_dir, tmpdir):
     assert greptool_input_dir is wf_input_dir
     greptool_output_dir = greptool_results[0]
     assert greptool_output_dir.id == "grep_out/"
+    ucasetool_action = action_map["packed.cwl#ucasetool.cwl"]
+    ucasetool_objects = ucasetool_action["object"]
+    ucasetool_results = ucasetool_action["result"]
+    assert len(ucasetool_objects) == 1
+    assert len(ucasetool_results) == 1
+    ucasetool_input_dir = ucasetool_objects[0]
+    assert ucasetool_input_dir is greptool_output_dir
+    ucasetool_output_dir = ucasetool_results[0]
+    assert ucasetool_output_dir is wf_output_dir
+    for e in crate.data_entities:
+        assert "alternateName" not in e
+    for p in (
+            "grepucase_in/bar",
+            "grepucase_in/foo",
+            "grep_out/bar.out",
+            "grep_out/foo.out",
+            "ucase_out/bar.out/bar.out.out",
+            "ucase_out/foo.out/foo.out.out",
+    ):
+        assert (output / p).is_file()
