@@ -44,7 +44,7 @@ def check_runnable(crate):
     if "ComputationalWorkflow" not in as_list(wf.type):
         raise RuntimeError("mainEntity is not a ComputationalWorkflow")
     lang = wf.get("programmingLanguage")
-    if not lang or getattr(lang, "id", None) != CWL_ID:
+    if not lang or (getattr(lang, "id", None) != CWL_ID and lang != CWL_ID):
         raise RuntimeError(f"workflow language must be {CWL_ID}")
     actions = [_ for _ in crate.get_entities()
                if "CreateAction" in as_list(_.type) and _.get("instrument") is wf]
