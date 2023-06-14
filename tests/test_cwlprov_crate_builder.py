@@ -1072,3 +1072,82 @@ def test_conditional_wf(data_dir, tmpdir):
         "packed.cwl",
         "packed.cwl#lcasetool.cwl",
     }
+
+
+def test_revsort_inline(data_dir, tmpdir):
+    root = data_dir / "revsort-inline-cwl1.0-run-1"
+    output = tmpdir / "revsort-inline-cwl1.0-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
+    workflow = crate.mainEntity
+    wf_inputs = {_.id: _ for _ in workflow["input"]}
+    assert set(wf_inputs) == {"packed.cwl#main/reverse_sort", "packed.cwl#main/revsort_in"}
+    reverse_sort_param = wf_inputs["packed.cwl#main/reverse_sort"]
+    in_file_param = wf_inputs["packed.cwl#main/revsort_in"]
+    wf_outputs = {_.id: _ for _ in workflow["output"]}
+    assert set(wf_outputs) == {"packed.cwl#main/revsort_out"}
+    out_file_param = wf_outputs["packed.cwl#main/revsort_out"]
+    wf_tools = {_.id.rsplit("/", 1)[0]: _ for _ in workflow["hasPart"]}
+    assert set(wf_tools) == {"packed.cwl#main/rev", "packed.cwl#main/sorted"}
+    wf_steps = {_.id: _ for _ in workflow["step"]}
+    assert set(wf_steps) == {"packed.cwl#main/rev", "packed.cwl#main/sorted"}
+    rev_step = wf_steps["packed.cwl#main/rev"]
+    sorted_step = wf_steps["packed.cwl#main/sorted"]
+    rev = wf_tools["packed.cwl#main/rev"]
+    rev_inputs = {_.id.rsplit("/", 1)[-1]: _ for _ in rev["input"]}
+    assert set(rev_inputs) == {"rev_in"}
+    rev_in_param = rev_inputs["rev_in"]
+    rev_outputs = {_.id.rsplit("/", 1)[-1]: _ for _ in rev["output"]}
+    assert set(rev_outputs) == {"rev_out"}
+    rev_out_param = rev_outputs["rev_out"]
+    sort = wf_tools["packed.cwl#main/sorted"]
+    sort_inputs = {_.id.rsplit("/", 1)[-1]: _ for _ in sort["input"]}
+    assert set(sort_inputs) == {"reverse", "sort_in"}
+    reverse_param = sort_inputs["reverse"]
+    sort_in_param = sort_inputs["sort_in"]
+    sort_outputs = {_.id.rsplit("/", 1)[-1]: _ for _ in sort["output"]}
+    assert set(sort_outputs) == {"sort_out"}
+    sort_out_param = sort_outputs["sort_out"]
+    actions = {_["instrument"].id.rsplit("/", 1)[0]: _
+               for _ in crate.contextual_entities if "CreateAction" in _.type}
+    assert set(actions) == {"packed.cwl", "packed.cwl#main/rev", "packed.cwl#main/sorted"}
+    wf_action = actions["packed.cwl"]
+    wf_objects = {_.type: _ for _ in wf_action["object"]}
+    assert set(wf_objects) == {"File", "PropertyValue"}
+    in_file = wf_objects["File"]
+    assert set(in_file["exampleOfWork"]) == {in_file_param, rev_in_param}
+    reverse_sort = wf_objects["PropertyValue"]
+    assert reverse_sort["exampleOfWork"] == reverse_sort_param
+    wf_results = {_.type: _ for _ in wf_action["result"]}
+    assert set(wf_results) == {"File"}
+    out_file = wf_results["File"]
+    assert set(out_file["exampleOfWork"]) == {out_file_param, sort_out_param}
+    rev_action = actions["packed.cwl#main/rev"]
+    rev_objects = {_.type: _ for _ in rev_action["object"]}
+    assert set(rev_objects) == {"File"}
+    assert rev_objects["File"] is in_file
+    rev_results = {_.type: _ for _ in rev_action["result"]}
+    assert set(rev_results) == {"File"}
+    rev_out = rev_results["File"]
+    assert set(rev_out["exampleOfWork"]) == {rev_out_param, sort_in_param}
+    sorted_action = actions["packed.cwl#main/sorted"]
+    sorted_objects = {_.type: _ for _ in sorted_action["object"]}
+    assert set(sorted_objects) == {"File", "PropertyValue"}
+    assert sorted_objects["File"] is rev_out
+    reverse = sorted_objects["PropertyValue"]
+    assert reverse["exampleOfWork"] == reverse_param
+    sorted_results = {_.type: _ for _ in sorted_action["result"]}
+    assert set(sorted_results) == {"File"}
+    assert sorted_results["File"] is out_file
+    assert rev_step["workExample"] == rev
+    assert sorted_step["workExample"] == sort
+    # parameter connections
+    assert set(_connected(rev_step)) == {(in_file_param.id, rev_in_param.id)}
+    assert set(_connected(sorted_step)) == {
+        (rev_out_param.id, sort_in_param.id),
+        (reverse_sort_param.id, reverse_param.id),
+    }
+    assert set(_connected(workflow)) == {(sort_out_param.id, out_file_param.id)}

@@ -142,6 +142,22 @@ def build_step_graph(cwl_wf):
     return graph
 
 
+def normalize_cwl_defs(cwl_defs):
+    inline_tools = {}
+    for d in cwl_defs.values():
+        if not hasattr(d, "steps") or not d.steps:
+            continue
+        for s in d.steps:
+            if hasattr(s, "run") and s.run:
+                if hasattr(s.run, "id"):
+                    tool = s.run
+                    if tool.id.startswith("_:"):  # CWL > 1.0
+                        raise RuntimeError("Inline tools supported only for CWL 1.0")
+                    inline_tools[get_fragment(tool.id)] = tool
+                    s.run = tool.id
+    cwl_defs.update(inline_tools)
+
+
 def get_workflow(wf_path):
     """\
     Read the packed CWL workflow.
@@ -169,6 +185,7 @@ def get_workflow(wf_path):
         if k == "main":
             k = wf_path.name
         def_map[k] = d
+    normalize_cwl_defs(def_map)
     return def_map
 
 
