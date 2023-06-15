@@ -169,7 +169,10 @@ def rename_data_entities(obj, workdir):
         if "File" in as_list(obj.type):
             (dst_path.parent).mkdir(parents=True, exist_ok=True)
             src_path = workdir / obj.id
-            shutil.copy(src_path, dst_path)
+            try:
+                shutil.copy(src_path, dst_path)
+            except shutil.SameFileError:
+                pass
 
 
 def find_streamflow_file(crate):
