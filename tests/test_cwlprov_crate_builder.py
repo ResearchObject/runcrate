@@ -14,6 +14,7 @@
 
 import json
 
+import pytest
 from rocrate.rocrate import ROCrate
 
 from runcrate.convert import ProvCrateBuilder
@@ -1074,9 +1075,10 @@ def test_conditional_wf(data_dir, tmpdir):
     }
 
 
-def test_revsort_inline(data_dir, tmpdir):
-    root = data_dir / "revsort-inline-cwl1.0-run-1"
-    output = tmpdir / "revsort-inline-cwl1.0-run-1-crate"
+@pytest.mark.parametrize("cwl_version", ["1.0", "1.2"])
+def test_revsort_inline(data_dir, tmpdir, cwl_version):
+    root = data_dir / f"revsort-inline-cwl{cwl_version}-run-1"
+    output = tmpdir / f"revsort-inline-cwl{cwl_version}-run-1-crate"
     license = "Apache-2.0"
     builder = ProvCrateBuilder(root, license=license)
     crate = builder.build()

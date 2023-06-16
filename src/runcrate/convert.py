@@ -152,7 +152,7 @@ def normalize_cwl_defs(cwl_defs):
                 if hasattr(s.run, "id"):
                     tool = s.run
                     if tool.id.startswith("_:"):  # CWL > 1.0
-                        raise RuntimeError("Inline tools supported only for CWL 1.0")
+                        tool.id = f"{s.id}/run"
                     inline_tools[get_fragment(tool.id)] = tool
                     s.run = tool.id
     cwl_defs.update(inline_tools)

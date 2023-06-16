@@ -99,4 +99,9 @@ Used to test workflows with a conditional subworkflow that does not get executed
 
 ## revsort-inline-cwl1.0-run-1
 
-Used to test workflows with inline tools (CWL 1.0).
+Used to test workflows that contain inline tools (CWL 1.0).
+
+
+## revsort-inline-cwl1.2-run-1
+
+Used to test workflows that contain inline tools (CWL 1.2).
