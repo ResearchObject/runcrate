@@ -95,3 +95,8 @@ Used to test support for workflow outputs with multiple output sources (i.e., wh
 ## conditional-wf-run-1
 
 Used to test workflows with a conditional subworkflow that does not get executed.
+
+
+## revsort-inline-cwl1.0-run-1
+
+Used to test workflows with inline tools (CWL 1.0).

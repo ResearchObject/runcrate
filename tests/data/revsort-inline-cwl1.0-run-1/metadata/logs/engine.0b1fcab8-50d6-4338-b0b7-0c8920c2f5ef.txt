@@ -1,0 +1,18 @@
+[2023-06-14T13:28:42,450.152159Z] [cwltool] /home/simleo/git/runcrate/venv/bin/cwltool --provenance ../../tests/data/revsort-inline-cwl1.0-run-1 revsort.cwl params.yml
+[2023-06-14T13:28:42,452.012539Z] Resolved 'revsort.cwl' to 'file:///home/simleo/git/runcrate/cwl/revsort_inline/revsort.cwl'
+[2023-06-14T13:28:43,30.777454Z] [provenance] Adding to RO file:///home/simleo/git/runcrate/cwl/revsort_inline/in.txt
+[2023-06-14T13:28:43,32.748461Z] [workflow ] start
+[2023-06-14T13:28:43,32.973051Z] [workflow ] starting step rev
+[2023-06-14T13:28:43,33.124208Z] [step rev] start
+[2023-06-14T13:28:43,34.841537Z] [job rev] /tmp/v_hb813l$ rev \
+    /tmp/jn4awkys/stg6c7cdd8f-3881-42c2-b33b-5ffca6bec52c/in.txt > /tmp/v_hb813l/rev_out.txt
+[2023-06-14T13:28:43,40.436506Z] [job rev] completed success
+[2023-06-14T13:28:43,40.653706Z] [step rev] completed success
+[2023-06-14T13:28:43,41.023493Z] [workflow ] starting step sorted
+[2023-06-14T13:28:43,41.211605Z] [step sorted] start
+[2023-06-14T13:28:43,43.779373Z] [job sorted] /tmp/j7ck3w_q$ sort \
+    /tmp/cyo8pexl/stg9d080ab8-2ac5-4e58-8b6d-ae6be3a9ae2d/rev_out.txt > /tmp/j7ck3w_q/sort_out.txt
+[2023-06-14T13:28:43,50.131083Z] [job sorted] completed success
+[2023-06-14T13:28:43,50.373554Z] [step sorted] completed success
+[2023-06-14T13:28:43,50.531387Z] [workflow ] completed success
+[2023-06-14T13:28:43,106.375933Z] Final process status is success

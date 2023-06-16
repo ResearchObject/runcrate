@@ -1,0 +1,60 @@
+document
+  prefix wfprov <http://purl.org/wf4ever/wfprov#>
+  prefix wfdesc <http://purl.org/wf4ever/wfdesc#>
+  prefix cwlprov <https://w3id.org/cwl/prov#>
+  prefix foaf <http://xmlns.com/foaf/0.1/>
+  prefix schema <http://schema.org/>
+  prefix orcid <https://orcid.org/>
+  prefix id <urn:uuid:>
+  prefix data <urn:hash::sha1:>
+  prefix sha256 <nih:sha-256;>
+  prefix researchobject <arcp://uuid,e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a/>
+  prefix metadata <arcp://uuid,e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a/metadata/>
+  prefix provenance <arcp://uuid,e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a/metadata/provenance/>
+  prefix wf <arcp://uuid,e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a/workflow/packed.cwl#>
+  prefix input <arcp://uuid,e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a/workflow/primary-job.json#>
+  prefix wf4ever <http://purl.org/wf4ever/wf4ever#>
+  
+  agent(id:d4e6befc-6a67-4799-a343-b1b0243a34ef)
+  agent(id:0b1fcab8-50d6-4338-b0b7-0c8920c2f5ef, [prov:type='wfprov:WorkflowEngine', prov:type='prov:SoftwareAgent', prov:label="cwltool 3.1.20230527103121"])
+  wasStartedBy(id:0b1fcab8-50d6-4338-b0b7-0c8920c2f5ef, -, id:d4e6befc-6a67-4799-a343-b1b0243a34ef, 2023-06-14T15:28:43.020418)
+  activity(id:e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a, 2023-06-14T15:28:43.020448, -, [prov:type='wfprov:WorkflowRun', prov:label="Run of workflow/packed.cwl#main"])
+  wasAssociatedWith(id:e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a, id:0b1fcab8-50d6-4338-b0b7-0c8920c2f5ef, wf:main)
+  wasStartedBy(id:e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a, -, id:0b1fcab8-50d6-4338-b0b7-0c8920c2f5ef, 2023-06-14T15:28:43.020509)
+  entity(wf:main, [prov:type='prov:Plan', prov:type='wfdesc:Workflow', prov:label="Prospective provenance"])
+  entity(wf:main/rev, [prov:type='prov:Plan', prov:type='wfdesc:Process'])
+  entity(wf:main, [wfdesc:hasSubProcess='wf:main/rev', prov:label="Prospective provenance"])
+  entity(wf:main/sorted, [prov:type='prov:Plan', prov:type='wfdesc:Process'])
+  entity(wf:main, [wfdesc:hasSubProcess='wf:main/sorted', prov:label="Prospective provenance"])
+  entity(id:86d7e7cc-713c-4ea3-b620-dd90280af431, [prov:value="0" %% xsd:boolean])
+  used(id:e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a, id:86d7e7cc-713c-4ea3-b620-dd90280af431, 2023-06-14T15:28:43.032033, [prov:role='wf:main/reverse_sort'])
+  entity(data:7cb1a4da14ba3e91b983b30e7689e3902bcd2034, [prov:type='wfprov:Artifact'])
+  entity(id:f40f181f-3ea5-4a4f-bce8-54f708979b7f, [prov:type='wf4ever:File', prov:type='wfprov:Artifact', cwlprov:basename="in.txt", cwlprov:nameroot="in", cwlprov:nameext=".txt"])
+  specializationOf(id:f40f181f-3ea5-4a4f-bce8-54f708979b7f, data:7cb1a4da14ba3e91b983b30e7689e3902bcd2034)
+  used(id:e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a, id:f40f181f-3ea5-4a4f-bce8-54f708979b7f, 2023-06-14T15:28:43.032662, [prov:role='wf:main/revsort_in'])
+  activity(id:93115f82-c987-46ee-8428-7c21354e3a85, -, -, [prov:type='wfprov:ProcessRun', prov:label="Run of workflow/packed.cwl#main/rev"])
+  wasAssociatedWith(id:93115f82-c987-46ee-8428-7c21354e3a85, id:0b1fcab8-50d6-4338-b0b7-0c8920c2f5ef, wf:main/rev)
+  wasStartedBy(id:93115f82-c987-46ee-8428-7c21354e3a85, -, id:e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a, 2023-06-14T15:28:43.034537)
+  entity(data:7cb1a4da14ba3e91b983b30e7689e3902bcd2034, [prov:type='wfprov:Artifact'])
+  entity(id:dc921c4d-2359-443a-81fd-e7001de893ed, [prov:type='wf4ever:File', prov:type='wfprov:Artifact', cwlprov:basename="in.txt", cwlprov:nameroot="in", cwlprov:nameext=".txt"])
+  specializationOf(id:dc921c4d-2359-443a-81fd-e7001de893ed, data:7cb1a4da14ba3e91b983b30e7689e3902bcd2034)
+  used(id:93115f82-c987-46ee-8428-7c21354e3a85, id:dc921c4d-2359-443a-81fd-e7001de893ed, 2023-06-14T15:28:43.035529, [prov:role='wf:main/rev/rev_in'])
+  entity(data:542758e6e55bb880c05e2de68a3897bfab37c990, [prov:type='wfprov:Artifact'])
+  entity(id:032f50dd-7d55-4570-86a3-a5ab4078cb4e, [prov:type='wf4ever:File', prov:type='wfprov:Artifact', cwlprov:basename="rev_out.txt", cwlprov:nameroot="rev_out", cwlprov:nameext=".txt"])
+  specializationOf(id:032f50dd-7d55-4570-86a3-a5ab4078cb4e, data:542758e6e55bb880c05e2de68a3897bfab37c990)
+  wasGeneratedBy(id:032f50dd-7d55-4570-86a3-a5ab4078cb4e, id:93115f82-c987-46ee-8428-7c21354e3a85, 2023-06-14T15:28:43.039441, [prov:role='wf:main/rev/rev_out'])
+  wasEndedBy(id:93115f82-c987-46ee-8428-7c21354e3a85, -, id:e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a, 2023-06-14T15:28:43.039430)
+  activity(id:c389ce84-36ff-4287-a659-f229de338a4d, -, -, [prov:type='wfprov:ProcessRun', prov:label="Run of workflow/packed.cwl#main/sorted"])
+  wasAssociatedWith(id:c389ce84-36ff-4287-a659-f229de338a4d, id:0b1fcab8-50d6-4338-b0b7-0c8920c2f5ef, wf:main/sorted)
+  wasStartedBy(id:c389ce84-36ff-4287-a659-f229de338a4d, -, id:e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a, 2023-06-14T15:28:43.043216)
+  entity(id:c1e8798a-2317-4709-bc0a-50c3cbf50c41, [prov:value="0" %% xsd:boolean])
+  used(id:c389ce84-36ff-4287-a659-f229de338a4d, id:c1e8798a-2317-4709-bc0a-50c3cbf50c41, 2023-06-14T15:28:43.044032, [prov:role='wf:main/sorted/reverse'])
+  used(id:c389ce84-36ff-4287-a659-f229de338a4d, id:032f50dd-7d55-4570-86a3-a5ab4078cb4e, 2023-06-14T15:28:43.044175, [prov:role='wf:main/sorted/sort_in'])
+  entity(data:0c6f756ab3effbf33709e6ddb6a1ff7fe7601860, [prov:type='wfprov:Artifact'])
+  entity(id:96ef3f42-970d-45de-b01b-63f3fc71b53d, [prov:type='wf4ever:File', prov:type='wfprov:Artifact', cwlprov:basename="sort_out.txt", cwlprov:nameroot="sort_out", cwlprov:nameext=".txt"])
+  specializationOf(id:96ef3f42-970d-45de-b01b-63f3fc71b53d, data:0c6f756ab3effbf33709e6ddb6a1ff7fe7601860)
+  wasGeneratedBy(id:96ef3f42-970d-45de-b01b-63f3fc71b53d, id:c389ce84-36ff-4287-a659-f229de338a4d, 2023-06-14T15:28:43.048914, [prov:role='wf:main/sorted/sort_out'])
+  wasEndedBy(id:c389ce84-36ff-4287-a659-f229de338a4d, -, id:e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a, 2023-06-14T15:28:43.048897)
+  wasGeneratedBy(id:96ef3f42-970d-45de-b01b-63f3fc71b53d, id:e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a, 2023-06-14T15:28:43.051508, [prov:role='wf:main/primary/revsort_out'])
+  wasEndedBy(id:e1dc4b1b-07e1-4bb7-88b9-62fbf0c2190a, -, id:0b1fcab8-50d6-4338-b0b7-0c8920c2f5ef, 2023-06-14T15:28:43.051598)
+endDocument
