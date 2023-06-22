@@ -60,6 +60,7 @@ CWLPROV_NONE = "https://w3id.org/cwl/prov#None"
 
 WROC_PROFILE_VERSION = "1.0"
 
+MANIFEST = {}
 
 def convert_cwl_type(cwl_type):
     if isinstance(cwl_type, list):
@@ -140,6 +141,17 @@ def build_step_graph(cwl_wf):
                 if source_fragment:
                     graph.add_edge(source_fragment, fragment)
     return graph
+
+
+def get_path_from_manifest(self, key: str):
+    # If manifest has no content
+    if len(MANIFEST) == 0:
+        # Read manifest-sha1.txt file
+        for line in open(self.root / Path("manifest-sha1.txt")):
+            key, path = line.split()
+            MANIFEST[key] = self.root / Path(path)
+
+    return MANIFEST[key]
 
 
 def normalize_cwl_defs(cwl_defs):
@@ -576,7 +588,9 @@ class ProvCrateBuilder:
             dest = Path(parent.id if parent else "") / hash_
             action_p = crate.dereference(dest.as_posix())
             if not action_p:
-                source = self.root / Path("data") / hash_[:2] / hash_
+                local_path = get_path_from_manifest(self, hash_)
+                # source = self.root / Path("data") / hash_[:2] / hash_
+                source = local_path
                 action_p = crate.add_file(source, dest, properties={
                     "sha1": hash_,
                 })
