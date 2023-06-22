@@ -2,7 +2,11 @@
 Installation
 ============
 
-Runcrate has not been released yet. To install, you have to clone the GitHub repository::
+To install the latest release::
+
+  pip install runcrate
+
+To install the latest development version::
 
   git clone https://github.com/ResearchObject/runcrate
   cd runcrate
