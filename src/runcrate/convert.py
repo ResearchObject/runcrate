@@ -40,6 +40,7 @@ from .utils import as_list
 
 WORKFLOW_BASENAME = "packed.cwl"
 INPUTS_FILE_BASENAME = "primary-job.json"
+MANIFEST_FILE = "manifest-sha1.txt"
 
 CWL_TYPE_MAP = {
     "string": "Text",
@@ -211,6 +212,7 @@ class ProvCrateBuilder:
         self.hashes = {}
         # map source files to destination files
         self.file_map = {}
+        self.manifest = self._get_manifest()
 
     @staticmethod
     def _get_step_maps(cwl_defs):
@@ -224,6 +226,14 @@ class ProvCrateBuilder:
                     f = get_fragment(s.id)
                     rval[k][f] = {"tool": get_fragment(s.run), "pos": pos_map[f]}
         return rval
+
+    def _get_manifest(self):
+        manifest = {}
+        with open(self.root / Path(MANIFEST_FILE)) as f:
+            for line in f:
+                hash_, relpath = line.strip().split(None, 1)
+                manifest[hash_] = self.root / relpath
+        return manifest
 
     def _resolve_plan(self, activity):
         job_qname = activity.plan()
@@ -576,7 +586,7 @@ class ProvCrateBuilder:
             dest = Path(parent.id if parent else "") / hash_
             action_p = crate.dereference(dest.as_posix())
             if not action_p:
-                source = self.root / Path("data") / hash_[:2] / hash_
+                source = self.manifest[hash_]
                 action_p = crate.add_file(source, dest, properties={
                     "sha1": hash_,
                 })
