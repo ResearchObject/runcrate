@@ -55,7 +55,7 @@ CWL_TYPE_MAP = {
     "null": None,
 }
 
-SCATTER_JOB_PATTERN = re.compile(r"^(.+)_\d+$")
+SCATTER_JOB_PATTERN = re.compile(r"^(.+)_(\d+)$")
 
 CWLPROV_NONE = "https://w3id.org/cwl/prov#None"
 
@@ -215,6 +215,7 @@ class ProvCrateBuilder:
         self.file_map = {}
         self.manifest = self._get_manifest()
         self.remap_names = remap_names
+        self.data_root = "data"
 
     @staticmethod
     def _get_step_maps(cwl_defs):
@@ -240,11 +241,13 @@ class ProvCrateBuilder:
     def _resolve_plan(self, activity):
         job_qname = activity.plan()
         plan = activity.provenance.entity(job_qname)
+        scatter_id = None
         if not plan:
             m = SCATTER_JOB_PATTERN.match(str(job_qname))
             if m:
                 plan = activity.provenance.entity(m.groups()[0])
-        return plan
+                scatter_id = m.groups()[1]
+        return plan, scatter_id
 
     def _get_hash(self, prov_param):
         k = prov_param.id.localpart
@@ -463,9 +466,11 @@ class ProvCrateBuilder:
             "@type": "CreateAction",
             "name": activity.label,
         }))
-        plan = self._resolve_plan(activity)
+        plan, scatter_id = self._resolve_plan(activity)
         plan_tag = plan.id.localpart
+        dest_base = Path(self.data_root)
         if plan_tag == "main":
+            dest_base = dest_base / "main"
             assert str(activity.type) == "wfprov:WorkflowRun"
             instrument = workflow
             self.roc_engine_run["result"] = action
@@ -480,6 +485,7 @@ class ProvCrateBuilder:
                 if parts[0] == "main":
                     parts[0] = parent_instrument_fragment
                     plan_tag = "/".join(parts)
+            dest_base = dest_base / (f"{plan_tag}_{scatter_id}" if scatter_id else f"{plan_tag}")
             tool_name = self.step_maps[parent_instrument_fragment][plan_tag]["tool"]
             instrument = crate.dereference(f"{workflow.id}#{tool_name}")
             control_action = self.control_actions.get(plan_tag)
@@ -503,12 +509,14 @@ class ProvCrateBuilder:
         action["instrument"] = instrument
         action["startTime"] = activity.start().time.isoformat()
         action["endTime"] = activity.end().time.isoformat()
-        action["object"] = self.add_action_params(crate, activity, to_wf_p, "usage")
-        action["result"] = self.add_action_params(crate, activity, to_wf_p, "generation")
+        action["object"] = self.add_action_params(crate, activity, to_wf_p, "usage",
+                                                  dest_base / "in" if self.remap_names else "")
+        action["result"] = self.add_action_params(crate, activity, to_wf_p, "generation",
+                                                  dest_base / "out" if self.remap_names else "")
         for job in activity.steps():
             self.add_action(crate, job, parent_instrument=instrument)
 
-    def add_action_params(self, crate, activity, to_wf_p, ptype="usage"):
+    def add_action_params(self, crate, activity, to_wf_p, ptype="usage", dest_base=""):
         action_params = []
         all_roles = set()
         for rel in getattr(activity, ptype)():
@@ -528,7 +536,7 @@ class ProvCrateBuilder:
             wf_p = crate.dereference(to_wf_p(k))
             k = get_fragment(k)
             v = rel.entity()
-            value = self.convert_param(v, crate)
+            value = self.convert_param(v, crate, dest_base=dest_base)
             if value is None:
                 continue  # param is optional with no default and was not set
             if {"ro:Folder", "wf4ever:File"} & set(str(_) for _ in v.types()):
@@ -565,7 +573,7 @@ class ProvCrateBuilder:
         if "alternateName" in parent:
             action_p["alternateName"] = (Path(parent["alternateName"]) / basename).as_posix()
 
-    def convert_param(self, prov_param, crate, convert_secondary=True, parent=None):
+    def convert_param(self, prov_param, crate, convert_secondary=True, parent=None, dest_base=""):
         type_names = frozenset(str(_) for _ in prov_param.types())
         secondary_files = [_.generated_entity() for _ in prov_param.derivations()
                            if str(_.type) == "cwlprov:SecondaryFile"]
@@ -589,7 +597,7 @@ class ProvCrateBuilder:
                 basename = getattr(prov_param, "basename", hash_)
             else:
                 basename = hash_
-            dest = Path(parent.id if parent else "") / basename
+            dest = Path(parent.id if parent else dest_base) / basename
             action_p = crate.dereference(dest.as_posix())
             if not action_p:
                 source = self.manifest[hash_]
@@ -610,7 +618,7 @@ class ProvCrateBuilder:
                 basename = getattr(prov_param, "basename", hash_)
             else:
                 basename = hash_
-            dest = Path(parent.id if parent else "") / basename
+            dest = Path(parent.id if parent else dest_base) / basename
             action_p = crate.dereference(dest.as_posix())
             if not action_p:
                 action_p = crate.add_directory(dest_path=dest)

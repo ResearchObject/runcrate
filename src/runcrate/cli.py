@@ -58,7 +58,7 @@ def cli():
 )
 @click.option(
     "--remap-names",
-    help="remap file/dir names to the original ones (MAY LEAD TO CLASHES!)",
+    help="remap file/dir names to the original ones",
     is_flag=True
 )
 def convert(root, output, license, workflow_name, readme, remap_names):

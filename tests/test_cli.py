@@ -101,8 +101,8 @@ def test_cli_convert_remap_names(data_dir, tmpdir):
     args = ["convert", str(root), "-o", str(crate_dir), "--remap-names"]
     assert runner.invoke(cli, args).exit_code == 0
     crate = ROCrate(crate_dir)
-    assert crate.get("grepucase_in/")
-    assert (crate_dir / "grepucase_in").is_dir()
+    assert crate.get("data/main/in/grepucase_in/")
+    assert (crate_dir / "data" / "main" / "in" / "grepucase_in").is_dir()
 
 
 def test_cli_report_provenance_minimal(data_dir, caplog):

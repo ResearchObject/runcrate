@@ -1174,48 +1174,73 @@ def test_remap_names(data_dir, tmpdir):
     assert len(wf_objects) == 2
     assert len(wf_results) == 1
     wf_objects_map = {_.id: _ for _ in wf_objects}
-    wf_input_dir = wf_objects_map.get("grepucase_in/")
+    wf_input_dir = wf_objects_map.get("data/main/in/grepucase_in/")
     assert wf_input_dir
     wf_output_dir = wf_results[0]
-    assert wf_output_dir.id == "ucase_out/"
+    assert wf_output_dir.id == "data/main/out/ucase_out/"
     assert set(_.id for _ in wf_input_dir["hasPart"]) == {
-        "grepucase_in/bar", "grepucase_in/foo"
+        "data/main/in/grepucase_in/bar", "data/main/in/grepucase_in/foo"
     }
     assert set(_.id for _ in wf_output_dir["hasPart"]) == {
-        "ucase_out/bar.out/", "ucase_out/foo.out/"
+        "data/main/out/ucase_out/bar.out/", "data/main/out/ucase_out/foo.out/"
     }
     for d in wf_output_dir["hasPart"]:
-        if d.id == "ucase_out/bar.out/":
-            assert d["hasPart"][0].id == "ucase_out/bar.out/bar.out.out"
+        if d.id == "data/main/out/ucase_out/bar.out/":
+            assert d["hasPart"][0].id == "data/main/out/ucase_out/bar.out/bar.out.out"
         else:
-            assert d["hasPart"][0].id == "ucase_out/foo.out/foo.out.out"
+            assert d["hasPart"][0].id == "data/main/out/ucase_out/foo.out/foo.out.out"
     greptool_action = action_map["packed.cwl#greptool.cwl"]
     greptool_objects = greptool_action["object"]
     greptool_results = greptool_action["result"]
     assert len(greptool_objects) == 2
     assert len(greptool_results) == 1
     greptool_objects_map = {_.id: _ for _ in greptool_objects}
-    greptool_input_dir = greptool_objects_map.get("grepucase_in/")
-    assert greptool_input_dir is wf_input_dir
+    greptool_input_dir = greptool_objects_map.get("data/main/grep/in/grepucase_in/")
+    assert greptool_input_dir
+    assert set(_.id for _ in greptool_input_dir["hasPart"]) == {
+        "data/main/grep/in/grepucase_in/bar", "data/main/grep/in/grepucase_in/foo"
+    }
     greptool_output_dir = greptool_results[0]
-    assert greptool_output_dir.id == "grep_out/"
+    assert greptool_output_dir.id == "data/main/grep/out/grep_out/"
+    assert set(_.id for _ in greptool_output_dir["hasPart"]) == {
+        "data/main/grep/out/grep_out/bar.out", "data/main/grep/out/grep_out/foo.out"
+    }
     ucasetool_action = action_map["packed.cwl#ucasetool.cwl"]
     ucasetool_objects = ucasetool_action["object"]
     ucasetool_results = ucasetool_action["result"]
     assert len(ucasetool_objects) == 1
     assert len(ucasetool_results) == 1
     ucasetool_input_dir = ucasetool_objects[0]
-    assert ucasetool_input_dir is greptool_output_dir
+    assert ucasetool_input_dir.id == "data/main/ucase/in/grep_out/"
+    assert set(_.id for _ in ucasetool_input_dir["hasPart"]) == {
+        "data/main/ucase/in/grep_out/bar.out", "data/main/ucase/in/grep_out/foo.out"
+    }
     ucasetool_output_dir = ucasetool_results[0]
-    assert ucasetool_output_dir is wf_output_dir
+    assert ucasetool_output_dir.id == "data/main/ucase/out/ucase_out/"
+    assert set(_.id for _ in ucasetool_output_dir["hasPart"]) == {
+        "data/main/ucase/out/ucase_out/bar.out/", "data/main/ucase/out/ucase_out/foo.out/"
+    }
+
+    for d in ucasetool_output_dir["hasPart"]:
+        if d.id == "data/main/ucase/out/ucase_out/bar.out/":
+            assert d["hasPart"][0].id == "data/main/ucase/out/ucase_out/bar.out/bar.out.out"
+        else:
+            assert d["hasPart"][0].id == "data/main/ucase/out/ucase_out/foo.out/foo.out.out"
+
     for e in crate.data_entities:
         assert "alternateName" not in e
     for p in (
-            "grepucase_in/bar",
-            "grepucase_in/foo",
-            "grep_out/bar.out",
-            "grep_out/foo.out",
-            "ucase_out/bar.out/bar.out.out",
-            "ucase_out/foo.out/foo.out.out",
+            "data/main/in/grepucase_in/bar",
+            "data/main/in/grepucase_in/foo",
+            "data/main/out/ucase_out/bar.out/bar.out.out",
+            "data/main/out/ucase_out/foo.out/foo.out.out",
+            "data/main/grep/in/grepucase_in/bar",
+            "data/main/grep/in/grepucase_in/foo",
+            "data/main/grep/out/grep_out/bar.out",
+            "data/main/grep/out/grep_out/foo.out",
+            "data/main/ucase/in/grep_out/bar.out",
+            "data/main/ucase/in/grep_out/foo.out",
+            "data/main/ucase/out/ucase_out/bar.out/bar.out.out",
+            "data/main/ucase/out/ucase_out/foo.out/foo.out.out",
     ):
         assert (output / p).is_file()
