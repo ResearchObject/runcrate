@@ -1244,3 +1244,83 @@ def test_remap_names(data_dir, tmpdir):
             "data/main/ucase/out/ucase_out/foo.out/foo.out.out",
     ):
         assert (output / p).is_file()
+
+
+def test_remap_names_noclash(data_dir, tmpdir):
+    root = data_dir / "revsort-run-1"
+    output = tmpdir / "revsort-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license, remap_names=True)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
+    workflow = crate.mainEntity
+    wf_inputs_map = {_.id: _ for _ in workflow["input"]}
+    wf_outputs_map = {_.id: _ for _ in workflow["output"]}
+    tool_map = {_.id: _ for _ in workflow["hasPart"]}
+    assert len(tool_map) == 2
+    rev_tool = tool_map["packed.cwl#revtool.cwl"]
+    sort_tool = tool_map["packed.cwl#sorttool.cwl"]
+    rev_inputs_map = {_.id: _ for _ in rev_tool["input"]}
+    rev_outputs_map = {_.id: _ for _ in rev_tool["output"]}
+    sort_inputs_map = {_.id: _ for _ in sort_tool["input"]}
+    sort_outputs_map = {_.id: _ for _ in sort_tool["output"]}
+    action_map = {_["instrument"].id: _ for _ in crate.contextual_entities
+                  if "CreateAction" in _.type}
+    assert len(action_map) == 3
+    wf_action = action_map["packed.cwl"]
+    assert wf_action["instrument"] is workflow
+    wf_objects = wf_action["object"]
+    wf_results = wf_action["result"]
+    assert len(wf_objects) == 2
+    assert len(wf_results) == 1
+    wf_objects_map = {_.id: _ for _ in wf_objects}
+    wf_results_map = {_.id: _ for _ in wf_results}
+    wf_input_file = wf_objects_map.get("data/main/in/whale.txt")
+    assert wf_input_file
+    assert wf_input_file["exampleOfWork"] is wf_inputs_map["packed.cwl#main/input"]
+    wf_output_file = wf_results_map.get("data/main/out/output.txt")
+    assert wf_output_file
+    assert wf_output_file["exampleOfWork"] is wf_outputs_map["packed.cwl#main/output"]
+    rev_action = action_map["packed.cwl#revtool.cwl"]
+    rev_objects = rev_action["object"]
+    rev_results = rev_action["result"]
+    assert len(rev_objects) == 1
+    assert len(rev_results) == 1
+    rev_objects_map = {_.id: _ for _ in rev_objects}
+    rev_results_map = {_.id: _ for _ in rev_results}
+    rev_input_file = rev_objects_map.get("data/main/rev/in/whale.txt")
+    assert rev_input_file
+    assert rev_input_file["exampleOfWork"] is rev_inputs_map["packed.cwl#revtool.cwl/input"]
+    rev_output_file = rev_results_map.get("data/main/rev/out/output.txt")
+    assert rev_output_file
+    assert rev_output_file["exampleOfWork"] is rev_outputs_map["packed.cwl#revtool.cwl/output"]
+    sort_action = action_map["packed.cwl#sorttool.cwl"]
+    sort_objects = sort_action["object"]
+    sort_results = sort_action["result"]
+    assert len(sort_objects) == 2
+    assert len(sort_results) == 1
+    sort_objects_map = {_.id: _ for _ in sort_objects}
+    sort_results_map = {_.id: _ for _ in sort_results}
+    sort_input_file = sort_objects_map.get("data/main/sorted/in/output.txt")
+    assert sort_input_file
+    assert sort_input_file["exampleOfWork"] is sort_inputs_map["packed.cwl#sorttool.cwl/input"]
+    sort_output_file = sort_results_map.get("data/main/sorted/out/output.txt")
+    assert sort_output_file
+    assert sort_output_file["exampleOfWork"] is sort_outputs_map["packed.cwl#sorttool.cwl/output"]
+    for p in (
+            "data/main/in/whale.txt",
+            "data/main/out/output.txt",
+            "data/main/rev/in/whale.txt",
+            "data/main/rev/out/output.txt",
+            "data/main/sorted/in/output.txt",
+            "data/main/sorted/out/output.txt",
+    ):
+        assert (output / p).is_file()
+    wf_in_txt = (output / "data/main/in/whale.txt").read_text()
+    assert (output / "data/main/rev/in/whale.txt").read_text() == wf_in_txt
+    wf_out_txt = (output / "data/main/out/output.txt").read_text()
+    assert (output / "data/main/sorted/out/output.txt").read_text() == wf_out_txt
+    rev_out_txt = (output / "data/main/rev/out/output.txt").read_text()
+    sort_in_txt = (output / "data/main/sorted/in/output.txt").read_text()
+    assert rev_out_txt == sort_in_txt
