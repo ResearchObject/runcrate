@@ -578,7 +578,8 @@ class ProvCrateBuilder:
         secondary_files = [_.generated_entity() for _ in prov_param.derivations()
                            if str(_.type) == "cwlprov:SecondaryFile"]
         if convert_secondary and secondary_files:
-            main_entity = self.convert_param(prov_param, crate, convert_secondary=False)
+            main_entity = self.convert_param(prov_param, crate, convert_secondary=False,
+                                             dest_base=dest_base)
             action_p = self.collections.get(main_entity.id)
             if not action_p:
                 action_p = crate.add(ContextEntity(crate, properties={
@@ -586,7 +587,7 @@ class ProvCrateBuilder:
                 }))
                 action_p["mainEntity"] = main_entity
                 action_p["hasPart"] = [main_entity] + [
-                    self.convert_param(_, crate) for _ in secondary_files
+                    self.convert_param(_, crate, dest_base=dest_base) for _ in secondary_files
                 ]
                 crate.root_dataset.append_to("mentions", action_p)
                 self.collections[main_entity.id] = action_p
@@ -594,7 +595,7 @@ class ProvCrateBuilder:
         if "wf4ever:File" in type_names:
             hash_ = self.hashes[prov_param.id.localpart]
             if self.remap_names:
-                basename = getattr(prov_param, "basename", hash_)
+                basename = getattr(prov_param, "basename", hash_) or hash_
             else:
                 basename = hash_
             dest = Path(parent.id if parent else dest_base) / basename
@@ -615,7 +616,7 @@ class ProvCrateBuilder:
         if "ro:Folder" in type_names:
             hash_ = self.hashes[prov_param.id.localpart]
             if self.remap_names:
-                basename = getattr(prov_param, "basename", hash_)
+                basename = getattr(prov_param, "basename", hash_) or hash_
             else:
                 basename = hash_
             dest = Path(parent.id if parent else dest_base) / basename
@@ -632,12 +633,13 @@ class ProvCrateBuilder:
             return str(prov_param.value)
         if "prov:Dictionary" in type_names:
             return dict(
-                (k, self.convert_param(v, crate))
+                (k, self.convert_param(v, crate, dest_base=dest_base))
                 for k, v in self.get_dict(prov_param).items()
                 if k != "@id"
             )
         if "prov:Collection" in type_names:
-            return [self.convert_param(_, crate) for _ in self.get_members(prov_param)]
+            return [self.convert_param(_, crate, dest_base=dest_base)
+                    for _ in self.get_members(prov_param)]
         if prov_param.id.uri == CWLPROV_NONE:
             return None
         raise RuntimeError(f"No value to convert for {prov_param}")
