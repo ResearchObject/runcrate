@@ -1244,6 +1244,42 @@ def test_remap_names(data_dir, tmpdir):
             "data/main/ucase/out/ucase_out/foo.out/foo.out.out",
     ):
         assert (output / p).is_file()
+    for p in (
+            "bar",
+            "foo",
+            "bar.out",
+            "foo.out",
+            "bar.out.out",
+            "foo.out.out",
+    ):
+        assert not (output / p).is_file()
+    wf_in_txt = (
+        (output / "data/main/in/grepucase_in/bar").read_text(),
+        (output / "data/main/in/grepucase_in/foo").read_text(),
+    )
+    grep_in_txt = (
+        (output / "data/main/grep/in/grepucase_in/bar").read_text(),
+        (output / "data/main/grep/in/grepucase_in/foo").read_text(),
+    )
+    assert grep_in_txt == wf_in_txt
+    grep_out_txt = (
+        (output / "data/main/grep/out/grep_out/bar.out").read_text(),
+        (output / "data/main/grep/out/grep_out/foo.out").read_text(),
+    )
+    ucase_in_txt = (
+        (output / "data/main/ucase/in/grep_out/bar.out").read_text(),
+        (output / "data/main/ucase/in/grep_out/foo.out").read_text(),
+    )
+    assert ucase_in_txt == grep_out_txt
+    ucase_out_txt = (
+        (output / "data/main/ucase/out/ucase_out/bar.out/bar.out.out").read_text(),
+        (output / "data/main/ucase/out/ucase_out/foo.out/foo.out.out").read_text(),
+    )
+    wf_out_txt = (
+        (output / "data/main/out/ucase_out/bar.out/bar.out.out").read_text(),
+        (output / "data/main/out/ucase_out/foo.out/foo.out.out").read_text(),
+    )
+    assert ucase_out_txt == wf_out_txt
 
 
 def test_remap_names_noclash(data_dir, tmpdir):
@@ -1317,6 +1353,11 @@ def test_remap_names_noclash(data_dir, tmpdir):
             "data/main/sorted/out/output.txt",
     ):
         assert (output / p).is_file()
+    for p in (
+            "whale.txt",
+            "output.txt",
+    ):
+        assert not (output / p).is_file()
     wf_in_txt = (output / "data/main/in/whale.txt").read_text()
     assert (output / "data/main/rev/in/whale.txt").read_text() == wf_in_txt
     wf_out_txt = (output / "data/main/out/output.txt").read_text()
