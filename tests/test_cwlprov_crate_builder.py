@@ -1365,3 +1365,65 @@ def test_remap_names_noclash(data_dir, tmpdir):
     rev_out_txt = (output / "data/main/rev/out/output.txt").read_text()
     sort_in_txt = (output / "data/main/sorted/in/output.txt").read_text()
     assert rev_out_txt == sort_in_txt
+
+
+def test_remap_names_scatter(data_dir, tmpdir):
+    root = data_dir / "no-output-run-1"
+    output = tmpdir / "no-output-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license, remap_names=True)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
+    workflow = crate.mainEntity
+    wf_inputs_map = {_.id: _ for _ in workflow["input"]}
+    assert len(wf_inputs_map) == 3
+    tool_map = {_.id: _ for _ in workflow["hasPart"]}
+    assert len(tool_map) == 2
+    date_tool = tool_map["packed.cwl#date.cwl"]
+    step_map = {_.id: _ for _ in workflow["step"]}
+    assert len(step_map) == 3
+    date2_step = step_map["packed.cwl#main/date2_step"]
+    actions = [_ for _ in crate.contextual_entities if "CreateAction" in _.type]
+    assert len(actions) == 5
+    sel = [_ for _ in actions if _["instrument"] is workflow]
+    assert len(sel) == 1
+    wf_action = sel[0]
+    assert wf_action["instrument"] is workflow
+    wf_objects = wf_action["object"]
+    assert len(wf_objects) == 3
+    wf_objects_map = {_.type: _ for _ in wf_objects}
+    assert set(wf_objects_map) == {"PropertyValue", "Dataset", "File"}
+    wf_array_obj = wf_objects_map["PropertyValue"]
+    assert wf_array_obj["exampleOfWork"] is wf_inputs_map["packed.cwl#main/pdb_array"]
+    wf_array_files_map = {_.id for _ in wf_array_obj["value"]}
+    assert set(wf_array_files_map) == {"data/main/in/7mb7.cif", "data/main/in/7zxf.cif"}
+    control_actions = [_ for _ in crate.contextual_entities if "ControlAction" in _.type]
+    sel = [_ for _ in control_actions if _["instrument"] is date2_step]
+    assert len(sel) == 1
+    date2_control_action = sel[0]
+    date2_create_actions = date2_control_action["object"]
+    for a in date2_create_actions:
+        assert a["instrument"] is date_tool
+        assert len(a["object"]) == 1
+    date2_files = [_["object"][0] for _ in date2_create_actions]
+    assert set(_.id for _ in date2_files) == {
+        "data/main/date2_step/in/7mb7.cif",
+        "data/main/date2_step_2/in/7zxf.cif"
+    }
+    for p in (
+            "data/main/in/7mb7.cif",
+            "data/main/in/7zxf.cif",
+            "data/main/date2_step/in/7mb7.cif",
+            "data/main/date2_step_2/in/7zxf.cif",
+    ):
+        assert (output / p).is_file()
+    for p in (
+            "7mb7.cif",
+            "7zxf.cif",
+    ):
+        assert not (output / p).is_file()
+    text_7mb7 = (output / "data/main/in/7mb7.cif").read_text()
+    text_7zxf = (output / "data/main/in/7zxf.cif").read_text()
+    assert (output / "data/main/date2_step/in/7mb7.cif").read_text() == text_7mb7
+    assert (output / "data/main/date2_step_2/in/7zxf.cif").read_text() == text_7zxf
