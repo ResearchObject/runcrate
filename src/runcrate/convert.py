@@ -702,6 +702,10 @@ class ProvCrateBuilder:
         entity of the collection alone (a File). This method fixes the mapping
         by retrieving the correct Collection entity from the relevant tool
         execution.
+
+        Note that this trick does not lead to a correct result with
+        remap_names on: the workflow-level parameter should be mapped to a
+        separate collection where files have different paths.
         """
         if wf is None:
             wf = crate.mainEntity
