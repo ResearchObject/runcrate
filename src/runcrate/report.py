@@ -40,7 +40,7 @@ def dump_action(action, control_action=None, f=None):
     objects = as_list(action.get("object", []))
     if objects:
         f.write("  inputs:\n")
-        inputs = set(tool.get("input", []))
+        inputs = set(as_list(tool.get("input", [])))
         for obj in objects:
             f.write(f"    {obj.get('value', obj.id)}")
             for p in as_list(obj.get("exampleOfWork", [])):
@@ -50,7 +50,7 @@ def dump_action(action, control_action=None, f=None):
     results = as_list(action.get("result", []))
     if results:
         f.write("  outputs:\n")
-        outputs = set(tool.get("output", []))
+        outputs = set(as_list(tool.get("output", [])))
         for res in results:
             f.write(f"    {res.get('value', res.id)}")
             for p in as_list(res.get("exampleOfWork", [])):
