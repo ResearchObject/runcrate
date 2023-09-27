@@ -102,6 +102,7 @@ def test_cli_report_provenance_minimal(data_dir, caplog):
     assert result.exit_code == 0
     out_lines = result.stdout.splitlines()
     assert sum([_.startswith("action") for _ in out_lines]) == 3
+    assert sum(["<-" in _ for _ in out_lines]) == 8
 
 
 def test_cli_version():

@@ -115,11 +115,9 @@
                 }
             ],
             "name": "packed.cwl",
-            "output": [
-                {
-                    "@id": "packed.cwl#main/output"
-                }
-            ],
+            "output": {
+                "@id": "packed.cwl#main/output"
+            },
             "programmingLanguage": {
                 "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
             }
@@ -162,17 +160,13 @@
             "@id": "packed.cwl#revtool.cwl",
             "@type": "SoftwareApplication",
             "description": "Reverse each line using the `rev` command",
-            "input": [
-                {
-                    "@id": "packed.cwl#revtool.cwl/input"
-                }
-            ],
+            "input": {
+                "@id": "packed.cwl#revtool.cwl/input"
+            },
             "name": "revtool.cwl",
-            "output": [
-                {
-                    "@id": "packed.cwl#revtool.cwl/output"
-                }
-            ]
+            "output": {
+                "@id": "packed.cwl#revtool.cwl/output"
+            }
         },
         {
             "@id": "packed.cwl#revtool.cwl/input",
@@ -199,11 +193,9 @@
                 }
             ],
             "name": "sorttool.cwl",
-            "output": [
-                {
-                    "@id": "packed.cwl#sorttool.cwl/output"
-                }
-            ]
+            "output": {
+                "@id": "packed.cwl#sorttool.cwl/output"
+            }
         },
         {
             "@id": "packed.cwl#sorttool.cwl/reverse",
