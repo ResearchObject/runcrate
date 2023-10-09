@@ -1153,3 +1153,277 @@ def test_revsort_inline(data_dir, tmpdir, cwl_version):
         (reverse_sort_param.id, reverse_param.id),
     }
     assert set(_connected(workflow)) == {(sort_out_param.id, out_file_param.id)}
+
+
+def test_remap_names(data_dir, tmpdir):
+    root = data_dir / "grepucase-run-1"
+    output = tmpdir / "grepucase-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license, remap_names=True)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
+    workflow = crate.mainEntity
+    action_map = {_["instrument"].id: _ for _ in crate.contextual_entities
+                  if "CreateAction" in _.type}
+    assert len(action_map) == 3
+    wf_action = action_map["packed.cwl"]
+    assert wf_action["instrument"] is workflow
+    wf_objects = wf_action["object"]
+    wf_results = wf_action["result"]
+    assert len(wf_objects) == 2
+    assert len(wf_results) == 1
+    wf_objects_map = {_.id: _ for _ in wf_objects}
+    wf_input_dir = wf_objects_map.get("data/main/in/grepucase_in/")
+    assert wf_input_dir
+    wf_output_dir = wf_results[0]
+    assert wf_output_dir.id == "data/main/out/ucase_out/"
+    assert set(_.id for _ in wf_input_dir["hasPart"]) == {
+        "data/main/in/grepucase_in/bar", "data/main/in/grepucase_in/foo"
+    }
+    assert set(_.id for _ in wf_output_dir["hasPart"]) == {
+        "data/main/out/ucase_out/bar.out/", "data/main/out/ucase_out/foo.out/"
+    }
+    for d in wf_output_dir["hasPart"]:
+        if d.id == "data/main/out/ucase_out/bar.out/":
+            assert d["hasPart"][0].id == "data/main/out/ucase_out/bar.out/bar.out.out"
+        else:
+            assert d["hasPart"][0].id == "data/main/out/ucase_out/foo.out/foo.out.out"
+    greptool_action = action_map["packed.cwl#greptool.cwl"]
+    greptool_objects = greptool_action["object"]
+    greptool_results = greptool_action["result"]
+    assert len(greptool_objects) == 2
+    assert len(greptool_results) == 1
+    greptool_objects_map = {_.id: _ for _ in greptool_objects}
+    greptool_input_dir = greptool_objects_map.get("data/main/grep/in/grepucase_in/")
+    assert greptool_input_dir
+    assert set(_.id for _ in greptool_input_dir["hasPart"]) == {
+        "data/main/grep/in/grepucase_in/bar", "data/main/grep/in/grepucase_in/foo"
+    }
+    greptool_output_dir = greptool_results[0]
+    assert greptool_output_dir.id == "data/main/grep/out/grep_out/"
+    assert set(_.id for _ in greptool_output_dir["hasPart"]) == {
+        "data/main/grep/out/grep_out/bar.out", "data/main/grep/out/grep_out/foo.out"
+    }
+    ucasetool_action = action_map["packed.cwl#ucasetool.cwl"]
+    ucasetool_objects = ucasetool_action["object"]
+    ucasetool_results = ucasetool_action["result"]
+    assert len(ucasetool_objects) == 1
+    assert len(ucasetool_results) == 1
+    ucasetool_input_dir = ucasetool_objects[0]
+    assert ucasetool_input_dir.id == "data/main/ucase/in/grep_out/"
+    assert set(_.id for _ in ucasetool_input_dir["hasPart"]) == {
+        "data/main/ucase/in/grep_out/bar.out", "data/main/ucase/in/grep_out/foo.out"
+    }
+    ucasetool_output_dir = ucasetool_results[0]
+    assert ucasetool_output_dir.id == "data/main/ucase/out/ucase_out/"
+    assert set(_.id for _ in ucasetool_output_dir["hasPart"]) == {
+        "data/main/ucase/out/ucase_out/bar.out/", "data/main/ucase/out/ucase_out/foo.out/"
+    }
+
+    for d in ucasetool_output_dir["hasPart"]:
+        if d.id == "data/main/ucase/out/ucase_out/bar.out/":
+            assert d["hasPart"][0].id == "data/main/ucase/out/ucase_out/bar.out/bar.out.out"
+        else:
+            assert d["hasPart"][0].id == "data/main/ucase/out/ucase_out/foo.out/foo.out.out"
+
+    for e in crate.data_entities:
+        assert "alternateName" not in e
+    for p in (
+            "data/main/in/grepucase_in/bar",
+            "data/main/in/grepucase_in/foo",
+            "data/main/out/ucase_out/bar.out/bar.out.out",
+            "data/main/out/ucase_out/foo.out/foo.out.out",
+            "data/main/grep/in/grepucase_in/bar",
+            "data/main/grep/in/grepucase_in/foo",
+            "data/main/grep/out/grep_out/bar.out",
+            "data/main/grep/out/grep_out/foo.out",
+            "data/main/ucase/in/grep_out/bar.out",
+            "data/main/ucase/in/grep_out/foo.out",
+            "data/main/ucase/out/ucase_out/bar.out/bar.out.out",
+            "data/main/ucase/out/ucase_out/foo.out/foo.out.out",
+    ):
+        assert (output / p).is_file()
+    for p in (
+            "bar",
+            "foo",
+            "bar.out",
+            "foo.out",
+            "bar.out.out",
+            "foo.out.out",
+    ):
+        assert not (output / p).is_file()
+    wf_in_txt = (
+        (output / "data/main/in/grepucase_in/bar").read_text(),
+        (output / "data/main/in/grepucase_in/foo").read_text(),
+    )
+    grep_in_txt = (
+        (output / "data/main/grep/in/grepucase_in/bar").read_text(),
+        (output / "data/main/grep/in/grepucase_in/foo").read_text(),
+    )
+    assert grep_in_txt == wf_in_txt
+    grep_out_txt = (
+        (output / "data/main/grep/out/grep_out/bar.out").read_text(),
+        (output / "data/main/grep/out/grep_out/foo.out").read_text(),
+    )
+    ucase_in_txt = (
+        (output / "data/main/ucase/in/grep_out/bar.out").read_text(),
+        (output / "data/main/ucase/in/grep_out/foo.out").read_text(),
+    )
+    assert ucase_in_txt == grep_out_txt
+    ucase_out_txt = (
+        (output / "data/main/ucase/out/ucase_out/bar.out/bar.out.out").read_text(),
+        (output / "data/main/ucase/out/ucase_out/foo.out/foo.out.out").read_text(),
+    )
+    wf_out_txt = (
+        (output / "data/main/out/ucase_out/bar.out/bar.out.out").read_text(),
+        (output / "data/main/out/ucase_out/foo.out/foo.out.out").read_text(),
+    )
+    assert ucase_out_txt == wf_out_txt
+
+
+def test_remap_names_noclash(data_dir, tmpdir):
+    root = data_dir / "revsort-run-1"
+    output = tmpdir / "revsort-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license, remap_names=True)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
+    workflow = crate.mainEntity
+    wf_inputs_map = {_.id: _ for _ in workflow["input"]}
+    wf_outputs_map = {_.id: _ for _ in workflow["output"]}
+    tool_map = {_.id: _ for _ in workflow["hasPart"]}
+    assert len(tool_map) == 2
+    rev_tool = tool_map["packed.cwl#revtool.cwl"]
+    sort_tool = tool_map["packed.cwl#sorttool.cwl"]
+    rev_inputs_map = {_.id: _ for _ in rev_tool["input"]}
+    rev_outputs_map = {_.id: _ for _ in rev_tool["output"]}
+    sort_inputs_map = {_.id: _ for _ in sort_tool["input"]}
+    sort_outputs_map = {_.id: _ for _ in sort_tool["output"]}
+    action_map = {_["instrument"].id: _ for _ in crate.contextual_entities
+                  if "CreateAction" in _.type}
+    assert len(action_map) == 3
+    wf_action = action_map["packed.cwl"]
+    assert wf_action["instrument"] is workflow
+    wf_objects = wf_action["object"]
+    wf_results = wf_action["result"]
+    assert len(wf_objects) == 2
+    assert len(wf_results) == 1
+    wf_objects_map = {_.id: _ for _ in wf_objects}
+    wf_results_map = {_.id: _ for _ in wf_results}
+    wf_input_file = wf_objects_map.get("data/main/in/whale.txt")
+    assert wf_input_file
+    assert wf_input_file["exampleOfWork"] is wf_inputs_map["packed.cwl#main/input"]
+    wf_output_file = wf_results_map.get("data/main/out/output.txt")
+    assert wf_output_file
+    assert wf_output_file["exampleOfWork"] is wf_outputs_map["packed.cwl#main/output"]
+    rev_action = action_map["packed.cwl#revtool.cwl"]
+    rev_objects = rev_action["object"]
+    rev_results = rev_action["result"]
+    assert len(rev_objects) == 1
+    assert len(rev_results) == 1
+    rev_objects_map = {_.id: _ for _ in rev_objects}
+    rev_results_map = {_.id: _ for _ in rev_results}
+    rev_input_file = rev_objects_map.get("data/main/rev/in/whale.txt")
+    assert rev_input_file
+    assert rev_input_file["exampleOfWork"] is rev_inputs_map["packed.cwl#revtool.cwl/input"]
+    rev_output_file = rev_results_map.get("data/main/rev/out/output.txt")
+    assert rev_output_file
+    assert rev_output_file["exampleOfWork"] is rev_outputs_map["packed.cwl#revtool.cwl/output"]
+    sort_action = action_map["packed.cwl#sorttool.cwl"]
+    sort_objects = sort_action["object"]
+    sort_results = sort_action["result"]
+    assert len(sort_objects) == 2
+    assert len(sort_results) == 1
+    sort_objects_map = {_.id: _ for _ in sort_objects}
+    sort_results_map = {_.id: _ for _ in sort_results}
+    sort_input_file = sort_objects_map.get("data/main/sorted/in/output.txt")
+    assert sort_input_file
+    assert sort_input_file["exampleOfWork"] is sort_inputs_map["packed.cwl#sorttool.cwl/input"]
+    sort_output_file = sort_results_map.get("data/main/sorted/out/output.txt")
+    assert sort_output_file
+    assert sort_output_file["exampleOfWork"] is sort_outputs_map["packed.cwl#sorttool.cwl/output"]
+    for p in (
+            "data/main/in/whale.txt",
+            "data/main/out/output.txt",
+            "data/main/rev/in/whale.txt",
+            "data/main/rev/out/output.txt",
+            "data/main/sorted/in/output.txt",
+            "data/main/sorted/out/output.txt",
+    ):
+        assert (output / p).is_file()
+    for p in (
+            "whale.txt",
+            "output.txt",
+    ):
+        assert not (output / p).is_file()
+    wf_in_txt = (output / "data/main/in/whale.txt").read_text()
+    assert (output / "data/main/rev/in/whale.txt").read_text() == wf_in_txt
+    wf_out_txt = (output / "data/main/out/output.txt").read_text()
+    assert (output / "data/main/sorted/out/output.txt").read_text() == wf_out_txt
+    rev_out_txt = (output / "data/main/rev/out/output.txt").read_text()
+    sort_in_txt = (output / "data/main/sorted/in/output.txt").read_text()
+    assert rev_out_txt == sort_in_txt
+
+
+def test_remap_names_scatter(data_dir, tmpdir):
+    root = data_dir / "no-output-run-1"
+    output = tmpdir / "no-output-run-1-crate"
+    license = "Apache-2.0"
+    builder = ProvCrateBuilder(root, license=license, remap_names=True)
+    crate = builder.build()
+    crate.write(output)
+    crate = ROCrate(output)
+    workflow = crate.mainEntity
+    wf_inputs_map = {_.id: _ for _ in workflow["input"]}
+    assert len(wf_inputs_map) == 3
+    tool_map = {_.id: _ for _ in workflow["hasPart"]}
+    assert len(tool_map) == 2
+    date_tool = tool_map["packed.cwl#date.cwl"]
+    step_map = {_.id: _ for _ in workflow["step"]}
+    assert len(step_map) == 3
+    date2_step = step_map["packed.cwl#main/date2_step"]
+    actions = [_ for _ in crate.contextual_entities if "CreateAction" in _.type]
+    assert len(actions) == 5
+    sel = [_ for _ in actions if _["instrument"] is workflow]
+    assert len(sel) == 1
+    wf_action = sel[0]
+    assert wf_action["instrument"] is workflow
+    wf_objects = wf_action["object"]
+    assert len(wf_objects) == 3
+    wf_objects_map = {_.type: _ for _ in wf_objects}
+    assert set(wf_objects_map) == {"PropertyValue", "Dataset", "File"}
+    wf_array_obj = wf_objects_map["PropertyValue"]
+    assert wf_array_obj["exampleOfWork"] is wf_inputs_map["packed.cwl#main/pdb_array"]
+    wf_array_files_map = {_.id for _ in wf_array_obj["value"]}
+    assert set(wf_array_files_map) == {"data/main/in/7mb7.cif", "data/main/in/7zxf.cif"}
+    control_actions = [_ for _ in crate.contextual_entities if "ControlAction" in _.type]
+    sel = [_ for _ in control_actions if _["instrument"] is date2_step]
+    assert len(sel) == 1
+    date2_control_action = sel[0]
+    date2_create_actions = date2_control_action["object"]
+    for a in date2_create_actions:
+        assert a["instrument"] is date_tool
+        assert len(a["object"]) == 1
+    date2_files = [_["object"][0] for _ in date2_create_actions]
+    assert set(_.id for _ in date2_files) == {
+        "data/main/date2_step/in/7mb7.cif",
+        "data/main/date2_step_2/in/7zxf.cif"
+    }
+    for p in (
+            "data/main/in/7mb7.cif",
+            "data/main/in/7zxf.cif",
+            "data/main/date2_step/in/7mb7.cif",
+            "data/main/date2_step_2/in/7zxf.cif",
+    ):
+        assert (output / p).is_file()
+    for p in (
+            "7mb7.cif",
+            "7zxf.cif",
+    ):
+        assert not (output / p).is_file()
+    text_7mb7 = (output / "data/main/in/7mb7.cif").read_text()
+    text_7zxf = (output / "data/main/in/7zxf.cif").read_text()
+    assert (output / "data/main/date2_step/in/7mb7.cif").read_text() == text_7mb7
+    assert (output / "data/main/date2_step_2/in/7zxf.cif").read_text() == text_7zxf

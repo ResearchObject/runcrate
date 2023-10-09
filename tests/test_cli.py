@@ -94,6 +94,17 @@ def test_cli_convert_readme(data_dir, tmpdir):
     assert crate.get(readme.name)
 
 
+def test_cli_convert_remap_names(data_dir, tmpdir):
+    root = data_dir / "grepucase-run-1"
+    crate_dir = tmpdir / "grepucase-run-1-crate"
+    runner = CliRunner()
+    args = ["convert", str(root), "-o", str(crate_dir), "--remap-names"]
+    assert runner.invoke(cli, args).exit_code == 0
+    crate = ROCrate(crate_dir)
+    assert crate.get("data/main/in/grepucase_in/")
+    assert (crate_dir / "data" / "main" / "in" / "grepucase_in").is_dir()
+
+
 def test_cli_report_provenance_minimal(data_dir, caplog):
     crate_dir = data_dir / "revsort-provenance-crate-minimal"
     runner = CliRunner()
