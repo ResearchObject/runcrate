@@ -34,7 +34,7 @@ from rocrate.model.contextentity import ContextEntity
 from rocrate.model.softwareapplication import SoftwareApplication
 from rocrate.rocrate import ROCrate
 
-from .constants import EXTRA_TERMS, PROFILES_BASE, PROFILES_VERSION
+from .constants import PROFILES_BASE, PROFILES_VERSION, TERMS_NAMESPACE
 from .utils import as_list
 
 
@@ -284,7 +284,7 @@ class ProvCrateBuilder:
 
     def build(self):
         crate = ROCrate(gen_preview=False)
-        crate.metadata.extra_terms.update(EXTRA_TERMS)
+        crate.metadata.extra_contexts.append(TERMS_NAMESPACE)
         self.add_root_metadata(crate)
         self.add_profiles(crate)
         self.add_workflow(crate)
