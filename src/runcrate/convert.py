@@ -35,7 +35,7 @@ from rocrate.model.softwareapplication import SoftwareApplication
 from rocrate.rocrate import ROCrate
 
 from .constants import PROFILES_BASE, PROFILES_VERSION, TERMS_NAMESPACE
-from .utils import as_list
+from .utils import as_list, parse_img
 
 
 WORKFLOW_BASENAME = "packed.cwl"
@@ -60,6 +60,8 @@ SCATTER_JOB_PATTERN = re.compile(r"^(.+)_\d+$")
 CWLPROV_NONE = "https://w3id.org/cwl/prov#None"
 
 WROC_PROFILE_VERSION = "1.0"
+
+DOCKER_IMG_TYPE = "https://w3id.org/ro/terms/workflow-run#DockerImage"
 
 
 def convert_cwl_type(cwl_type):
@@ -503,8 +505,23 @@ class ProvCrateBuilder:
         action["endTime"] = activity.end().time.isoformat()
         action["object"] = self.add_action_params(crate, activity, to_wf_p, "usage")
         action["result"] = self.add_action_params(crate, activity, to_wf_p, "generation")
+        self.add_container_images(crate, action, activity)
         for job in activity.steps():
             self.add_action(crate, job, parent_instrument=instrument)
+
+    def add_container_images(self, crate, action, activity):
+        images = set()
+        for assoc in activity.association():
+            for agent in activity.provenance.prov_doc.get_record(assoc.agent_id):
+                images |= agent.get_attribute("cwlprov:image")
+        for im in images:
+            properties = parse_img(im)
+            properties.update({
+                "@type": "ContainerImage",
+                "additionalType": {"@id": DOCKER_IMG_TYPE}
+            })
+            roc_img = crate.add(ContextEntity(crate, properties=properties))
+            action.append_to("containerImage", roc_img, compact=True)
 
     def add_action_params(self, crate, activity, to_wf_p, ptype="usage"):
         action_params = []
