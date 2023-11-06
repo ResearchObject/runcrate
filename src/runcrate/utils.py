@@ -17,3 +17,39 @@ def as_list(value):
     if isinstance(value, list):
         return value
     return [value]
+
+
+def parse_img_name(img_name):
+    parts = img_name.split("/")
+    if len(parts) == 3:
+        registry = parts[0]
+        name = "/".join(parts[1:])
+    else:
+        registry = "docker.io"
+        name = "/".join(parts)
+    return registry, name
+
+
+def parse_img(img_str):
+    """\
+    Parse image string following the docker pull syntax NAME[:TAG|@DIGEST].
+    CWL's DockerRequirement also accepts HTTP URLs for docker load.
+    """
+    parsed = {}
+    if img_str.startswith("http://") or img_str.startswith("https://"):
+        return img_str
+    parts = img_str.rsplit("@", 1)
+    if len(parts) == 2:
+        parsed["registry"], parsed["name"] = parse_img_name(parts[0])
+        algo, digest = parts[1].split(":", 1)
+        assert algo == "sha256"
+        parsed[algo] = digest
+        return parsed
+    parts = img_str.rsplit(":", 1)
+    if len(parts) == 2:
+        parsed["registry"], parsed["name"] = parse_img_name(parts[0])
+        parsed["tag"] = parts[1]
+        return parsed
+    assert len(parts) == 1
+    parsed["registry"], parsed["name"] = parse_img_name(parts[0])
+    return parsed

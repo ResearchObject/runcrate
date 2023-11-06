@@ -182,6 +182,16 @@ def test_revsort(data_dir, tmpdir):
         metadata = json.load(f)
     context = metadata['@context']
     assert TERMS_NAMESPACE in context
+    # Docker image
+    for action in crate.get_by_type("CreateAction"):
+        if action is wf_action:
+            continue
+        assert "containerImage" in action
+        img = action["containerImage"]
+        assert img.type == "ContainerImage"
+        assert img["additionalType"] == "https://w3id.org/ro/terms/workflow-run#DockerImage"
+        assert img["name"] == "debian"
+        assert img["tag"] == "8"
 
 
 def test_no_input(data_dir, tmpdir):
