@@ -72,18 +72,18 @@ def convert_cwl_type(cwl_type):
         return s.pop() if len(s) == 1 else sorted(s)
     if isinstance(cwl_type, str):
         return CWL_TYPE_MAP[cwl_type]
-    if cwl_type.type == "enum":
+    if cwl_type.type_ == "enum":
         return "Text"  # use actionOption to represent choices?
-    if cwl_type.type == "array":
+    if cwl_type.type_ == "array":
         return convert_cwl_type(cwl_type.items)
-    if cwl_type.type == "record":
+    if cwl_type.type_ == "record":
         return "PropertyValue"
 
 
 def properties_from_cwl_param(cwl_p):
     def is_structured(cwl_type):
         return getattr(cwl_type, "type", None) in ("array", "record")
-    additional_type = "Collection" if cwl_p.secondaryFiles else convert_cwl_type(cwl_p.type)
+    additional_type = "Collection" if cwl_p.secondaryFiles else convert_cwl_type(cwl_p.type_)
     properties = {
         "@type": "FormalParameter",
         "additionalType": additional_type
@@ -95,20 +95,20 @@ def properties_from_cwl_param(cwl_p):
         properties["description"] = cwl_p.label
     if cwl_p.format:
         properties["encodingFormat"] = cwl_p.format
-    if isinstance(cwl_p.type, list) and "null" in cwl_p.type:
+    if isinstance(cwl_p.type_, list) and "null" in cwl_p.type_:
         properties["valueRequired"] = "False"
-    if is_structured(cwl_p.type):
+    if is_structured(cwl_p.type_):
         properties["multipleValues"] = "True"
     if hasattr(cwl_p, "default"):
         if hasattr(cwl_p.default, "class_") and cwl_p.default.class_ in ("File", "Directory"):
             default = cwl_p.default.location or cwl_p.default.path
             if default:
                 properties["defaultValue"] = default
-        elif not is_structured(cwl_p.type) and cwl_p.default is not None:
+        elif not is_structured(cwl_p.type_) and cwl_p.default is not None:
             properties["defaultValue"] = str(cwl_p.default)
         # TODO: support more cases
-    if getattr(cwl_p.type, "type", None) == "enum":
-        properties["valuePattern"] = "|".join(_.rsplit("/", 1)[-1] for _ in cwl_p.type.symbols)
+    if getattr(cwl_p.type_, "type", None) == "enum":
+        properties["valuePattern"] = "|".join(_.rsplit("/", 1)[-1] for _ in cwl_p.type_.symbols)
     return properties
 
 
