@@ -95,10 +95,13 @@ def test_revsort(data_dir, tmpdir):
             assert "File" in entity.type
             assert entity["alternateName"] == "whale.txt"
             assert entity["sha1"] == entity.id.rsplit("/")[-1]
+            assert entity["contentSize"] == "1111"
             wf_input_file = entity
     wf_output_file = wf_results[0]
     assert wf_output_file["alternateName"] == "output.txt"
     assert wf_output_file["sha1"] == wf_output_file.id.rsplit("/")[-1]
+    assert wf_output_file["dateCreated"] == "2018-10-25T15:46:38.058365"
+    assert wf_output_file["contentSize"] == "1111"
     assert "File" in wf_output_file.type
     steps = workflow["step"]
     assert len(steps) == 2
@@ -118,6 +121,8 @@ def test_revsort(data_dir, tmpdir):
             assert rev_input_file is wf_input_file
             rev_output_file = results[0]
             assert "File" in rev_output_file.type
+            assert rev_output_file["dateCreated"] == "2018-10-25T15:46:36.963254"
+            assert rev_output_file["contentSize"] == "1111"
             assert step["position"] == "0"
             assert set(_connected(step)) == set([
                 ("packed.cwl#main/input", "packed.cwl#revtool.cwl/input"),
@@ -357,6 +362,7 @@ def test_dir_io(data_dir, tmpdir):
             assert "Dataset" in entity.type
             wf_input_dir = entity
     wf_output_dir = wf_results[0]
+    assert wf_output_dir["dateCreated"] == "2023-02-17T16:20:30.288242"
     assert wf_input_dir.type == wf_output_dir.type == "Dataset"
     assert wf_input_dir["alternateName"] == "grepucase_in"
     assert len(wf_input_dir["hasPart"]) == 2
@@ -395,6 +401,7 @@ def test_dir_io(data_dir, tmpdir):
     assert greptool_input_dir is wf_input_dir
     greptool_output_dir = greptool_results[0]
     assert "Dataset" in greptool_output_dir.type
+    assert greptool_output_dir["dateCreated"] == "2023-02-17T16:20:30.262141"
     ucasetool_action = action_map["packed.cwl#ucasetool.cwl"]
     ucasetool_objects = ucasetool_action["object"]
     ucasetool_results = ucasetool_action["result"]

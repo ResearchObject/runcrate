@@ -566,6 +566,8 @@ class ProvCrateBuilder:
             ))
             if len(action_p["exampleOfWork"]) == 1:
                 action_p["exampleOfWork"] = action_p["exampleOfWork"][0]
+            if ptype == "generation":
+                action_p["dateCreated"] = rel.time.isoformat()
             action_params.append(action_p)
         return action_params
 
@@ -606,6 +608,7 @@ class ProvCrateBuilder:
                 source = self.manifest[hash_]
                 action_p = crate.add_file(source, dest, properties={
                     "sha1": hash_,
+                    "contentSize": str(Path(source).stat().st_size)
                 })
                 self._set_alternate_name(prov_param, action_p, parent=parent)
                 try:
