@@ -96,6 +96,7 @@ def test_revsort(data_dir, tmpdir):
             assert entity["alternateName"] == "whale.txt"
             assert entity["sha1"] == entity.id.rsplit("/")[-1]
             assert entity["contentSize"] == "1111"
+            assert "encodingFormat" in entity
             wf_input_file = entity
     wf_output_file = wf_results[0]
     assert wf_output_file["alternateName"] == "output.txt"

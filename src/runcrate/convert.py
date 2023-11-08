@@ -742,9 +742,9 @@ class ProvCrateBuilder:
             if "ComputationalWorkflow" in as_list(tool.type):
                 self.patch_workflow_input_collection(crate, wf=tool)
 
-    def _map_input_data(self, data):
+    def _map_input_data(self, crate, data):
         if isinstance(data, list):
-            return [self._map_input_data(_) for _ in data]
+            return [self._map_input_data(crate, _) for _ in data]
         if isinstance(data, dict):
             rval = {}
             for k, v in data.items():
@@ -756,8 +756,13 @@ class ProvCrateBuilder:
                         source_k = str(source)
                     dest = self.file_map.get(source_k)
                     rval[k] = str(dest) if dest else v
+                    fmt = data.get("format")
+                    if fmt:
+                        entity = crate.get(str(dest))
+                        if entity:
+                            entity["encodingFormat"] = fmt
                 else:
-                    rval[k] = self._map_input_data(v)
+                    rval[k] = self._map_input_data(crate, v)
             return rval
         return data
 
@@ -766,7 +771,7 @@ class ProvCrateBuilder:
         if path.is_file():
             with open(path) as f:
                 data = json.load(f)
-            data = self._map_input_data(data)
+            data = self._map_input_data(crate, data)
             source = StringIO(json.dumps(data, indent=4))
             crate.add_file(source, path.name, properties={
                 "name": "input object document",
