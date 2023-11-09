@@ -878,6 +878,10 @@ def test_secondary_files(data_dir, tmpdir):
     assert main_file.id in collection_parts
     aux_file = [v for k, v in collection_parts.items() if k != main_file.id][0]
     assert set(grep_collection["exampleOfWork"]) == {grep_in, grepsort_in}
+    wf_results = wf_action["result"]
+    assert len(wf_results) == 1
+    sort_out = wf_results[0]
+    assert "encodingFormat" in sort_out
     # file contents
     text_main = (root / "data/b6/b64565ee76fcd5296c48314f858f8e4672c71439").read_text()
     text_aux = (root / "data/c7/c708d7ef841f7e1748436b8ef5670d0b2de1a227").read_text()

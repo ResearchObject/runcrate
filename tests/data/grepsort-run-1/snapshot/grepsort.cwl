@@ -19,6 +19,7 @@ inputs:
 outputs:
   grepsort_out:
     type: File
+    format: "https://www.iana.org/assignments/media-types/text/plain"
     outputSource: sorted/sort_out
 
 steps:

@@ -7,7 +7,8 @@
         "class": "File",
         "checksum": "sha1$8292d6f0985a62d4abd624fc72aecb8132193d6e",
         "size": 58,
+        "format": "https://www.iana.org/assignments/media-types/text/plain",
         "http://commonwl.org/cwltool#generation": 0,
-        "@id": "urn:uuid:f81f0901-a485-4a8b-b059-15de2f4f82f8"
+        "@id": "urn:uuid:3aaebe26-84d6-4428-adfa-156a969476a9"
     }
 }
