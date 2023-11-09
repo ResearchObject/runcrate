@@ -3,34 +3,34 @@
 @prefix id: <urn:uuid:> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix wf: <arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#> .
+@prefix wf: <arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#> .
 @prefix wf4ever: <http://purl.org/wf4ever/wf4ever#> .
 @prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
 @prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-id:d5487918-49e0-44ae-8ccf-e3c9d77bdde9 a wf4ever:File,
+id:29cb3049-319f-4e7c-9004-d20bf21efd81 a wf4ever:File,
         wfprov:Artifact,
         prov:Entity ;
     prov:qualifiedDerivation [ a prov:Derivation,
                 cwlprov:SecondaryFile ;
-            prov:entity id:259e9cca-63a5-408a-9d31-4e72fd4bb1f2 ] ;
+            prov:entity id:aafa8231-543f-4250-ad31-c72b00e3601d ] ;
     prov:specializationOf data:c708d7ef841f7e1748436b8ef5670d0b2de1a227 ;
     cwlprov:basename "lines.aux"^^xsd:string ;
     cwlprov:nameext ".aux"^^xsd:string ;
     cwlprov:nameroot "lines"^^xsd:string .
 
-id:f81f0901-a485-4a8b-b059-15de2f4f82f8 a wf4ever:File,
+id:3aaebe26-84d6-4428-adfa-156a969476a9 a wf4ever:File,
         wfprov:Artifact,
         prov:Entity ;
     prov:qualifiedGeneration [ a prov:Generation ;
-            prov:activity id:c54a7289-731a-498b-9f08-3cc2bb801ba1 ;
-            prov:atTime "2023-05-26T15:48:23.882012"^^xsd:dateTime ;
-            prov:hadRole <arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/primary/grepsort_out> ],
+            prov:activity id:8b3eb82c-de04-4dd0-b519-0354c0ce7cf5 ;
+            prov:atTime "2023-11-09T14:19:38.958044"^^xsd:dateTime ;
+            prov:hadRole <arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/primary/grepsort_out> ],
         [ a prov:Generation ;
-            prov:activity id:8cd1699b-2bef-46b7-9ac8-1cd4c8b43737 ;
-            prov:atTime "2023-05-26T15:48:23.879437"^^xsd:dateTime ;
-            prov:hadRole <arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/sorted/sort_out> ] ;
+            prov:activity id:74439271-abb9-43d7-ad9b-3bea9b25aa2a ;
+            prov:atTime "2023-11-09T14:19:38.956812"^^xsd:dateTime ;
+            prov:hadRole <arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/sorted/sort_out> ] ;
     prov:specializationOf data:8292d6f0985a62d4abd624fc72aecb8132193d6e ;
     cwlprov:basename "sort_out.txt"^^xsd:string ;
     cwlprov:nameext ".txt"^^xsd:string ;
@@ -40,8 +40,8 @@ wf:main a wfdesc:Workflow,
         prov:Entity,
         prov:Plan ;
     rdfs:label "Prospective provenance"^^xsd:string ;
-    wfdesc:hasSubProcess <arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/grep>,
-        <arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/sorted> .
+    wfdesc:hasSubProcess <arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/grep>,
+        <arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/sorted> .
 
 data:601203afd61ae8b19d9c639d8d16296c9039d9cc a wfprov:Artifact,
         prov:Entity .
@@ -52,65 +52,25 @@ data:8292d6f0985a62d4abd624fc72aecb8132193d6e a wfprov:Artifact,
 data:c708d7ef841f7e1748436b8ef5670d0b2de1a227 a wfprov:Artifact,
         prov:Entity .
 
-id:028ac876-8c5b-4289-b4fc-e8fd5aad93b2 a wfprov:ProcessRun,
-        prov:Activity ;
-    rdfs:label "Run of workflow/packed.cwl#main/grep"^^xsd:string ;
-    prov:qualifiedAssociation [ a prov:Association ;
-            prov:hadPlan <arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/grep> ] ;
-    prov:qualifiedEnd [ a prov:End ;
-            prov:atTime "2023-05-26T15:48:23.869968"^^xsd:dateTime ;
-            prov:hadActivity id:c54a7289-731a-498b-9f08-3cc2bb801ba1 ] ;
-    prov:qualifiedStart [ a prov:Start ;
-            prov:atTime "2023-05-26T15:48:23.862572"^^xsd:dateTime ;
-            prov:hadActivity id:c54a7289-731a-498b-9f08-3cc2bb801ba1 ] ;
-    prov:qualifiedUsage [ a prov:Usage ;
-            prov:atTime "2023-05-26T15:48:23.864081"^^xsd:dateTime ;
-            prov:entity id:259e9cca-63a5-408a-9d31-4e72fd4bb1f2 ;
-            prov:hadRole <arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/grep/grep_in> ] ;
-    prov:wasAssociatedWith id:fb8f0a7a-121b-47e1-b955-75d213864598 .
-
-id:4cf6bce8-84b8-4135-a30f-7c4771980295 a prov:Agent .
-
-id:75476671-b37f-4269-bbe1-27b37d2939de a prov:Entity ;
-    prov:value false .
-
-id:8cd1699b-2bef-46b7-9ac8-1cd4c8b43737 a wfprov:ProcessRun,
-        prov:Activity ;
-    rdfs:label "Run of workflow/packed.cwl#main/sorted"^^xsd:string ;
-    prov:qualifiedAssociation [ a prov:Association ;
-            prov:hadPlan <arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/sorted> ] ;
-    prov:qualifiedEnd [ a prov:End ;
-            prov:atTime "2023-05-26T15:48:23.879428"^^xsd:dateTime ;
-            prov:hadActivity id:c54a7289-731a-498b-9f08-3cc2bb801ba1 ] ;
-    prov:qualifiedStart [ a prov:Start ;
-            prov:atTime "2023-05-26T15:48:23.874423"^^xsd:dateTime ;
-            prov:hadActivity id:c54a7289-731a-498b-9f08-3cc2bb801ba1 ] ;
-    prov:qualifiedUsage [ a prov:Usage ;
-            prov:atTime "2023-05-26T15:48:23.875053"^^xsd:dateTime ;
-            prov:entity id:9862346a-7552-4d95-8029-6a70052e86af ;
-            prov:hadRole <arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/sorted/reverse> ],
-        [ a prov:Usage ;
-            prov:atTime "2023-05-26T15:48:23.875160"^^xsd:dateTime ;
-            prov:entity id:8e3beb04-4d9d-4064-8ba9-d6a6da378257 ;
-            prov:hadRole <arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/sorted/sort_in> ] ;
-    prov:wasAssociatedWith id:fb8f0a7a-121b-47e1-b955-75d213864598 .
-
-id:8e3beb04-4d9d-4064-8ba9-d6a6da378257 a wf4ever:File,
+id:212bf964-9940-4f63-ac22-0e849d7d76ec a wf4ever:File,
         wfprov:Artifact,
         prov:Entity ;
     prov:qualifiedGeneration [ a prov:Generation ;
-            prov:activity id:028ac876-8c5b-4289-b4fc-e8fd5aad93b2 ;
-            prov:atTime "2023-05-26T15:48:23.869987"^^xsd:dateTime ;
-            prov:hadRole <arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/grep/grep_out> ] ;
+            prov:activity id:7360446d-1622-44fd-b37d-570fe6c9a9b4 ;
+            prov:atTime "2023-11-09T14:19:38.952843"^^xsd:dateTime ;
+            prov:hadRole <arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/grep/grep_out> ] ;
     prov:specializationOf data:601203afd61ae8b19d9c639d8d16296c9039d9cc ;
     cwlprov:basename "grep_out.txt"^^xsd:string ;
     cwlprov:nameext ".txt"^^xsd:string ;
     cwlprov:nameroot "grep_out"^^xsd:string .
 
-id:9862346a-7552-4d95-8029-6a70052e86af a prov:Entity ;
+id:33d87d69-c088-4dbc-a286-6b2898d78c33 a prov:Entity ;
     prov:value false .
 
-id:da3f2ffa-1423-49e3-a90c-c0ad95ddbf38 a wf4ever:File,
+id:59e50eb7-e28f-43b4-a925-1e095bcb6260 a prov:Entity ;
+    prov:value false .
+
+id:6cb836e0-cc64-4894-8db8-e6804466da38 a wf4ever:File,
         wfprov:Artifact,
         prov:Entity ;
     prov:specializationOf data:b64565ee76fcd5296c48314f858f8e4672c71439 ;
@@ -118,18 +78,58 @@ id:da3f2ffa-1423-49e3-a90c-c0ad95ddbf38 a wf4ever:File,
     cwlprov:nameext ".txt"^^xsd:string ;
     cwlprov:nameroot "lines"^^xsd:string .
 
-<arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/grep> a wfdesc:Process,
+id:7360446d-1622-44fd-b37d-570fe6c9a9b4 a wfprov:ProcessRun,
+        prov:Activity ;
+    rdfs:label "Run of workflow/packed.cwl#main/grep"^^xsd:string ;
+    prov:qualifiedAssociation [ a prov:Association ;
+            prov:hadPlan <arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/grep> ] ;
+    prov:qualifiedEnd [ a prov:End ;
+            prov:atTime "2023-11-09T14:19:38.952841"^^xsd:dateTime ;
+            prov:hadActivity id:8b3eb82c-de04-4dd0-b519-0354c0ce7cf5 ] ;
+    prov:qualifiedStart [ a prov:Start ;
+            prov:atTime "2023-11-09T14:19:38.943374"^^xsd:dateTime ;
+            prov:hadActivity id:8b3eb82c-de04-4dd0-b519-0354c0ce7cf5 ] ;
+    prov:qualifiedUsage [ a prov:Usage ;
+            prov:atTime "2023-11-09T14:19:38.948188"^^xsd:dateTime ;
+            prov:entity id:aafa8231-543f-4250-ad31-c72b00e3601d ;
+            prov:hadRole <arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/grep/grep_in> ] ;
+    prov:wasAssociatedWith id:158cac0a-3a3b-4716-b023-2f9d48de837a .
+
+id:74439271-abb9-43d7-ad9b-3bea9b25aa2a a wfprov:ProcessRun,
+        prov:Activity ;
+    rdfs:label "Run of workflow/packed.cwl#main/sorted"^^xsd:string ;
+    prov:qualifiedAssociation [ a prov:Association ;
+            prov:hadPlan <arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/sorted> ] ;
+    prov:qualifiedEnd [ a prov:End ;
+            prov:atTime "2023-11-09T14:19:38.956810"^^xsd:dateTime ;
+            prov:hadActivity id:8b3eb82c-de04-4dd0-b519-0354c0ce7cf5 ] ;
+    prov:qualifiedStart [ a prov:Start ;
+            prov:atTime "2023-11-09T14:19:38.954588"^^xsd:dateTime ;
+            prov:hadActivity id:8b3eb82c-de04-4dd0-b519-0354c0ce7cf5 ] ;
+    prov:qualifiedUsage [ a prov:Usage ;
+            prov:atTime "2023-11-09T14:19:38.954880"^^xsd:dateTime ;
+            prov:entity id:59e50eb7-e28f-43b4-a925-1e095bcb6260 ;
+            prov:hadRole <arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/sorted/reverse> ],
+        [ a prov:Usage ;
+            prov:atTime "2023-11-09T14:19:38.954920"^^xsd:dateTime ;
+            prov:entity id:212bf964-9940-4f63-ac22-0e849d7d76ec ;
+            prov:hadRole <arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/sorted/sort_in> ] ;
+    prov:wasAssociatedWith id:158cac0a-3a3b-4716-b023-2f9d48de837a .
+
+id:f12047e2-01e6-4fbd-a1fc-c7de599d87e9 a prov:Agent .
+
+<arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/grep> a wfdesc:Process,
         prov:Entity,
         prov:Plan .
 
-<arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/sorted> a wfdesc:Process,
+<arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/sorted> a wfdesc:Process,
         prov:Entity,
         prov:Plan .
 
 data:b64565ee76fcd5296c48314f858f8e4672c71439 a wfprov:Artifact,
         prov:Entity .
 
-id:259e9cca-63a5-408a-9d31-4e72fd4bb1f2 a wf4ever:File,
+id:aafa8231-543f-4250-ad31-c72b00e3601d a wf4ever:File,
         wfprov:Artifact,
         prov:Entity ;
     prov:specializationOf data:b64565ee76fcd5296c48314f858f8e4672c71439 ;
@@ -137,33 +137,33 @@ id:259e9cca-63a5-408a-9d31-4e72fd4bb1f2 a wf4ever:File,
     cwlprov:nameext ".txt"^^xsd:string ;
     cwlprov:nameroot "lines"^^xsd:string .
 
-id:c54a7289-731a-498b-9f08-3cc2bb801ba1 a wfprov:WorkflowRun,
+id:158cac0a-3a3b-4716-b023-2f9d48de837a a wfprov:WorkflowEngine,
+        prov:Agent,
+        prov:SoftwareAgent ;
+    rdfs:label "cwltool 3.1.20231020140205"^^xsd:string ;
+    prov:qualifiedStart [ a prov:Start ;
+            prov:atTime "2023-11-09T14:19:38.925857"^^xsd:dateTime ;
+            prov:hadActivity id:f12047e2-01e6-4fbd-a1fc-c7de599d87e9 ] .
+
+id:8b3eb82c-de04-4dd0-b519-0354c0ce7cf5 a wfprov:WorkflowRun,
         prov:Activity ;
     rdfs:label "Run of workflow/packed.cwl#main"^^xsd:string ;
     prov:qualifiedAssociation [ a prov:Association ;
             prov:hadPlan wf:main ] ;
     prov:qualifiedEnd [ a prov:End ;
-            prov:atTime "2023-05-26T15:48:23.882082"^^xsd:dateTime ;
-            prov:hadActivity id:fb8f0a7a-121b-47e1-b955-75d213864598 ] ;
+            prov:atTime "2023-11-09T14:19:38.958081"^^xsd:dateTime ;
+            prov:hadActivity id:158cac0a-3a3b-4716-b023-2f9d48de837a ] ;
     prov:qualifiedStart [ a prov:Start ;
-            prov:atTime "2023-05-26T15:48:23.831147"^^xsd:dateTime ;
-            prov:hadActivity id:fb8f0a7a-121b-47e1-b955-75d213864598 ] ;
+            prov:atTime "2023-11-09T14:19:38.925920"^^xsd:dateTime ;
+            prov:hadActivity id:158cac0a-3a3b-4716-b023-2f9d48de837a ] ;
     prov:qualifiedUsage [ a prov:Usage ;
-            prov:atTime "2023-05-26T15:48:23.860200"^^xsd:dateTime ;
-            prov:entity id:75476671-b37f-4269-bbe1-27b37d2939de ;
-            prov:hadRole <arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/reverse_sort> ],
+            prov:atTime "2023-11-09T14:19:38.941858"^^xsd:dateTime ;
+            prov:entity id:6cb836e0-cc64-4894-8db8-e6804466da38 ;
+            prov:hadRole <arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/grepsort_in> ],
         [ a prov:Usage ;
-            prov:atTime "2023-05-26T15:48:23.860079"^^xsd:dateTime ;
-            prov:entity id:da3f2ffa-1423-49e3-a90c-c0ad95ddbf38 ;
-            prov:hadRole <arcp://uuid,c54a7289-731a-498b-9f08-3cc2bb801ba1/workflow/packed.cwl#main/grepsort_in> ] ;
-    prov:startedAtTime "2023-05-26T15:48:23.831083"^^xsd:dateTime ;
-    prov:wasAssociatedWith id:fb8f0a7a-121b-47e1-b955-75d213864598 .
-
-id:fb8f0a7a-121b-47e1-b955-75d213864598 a wfprov:WorkflowEngine,
-        prov:Agent,
-        prov:SoftwareAgent ;
-    rdfs:label "cwltool 3.1.20230513155734"^^xsd:string ;
-    prov:qualifiedStart [ a prov:Start ;
-            prov:atTime "2023-05-26T15:48:23.831055"^^xsd:dateTime ;
-            prov:hadActivity id:4cf6bce8-84b8-4135-a30f-7c4771980295 ] .
+            prov:atTime "2023-11-09T14:19:38.941908"^^xsd:dateTime ;
+            prov:entity id:33d87d69-c088-4dbc-a286-6b2898d78c33 ;
+            prov:hadRole <arcp://uuid,8b3eb82c-de04-4dd0-b519-0354c0ce7cf5/workflow/packed.cwl#main/reverse_sort> ] ;
+    prov:startedAtTime "2023-11-09T14:19:38.925882"^^xsd:dateTime ;
+    prov:wasAssociatedWith id:158cac0a-3a3b-4716-b023-2f9d48de837a .
 

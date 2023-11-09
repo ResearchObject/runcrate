@@ -20,6 +20,7 @@ inputs:
 outputs:
   sort_out:
     type: File
+    format: "https://www.iana.org/assignments/media-types/text/plain"
     outputBinding:
       glob: sort_out.txt
 stdout: sort_out.txt

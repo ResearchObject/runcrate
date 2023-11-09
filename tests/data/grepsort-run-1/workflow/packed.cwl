@@ -67,6 +67,7 @@
             "outputs": [
                 {
                     "type": "File",
+                    "format": "https://www.iana.org/assignments/media-types/text/plain",
                     "outputSource": "#main/sorted/sort_out",
                     "id": "#main/grepsort_out"
                 }
@@ -150,6 +151,7 @@
             "outputs": [
                 {
                     "type": "File",
+                    "format": "https://www.iana.org/assignments/media-types/text/plain",
                     "outputBinding": {
                         "glob": "sort_out.txt"
                     },

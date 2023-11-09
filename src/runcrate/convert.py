@@ -40,6 +40,7 @@ from .utils import as_list, parse_img
 
 WORKFLOW_BASENAME = "packed.cwl"
 INPUTS_FILE_BASENAME = "primary-job.json"
+OUTPUTS_FILE_BASENAME = "primary-output.json"
 MANIFEST_FILE = "manifest-sha1.txt"
 
 CWL_TYPE_MAP = {
@@ -294,6 +295,7 @@ class ProvCrateBuilder:
         self.add_action(crate, self.workflow_run)
         self.patch_workflow_input_collection(crate)
         self.add_inputs_file(crate)
+        self.add_output_formats(crate)
         return crate
 
     def add_root_metadata(self, crate):
@@ -777,3 +779,10 @@ class ProvCrateBuilder:
                 "name": "input object document",
                 "encodingFormat": "application/json",
             })
+
+    def add_output_formats(self, crate):
+        path = self.root / "workflow" / OUTPUTS_FILE_BASENAME
+        if path.is_file():
+            with open(path) as f:
+                data = json.load(f)
+            self._map_input_data(crate, data)
