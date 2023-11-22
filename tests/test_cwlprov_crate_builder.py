@@ -336,8 +336,16 @@ def test_dir_io(data_dir, tmpdir):
     crate = ROCrate(output)
     workflow = crate.mainEntity
     assert workflow.id == "packed.cwl"
-    tools = workflow["hasPart"]
+    tools = {_.id: _ for _ in workflow["hasPart"]}
     assert len(tools) == 2
+    greptool = tools["packed.cwl#greptool.cwl"]
+    greptool_deps = greptool["softwareRequirements"]
+    assert len(greptool_deps) == 1
+    grep = greptool_deps[0]
+    assert grep.id == "https://www.gnu.org/software/grep/"
+    assert grep.type == "SoftwareApplication"
+    assert grep["name"] == "grep"
+    assert grep["softwareVersion"] == ["3.8"]
     inputs = workflow["input"]
     outputs = workflow["output"]
     assert len(inputs) == 2
@@ -363,7 +371,7 @@ def test_dir_io(data_dir, tmpdir):
             assert "Dataset" in entity.type
             wf_input_dir = entity
     wf_output_dir = wf_results[0]
-    assert wf_output_dir["dateCreated"] == "2023-02-17T16:20:30.288242"
+    assert wf_output_dir["dateCreated"] == "2023-11-22T15:00:34.712780"
     assert wf_input_dir.type == wf_output_dir.type == "Dataset"
     assert wf_input_dir["alternateName"] == "grepucase_in"
     assert len(wf_input_dir["hasPart"]) == 2
@@ -402,7 +410,7 @@ def test_dir_io(data_dir, tmpdir):
     assert greptool_input_dir is wf_input_dir
     greptool_output_dir = greptool_results[0]
     assert "Dataset" in greptool_output_dir.type
-    assert greptool_output_dir["dateCreated"] == "2023-02-17T16:20:30.262141"
+    assert greptool_output_dir["dateCreated"] == "2023-11-22T15:00:34.690699"
     ucasetool_action = action_map["packed.cwl#ucasetool.cwl"]
     ucasetool_objects = ucasetool_action["object"]
     ucasetool_results = ucasetool_action["result"]

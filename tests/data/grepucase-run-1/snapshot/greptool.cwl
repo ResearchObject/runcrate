@@ -1,6 +1,13 @@
 class: CommandLineTool
 cwlVersion: v1.0
 
+hints:
+  SoftwareRequirement:
+    packages:
+      grep:
+        specs: ["https://www.gnu.org/software/grep/"]
+        version: ["3.8"]
+
 baseCommand: ["bash", "-c"]
 
 inputs:

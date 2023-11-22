@@ -396,13 +396,29 @@ class ProvCrateBuilder:
                     ramMin = req.ramMin
                     if ramMin:
                         properties["memoryRequirements"] = f"{int(ramMin)} MiB"
+        deps = []
         if hasattr(cwl_tool, "hints") and cwl_tool.hints:
             for req in cwl_tool.hints:
                 if hasattr(req, "class_") and req.class_ == "ResourceRequirement":
                     ramMin = req.ramMin
                     if ramMin:
                         properties["memoryRequirements"] = f"{int(ramMin)} MiB"
+                if hasattr(req, "class_") and req.class_ == "SoftwareRequirement":
+                    for p in req.packages:
+                        if hasattr(p, "specs") and p.specs:
+                            dep_id = p.specs[0]
+                            dep_properties = {
+                                "@type": "SoftwareApplication",
+                                "name": p.package
+                            }
+                            if p.version:
+                                dep_properties["softwareVersion"] = p.version
+                            deps.append(
+                                crate.add(ContextEntity(crate, dep_id, properties=dep_properties))
+                            )
         tool = crate.add(ContextEntity(crate, tool_id, properties=properties))
+        if deps:
+            tool["softwareRequirements"] = deps
         tool["input"] = self.add_params(crate, cwl_tool.inputs)
         tool["output"] = self.add_params(crate, cwl_tool.outputs)
         workflow.append_to("hasPart", tool)

@@ -2,6 +2,22 @@
     "$graph": [
         {
             "class": "CommandLineTool",
+            "hints": [
+                {
+                    "packages": [
+                        {
+                            "specs": [
+                                "https://www.gnu.org/software/grep/"
+                            ],
+                            "version": [
+                                "3.8"
+                            ],
+                            "package": "grep"
+                        }
+                    ],
+                    "class": "SoftwareRequirement"
+                }
+            ],
             "baseCommand": [
                 "bash",
                 "-c"

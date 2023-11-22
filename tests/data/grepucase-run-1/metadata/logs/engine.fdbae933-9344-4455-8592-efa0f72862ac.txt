@@ -1,0 +1,28 @@
+[2023-11-22T14:00:34,368.000000Z] [cwltool] /home/simleo/git/runcrate/venv/bin/cwltool --provenance ro grepucase.cwl grepucase-job.yml
+[2023-11-22T14:00:34,370.000000Z] Resolved 'grepucase.cwl' to 'file:///home/simleo/git/runcrate/cwl/grepucase/grepucase.cwl'
+[2023-11-22T14:00:34,662.000000Z] [provenance] Adding to RO file:///home/simleo/git/runcrate/cwl/grepucase/grepucase_in/foo
+[2023-11-22T14:00:34,663.000000Z] [provenance] Adding to RO file:///home/simleo/git/runcrate/cwl/grepucase/grepucase_in/bar
+[2023-11-22T14:00:34,674.000000Z] [workflow ] start
+[2023-11-22T14:00:34,674.000000Z] [workflow ] starting step grep
+[2023-11-22T14:00:34,674.000000Z] [step grep] start
+[2023-11-22T14:00:34,676.000000Z] [job grep] /tmp/vkckwf2j$ bash \
+    -c \
+    'mkdir -p grep_out
+find /tmp/c3z_ayvp/stgbd555114-f2e4-41d0-88aa-b579666d7084/grepucase_in/ -type f | while read f; do
+  grep lazy ${f} > grep_out/`basename ${f}`.out
+done'
+[2023-11-22T14:00:34,693.000000Z] [job grep] completed success
+[2023-11-22T14:00:34,693.000000Z] [step grep] completed success
+[2023-11-22T14:00:34,693.000000Z] [workflow ] starting step ucase
+[2023-11-22T14:00:34,693.000000Z] [step ucase] start
+[2023-11-22T14:00:34,695.000000Z] [job ucase] /tmp/nozkr02w$ bash \
+    -c \
+    'mkdir -p ucase_out
+find /tmp/4vfdgmw2/stg829c996f-6110-4091-90e8-9075cabe7301/grep_out/ -type f | while read f; do
+  mkdir ucase_out/`basename ${f}`
+  awk '"'"'{print toupper($0)}'"'"' < ${f} > ucase_out/`basename ${f}`/`basename ${f}`.out
+done'
+[2023-11-22T14:00:34,717.000000Z] [job ucase] completed success
+[2023-11-22T14:00:34,718.000000Z] [step ucase] completed success
+[2023-11-22T14:00:34,718.000000Z] [workflow ] completed success
+[2023-11-22T14:00:34,768.000000Z] Final process status is success
