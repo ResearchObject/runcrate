@@ -419,6 +419,8 @@ class ProvCrateBuilder:
         tool = crate.add(ContextEntity(crate, tool_id, properties=properties))
         if deps:
             tool["softwareRequirements"] = deps
+        if len(deps) == 1:
+            tool["mainEntity"] = deps[0]
         tool["input"] = self.add_params(crate, cwl_tool.inputs)
         tool["output"] = self.add_params(crate, cwl_tool.outputs)
         workflow.append_to("hasPart", tool)

@@ -346,6 +346,7 @@ def test_dir_io(data_dir, tmpdir):
     assert grep.type == "SoftwareApplication"
     assert grep["name"] == "grep"
     assert grep["softwareVersion"] == ["3.8"]
+    assert greptool["mainEntity"] is grep
     inputs = workflow["input"]
     outputs = workflow["output"]
     assert len(inputs) == 2
