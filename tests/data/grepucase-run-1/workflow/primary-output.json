@@ -4,22 +4,8 @@
         "nameroot": "ucase_out",
         "nameext": "",
         "class": "Directory",
-        "@id": "urn:uuid:5b25d2eb-2e89-4d62-8145-2ea3656ba173",
+        "@id": "urn:uuid:107dd13d-3630-4e81-bd71-026b638facbc",
         "listing": [
-            {
-                "class": "Directory",
-                "basename": "bar.out",
-                "listing": [
-                    {
-                        "class": "File",
-                        "location": "../data/3c/3ccdc7533084b641e6c941cc6dbb091d2e5f8a41",
-                        "basename": "bar.out.out",
-                        "checksum": "sha1$3ccdc7533084b641e6c941cc6dbb091d2e5f8a41",
-                        "@id": "urn:uuid:2c6ae84c-c98c-4173-aa24-44b9bb21d372"
-                    }
-                ],
-                "@id": "urn:uuid:8cb9abec-9ecf-4e54-86b5-7f08a073ce60"
-            },
             {
                 "class": "Directory",
                 "basename": "foo.out",
@@ -29,10 +15,24 @@
                         "location": "../data/ec/ec0270052a78321508502ed915815c4daf75fe46",
                         "basename": "foo.out.out",
                         "checksum": "sha1$ec0270052a78321508502ed915815c4daf75fe46",
-                        "@id": "urn:uuid:cb12bf67-5541-4f8c-b897-47a87e11a242"
+                        "@id": "urn:uuid:b604cd9a-7a66-4bf2-83fc-b61b515b06bb"
                     }
                 ],
-                "@id": "urn:uuid:bea1dc23-0537-4874-82ce-454f48c08d0a"
+                "@id": "urn:uuid:79a136c8-0972-4775-a580-7bbcc534560e"
+            },
+            {
+                "class": "Directory",
+                "basename": "bar.out",
+                "listing": [
+                    {
+                        "class": "File",
+                        "location": "../data/3c/3ccdc7533084b641e6c941cc6dbb091d2e5f8a41",
+                        "basename": "bar.out.out",
+                        "checksum": "sha1$3ccdc7533084b641e6c941cc6dbb091d2e5f8a41",
+                        "@id": "urn:uuid:124c0ca7-05d4-4867-9770-7dde9ed93a52"
+                    }
+                ],
+                "@id": "urn:uuid:a9ab8653-e354-4b7c-9bf8-0ae63766739b"
             }
         ]
     }
