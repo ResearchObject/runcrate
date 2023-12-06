@@ -82,7 +82,7 @@ def convert_cwl_type(cwl_type):
 
 def properties_from_cwl_param(cwl_p):
     def is_structured(cwl_type):
-        return getattr(cwl_type, "type", None) in ("array", "record")
+        return getattr(cwl_type, "type_", None) in ("array", "record")
     additional_type = "Collection" if cwl_p.secondaryFiles else convert_cwl_type(cwl_p.type_)
     properties = {
         "@type": "FormalParameter",
@@ -100,14 +100,15 @@ def properties_from_cwl_param(cwl_p):
     if is_structured(cwl_p.type_):
         properties["multipleValues"] = "True"
     if hasattr(cwl_p, "default"):
-        if hasattr(cwl_p.default, "class_") and cwl_p.default.class_ in ("File", "Directory"):
-            default = cwl_p.default.location or cwl_p.default.path
+        if isinstance(cwl_p.default, dict):
+            if cwl_p.default.get("class") in ("File", "Directory"):
+                default = cwl_p.default.get("location", cwl_p.default.get("path"))
             if default:
                 properties["defaultValue"] = default
         elif not is_structured(cwl_p.type_) and cwl_p.default is not None:
             properties["defaultValue"] = str(cwl_p.default)
         # TODO: support more cases
-    if getattr(cwl_p.type_, "type", None) == "enum":
+    if getattr(cwl_p.type_, "type_", None) == "enum":
         properties["valuePattern"] = "|".join(_.rsplit("/", 1)[-1] for _ in cwl_p.type_.symbols)
     return properties
 
