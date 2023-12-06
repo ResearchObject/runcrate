@@ -1,7 +1,7 @@
 bdbag>=1.4.1
 click~=8.1
-cwl-utils==0.31
+cwl-utils==0.32
 cwlprov==0.1.1
 networkx==3.1
 prov>=1.5.1
-rocrate~=0.9
+rocrate>=0.9,<1

@@ -26,7 +26,8 @@ def test_cli_convert(data_dir, tmpdir, monkeypatch):
     root = data_dir / "revsort-run-1"
     runner = CliRunner()
     args = ["convert", str(root)]
-    assert runner.invoke(cli, args).exit_code == 0
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0, result.exception
     crate_zip = tmpdir / f"{root.name}.crate.zip"
     assert crate_zip.is_file()
     crate = ROCrate(crate_zip)
@@ -41,7 +42,8 @@ def test_cli_convert_output(data_dir, tmpdir):
     crate_zip = tmpdir / "crate.zip"
     runner = CliRunner()
     args = ["convert", str(root), "-o", str(crate_zip)]
-    assert runner.invoke(cli, args).exit_code == 0
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0, result.exception
     assert crate_zip.is_file()
     crate = ROCrate(crate_zip)
     assert not crate.root_dataset.get("license")
@@ -52,7 +54,8 @@ def test_cli_convert_output(data_dir, tmpdir):
     crate_dir = tmpdir / "revsort-run-1-crate"
     runner = CliRunner()
     args = ["convert", str(root), "-o", str(crate_dir)]
-    assert runner.invoke(cli, args).exit_code == 0
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0, result.exception
     assert crate_dir.is_dir()
     crate = ROCrate(crate_dir)
     assert not crate.root_dataset.get("license")
@@ -66,7 +69,8 @@ def test_cli_convert_license(data_dir, tmpdir):
     license = "MIT"
     runner = CliRunner()
     args = ["convert", str(root), "-o", str(crate_dir), "-l", license]
-    assert runner.invoke(cli, args).exit_code == 0
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0, result.exception
     crate = ROCrate(crate_dir)
     assert crate.root_dataset["license"] == license
 
@@ -77,7 +81,8 @@ def test_cli_convert_workflow_name(data_dir, tmpdir):
     workflow_name = "RevSort"
     runner = CliRunner()
     args = ["convert", str(root), "-o", str(crate_dir), "-w", workflow_name]
-    assert runner.invoke(cli, args).exit_code == 0
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0, result.exception
     crate = ROCrate(crate_dir)
     workflow = crate.mainEntity
     assert workflow["name"] == workflow_name
@@ -89,7 +94,8 @@ def test_cli_convert_readme(data_dir, tmpdir):
     readme = data_dir / "README.md"
     runner = CliRunner()
     args = ["convert", str(root), "-o", str(crate_dir), "--readme", readme]
-    assert runner.invoke(cli, args).exit_code == 0
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0, result.exception
     crate = ROCrate(crate_dir)
     assert crate.get(readme.name)
 
@@ -108,7 +114,7 @@ def test_cli_report_provenance_minimal(data_dir, caplog):
 def test_cli_version():
     runner = CliRunner()
     result = runner.invoke(cli, ["version"])
-    assert result.exit_code == 0
+    assert result.exit_code == 0, result.exception
     assert result.stdout.strip() == __version__
 
 
@@ -118,7 +124,7 @@ def test_cli_run(data_dir, tmpdir, monkeypatch):
     args = ["run", str(crate_dir)]
     monkeypatch.chdir(str(tmpdir))
     result = runner.invoke(cli, args)
-    assert result.exit_code == 0
+    assert result.exit_code == 0, result.exception
     out_path = Path("output.txt")
     assert out_path.is_file()
     crate_out_path = crate_dir / "4bd8e7e358488e833bf32cf5028695292cecb05b"
@@ -131,7 +137,7 @@ def test_cli_run_dir_array(data_dir, tmpdir, monkeypatch):
     args = ["run", str(crate_dir)]
     monkeypatch.chdir(str(tmpdir))
     result = runner.invoke(cli, args)
-    assert result.exit_code == 0
+    assert result.exit_code == 0, result.exception
 
 
 def test_cli_run_file_array(data_dir, tmpdir, monkeypatch):
@@ -140,4 +146,4 @@ def test_cli_run_file_array(data_dir, tmpdir, monkeypatch):
     args = ["run", str(crate_dir)]
     monkeypatch.chdir(str(tmpdir))
     result = runner.invoke(cli, args)
-    assert result.exit_code == 0
+    assert result.exit_code == 0, result.exception
