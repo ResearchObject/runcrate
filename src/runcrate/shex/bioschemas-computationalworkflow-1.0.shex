@@ -83,7 +83,7 @@ p:MainWorkflow extra rdf:type {
       a [s:CreativeWork];
 #      s:name xsd:string
     };
-  )* // sh:severity sh:Info // sh:message "It is RECOMMENDED to include a citation";
+  )? // sh:severity sh:Info // sh:message "It is RECOMMENDED to include a citation";
 
   s:contributor @p:PersonOrOrg*;
   
