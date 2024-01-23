@@ -24,7 +24,7 @@ WORKFLOW_PROFILE = f"{WORKFLOW_PROFILE_BASE}/{PROFILES_VERSION}"
 PROVENANCE_PROFILE = f"{PROVENANCE_PROFILE_BASE}/{PROFILES_VERSION}"
 
 TERMS_NAMESPACE = "https://w3id.org/ro/terms/workflow-run"
-EXTRA_TERMS = {t: f"{TERMS_NAMESPACE}#t" for t in [
+EXTRA_TERMS = {t: f"{TERMS_NAMESPACE}#{t}" for t in [
     "ParameterConnection",
     "connection",
     "sourceParameter",
