@@ -27,11 +27,12 @@ jobs:
     - name: Run tests
       run: tox -e test
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
         files: ./coverage.xml
         fail_ci_if_error: false
         verbose: true
+        token: ${{ secrets.CODECOV_TOKEN }}
 
   other-checks:
     strategy:
