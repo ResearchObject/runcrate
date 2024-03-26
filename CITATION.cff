@@ -10,6 +10,9 @@ authors:
   - family-names: Crusoe
     given-names: Michael R.
     orcid: https://orcid.org/0000-0002-2961-9670
+  - family-names: Bauer
+    given-names: Daniel
+    orcid: https://orcid.org/0000-0001-9447-460X
 title: "runcrate"
 version: 0.5.0
 doi: 10.5281/zenodo.7762627
