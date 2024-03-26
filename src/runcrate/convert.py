@@ -1,5 +1,6 @@
 # Copyright 2022-2024 CRS4.
 # Copyright 2023-2024 Michael R. Crusoe
+# Copyright 2024 Senckenberg Society for Nature Research
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -472,10 +473,12 @@ class ProvCrateBuilder:
             agent_id = a.identifier.uri
             if not agent_id.startswith("http"):
                 agent_id = "#" + agent_id.rsplit(":", 1)[-1]
-            ro_a = crate.add(ContextEntity(crate, agent_id, properties={
-                "@type": "Person",
-                "name": a.label
-            }))
+            properties = {
+                "@type": "Person"
+            }
+            if isinstance(a.label, str):
+                properties["name"] = a.label
+            ro_a = crate.add(ContextEntity(crate, agent_id, properties=properties))
             roc_engine_run.append_to("agent", ro_a, compact=True)
 
     def add_action(self, crate, activity, parent_instrument=None):

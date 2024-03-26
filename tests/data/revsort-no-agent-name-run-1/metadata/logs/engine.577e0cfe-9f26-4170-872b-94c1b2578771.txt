@@ -1,0 +1,49 @@
+[2024-03-26T08:34:59,882.000000Z] [cwltool] /home/dbauer/.local/bin/cwltool --provenance testprov revsort.cwl input.yml
+[2024-03-26T08:34:59,883.000000Z] Resolved 'revsort.cwl' to 'file:///home/dbauer/projects/runcrate/tests/data/revsort-run-author/snapshot/revsort.cwl'
+[2024-03-26T08:35:00,191.000000Z] [provenance] Adding to RO file:///home/dbauer/projects/runcrate/tests/data/revsort-run-author/snapshot/hello.txt
+[2024-03-26T08:35:00,192.000000Z] [workflow ] start
+[2024-03-26T08:35:00,192.000000Z] [workflow ] starting step rev
+[2024-03-26T08:35:00,192.000000Z] [step rev] start
+[2024-03-26T08:35:00,204.000000Z] [job rev] /tmp/j235527o$ docker \
+    run \
+    -i \
+    --mount=type=bind,source=/tmp/j235527o,target=/bhhcmi \
+    --mount=type=bind,source=/tmp/ikqpjjr8,target=/tmp \
+    --mount=type=bind,source=/home/dbauer/projects/runcrate/tests/data/revsort-run-author/snapshot/hello.txt,target=/var/lib/cwl/stgc6fb3435-bf77-40bf-a2d7-2ce7ffbd3469/hello.txt,readonly \
+    --workdir=/bhhcmi \
+    --read-only=true \
+    --log-driver=none \
+    --user=1000:1000 \
+    --rm \
+    --cidfile=/tmp/crhqjdrm/20240326093500-204573.cid \
+    --env=TMPDIR=/tmp \
+    --env=HOME=/bhhcmi \
+    debian:8 \
+    rev \
+    /var/lib/cwl/stgc6fb3435-bf77-40bf-a2d7-2ce7ffbd3469/hello.txt > /tmp/j235527o/output.txt
+[2024-03-26T08:35:01,207.000000Z] [job rev] completed success
+[2024-03-26T08:35:01,207.000000Z] [step rev] completed success
+[2024-03-26T08:35:01,207.000000Z] [workflow ] starting step sorted
+[2024-03-26T08:35:01,207.000000Z] [step sorted] start
+[2024-03-26T08:35:01,209.000000Z] [job sorted] /tmp/eo0fu8e3$ docker \
+    run \
+    -i \
+    --mount=type=bind,source=/tmp/eo0fu8e3,target=/bhhcmi \
+    --mount=type=bind,source=/tmp/2bhihxc0,target=/tmp \
+    --mount=type=bind,source=/tmp/j235527o/output.txt,target=/var/lib/cwl/stg35a7c99e-7809-482d-92a1-712ed8215b58/output.txt,readonly \
+    --workdir=/bhhcmi \
+    --read-only=true \
+    --log-driver=none \
+    --user=1000:1000 \
+    --rm \
+    --cidfile=/tmp/0gcyad43/20240326093501-209419.cid \
+    --env=TMPDIR=/tmp \
+    --env=HOME=/bhhcmi \
+    debian:8 \
+    sort \
+    --reverse \
+    /var/lib/cwl/stg35a7c99e-7809-482d-92a1-712ed8215b58/output.txt > /tmp/eo0fu8e3/output.txt
+[2024-03-26T08:35:02,211.000000Z] [job sorted] completed success
+[2024-03-26T08:35:02,211.000000Z] [step sorted] completed success
+[2024-03-26T08:35:02,212.000000Z] [workflow ] completed success
+[2024-03-26T08:35:02,250.000000Z] Final process status is success

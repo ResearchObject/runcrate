@@ -1,4 +1,5 @@
 # Copyright 2022-2024 CRS4.
+# Copyright 2024 Senckenberg Society for Nature Research
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -73,6 +74,19 @@ def test_cli_convert_license(data_dir, tmpdir):
     assert result.exit_code == 0, result.exception
     crate = ROCrate(crate_dir)
     assert crate.root_dataset["license"] == license
+
+
+def test_cli_convert_agent(data_dir, tmpdir, monkeypatch):
+    monkeypatch.chdir(str(tmpdir))
+    root = data_dir / "revsort-no-agent-name-run-1"
+    runner = CliRunner()
+    args = ["convert", str(root)]
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0, result.exception
+    crate_zip = tmpdir / f"{root.name}.crate.zip"
+    assert crate_zip.is_file()
+    crate = ROCrate(crate_zip)
+    assert crate.get("https://orcid.org/0000-0001-9447-460X")
 
 
 def test_cli_convert_workflow_name(data_dir, tmpdir):
