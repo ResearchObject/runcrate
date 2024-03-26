@@ -75,6 +75,19 @@ def test_cli_convert_license(data_dir, tmpdir):
     assert crate.root_dataset["license"] == license
 
 
+def test_cli_convert_agent(data_dir, tmpdir, monkeypatch):
+    monkeypatch.chdir(str(tmpdir))
+    root = data_dir / "revsort-no-agent-name-run-1"
+    runner = CliRunner()
+    args = ["convert", str(root)]
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0, result.exception
+    crate_zip = tmpdir / f"{root.name}.crate.zip"
+    assert crate_zip.is_file()
+    crate = ROCrate(crate_zip)
+    assert crate.get("https://orcid.org/0000-0001-9447-460X")
+
+
 def test_cli_convert_workflow_name(data_dir, tmpdir):
     root = data_dir / "revsort-run-1"
     crate_dir = tmpdir / "revsort-run-1-crate"

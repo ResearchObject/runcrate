@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='ASCII'?>
+<prov:document xmlns:wfprov="http://purl.org/wf4ever/wfprov#" xmlns:wfdesc="http://purl.org/wf4ever/wfdesc#" xmlns:cwlprov="https://w3id.org/cwl/prov#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:schema="http://schema.org/" xmlns:orcid="https://orcid.org/" xmlns:id="urn:uuid:" xmlns:data="urn:hash::sha1:" xmlns:sha256="nih:sha-256;" xmlns:researchobject="arcp://uuid,73420c43-a023-4f52-9630-13bcdd9441c2/" xmlns:metadata="arcp://uuid,73420c43-a023-4f52-9630-13bcdd9441c2/metadata/" xmlns:provenance="arcp://uuid,73420c43-a023-4f52-9630-13bcdd9441c2/metadata/provenance/" xmlns:wf="arcp://uuid,73420c43-a023-4f52-9630-13bcdd9441c2/workflow/packed.cwl#" xmlns:input="arcp://uuid,73420c43-a023-4f52-9630-13bcdd9441c2/workflow/primary-job.json#" xmlns:wf4ever="http://purl.org/wf4ever/wf4ever#" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <prov:agent prov:id="id:dccc3c5a-089e-4c07-aeab-3e1b80a8bf21"/>
+  <prov:person prov:id="orcid:0000-0001-9447-460X">
+    <prov:type xsi:type="xsd:QName">schema:Person</prov:type>
+  </prov:person>
+  <prov:actedOnBehalfOf>
+    <prov:delegate prov:ref="id:dccc3c5a-089e-4c07-aeab-3e1b80a8bf21"/>
+    <prov:responsible prov:ref="orcid:0000-0001-9447-460X"/>
+  </prov:actedOnBehalfOf>
+  <prov:softwareAgent prov:id="id:577e0cfe-9f26-4170-872b-94c1b2578771">
+    <prov:label>cwltool 3.1.20240112164112</prov:label>
+    <prov:type xsi:type="xsd:QName">wfprov:WorkflowEngine</prov:type>
+  </prov:softwareAgent>
+  <prov:wasStartedBy>
+    <prov:activity prov:ref="id:577e0cfe-9f26-4170-872b-94c1b2578771"/>
+    <prov:starter prov:ref="id:dccc3c5a-089e-4c07-aeab-3e1b80a8bf21"/>
+    <prov:time>2024-03-26T09:35:00.174799</prov:time>
+  </prov:wasStartedBy>
+  <prov:activity prov:id="id:73420c43-a023-4f52-9630-13bcdd9441c2">
+    <prov:startTime>2024-03-26T09:35:00.174824</prov:startTime>
+    <prov:label>Run of workflow/packed.cwl#main</prov:label>
+    <prov:type xsi:type="xsd:QName">wfprov:WorkflowRun</prov:type>
+  </prov:activity>
+  <prov:wasAssociatedWith>
+    <prov:activity prov:ref="id:73420c43-a023-4f52-9630-13bcdd9441c2"/>
+    <prov:agent prov:ref="id:577e0cfe-9f26-4170-872b-94c1b2578771"/>
+    <prov:plan prov:ref="wf:main"/>
+  </prov:wasAssociatedWith>
+  <prov:wasStartedBy>
+    <prov:activity prov:ref="id:73420c43-a023-4f52-9630-13bcdd9441c2"/>
+    <prov:starter prov:ref="id:577e0cfe-9f26-4170-872b-94c1b2578771"/>
+    <prov:time>2024-03-26T09:35:00.174854</prov:time>
+  </prov:wasStartedBy>
+  <prov:plan prov:id="wf:main">
+    <prov:label>Prospective provenance</prov:label>
+    <prov:type xsi:type="xsd:QName">wfdesc:Workflow</prov:type>
+  </prov:plan>
+  <prov:plan prov:id="wf:main/rev">
+    <prov:type xsi:type="xsd:QName">wfdesc:Process</prov:type>
+  </prov:plan>
+  <prov:entity prov:id="wf:main">
+    <prov:label>Prospective provenance</prov:label>
+    <wfdesc:hasSubProcess xsi:type="xsd:QName">wf:main/rev</wfdesc:hasSubProcess>
+  </prov:entity>
+  <prov:plan prov:id="wf:main/sorted">
+    <prov:type xsi:type="xsd:QName">wfdesc:Process</prov:type>
+  </prov:plan>
+  <prov:entity prov:id="wf:main">
+    <prov:label>Prospective provenance</prov:label>
+    <wfdesc:hasSubProcess xsi:type="xsd:QName">wf:main/sorted</wfdesc:hasSubProcess>
+  </prov:entity>
+  <prov:entity prov:id="data:327fc7aedf4f6b69a42a7c8b808dc5a7aff61376">
+    <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
+  </prov:entity>
+  <prov:entity prov:id="id:c872005a-958a-451f-8d22-662a554676fb">
+    <prov:type xsi:type="xsd:QName">wf4ever:File</prov:type>
+    <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
+    <cwlprov:basename>hello.txt</cwlprov:basename>
+    <cwlprov:nameext>.txt</cwlprov:nameext>
+    <cwlprov:nameroot>hello</cwlprov:nameroot>
+  </prov:entity>
+  <prov:specializationOf>
+    <prov:specificEntity prov:ref="id:c872005a-958a-451f-8d22-662a554676fb"/>
+    <prov:generalEntity prov:ref="data:327fc7aedf4f6b69a42a7c8b808dc5a7aff61376"/>
+  </prov:specializationOf>
+  <prov:used>
+    <prov:activity prov:ref="id:73420c43-a023-4f52-9630-13bcdd9441c2"/>
+    <prov:entity prov:ref="id:c872005a-958a-451f-8d22-662a554676fb"/>
+    <prov:time>2024-03-26T09:35:00.192411</prov:time>
+    <prov:role xsi:type="xsd:QName">wf:main/input</prov:role>
+  </prov:used>
+  <prov:entity prov:id="id:b87ba1ac-3fc2-4137-9f2c-06d99cb47275">
+    <prov:value xsi:type="xsd:boolean">true</prov:value>
+  </prov:entity>
+  <prov:used>
+    <prov:activity prov:ref="id:73420c43-a023-4f52-9630-13bcdd9441c2"/>
+    <prov:entity prov:ref="id:b87ba1ac-3fc2-4137-9f2c-06d99cb47275"/>
+    <prov:time>2024-03-26T09:35:00.192452</prov:time>
+    <prov:role xsi:type="xsd:QName">wf:main/reverse_sort</prov:role>
+  </prov:used>
+  <prov:activity prov:id="id:192abf2b-ff1f-4ed9-a48b-11f026eecccb">
+    <prov:label>Run of workflow/packed.cwl#main/rev</prov:label>
+    <prov:type xsi:type="xsd:QName">wfprov:ProcessRun</prov:type>
+  </prov:activity>
+  <prov:wasAssociatedWith>
+    <prov:activity prov:ref="id:192abf2b-ff1f-4ed9-a48b-11f026eecccb"/>
+    <prov:agent prov:ref="id:577e0cfe-9f26-4170-872b-94c1b2578771"/>
+    <prov:plan prov:ref="wf:main/rev"/>
+  </prov:wasAssociatedWith>
+  <prov:wasStartedBy>
+    <prov:activity prov:ref="id:192abf2b-ff1f-4ed9-a48b-11f026eecccb"/>
+    <prov:starter prov:ref="id:73420c43-a023-4f52-9630-13bcdd9441c2"/>
+    <prov:time>2024-03-26T09:35:00.193352</prov:time>
+  </prov:wasStartedBy>
+  <prov:softwareAgent prov:id="id:b1d25847-e010-4f49-b6d7-9cb0fbe612ff">
+    <prov:label>Container execution of image debian:8</prov:label>
+    <cwlprov:image>debian:8</cwlprov:image>
+  </prov:softwareAgent>
+  <prov:wasAssociatedWith>
+    <prov:activity prov:ref="id:192abf2b-ff1f-4ed9-a48b-11f026eecccb"/>
+    <prov:agent prov:ref="id:b1d25847-e010-4f49-b6d7-9cb0fbe612ff"/>
+  </prov:wasAssociatedWith>
+  <prov:entity prov:id="data:327fc7aedf4f6b69a42a7c8b808dc5a7aff61376">
+    <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
+  </prov:entity>
+  <prov:entity prov:id="id:bd085031-9a42-48c3-a2e9-7580a456be6f">
+    <prov:type xsi:type="xsd:QName">wf4ever:File</prov:type>
+    <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
+    <cwlprov:basename>hello.txt</cwlprov:basename>
+    <cwlprov:nameext>.txt</cwlprov:nameext>
+    <cwlprov:nameroot>hello</cwlprov:nameroot>
+  </prov:entity>
+  <prov:specializationOf>
+    <prov:specificEntity prov:ref="id:bd085031-9a42-48c3-a2e9-7580a456be6f"/>
+    <prov:generalEntity prov:ref="data:327fc7aedf4f6b69a42a7c8b808dc5a7aff61376"/>
+  </prov:specializationOf>
+  <prov:used>
+    <prov:activity prov:ref="id:192abf2b-ff1f-4ed9-a48b-11f026eecccb"/>
+    <prov:entity prov:ref="id:bd085031-9a42-48c3-a2e9-7580a456be6f"/>
+    <prov:time>2024-03-26T09:35:00.205071</prov:time>
+    <prov:role xsi:type="xsd:QName">wf:main/rev/input</prov:role>
+  </prov:used>
+  <prov:entity prov:id="data:97fe1b50b4582cebc7d853796ebd62e3e163aa3f">
+    <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
+  </prov:entity>
+  <prov:entity prov:id="id:31dd1208-1a62-4eb0-bd42-f6aa6d6dac24">
+    <prov:type xsi:type="xsd:QName">wf4ever:File</prov:type>
+    <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
+    <cwlprov:basename>output.txt</cwlprov:basename>
+    <cwlprov:nameext>.txt</cwlprov:nameext>
+    <cwlprov:nameroot>output</cwlprov:nameroot>
+  </prov:entity>
+  <prov:specializationOf>
+    <prov:specificEntity prov:ref="id:31dd1208-1a62-4eb0-bd42-f6aa6d6dac24"/>
+    <prov:generalEntity prov:ref="data:97fe1b50b4582cebc7d853796ebd62e3e163aa3f"/>
+  </prov:specializationOf>
+  <prov:wasGeneratedBy>
+    <prov:entity prov:ref="id:31dd1208-1a62-4eb0-bd42-f6aa6d6dac24"/>
+    <prov:activity prov:ref="id:192abf2b-ff1f-4ed9-a48b-11f026eecccb"/>
+    <prov:time>2024-03-26T09:35:01.207015</prov:time>
+    <prov:role xsi:type="xsd:QName">wf:main/rev/output</prov:role>
+  </prov:wasGeneratedBy>
+  <prov:wasEndedBy>
+    <prov:activity prov:ref="id:192abf2b-ff1f-4ed9-a48b-11f026eecccb"/>
+    <prov:ender prov:ref="id:73420c43-a023-4f52-9630-13bcdd9441c2"/>
+    <prov:time>2024-03-26T09:35:01.207010</prov:time>
+  </prov:wasEndedBy>
+  <prov:activity prov:id="id:6ff53435-de59-46e9-836f-ca8713277d0c">
+    <prov:label>Run of workflow/packed.cwl#main/sorted</prov:label>
+    <prov:type xsi:type="xsd:QName">wfprov:ProcessRun</prov:type>
+  </prov:activity>
+  <prov:wasAssociatedWith>
+    <prov:activity prov:ref="id:6ff53435-de59-46e9-836f-ca8713277d0c"/>
+    <prov:agent prov:ref="id:577e0cfe-9f26-4170-872b-94c1b2578771"/>
+    <prov:plan prov:ref="wf:main/sorted"/>
+  </prov:wasAssociatedWith>
+  <prov:wasStartedBy>
+    <prov:activity prov:ref="id:6ff53435-de59-46e9-836f-ca8713277d0c"/>
+    <prov:starter prov:ref="id:73420c43-a023-4f52-9630-13bcdd9441c2"/>
+    <prov:time>2024-03-26T09:35:01.208322</prov:time>
+  </prov:wasStartedBy>
+  <prov:softwareAgent prov:id="id:ed245546-74cf-4573-bcf2-1a1a0fd4641c">
+    <prov:label>Container execution of image debian:8</prov:label>
+    <cwlprov:image>debian:8</cwlprov:image>
+  </prov:softwareAgent>
+  <prov:wasAssociatedWith>
+    <prov:activity prov:ref="id:6ff53435-de59-46e9-836f-ca8713277d0c"/>
+    <prov:agent prov:ref="id:ed245546-74cf-4573-bcf2-1a1a0fd4641c"/>
+  </prov:wasAssociatedWith>
+  <prov:used>
+    <prov:activity prov:ref="id:6ff53435-de59-46e9-836f-ca8713277d0c"/>
+    <prov:entity prov:ref="id:31dd1208-1a62-4eb0-bd42-f6aa6d6dac24"/>
+    <prov:time>2024-03-26T09:35:01.209542</prov:time>
+    <prov:role xsi:type="xsd:QName">wf:main/sorted/input</prov:role>
+  </prov:used>
+  <prov:entity prov:id="id:f7144d14-29c9-4bbf-b6a6-33bcfbf8e229">
+    <prov:value xsi:type="xsd:boolean">true</prov:value>
+  </prov:entity>
+  <prov:used>
+    <prov:activity prov:ref="id:6ff53435-de59-46e9-836f-ca8713277d0c"/>
+    <prov:entity prov:ref="id:f7144d14-29c9-4bbf-b6a6-33bcfbf8e229"/>
+    <prov:time>2024-03-26T09:35:01.209606</prov:time>
+    <prov:role xsi:type="xsd:QName">wf:main/sorted/reverse</prov:role>
+  </prov:used>
+  <prov:entity prov:id="data:b9214658cc453331b62c2282b772a5c063dbd284">
+    <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
+  </prov:entity>
+  <prov:entity prov:id="id:072eaf95-a2f6-4417-980c-a7b930221dce">
+    <prov:type xsi:type="xsd:QName">wf4ever:File</prov:type>
+    <prov:type xsi:type="xsd:QName">wfprov:Artifact</prov:type>
+    <cwlprov:basename>output.txt</cwlprov:basename>
+    <cwlprov:nameext>.txt</cwlprov:nameext>
+    <cwlprov:nameroot>output</cwlprov:nameroot>
+  </prov:entity>
+  <prov:specializationOf>
+    <prov:specificEntity prov:ref="id:072eaf95-a2f6-4417-980c-a7b930221dce"/>
+    <prov:generalEntity prov:ref="data:b9214658cc453331b62c2282b772a5c063dbd284"/>
+  </prov:specializationOf>
+  <prov:wasGeneratedBy>
+    <prov:entity prov:ref="id:072eaf95-a2f6-4417-980c-a7b930221dce"/>
+    <prov:activity prov:ref="id:6ff53435-de59-46e9-836f-ca8713277d0c"/>
+    <prov:time>2024-03-26T09:35:02.211447</prov:time>
+    <prov:role xsi:type="xsd:QName">wf:main/sorted/output</prov:role>
+  </prov:wasGeneratedBy>
+  <prov:wasEndedBy>
+    <prov:activity prov:ref="id:6ff53435-de59-46e9-836f-ca8713277d0c"/>
+    <prov:ender prov:ref="id:73420c43-a023-4f52-9630-13bcdd9441c2"/>
+    <prov:time>2024-03-26T09:35:02.211442</prov:time>
+  </prov:wasEndedBy>
+  <prov:wasGeneratedBy>
+    <prov:entity prov:ref="id:072eaf95-a2f6-4417-980c-a7b930221dce"/>
+    <prov:activity prov:ref="id:73420c43-a023-4f52-9630-13bcdd9441c2"/>
+    <prov:time>2024-03-26T09:35:02.212338</prov:time>
+    <prov:role xsi:type="xsd:QName">wf:main/primary/output</prov:role>
+  </prov:wasGeneratedBy>
+  <prov:wasEndedBy>
+    <prov:activity prov:ref="id:73420c43-a023-4f52-9630-13bcdd9441c2"/>
+    <prov:ender prov:ref="id:577e0cfe-9f26-4170-872b-94c1b2578771"/>
+    <prov:time>2024-03-26T09:35:02.212375</prov:time>
+  </prov:wasEndedBy>
+</prov:document>

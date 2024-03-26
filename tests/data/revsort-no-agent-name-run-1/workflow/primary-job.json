@@ -1,0 +1,13 @@
+{
+    "input": {
+        "class": "File",
+        "format": "https://www.iana.org/assignments/media-types/text/plain",
+        "location": "../data/32/327fc7aedf4f6b69a42a7c8b808dc5a7aff61376",
+        "size": 1111,
+        "basename": "hello.txt",
+        "nameroot": "hello",
+        "nameext": ".txt",
+        "checksum": "sha1$327fc7aedf4f6b69a42a7c8b808dc5a7aff61376"
+    },
+    "reverse_sort": true
+}
