@@ -1176,3 +1176,18 @@ def test_revsort_inline(data_dir, tmpdir, cwl_version):
         (reverse_sort_param.id, reverse_param.id),
     }
     assert set(_connected(workflow)) == {(sort_out_param.id, out_file_param.id)}
+
+
+def test_agent_no_name(data_dir, tmpdir):
+    root = data_dir / "revsort-no-agent-name-run-1"
+    output = tmpdir / "revsort-no-agent-name-run-1-crate"
+    builder = ProvCrateBuilder(root)
+    crate = builder.build()
+    crate.write(output)
+    sel = [_ for _ in crate.contextual_entities if "OrganizeAction" in _.type]
+    assert len(sel) == 1
+    engine_action = sel[0]
+    agent = engine_action["agent"]
+    assert agent.type == "Person"
+    assert agent.id == "https://orcid.org/0000-0001-9447-460X"
+    assert "name" not in agent
