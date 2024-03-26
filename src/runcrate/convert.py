@@ -472,10 +472,12 @@ class ProvCrateBuilder:
             agent_id = a.identifier.uri
             if not agent_id.startswith("http"):
                 agent_id = "#" + agent_id.rsplit(":", 1)[-1]
-            ro_a = crate.add(ContextEntity(crate, agent_id, properties={
-                "@type": "Person",
-                "name": a.label
-            }))
+            properties = {
+                "@type": "Person"
+            }
+            if isinstance(a.label, str):
+                properties["name"] = a.label
+            ro_a = crate.add(ContextEntity(crate, agent_id, properties=properties))
             roc_engine_run.append_to("agent", ro_a, compact=True)
 
     def add_action(self, crate, activity, parent_instrument=None):
