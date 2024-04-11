@@ -1,5 +1,53 @@
 [build-system]
-requires = [
-    "setuptools >= 46.4.0"
-]
+requires = ["setuptools>=61.2"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "runcrate"
+description = "Workflow Run RO-Crate toolkit"
+keywords = ["ro-crate", "workflow", "provenance", "CWL", "CommonWL"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "License :: OSI Approved :: Apache Software License",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
+authors = [{name = "CRS4", email = "ro-crate@elixir-europe.org"}, {name = "RO-Crate community"}]
+requires-python = ">=3.8, <4"
+dependencies = [
+    "bdbag>=1.4.1",
+    "click~=8.1",
+    "cwl-utils==0.33",
+    "cwlprov==0.1.1",
+    "networkx==3.1",
+    "prov>=1.5.1",
+    "rocrate>=0.9,<1",
+]
+dynamic = ["version"]
+
+[project.readme]
+text = "Runcrate is a software toolkit to manipulate `Workflow Run RO-Crate <https://www.researchobject.org/workflow-run-crate/>`_ packages. Documentation is at http://www.researchobject.org/runcrate/."
+content-type = "text/x-rst"
+
+[project.urls]
+Homepage = "https://github.com/ResearchObject/runcrate"
+
+[project.scripts]
+runcrate = "runcrate.cli:cli"
+
+[tool.setuptools]
+zip-safe = false
+include-package-data = true
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.setuptools.dynamic]
+version = {attr = "runcrate.__version__"}
