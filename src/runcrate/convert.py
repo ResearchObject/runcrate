@@ -27,7 +27,6 @@ from pathlib import Path
 import networkx as nx
 import prov.model
 from bdbag.bdbagit import BDBag
-from cwl_utils.parser import load_document_by_yaml
 from cwlprov.prov import Entity, Provenance
 from cwlprov.ro import ResearchObject
 from cwlprov.utils import first
@@ -37,6 +36,7 @@ from rocrate.rocrate import ROCrate
 
 from .constants import PROFILES_BASE, PROFILES_VERSION, TERMS_NAMESPACE
 from .utils import as_list, parse_img
+from .converters import CONVERTERS
 
 
 WORKFLOW_BASENAME = "packed.cwl"
@@ -114,10 +114,6 @@ def properties_from_cwl_param(cwl_p):
     return properties
 
 
-def get_fragment(uri):
-    return uri.rsplit("#", 1)[-1]
-
-
 def get_relative_uri(uri):
     doc, fragment = uri.rsplit("#", 1)
     return f"{doc.rsplit('/', 1)[-1]}#{fragment}"
@@ -148,62 +144,25 @@ def build_step_graph(cwl_wf):
     return graph
 
 
-def normalize_cwl_defs(cwl_defs):
-    inline_tools = {}
-    for d in cwl_defs.values():
-        if not hasattr(d, "steps") or not d.steps:
-            continue
-        for s in d.steps:
-            if hasattr(s, "run") and s.run:
-                if hasattr(s.run, "id"):
-                    tool = s.run
-                    if tool.id.startswith("_:"):  # CWL > 1.0
-                        tool.id = f"{s.id}/run"
-                    inline_tools[get_fragment(tool.id)] = tool
-                    s.run = tool.id
-    cwl_defs.update(inline_tools)
-
-
-def get_workflow(wf_path):
-    """\
-    Read the packed CWL workflow.
-
-    Returns a dictionary where tools / workflows are mapped by their ids.
-
-    Does not use load_document_by_uri, so we can hack the json to work around
-    issues.
-    """
-    wf_path = Path(wf_path)
-    with open(wf_path, "rt") as f:
-        json_wf = json.load(f)
-    graph = json_wf.get("$graph", [json_wf])
-    # https://github.com/common-workflow-language/cwltool/pull/1506
-    for n in graph:
-        ns = n.pop("$namespaces", {})
-        if ns:
-            json_wf.setdefault("$namespaces", {}).update(ns)
-    defs = load_document_by_yaml(json_wf, wf_path.absolute().as_uri(), load_all=True)
-    if not isinstance(defs, list):
-        defs = [defs]
-    def_map = {}
-    for d in defs:
-        k = get_fragment(d.id)
-        if k == "main":
-            k = wf_path.name
-        def_map[k] = d
-    normalize_cwl_defs(def_map)
-    return def_map
+def get_fragment(uri):
+    return uri.rsplit("#", 1)[-1]
 
 
 class ProvCrateBuilder:
 
-    def __init__(self, root, workflow_name=None, license=None, readme=None):
+    def __init__(self,
+                 root,
+                 converter=CONVERTERS["cwl"],
+                 workflow_name=None,
+                 license=None,
+                 readme=None):
         self.root = Path(root)
+        self.converter = converter
         self.workflow_name = workflow_name
         self.license = license
         self.readme = Path(readme) if readme else readme
         self.wf_path = self.root / "workflow" / WORKFLOW_BASENAME
-        self.cwl_defs = get_workflow(self.wf_path)
+        self.cwl_defs = self.converter.get_workflow(self.wf_path)
         self.step_maps = self._get_step_maps(self.cwl_defs)
         self.ro = ResearchObject(BDBag(str(root)))
         self.with_prov = set(str(_) for _ in self.ro.resources_with_provenance())
