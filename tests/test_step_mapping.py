@@ -14,7 +14,6 @@
 
 import pytest
 
-from runcrate.convert import ProvCrateBuilder
 from runcrate.converters.cwl import cwlConverter
 
 

@@ -34,8 +34,8 @@ from rocrate.model.softwareapplication import SoftwareApplication
 from rocrate.rocrate import ROCrate
 
 from .constants import PROFILES_BASE, PROFILES_VERSION, TERMS_NAMESPACE
-from .utils import as_list, parse_img
 from .converters import CONVERTERS
+from .utils import as_list, parse_img
 
 
 WORKFLOW_BASENAME = "packed.cwl"
@@ -125,8 +125,6 @@ def cut_step_part(relative_uri):
     return relative_uri
 
 
-
-
 def get_fragment(uri):
     return uri.rsplit("#", 1)[-1]
 
@@ -160,7 +158,6 @@ class ProvCrateBuilder:
         # map source files to destination files
         self.file_map = {}
         self.manifest = self._get_manifest()
-
 
     def _get_manifest(self):
         manifest = {}

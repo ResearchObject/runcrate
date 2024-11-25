@@ -1,13 +1,15 @@
+import json
+from pathlib import Path
+
+import networkx as nx
+from cwl_utils.parser import load_document_by_yaml
+
 from .base import converter
 
-from pathlib import Path
-import json
-import networkx as nx
-
-from cwl_utils.parser import load_document_by_yaml
 
 def _get_fragment(uri):
     return uri.rsplit("#", 1)[-1]
+
 
 def _normalize_cwl_defs(cwl_defs):
     inline_tools = {}
@@ -88,4 +90,3 @@ class cwlConverter(converter):
                     if source_fragment:
                         graph.add_edge(source_fragment, fragment)
         return graph
-

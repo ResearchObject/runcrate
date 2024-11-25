@@ -19,9 +19,9 @@ import click
 
 from . import __version__
 from .convert import ProvCrateBuilder
+from .converters import CONVERTERS
 from .report import dump_crate_actions
 from .run import run_crate
-from .converters import CONVERTERS
 
 
 @click.group()
