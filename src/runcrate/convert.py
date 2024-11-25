@@ -24,7 +24,6 @@ import re
 from io import StringIO
 from pathlib import Path
 
-import networkx as nx
 import prov.model
 from bdbag.bdbagit import BDBag
 from cwlprov.prov import Entity, Provenance
@@ -126,22 +125,6 @@ def cut_step_part(relative_uri):
     return relative_uri
 
 
-def build_step_graph(cwl_wf):
-    out_map = {}
-    for s in cwl_wf.steps:
-        for o in s.out:
-            out_map[o] = get_fragment(s.id)
-    graph = nx.DiGraph()
-    for s in cwl_wf.steps:
-        fragment = get_fragment(s.id)
-        graph.add_node(fragment)
-        for i in s.in_:
-            sources = [i.source] if not isinstance(i.source, list) else i.source
-            for s in sources:
-                source_fragment = out_map.get(s)
-                if source_fragment:
-                    graph.add_edge(source_fragment, fragment)
-    return graph
 
 
 def get_fragment(uri):
@@ -163,7 +146,7 @@ class ProvCrateBuilder:
         self.readme = Path(readme) if readme else readme
         self.wf_path = self.root / "workflow" / WORKFLOW_BASENAME
         self.cwl_defs = self.converter.get_workflow(self.wf_path)
-        self.step_maps = self._get_step_maps(self.cwl_defs)
+        self.step_maps = self.converter.get_step_maps(self.cwl_defs)
         self.ro = ResearchObject(BDBag(str(root)))
         self.with_prov = set(str(_) for _ in self.ro.resources_with_provenance())
         self.workflow_run = Provenance(self.ro).activity()
@@ -178,18 +161,6 @@ class ProvCrateBuilder:
         self.file_map = {}
         self.manifest = self._get_manifest()
 
-    @staticmethod
-    def _get_step_maps(cwl_defs):
-        rval = {}
-        for k, v in cwl_defs.items():
-            if hasattr(v, "steps"):
-                graph = build_step_graph(v)
-                pos_map = {f: i for i, f in enumerate(nx.topological_sort(graph))}
-                rval[k] = {}
-                for s in v.steps:
-                    f = get_fragment(s.id)
-                    rval[k][f] = {"tool": get_fragment(s.run), "pos": pos_map[f]}
-        return rval
 
     def _get_manifest(self):
         manifest = {}

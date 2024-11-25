@@ -28,7 +28,7 @@ def test_step_maps_cwl(data_dir, converter):
     wf_basename = "exome-alignment-packed.cwl"
     wf_path = data_dir / wf_basename
     cwl_defs = converter.get_workflow(wf_path)
-    step_maps = ProvCrateBuilder._get_step_maps(cwl_defs)
+    step_maps = converter.get_step_maps(cwl_defs)
     assert set(step_maps) == {wf_basename}
     sm = step_maps[wf_basename]
     assert len(sm) == 8
@@ -51,7 +51,7 @@ def test_step_maps_cwl(data_dir, converter):
 def test_step_maps_disconnected_cwl(data_dir, converter):
     wf_path = data_dir / "no-output-run-1/workflow/packed.cwl"
     cwl_defs = converter.get_workflow(wf_path)
-    step_maps = ProvCrateBuilder._get_step_maps(cwl_defs)
+    step_maps = converter.get_step_maps(cwl_defs)
     assert set(step_maps) == {"packed.cwl"}
     sm = step_maps["packed.cwl"]
     assert set(sm) == {"main/date_step", "main/echo_step", "main/date2_step"}

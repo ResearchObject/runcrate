@@ -8,3 +8,16 @@ class converter:
 
         Returns a dictionary where tools / workflows are mapped by their ids.
         """
+        raise NotImplementedError("get_workflow")
+
+    def get_step_maps(self, wf_defs):
+        """\
+        Get a mapping of step names to their tool names and positions.
+        """
+        raise NotImplementedError("get_step_maps")
+
+    def build_step_graph(self, wf):
+        """\
+        Build a graph of steps in the workflow.
+        """
+        raise NotImplementedError("build_step_graph")

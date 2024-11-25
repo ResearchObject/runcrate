@@ -2,6 +2,7 @@ from .base import converter
 
 from pathlib import Path
 import json
+import networkx as nx
 
 from cwl_utils.parser import load_document_by_yaml
 
@@ -58,4 +59,33 @@ class cwlConverter(converter):
             def_map[k] = d
         _normalize_cwl_defs(def_map)
         return def_map
+
+    def get_step_maps(self, cwl_defs):
+        rval = {}
+        for k, v in cwl_defs.items():
+            if hasattr(v, "steps"):
+                graph = self.build_step_graph(v)
+                pos_map = {f: i for i, f in enumerate(nx.topological_sort(graph))}
+                rval[k] = {}
+                for s in v.steps:
+                    f = _get_fragment(s.id)
+                    rval[k][f] = {"tool": _get_fragment(s.run), "pos": pos_map[f]}
+        return rval
+
+    def build_step_graph(self, cwl_wf):
+        out_map = {}
+        for s in cwl_wf.steps:
+            for o in s.out:
+                out_map[o] = _get_fragment(s.id)
+        graph = nx.DiGraph()
+        for s in cwl_wf.steps:
+            fragment = _get_fragment(s.id)
+            graph.add_node(fragment)
+            for i in s.in_:
+                sources = [i.source] if not isinstance(i.source, list) else i.source
+                for s in sources:
+                    source_fragment = out_map.get(s)
+                    if source_fragment:
+                        graph.add_edge(source_fragment, fragment)
+        return graph
 
