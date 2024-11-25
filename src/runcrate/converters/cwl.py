@@ -5,6 +5,24 @@ import json
 
 from cwl_utils.parser import load_document_by_yaml
 
+def _get_fragment(uri):
+    return uri.rsplit("#", 1)[-1]
+
+def _normalize_cwl_defs(cwl_defs):
+    inline_tools = {}
+    for d in cwl_defs.values():
+        if not hasattr(d, "steps") or not d.steps:
+            continue
+        for s in d.steps:
+            if hasattr(s, "run") and s.run:
+                if hasattr(s.run, "id"):
+                    tool = s.run
+                    if tool.id.startswith("_:"):  # CWL > 1.0
+                        tool.id = f"{s.id}/run"
+                    inline_tools[_get_fragment(tool.id)] = tool
+                    s.run = tool.id
+    cwl_defs.update(inline_tools)
+
 
 class cwlConverter(converter):
     def __init__(self):
@@ -34,27 +52,10 @@ class cwlConverter(converter):
             defs = [defs]
         def_map = {}
         for d in defs:
-            k = self._get_fragment(d.id)
+            k = _get_fragment(d.id)
             if k == "main":
                 k = wf_path.name
             def_map[k] = d
-        self._normalize_cwl_defs(def_map)
+        _normalize_cwl_defs(def_map)
         return def_map
 
-    def _get_fragment(self, uri):
-        return uri.rsplit("#", 1)[-1]
-
-    def _normalize_cwl_defs(self, cwl_defs):
-        inline_tools = {}
-        for d in cwl_defs.values():
-            if not hasattr(d, "steps") or not d.steps:
-                continue
-            for s in d.steps:
-                if hasattr(s, "run") and s.run:
-                    if hasattr(s.run, "id"):
-                        tool = s.run
-                        if tool.id.startswith("_:"):  # CWL > 1.0
-                            tool.id = f"{s.id}/run"
-                        inline_tools[self._get_fragment(tool.id)] = tool
-                        s.run = tool.id
-        cwl_defs.update(inline_tools)
