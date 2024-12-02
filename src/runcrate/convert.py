@@ -18,7 +18,6 @@
 Generate a Workflow Run RO-Crate from a CWLProv RO bundle.
 """
 
-import hashlib
 import json
 import re
 from io import StringIO
@@ -26,9 +25,8 @@ from pathlib import Path
 
 import prov.model
 from bdbag.bdbagit import BDBag
-from cwlprov.prov import Entity, Provenance
+from cwlprov.prov import Provenance
 from cwlprov.ro import ResearchObject
-from cwlprov.utils import first
 from rocrate.model.contextentity import ContextEntity
 from rocrate.model.softwareapplication import SoftwareApplication
 from rocrate.rocrate import ROCrate
@@ -57,8 +55,6 @@ CWL_TYPE_MAP = {
 }
 
 SCATTER_JOB_PATTERN = re.compile(r"^(.+)_\d+$")
-
-CWLPROV_NONE = "https://w3id.org/cwl/prov#None"
 
 WROC_PROFILE_VERSION = "1.0"
 
@@ -287,7 +283,7 @@ class ProvCrateBuilder:
 
             def to_wf_p(k):
                 return k.replace(activity.plan().localpart, tool_name)
-        self._get_hashes(activity.provenance)
+        self.converter.get_hashes(activity.provenance)
         action["instrument"] = instrument
         action["startTime"] = activity.start().time.isoformat()
         action["endTime"] = activity.end().time.isoformat()
@@ -517,7 +513,12 @@ class ProvCrateBuilder:
             wf_p = crate.dereference(to_wf_p(k))
             k = get_fragment(k)
             v = rel.entity()
-            value = self.convert_param(v, crate)
+            value = self.converter.convert_param(v,
+                                                 crate,
+                                                 hashes=self.hashes,
+                                                 manifest=self.manifest,
+                                                 file_map=self.file_map
+                                                 )
             if value is None:
                 continue  # param is optional with no default and was not set
             if {"ro:Folder", "wf4ever:File"} & set(str(_) for _ in v.types()):
@@ -614,44 +615,6 @@ class ProvCrateBuilder:
             if m:
                 plan = activity.provenance.entity(m.groups()[0])
         return plan
-
-    def _get_hash(self, prov_param):
-        k = prov_param.id.localpart
-        try:
-            return self.hashes[k]
-        except KeyError:
-            type_names = frozenset(str(_) for _ in prov_param.types())
-            if "wf4ever:File" in type_names:
-                hash_ = next(prov_param.specializationOf()).id.localpart
-                self.hashes[k] = hash_
-                return hash_
-            elif "ro:Folder" in type_names:
-                m = hashlib.sha1()
-                m.update("".join(sorted(
-                    self._get_hash(_) for _ in self.get_dict(prov_param).values()
-                )).encode())
-                self.hashes[k] = hash_ = m.hexdigest()
-                return hash_
-
-    def _get_hashes(self, provenance):
-        for r in provenance.prov_doc.get_records(prov.model.ProvEntity):
-            self._get_hash(Entity(provenance, r))
-
-    def get_members(self, entity):
-        membership = entity.provenance.record_with_attr(
-            prov.model.ProvMembership, entity.id, prov.model.PROV_ATTR_COLLECTION
-        )
-        member_ids = (_.get_attribute(prov.model.PROV_ATTR_ENTITY) for _ in membership)
-        return (entity.provenance.entity(first(_)) for _ in member_ids)
-
-    def get_dict(self, entity):
-        d = {}
-        for qname in entity.record.get_attribute("prov:hadDictionaryMember"):
-            kvp = entity.provenance.entity(qname)
-            key = first(kvp.record.get_attribute("prov:pairKey"))
-            entity_id = first(kvp.record.get_attribute("prov:pairEntity"))
-            d[key] = entity.provenance.entity(entity_id)
-        return d
 
     def _map_input_data(self, crate, data):
         if isinstance(data, list):

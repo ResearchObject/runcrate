@@ -21,3 +21,9 @@ class converter:
         Build a graph of steps in the workflow.
         """
         raise NotImplementedError("build_step_graph")
+
+    def convert_param(self, prov_param, crate, convert_secondary=True, parent=None):
+        """\
+        Convert a CWLProv parameter to a RO-Crate entity.
+        """
+        raise NotImplementedError("convert_param")
