@@ -17,14 +17,24 @@ class converter:
         self.file_map = {}
         self.manifest = None
 
+        add_root_metadata(self, crate)
+
     # --------------------------------------------------------------------------
     # Top level functions - called by the build() function
 
     def add_root_metadata(self, crate):
         """
-        Add metadata to the root of the crate.
+        Add license and readme to the root of the crate, if provided.
         """
-        raise NotImplementedError("add_root_metadata")
+        if self.license:
+            crate.root_dataset["license"] = self.license
+        if self.readme:
+            readme = crate.add_file(self.readme)
+            readme["about"] = crate.root_dataset
+            if self.readme.suffix.lower() == ".md":
+                readme["encodingFormat"] = "text/markdown"
+
+        return 
 
     def add_profiles(self, crate):
         """

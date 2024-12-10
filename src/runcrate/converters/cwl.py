@@ -46,15 +46,6 @@ class cwlConverter(converter):
     # --------------------------------------------------------------------------
     # Top level methods, called by build()
 
-    def add_root_metadata(self, crate):
-        if self.license:
-            crate.root_dataset["license"] = self.license
-        if self.readme:
-            readme = crate.add_file(self.readme)
-            readme["about"] = crate.root_dataset
-            if self.readme.suffix.lower() == ".md":
-                readme["encodingFormat"] = "text/markdown"
-
     def add_profiles(self, crate):
         profiles = []
         for p in "process", "workflow", "provenance":

@@ -62,7 +62,6 @@ class ProvCrateBuilder:
     def build(self):
         crate = ROCrate(gen_preview=False)
         crate.metadata.extra_contexts.append(TERMS_NAMESPACE)
-        self.converter.add_root_metadata(crate)
         self.converter.add_profiles(crate)
         self.converter.add_workflow(crate)
         self.converter.add_engine_run(crate)
