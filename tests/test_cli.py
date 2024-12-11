@@ -36,7 +36,7 @@ def test_cli_convert(data_dir, tmpdir, monkeypatch):
     workflow = crate.mainEntity
     assert workflow["name"] == "packed.cwl"
 
-    
+
 def test_cli_convert_with_cwl_converter_set_explictly(data_dir, tmpdir, monkeypatch):
     monkeypatch.chdir(str(tmpdir))
     root = data_dir / "revsort-run-1"
