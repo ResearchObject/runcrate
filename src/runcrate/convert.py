@@ -28,6 +28,7 @@ from rocrate.rocrate import ROCrate
 from .constants import TERMS_NAMESPACE
 from .converters import CONVERTERS
 
+
 MANIFEST_FILE = "manifest-sha1.txt"
 
 

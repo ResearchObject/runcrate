@@ -1,22 +1,21 @@
 import hashlib
 import json
 import re
-from pathlib import Path
 from io import StringIO
+from pathlib import Path
 
 import networkx as nx
 import prov.model
 from cwl_utils.parser import load_document_by_yaml
-from cwlprov.prov import Entity
+from cwlprov.prov import Entity, Provenance
 from cwlprov.utils import first
-from cwlprov.prov import Provenance
-
 from rocrate.model.contextentity import ContextEntity
 from rocrate.model.softwareapplication import SoftwareApplication
 
-from .base import converter
-from ..constants import PROFILES_BASE, PROFILES_VERSION, WROC_PROFILE_VERSION, DOCKER_IMG_TYPE
+from ..constants import DOCKER_IMG_TYPE, PROFILES_BASE, PROFILES_VERSION, WROC_PROFILE_VERSION
 from ..utils import as_list, parse_img
+from .base import converter
+
 
 CWLPROV_NONE = "https://w3id.org/cwl/prov#None"
 
