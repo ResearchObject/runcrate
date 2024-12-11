@@ -11,13 +11,11 @@ class converter:
         self.with_prov = set()
         self.workflow_run = None
         self.roc_engine_run = None
-        self.control_actions = {}        
+        self.control_actions = {}
         self.collections = {}
         self.hashes = {}
         self.file_map = {}
         self.manifest = None
-
-        add_root_metadata(self, crate)
 
     # --------------------------------------------------------------------------
     # Top level functions - called by the build() function
@@ -34,7 +32,7 @@ class converter:
             if self.readme.suffix.lower() == ".md":
                 readme["encodingFormat"] = "text/markdown"
 
-        return 
+        return
 
     def add_profiles(self, crate):
         """
@@ -77,7 +75,7 @@ class converter:
         Add output formats to the crate.
         """
         raise NotImplementedError("add_output_formats")
-        
+
     # --------------------------------------------------------------------------
     # Helper functions - called by the top level functions
 

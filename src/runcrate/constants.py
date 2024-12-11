@@ -27,5 +27,3 @@ TERMS_NAMESPACE = "https://w3id.org/ro/terms/workflow-run"
 
 WROC_PROFILE_VERSION = "1.0"
 DOCKER_IMG_TYPE = "https://w3id.org/ro/terms/workflow-run#DockerImage"
-
-

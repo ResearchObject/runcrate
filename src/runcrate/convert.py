@@ -18,21 +18,18 @@
 Generate a Workflow Run RO-Crate from a CWLProv RO bundle.
 """
 
-import json
 from pathlib import Path
 
-import prov.model
 from bdbag.bdbagit import BDBag
 from cwlprov.prov import Provenance
 from cwlprov.ro import ResearchObject
-from rocrate.model.contextentity import ContextEntity
-from rocrate.model.softwareapplication import SoftwareApplication
 from rocrate.rocrate import ROCrate
 
 from .constants import TERMS_NAMESPACE
 from .converters import CONVERTERS
 
 MANIFEST_FILE = "manifest-sha1.txt"
+
 
 class ProvCrateBuilder:
     def __init__(self,
@@ -62,6 +59,7 @@ class ProvCrateBuilder:
     def build(self):
         crate = ROCrate(gen_preview=False)
         crate.metadata.extra_contexts.append(TERMS_NAMESPACE)
+        self.converter.add_root_metadata(crate)
         self.converter.add_profiles(crate)
         self.converter.add_workflow(crate)
         self.converter.add_engine_run(crate)
@@ -70,4 +68,3 @@ class ProvCrateBuilder:
         self.converter.add_inputs_file(crate)
         self.converter.add_output_formats(crate)
         return crate
-

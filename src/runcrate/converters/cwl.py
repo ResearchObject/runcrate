@@ -13,7 +13,6 @@ from cwlprov.prov import Provenance
 
 from rocrate.model.contextentity import ContextEntity
 from rocrate.model.softwareapplication import SoftwareApplication
-from rocrate.rocrate import ROCrate
 
 from .base import converter
 from ..constants import PROFILES_BASE, PROFILES_VERSION, WROC_PROFILE_VERSION, DOCKER_IMG_TYPE
@@ -39,7 +38,8 @@ OUTPUTS_FILE_BASENAME = "primary-output.json"
 
 SCATTER_JOB_PATTERN = re.compile(r"^(.+)_\d+$")
 
-class cwlConverter(converter):    
+
+class cwlConverter(converter):
 
     WORKFLOW_BASENAME = "packed.cwl"
 
@@ -499,7 +499,7 @@ class cwlConverter(converter):
         """
         Get a mapping of step names to their tool names and positions.
         """
-        
+
         rval = {}
         for k, v in self.workflow_definition.items():
             if hasattr(v, "steps"):
@@ -515,7 +515,7 @@ class cwlConverter(converter):
         """
         Build a graph of steps in the workflow.
         """
-        
+
         out_map = {}
         for s in cwl_wf.steps:
             for o in s.out:
@@ -661,17 +661,12 @@ class cwlConverter(converter):
         return data
 
 
-
 def _get_members(entity):
     membership = entity.provenance.record_with_attr(
         prov.model.ProvMembership, entity.id, prov.model.PROV_ATTR_COLLECTION
     )
     member_ids = (_.get_attribute(prov.model.PROV_ATTR_ENTITY) for _ in membership)
     return (entity.provenance.entity(first(_)) for _ in member_ids)
-
-
-def _get_fragment(uri):
-    return uri.rsplit("#", 1)[-1]
 
 
 def _normalize_workflow_definition(workflow_definition):
@@ -710,6 +705,7 @@ def _get_dict(entity):
         d[key] = entity.provenance.entity(entity_id)
     return d
 
+
 def _resolve_plan(activity):
     job_qname = activity.plan()
     plan = activity.provenance.entity(job_qname)
@@ -719,9 +715,11 @@ def _resolve_plan(activity):
             plan = activity.provenance.entity(m.groups()[0])
     return plan
 
+
 def _get_relative_uri(uri):
     doc, fragment = uri.rsplit("#", 1)
     return f"{doc.rsplit('/', 1)[-1]}#{fragment}"
+
 
 def _properties_from_cwl_param(cwl_p):
     def is_structured(cwl_type):
@@ -755,6 +753,7 @@ def _properties_from_cwl_param(cwl_p):
         properties["valuePattern"] = "|".join(_.rsplit("/", 1)[-1] for _ in cwl_p.type_.symbols)
     return properties
 
+
 def _convert_cwl_type(cwl_type):
     if isinstance(cwl_type, list):
         s = set(_convert_cwl_type(_) for _ in cwl_type)
@@ -769,8 +768,10 @@ def _convert_cwl_type(cwl_type):
     if cwl_type.type_ == "record":
         return "PropertyValue"
 
+
 def _get_fragment(uri):
     return uri.rsplit("#", 1)[-1]
+
 
 def _cut_step_part(relative_uri):
     parts = relative_uri.split("/", 2)
