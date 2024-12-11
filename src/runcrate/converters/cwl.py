@@ -12,7 +12,7 @@ from cwlprov.utils import first
 from rocrate.model.contextentity import ContextEntity
 from rocrate.model.softwareapplication import SoftwareApplication
 
-from ..constants import DOCKER_IMG_TYPE, PROFILES_BASE, PROFILES_VERSION, WROC_PROFILE_VERSION
+from ..constants import DOCKER_IMG_TYPE
 from ..utils import as_list, parse_img
 from .base import converter
 
@@ -44,25 +44,6 @@ class cwlConverter(converter):
 
     # --------------------------------------------------------------------------
     # Top level methods, called by build()
-
-    def add_profiles(self, crate):
-        profiles = []
-        for p in "process", "workflow", "provenance":
-            id_ = f"{PROFILES_BASE}/{p}/{PROFILES_VERSION}"
-            profiles.append(crate.add(ContextEntity(crate, id_, properties={
-                "@type": "CreativeWork",
-                "name": f"{p.title()} Run Crate",
-                "version": PROFILES_VERSION,
-            })))
-        # FIXME: in the future, this could go out of sync with the wroc
-        # profile added by ro-crate-py to the metadata descriptor
-        wroc_profile_id = f"https://w3id.org/workflowhub/workflow-ro-crate/{WROC_PROFILE_VERSION}"
-        profiles.append(crate.add(ContextEntity(crate, wroc_profile_id, properties={
-            "@type": "CreativeWork",
-            "name": "Workflow RO-Crate",
-            "version": WROC_PROFILE_VERSION,
-        })))
-        crate.root_dataset["conformsTo"] = profiles
 
     def add_workflow(self, crate):
         lang_version = self.workflow_definition[self.WORKFLOW_BASENAME].cwlVersion

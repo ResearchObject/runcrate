@@ -27,11 +27,6 @@ def test_initialization(converter_instance):
     assert isinstance(converter_instance, converter)
 
 
-def test_add_profiles(converter_instance):
-    with pytest.raises(NotImplementedError):
-        converter_instance.add_profiles(None)
-
-
 def test_add_workflow(converter_instance):
     with pytest.raises(NotImplementedError):
         converter_instance.add_workflow(None)
