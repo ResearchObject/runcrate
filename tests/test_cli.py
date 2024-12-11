@@ -26,7 +26,22 @@ def test_cli_convert(data_dir, tmpdir, monkeypatch):
     monkeypatch.chdir(str(tmpdir))
     root = data_dir / "revsort-run-1"
     runner = CliRunner()
-    args = ["convert", "-c", "cwl", str(root)]
+    args = ["convert", str(root)]
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0, result.exception
+    crate_zip = tmpdir / f"{root.name}.crate.zip"
+    assert crate_zip.is_file()
+    crate = ROCrate(crate_zip)
+    assert not crate.root_dataset.get("license")
+    workflow = crate.mainEntity
+    assert workflow["name"] == "packed.cwl"
+
+    
+def test_cli_convert_with_cwl_converter_set_explictly(data_dir, tmpdir, monkeypatch):
+    monkeypatch.chdir(str(tmpdir))
+    root = data_dir / "revsort-run-1"
+    runner = CliRunner()
+    args = ["convert", "--converter", "cwl", str(root)]
     result = runner.invoke(cli, args)
     assert result.exit_code == 0, result.exception
     crate_zip = tmpdir / f"{root.name}.crate.zip"
