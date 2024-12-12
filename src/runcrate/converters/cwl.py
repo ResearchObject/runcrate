@@ -14,7 +14,7 @@ from rocrate.model.softwareapplication import SoftwareApplication
 
 from ..constants import DOCKER_IMG_TYPE
 from ..utils import as_list, parse_img
-from .base import converter
+from .base import Converter
 
 
 CWLPROV_NONE = "https://w3id.org/cwl/prov#None"
@@ -38,7 +38,7 @@ OUTPUTS_FILE_BASENAME = "primary-output.json"
 SCATTER_JOB_PATTERN = re.compile(r"^(.+)_\d+$")
 
 
-class cwlConverter(converter):
+class CwlConverter(Converter):
 
     WORKFLOW_BASENAME = "packed.cwl"
 

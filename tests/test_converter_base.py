@@ -14,17 +14,17 @@
 
 import pytest
 
-from runcrate.converters.base import converter
+from runcrate.converters.base import Converter
 
 
 @pytest.fixture
 def converter_instance():
-    converter_instance = converter()
+    converter_instance = Converter()
     return converter_instance
 
 
 def test_initialization(converter_instance):
-    assert isinstance(converter_instance, converter)
+    assert isinstance(converter_instance, Converter)
 
 
 def test_add_workflow(converter_instance):

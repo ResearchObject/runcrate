@@ -3,7 +3,7 @@ from rocrate.model.contextentity import ContextEntity
 from ..constants import PROFILES_BASE, PROFILES_VERSION, WROC_PROFILE_VERSION
 
 
-class converter:
+class Converter:
     def __init__(self):
         self.root = None
         self.workflow_name = None

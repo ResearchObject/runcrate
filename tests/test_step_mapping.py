@@ -14,12 +14,12 @@
 
 import pytest
 
-from runcrate.converters.cwl import cwlConverter
+from runcrate.converters.cwl import CwlConverter
 
 
 @pytest.fixture
 def converter():
-    converter = cwlConverter()
+    converter = CwlConverter()
     return converter
 
 

@@ -1,8 +1,8 @@
-from .base import converter
-from .cwl import cwlConverter
+from .base import Converter
+from .cwl import CwlConverter
 
 
 CONVERTERS = {
-    "base": converter(),
-    "cwl": cwlConverter(),
+    "base": Converter(),
+    "cwl": CwlConverter(),
 }
