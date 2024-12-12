@@ -66,6 +66,6 @@ class ProvCrateBuilder:
         self.converter.add_engine_run(crate)
         self.converter.add_action(crate, self.converter.workflow_run)
         self.converter.patch_workflow_input_collection(crate)
-        self.converter.add_inputs_file(crate)
+        self.converter.add_inputs_files(crate)
         self.converter.add_output_formats(crate)
         return crate

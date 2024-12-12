@@ -186,7 +186,7 @@ class CwlConverter(Converter):
             if "ComputationalWorkflow" in as_list(tool.type):
                 self.patch_workflow_input_collection(crate, wf=tool)
 
-    def add_inputs_file(self, crate):
+    def add_inputs_files(self, crate):
         path = self.root / "workflow" / INPUTS_FILE_BASENAME
         if path.is_file():
             with open(path) as f:

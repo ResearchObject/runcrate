@@ -1,9 +1,11 @@
+from abc import ABC, abstractmethod
+
 from rocrate.model.contextentity import ContextEntity
 
 from ..constants import PROFILES_BASE, PROFILES_VERSION, WROC_PROFILE_VERSION
 
 
-class Converter:
+class Converter(ABC):
     def __init__(self):
         self.root = None
         self.workflow_name = None
@@ -63,67 +65,77 @@ class Converter:
 
         return
 
+    @abstractmethod
     def add_workflow(self, crate):
         """
         Add the workflow to the crate.
         """
-        raise NotImplementedError("add_workflow")
+        pass
 
+    @abstractmethod
     def add_engine_run(self, crate):
         """
         Add the engine run to the crate.
         """
-        raise NotImplementedError("add_engine_run")
+        pass
 
+    @abstractmethod
     def add_action(self, crate, workflow_run):
         """
         Add the action to the crate.
         """
-        raise NotImplementedError("add_action")
+        pass
 
+    @abstractmethod
     def patch_workflow_input_collection(self, crate):
         """
         Patch the workflow input collection.
         """
-        raise NotImplementedError("patch_workflow_input_collection")
+        pass
 
+    @abstractmethod
     def add_inputs_files(self, crate):
         """
         Add input files to the crate.
         """
-        raise NotImplementedError("add_inputs_files")
+        pass
 
+    @abstractmethod
     def add_output_formats(self, crate):
         """
         Add output formats to the crate.
         """
-        raise NotImplementedError("add_output_formats")
+        pass
 
     # --------------------------------------------------------------------------
     # Helper functions - called by the top level functions
 
+    @abstractmethod
     def get_workflow(self, wf_path):
         """
         Get the workflow from the given path.
 
         Returns a dictionary where tools / workflows are mapped by their ids.
         """
-        raise NotImplementedError("get_workflow")
+        pass
 
+    @abstractmethod
     def get_step_maps(self, wf_defs):
         """
         Get a mapping of step names to their tool names and positions.
         """
-        raise NotImplementedError("get_step_maps")
+        pass
 
+    @abstractmethod
     def build_step_graph(self, wf):
         """
         Build a graph of steps in the workflow.
         """
-        raise NotImplementedError("build_step_graph")
+        pass
 
+    @abstractmethod
     def convert_param(self, prov_param, crate, convert_secondary=True, parent=None):
         """
         Convert a CWLProv parameter to a RO-Crate entity.
         """
-        raise NotImplementedError("convert_param")
+        pass

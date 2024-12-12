@@ -16,10 +16,41 @@ import pytest
 
 from runcrate.converters.base import Converter
 
+class TestConverter(Converter):
+    def add_workflow(self, workflow):
+        raise NotImplementedError
+
+    def add_engine_run(self, engine_run):
+        raise NotImplementedError
+
+    def add_action(self, action, step):
+        raise NotImplementedError
+
+    def patch_workflow_input_collection(self, input_collection):
+        raise NotImplementedError
+
+    def add_inputs_files(self, inputs_files):
+        raise NotImplementedError
+
+    def add_output_formats(self, output_formats):
+        raise NotImplementedError
+
+    def get_workflow(self, workflow):
+        raise NotImplementedError
+
+    def get_step_maps(self, step_maps):
+        raise NotImplementedError
+
+    def build_step_graph(self, step_graph):
+        raise NotImplementedError
+
+    def convert_param(self, param, step):
+        raise NotImplementedError
+
 
 @pytest.fixture
 def converter_instance():
-    converter_instance = Converter()
+    converter_instance = TestConverter()
     return converter_instance
 
 
