@@ -66,9 +66,12 @@ def cli():
 )
 def convert(root, converter, output, license, workflow_name, readme):
     """\
-    Convert a CWLProv RO bundle into a Workflow Run RO-Crate.
+    Convert a provenance bundle into a Workflow Run RO-Crate.
 
-    RO_DIR: top-level directory of the CWLProv RO
+    Supported (see: converters):
+    - CWLProv RO.
+
+    RO_DIR: top-level directory of the provenance bundle.
     """
 
     if not output:
