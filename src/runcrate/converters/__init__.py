@@ -1,4 +1,3 @@
-from .base import Converter
 from .cwl import CwlConverter
 
 

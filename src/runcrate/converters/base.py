@@ -70,42 +70,36 @@ class Converter(ABC):
         """
         Add the workflow to the crate.
         """
-        pass
 
     @abstractmethod
     def add_engine_run(self, crate):
         """
         Add the engine run to the crate.
         """
-        pass
 
     @abstractmethod
     def add_action(self, crate, workflow_run):
         """
         Add the action to the crate.
         """
-        pass
 
     @abstractmethod
     def patch_workflow_input_collection(self, crate):
         """
         Patch the workflow input collection.
         """
-        pass
 
     @abstractmethod
     def add_inputs_files(self, crate):
         """
         Add input files to the crate.
         """
-        pass
 
     @abstractmethod
     def add_output_formats(self, crate):
         """
         Add output formats to the crate.
         """
-        pass
 
     # --------------------------------------------------------------------------
     # Helper functions - called by the top level functions
@@ -117,25 +111,21 @@ class Converter(ABC):
 
         Returns a dictionary where tools / workflows are mapped by their ids.
         """
-        pass
 
     @abstractmethod
     def get_step_maps(self, wf_defs):
         """
         Get a mapping of step names to their tool names and positions.
         """
-        pass
 
     @abstractmethod
     def build_step_graph(self, wf):
         """
         Build a graph of steps in the workflow.
         """
-        pass
 
     @abstractmethod
     def convert_param(self, prov_param, crate, convert_secondary=True, parent=None):
         """
         Convert a CWLProv parameter to a RO-Crate entity.
         """
-        pass
