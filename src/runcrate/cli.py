@@ -74,10 +74,6 @@ def convert(root, converter, output, license, workflow_name, readme):
     if not output:
         output = Path(f"{root.name}.crate.zip")
 
-    if converter not in CONVERTERS:
-        sys.stderr.write(f"Unknown converter: {converter}\n")
-        sys.exit(1)
-
     converter_instance = CONVERTERS[converter]
     sys.stdout.write(f"Using converter: {converter_instance}\n")
 
