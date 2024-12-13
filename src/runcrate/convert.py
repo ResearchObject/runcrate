@@ -18,18 +18,10 @@
 Generate a Workflow Run RO-Crate from a CWLProv RO bundle.
 """
 
-from pathlib import Path
-
-from bdbag.bdbagit import BDBag
-from cwlprov.prov import Provenance
-from cwlprov.ro import ResearchObject
 from rocrate.rocrate import ROCrate
 
 from .constants import TERMS_NAMESPACE
 from .converters import CONVERTERS
-
-
-MANIFEST_FILE = "manifest-sha1.txt"
 
 
 class ProvCrateBuilder:
@@ -40,22 +32,12 @@ class ProvCrateBuilder:
                  license=None,
                  readme=None):
         self.converter = converter
-        self.converter.root = Path(root)
-        self.converter.workflow_name = workflow_name
-        self.converter.license = license
-        self.converter.readme = Path(readme) if readme else readme
-        self.converter.wf_path = self.converter.root / "workflow" / self.converter.WORKFLOW_BASENAME
-        self.converter.workflow_definition = self.converter.get_workflow()
-        self.converter.step_maps = self.converter.get_step_maps()
-        self.converter.ro = ResearchObject(BDBag(str(root)))
-        self.converter.with_prov = set(str(_) for _ in self.converter.ro.resources_with_provenance())
-        self.converter.workflow_run = Provenance(self.converter.ro).activity()
-        self.converter.roc_engine_run = None
-        self.converter.control_actions = {}
-        self.converter.collection = {}
-        self.converter.hashes = {}
-        self.converter.file_map = {}
-        self.converter.manifest = self.converter.get_manifest(self.converter.root, MANIFEST_FILE)
+        self.converter.populate(
+            root,
+            workflow_name=workflow_name,
+            license=license,
+            readme=readme
+        )
 
     def build(self):
         crate = ROCrate(gen_preview=False)

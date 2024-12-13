@@ -6,8 +6,10 @@ from pathlib import Path
 
 import networkx as nx
 import prov.model
+from bdbag.bdbagit import BDBag
 from cwl_utils.parser import load_document_by_yaml
 from cwlprov.prov import Entity, Provenance
+from cwlprov.ro import ResearchObject
 from cwlprov.utils import first
 from rocrate.model.contextentity import ContextEntity
 from rocrate.model.softwareapplication import SoftwareApplication
@@ -16,6 +18,8 @@ from ..constants import DOCKER_IMG_TYPE
 from ..utils import as_list, parse_img
 from .base import Converter
 
+
+MANIFEST_FILE = "manifest-sha1.txt"
 
 CWLPROV_NONE = "https://w3id.org/cwl/prov#None"
 
@@ -41,6 +45,24 @@ SCATTER_JOB_PATTERN = re.compile(r"^(.+)_\d+$")
 class CwlConverter(Converter):
 
     WORKFLOW_BASENAME = "packed.cwl"
+
+    def populate(self, root, workflow_name=None, license=None, readme=None):
+        self.root = Path(root)
+        self.workflow_name = workflow_name
+        self.license = license
+        self.readme = Path(readme) if readme else readme
+        self.wf_path = self.root / "workflow" / self.WORKFLOW_BASENAME
+        self.workflow_definition = self.get_workflow()
+        self.step_maps = self.get_step_maps()
+        self.ro = ResearchObject(BDBag(str(root)))
+        self.with_prov = set(str(_) for _ in self.ro.resources_with_provenance())
+        self.workflow_run = Provenance(self.ro).activity()
+        self.roc_engine_run = None
+        self.control_actions = {}
+        self.collection = {}
+        self.hashes = {}
+        self.file_map = {}
+        self.manifest = self.get_manifest(self.root, MANIFEST_FILE)
 
     # --------------------------------------------------------------------------
     # Top level methods, called by build()

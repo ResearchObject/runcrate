@@ -66,6 +66,12 @@ class Converter(ABC):
         return
 
     @abstractmethod
+    def populate(self, root, workflow_name=None, license=None, readme=None):
+        """
+        Populate the converter with the given root directory and optional metadata.
+        """
+
+    @abstractmethod
     def add_workflow(self, crate):
         """
         Add the workflow to the crate.
@@ -105,11 +111,16 @@ class Converter(ABC):
     # Helper functions - called by the top level functions
 
     @abstractmethod
-    def get_workflow(self, wf_path):
+    def get_workflow(self):
         """
-        Get the workflow from the given path.
+        Should return a dictionary describing the workflow
+        Fetched from e.g. a file at self.wf_path
 
-        Returns a dictionary where tools / workflows are mapped by their ids.
+        The definition should contain:
+        - name: the workflow name
+        - inputs: a list of inputs
+        - outputs: a list of outputs
+        - steps: a list of steps
         """
 
     @abstractmethod
