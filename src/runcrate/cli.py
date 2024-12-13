@@ -19,6 +19,7 @@ import click
 
 from . import __version__
 from .convert import ProvCrateBuilder
+from .converters import CONVERTERS
 from .report import dump_crate_actions
 from .run import run_crate
 
@@ -33,6 +34,13 @@ def cli():
     "root",
     metavar="RO_DIR",
     type=click.Path(exists=True, file_okay=False, readable=True, path_type=Path),
+)
+@click.option(
+    "-c",
+    "--converter",
+    type=click.Choice(CONVERTERS.keys()),
+    default="cwl",
+    help="converter to use",
 )
 @click.option(
     "-o",
@@ -56,15 +64,29 @@ def cli():
     type=click.Path(exists=True, dir_okay=False, readable=True, path_type=Path),
     help="path to a README file (should be README.md in Markdown format)",
 )
-def convert(root, output, license, workflow_name, readme):
+def convert(root, converter, output, license, workflow_name, readme):
     """\
-    Convert a CWLProv RO bundle into a Workflow Run RO-Crate.
+    Convert a provenance bundle into a Workflow Run RO-Crate.
 
-    RO_DIR: top-level directory of the CWLProv RO
+    Supported (see: converters):
+    - CWLProv RO.
+
+    RO_DIR: top-level directory of the provenance bundle.
     """
+
     if not output:
         output = Path(f"{root.name}.crate.zip")
-    builder = ProvCrateBuilder(root, workflow_name, license, readme)
+
+    converter_instance = CONVERTERS[converter]
+    sys.stdout.write(f"Using converter: {converter_instance}\n")
+
+    builder = ProvCrateBuilder(
+        root,
+        converter_instance,
+        workflow_name,
+        license,
+        readme
+    )
     crate = builder.build()
     if output.suffix == ".zip":
         crate.write_zip(output)
