@@ -1,6 +1,6 @@
 bdbag>=1.4.1
 click~=8.1
-cwl-utils==0.36
+cwl-utils==0.37
 cwlprov==0.1.1
 networkx==3.1
 prov>=1.5.1
