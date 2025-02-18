@@ -32,7 +32,7 @@ def test_cli_convert(data_dir, tmpdir, monkeypatch):
     crate_zip = tmpdir / f"{root.name}.crate.zip"
     assert crate_zip.is_file()
     crate = ROCrate(crate_zip)
-    assert not crate.root_dataset.get("license")
+    assert crate.root_dataset.get("license") == "notspecified"
     workflow = crate.mainEntity
     assert workflow["name"] == "packed.cwl"
 
@@ -47,7 +47,7 @@ def test_cli_convert_output(data_dir, tmpdir):
     assert result.exit_code == 0, result.exception
     assert crate_zip.is_file()
     crate = ROCrate(crate_zip)
-    assert not crate.root_dataset.get("license")
+    assert crate.root_dataset.get("license") == "notspecified"
     workflow = crate.mainEntity
     assert workflow["name"] == "packed.cwl"
     crate_zip.unlink()
@@ -59,7 +59,7 @@ def test_cli_convert_output(data_dir, tmpdir):
     assert result.exit_code == 0, result.exception
     assert crate_dir.is_dir()
     crate = ROCrate(crate_dir)
-    assert not crate.root_dataset.get("license")
+    assert crate.root_dataset.get("license") == "notspecified"
     workflow = crate.mainEntity
     assert workflow["name"] == "packed.cwl"
 

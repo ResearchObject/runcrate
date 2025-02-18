@@ -61,7 +61,9 @@ SCATTER_JOB_PATTERN = re.compile(r"^(.+)_\d+$")
 
 CWLPROV_NONE = "https://w3id.org/cwl/prov#None"
 
+# https://w3id.org/workflowhub/workflow-ro-crate/1.0
 WROC_PROFILE_VERSION = "1.0"
+DEFAULT_LICENSE = "notspecified"
 
 DOCKER_IMG_TYPE = "https://w3id.org/ro/terms/workflow-run#DockerImage"
 
@@ -200,7 +202,7 @@ class ProvCrateBuilder:
     def __init__(self, root, workflow_name=None, license=None, readme=None):
         self.root = Path(root)
         self.workflow_name = workflow_name
-        self.license = license
+        self.license = license or DEFAULT_LICENSE
         self.readme = Path(readme) if readme else readme
         self.wf_path = self.root / "workflow" / WORKFLOW_BASENAME
         self.cwl_defs = get_workflow(self.wf_path)
@@ -301,8 +303,7 @@ class ProvCrateBuilder:
         return crate
 
     def add_root_metadata(self, crate):
-        if self.license:
-            crate.root_dataset["license"] = self.license
+        crate.root_dataset["license"] = self.license
         if self.readme:
             readme = crate.add_file(self.readme)
             readme["about"] = crate.root_dataset

@@ -1191,3 +1191,14 @@ def test_agent_no_name(data_dir, tmpdir):
     assert agent.type == "Person"
     assert agent.id == "https://orcid.org/0000-0001-9447-460X"
     assert "name" not in agent
+
+
+def test_no_license(data_dir, tmpdir):
+    root = data_dir / "revsort-run-1"
+    output = tmpdir / "revsort-run-1-crate"
+    readme = data_dir / "README.md"
+    workflow_name = "RevSort"
+    builder = ProvCrateBuilder(root, workflow_name=workflow_name, readme=readme)
+    crate = builder.build()
+    crate.write(output)
+    assert crate.root_dataset["license"] == "notspecified"
