@@ -47,7 +47,9 @@ def test_revsort(data_dir, tmpdir):
     assert readme_f["about"] is crate.root_dataset
     workflow = crate.mainEntity
     assert workflow.id == "packed.cwl"
-    assert workflow["name"] == "RevSort"
+    assert workflow["name"] == workflow_name
+    assert crate.root_dataset["name"] == f"run of {workflow_name}"
+    assert crate.root_dataset["description"] == f"run of {workflow_name}"
     tools = workflow["hasPart"]
     assert len(tools) == 2
     for entity in tools:
@@ -1193,12 +1195,22 @@ def test_agent_no_name(data_dir, tmpdir):
     assert "name" not in agent
 
 
-def test_no_license(data_dir, tmpdir):
+def test_no_license(data_dir):
     root = data_dir / "revsort-run-1"
-    output = tmpdir / "revsort-run-1-crate"
-    readme = data_dir / "README.md"
-    workflow_name = "RevSort"
-    builder = ProvCrateBuilder(root, workflow_name=workflow_name, readme=readme)
+    builder = ProvCrateBuilder(root)
     crate = builder.build()
-    crate.write(output)
     assert crate.root_dataset["license"] == "notspecified"
+
+
+def test_name_desc(data_dir):
+    root = data_dir / "revsort-run-1"
+    workflow_name = "RevSort"
+    crate_name = "name of the crate"
+    builder = ProvCrateBuilder(root, workflow_name=workflow_name, crate_name=crate_name)
+    crate = builder.build()
+    assert crate.root_dataset["name"] == crate_name
+    assert crate.root_dataset["description"] == crate_name
+    crate_desc = "description of the crate"
+    builder = ProvCrateBuilder(root, workflow_name=workflow_name, crate_name=crate_name, crate_desc=crate_desc)
+    crate = builder.build()
+    assert crate.root_dataset["description"] == crate_desc

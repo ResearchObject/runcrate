@@ -199,11 +199,14 @@ def get_workflow(wf_path):
 
 class ProvCrateBuilder:
 
-    def __init__(self, root, workflow_name=None, license=None, readme=None):
+    def __init__(self, root, workflow_name=None, license=None, readme=None,
+                 crate_name=None, crate_desc=None):
         self.root = Path(root)
         self.workflow_name = workflow_name
         self.license = license or DEFAULT_LICENSE
         self.readme = Path(readme) if readme else readme
+        self.crate_name = crate_name
+        self.crate_desc = crate_desc
         self.wf_path = self.root / "workflow" / WORKFLOW_BASENAME
         self.cwl_defs = get_workflow(self.wf_path)
         self.step_maps = self._get_step_maps(self.cwl_defs)
@@ -292,9 +295,9 @@ class ProvCrateBuilder:
     def build(self):
         crate = ROCrate(gen_preview=False)
         crate.metadata.extra_contexts.append(TERMS_NAMESPACE)
-        self.add_root_metadata(crate)
         self.add_profiles(crate)
         self.add_workflow(crate)
+        self.add_root_metadata(crate)
         self.add_engine_run(crate)
         self.add_action(crate, self.workflow_run)
         self.patch_workflow_input_collection(crate)
@@ -309,6 +312,10 @@ class ProvCrateBuilder:
             readme["about"] = crate.root_dataset
             if self.readme.suffix.lower() == ".md":
                 readme["encodingFormat"] = "text/markdown"
+        if not self.crate_name:
+            self.crate_name = f"run of {self.workflow_name}"
+        crate.root_dataset["name"] = self.crate_name
+        crate.root_dataset["description"] = self.crate_desc or self.crate_name
 
     def add_profiles(self, crate):
         profiles = []
@@ -339,10 +346,11 @@ class ProvCrateBuilder:
             lang_version=lang_version, gen_cwl=False, properties=properties
         )
         cwl_workflow = self.cwl_defs[workflow.id]
-        wf_name = self.wf_path.name
+        if not self.workflow_name:
+            self.workflow_name = self.wf_path.name
         if hasattr(cwl_workflow, "label") and cwl_workflow.label:
-            wf_name = cwl_workflow.label
-        workflow["name"] = self.workflow_name or wf_name
+            self.workflow_name = cwl_workflow.label
+        workflow["name"] = self.workflow_name
         if hasattr(cwl_workflow, "doc") and cwl_workflow.doc:
             workflow["description"] = cwl_workflow.doc
         # cannot convert "intent" to featureList: workflow is not a SoftwareApplication

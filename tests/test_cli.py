@@ -102,6 +102,34 @@ def test_cli_convert_workflow_name(data_dir, tmpdir):
     assert workflow["name"] == workflow_name
 
 
+def test_cli_convert_crate_name(data_dir, tmpdir):
+    root = data_dir / "revsort-run-1"
+    crate_dir = tmpdir / "revsort-run-1-crate"
+    workflow_name = "RevSort"
+    crate_name = "name of the crate"
+    runner = CliRunner()
+    args = ["convert", str(root), "-o", str(crate_dir), "-w", workflow_name, "-n", crate_name]
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0, result.exception
+    crate = ROCrate(crate_dir)
+    assert crate.root_dataset["name"] == crate_name
+    assert crate.root_dataset["description"] == crate_name
+
+
+def test_cli_convert_crate_desc(data_dir, tmpdir):
+    root = data_dir / "revsort-run-1"
+    crate_dir = tmpdir / "revsort-run-1-crate"
+    workflow_name = "RevSort"
+    crate_desc = "description of the crate"
+    runner = CliRunner()
+    args = ["convert", str(root), "-o", str(crate_dir), "-w", workflow_name, "-d", crate_desc]
+    result = runner.invoke(cli, args)
+    assert result.exit_code == 0, result.exception
+    crate = ROCrate(crate_dir)
+    assert crate.root_dataset["name"] == f"run of {workflow_name}"
+    assert crate.root_dataset["description"] == crate_desc
+
+
 def test_cli_convert_readme(data_dir, tmpdir):
     root = data_dir / "revsort-run-1"
     crate_dir = tmpdir / "revsort-run-1-crate"
