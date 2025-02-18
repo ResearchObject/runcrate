@@ -17,8 +17,8 @@ jobs:
         python-version: '3.12'
     - name: Build
       run: |
-        pip install wheel
-        python setup.py sdist bdist_wheel
+        pip install tox
+        tox -e build
     - name: Release
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
