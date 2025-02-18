@@ -12,14 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from runcrate.convert import ProvCrateBuilder, get_workflow
+import pytest
+
+from runcrate.converters.cwl import CwlConverter
 
 
-def test_step_maps(data_dir):
+@pytest.fixture
+def converter():
+    converter = CwlConverter()
+    return converter
+
+
+def test_step_maps_cwl(data_dir, converter):
     wf_basename = "exome-alignment-packed.cwl"
     wf_path = data_dir / wf_basename
-    cwl_defs = get_workflow(wf_path)
-    step_maps = ProvCrateBuilder._get_step_maps(cwl_defs)
+    converter.wf_path = wf_path
+    cwl_defs = converter.get_workflow()
+    converter.workflow_definition = cwl_defs
+    step_maps = converter.get_step_maps()
     assert set(step_maps) == {wf_basename}
     sm = step_maps[wf_basename]
     assert len(sm) == 8
@@ -39,10 +49,11 @@ def test_step_maps(data_dir):
     assert sm["main/samtools_sort"]["pos"] < sm["main/picard_markduplicates"]["pos"]
 
 
-def test_step_maps_disconnected(data_dir):
-    wf_path = data_dir / "no-output-run-1/workflow/packed.cwl"
-    cwl_defs = get_workflow(wf_path)
-    step_maps = ProvCrateBuilder._get_step_maps(cwl_defs)
+def test_step_maps_disconnected_cwl(data_dir, converter):
+    converter.wf_path = data_dir / "no-output-run-1/workflow/packed.cwl"
+    cwl_defs = converter.get_workflow()
+    converter.workflow_definition = cwl_defs
+    step_maps = converter.get_step_maps()
     assert set(step_maps) == {"packed.cwl"}
     sm = step_maps["packed.cwl"]
     assert set(sm) == {"main/date_step", "main/echo_step", "main/date2_step"}
