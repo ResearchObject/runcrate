@@ -73,9 +73,9 @@ Then install runcrate in development mode::
 
   pip install -e .
 
-This allows to test any changes to the code without having to run the installation again. To quickly run tests while developing, install pytest::
+This allows to test any changes to the code without having to run the installation again. To quickly run tests while developing, install pytest and cwlref-runner (the latter is needed by some tests)::
 
-  pip install pytest
+  pip install pytest cwlref-runner
 
 Than you can run all tests with::
 
