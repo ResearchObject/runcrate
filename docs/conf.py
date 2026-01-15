@@ -2,7 +2,7 @@
 
 project = "Runcrate"
 author = "CRS4"
-copyright = f"2022-2025 {author}"
+copyright = f"2022-2026 {author}"
 
 extensions = [
     "sphinx.ext.autodoc",

@@ -1,6 +1,6 @@
-# Copyright 2022-2025 CRS4.
-# Copyright 2023-2025 Michael R. Crusoe
-# Copyright 2024-2025 Senckenberg Society for Nature Research
+# Copyright 2022-2026 CRS4.
+# Copyright 2023-2026 Michael R. Crusoe
+# Copyright 2024-2026 Senckenberg Society for Nature Research
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
