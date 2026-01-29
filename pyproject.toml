@@ -25,7 +25,7 @@ dependencies = [
     "cwl-utils==0.40",
     "cwlprov==0.2.1",
     "networkx==3.1",
-    "prov==1.5.1",
+    "prov==1.5.3",
     "rocrate>=0.9,<1",
 ]
 dynamic = ["version"]
