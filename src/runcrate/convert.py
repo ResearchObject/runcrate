@@ -134,17 +134,17 @@ def cut_step_part(relative_uri):
 
 def build_step_graph(cwl_wf):
     out_map = {}
-    for s in cwl_wf.steps:
-        for o in s.out:
-            out_map[o] = get_fragment(s.id)
+    for step in cwl_wf.steps:
+        for out in step.out:
+            out_map[out] = get_fragment(step.id)
     graph = nx.DiGraph()
-    for s in cwl_wf.steps:
-        fragment = get_fragment(s.id)
+    for step in cwl_wf.steps:
+        fragment = get_fragment(step.id)
         graph.add_node(fragment)
-        for i in s.in_:
-            sources = [i.source] if not isinstance(i.source, list) else i.source
-            for s in sources:
-                source_fragment = out_map.get(s)
+        for inp in step.in_:
+            sources = [inp.source] if not isinstance(inp.source, list) else inp.source
+            for source in sources:
+                source_fragment = out_map.get(source)
                 if source_fragment:
                     graph.add_edge(source_fragment, fragment)
     return graph
