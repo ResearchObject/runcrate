@@ -23,9 +23,9 @@ dependencies = [
     "bdbag>=1.4.1",
     "click~=8.1",
     "cwl-utils==0.47",
-    "cwlprov==0.2.1",
+    "cwlprov @ git+https://github.com/crim-ca/cwlprov-py.git@backport-cwltool-prov",
     "networkx==3.1",
-    "prov==1.5.1",
+    "prov>=3.3,<3.4",
     "rocrate>=0.9,<1",
 ]
 dynamic = ["version"]
@@ -43,7 +43,7 @@ runcrate = "runcrate.cli:cli"
 [dependency-groups]
 test = [
     "coverage",
-    "cwltool",
+    "cwltool @ git+https://github.com/crim-ca/cwltool.git@prov-jsonld-fix-associations"
     "cwlref-runner",
     "pytest",
     "pytest-cov",
