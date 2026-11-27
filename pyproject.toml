@@ -40,6 +40,28 @@ Homepage = "https://github.com/ResearchObject/runcrate"
 [project.scripts]
 runcrate = "runcrate.cli:cli"
 
+[dependency-groups]
+test = [
+    "coverage",
+    "cwltool",
+    "cwlref-runner",
+    "pytest",
+    "pytest-cov",
+    "hypothesis",
+]
+lint = [
+    "flake8>=4",
+    "flake8-print>=5",
+    "flake8-bugbear",
+    "pygments",
+    "isort",
+]
+docs = [
+    "sphinx",
+    "sphinx-click",
+    "sphinx_rtd_theme",
+]
+
 [tool.setuptools]
 zip-safe = false
 include-package-data = true
